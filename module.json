@@ -1,0 +1,38 @@
+{
+    "id": "pf2e-assistant",
+    "title": "PF2e Assistant",
+    "description": "",
+    "version": "0.0.0",
+    "authors": [
+        {
+            "name": "7H3LaughingMan",
+            "discord": "7h3laughingman",
+            "url": "https://github.com/7H3LaughingMan"
+        }
+    ],
+    "socket": true,
+    "compatibility": {
+        "minimum": "12.331",
+        "verified": "12.331",
+        "maximum": "12"
+    },
+    "esmodules": ["dist/pf2e-assistant.js"],
+    "relationships": {
+        "requires": [
+            {
+                "id": "socketlib",
+                "type": "module"
+            }
+        ],
+        "systems": [
+            {
+                "id": "pf2e",
+                "type": "system",
+                "mainfest": "https://github.com/foundryvtt/pf2e/releases/latest/download/system.json",
+                "compatibility": {
+                    "minimum": "6.8.0"
+                }
+            }
+        ]
+    }
+}
