@@ -13,8 +13,8 @@ export const actions: AssistantAction[] = [
         process: async (message: AssistantMessage) => {
             if (!message.speaker?.actor) return;
 
-            let effect = (await fromUuid("Compendium.pf2e.feat-effects.Item.uBJsxCzNhje8m8jj")) as EffectPF2e;
-            game.assistant.socket.createEmbeddedItem(message.speaker.actor, effect.toObject());
+            let effect = await fromUuid<EffectPF2e>("Compendium.pf2e.feat-effects.Item.uBJsxCzNhje8m8jj");
+            if (effect) game.assistant.socket.createEmbeddedItem(message.speaker.actor, effect.toObject());
         },
     },
     {

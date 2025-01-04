@@ -12,17 +12,17 @@ export class AssistantMessage {
 
     speaker?: {
         actor: ActorPF2e;
-        token?: TokenDocumentPF2e
+        token?: TokenDocumentPF2e;
     };
 
     target?: {
         actor: ActorPF2e;
-        token?: TokenDocumentPF2e
+        token?: TokenDocumentPF2e;
     };
 
     origin?: {
         actor: ActorPF2e;
-        token?: TokenDocumentPF2e
+        token?: TokenDocumentPF2e;
     };
 
     static async initialize(chatMessage: ChatMessagePF2e): Promise<AssistantMessage> {
@@ -37,14 +37,14 @@ export class AssistantMessage {
         if (chatMessage.actor && chatMessage.token) {
             message.speaker = {
                 actor: chatMessage.actor,
-                token: chatMessage.token
+                token: chatMessage.token,
             };
         }
 
         if (chatMessage.target?.actor && chatMessage.target?.actor) {
             message.target = {
                 actor: chatMessage.target.actor,
-                token: chatMessage.target.token
+                token: chatMessage.target.token,
             };
         }
 
@@ -52,22 +52,26 @@ export class AssistantMessage {
             let checkContext = chatMessage.flags.pf2e.context;
 
             if (checkContext.origin) {
-                let actor = await fromUuid(checkContext.origin.actor) as ActorPF2e;
-                let token = !checkContext.origin.token ? undefined : await fromUuid(checkContext.origin.token) as TokenDocumentPF2e;
+                let actor = await fromUuid<ActorPF2e>(checkContext.origin.actor);
+                let token = !checkContext.origin.token
+                    ? undefined
+                    : await fromUuid<TokenDocumentPF2e>(checkContext.origin.token) ?? undefined;
 
                 if (actor) {
                     message.origin = {
                         actor,
-                        token
-                    }
+                        token,
+                    };
                 }
             }
         }
 
         let strike = Utils.ChatMessage.getStrike(chatMessage.flags);
         if (strike) {
-            let actor = await fromUuid(strike.actor) as ActorPF2e;
-            message.item = actor.system.actions?.[strike.index].item;
+            let actor = await fromUuid<ActorPF2e>(strike.actor);
+            if (actor) {
+                message.item = actor.system.actions?.[strike.index].item;
+            }
         }
 
         if (chatMessage.isCheckRoll) {

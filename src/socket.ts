@@ -38,7 +38,10 @@ export class AssistantSocket {
     }
 
     async #createEmbeddedItem(actorUuid: ActorUUID, data: PreCreate<ItemSourcePF2e>) {
-        await game.assistant.socket.createEmbeddedItem((await fromUuid(actorUuid)) as ActorPF2e, data);
+        let actor = await fromUuid<ActorPF2e>(actorUuid);
+        if (!actor) return;
+
+        await game.assistant.socket.createEmbeddedItem(actor, data);
     }
 
     async decreaseCondition(actor: ActorPF2e, conditionSlug: ConditionSlug, options?: { forceRemove: boolean }) {
@@ -51,7 +54,10 @@ export class AssistantSocket {
     }
 
     async #decreaseCondition(actorUuid: ActorUUID, conditionSlug: ConditionSlug, options?: { forceRemove: boolean }) {
-        await game.assistant.socket.decreaseCondition((await fromUuid(actorUuid)) as ActorPF2e, conditionSlug, options);
+        let actor = await fromUuid<ActorPF2e>(actorUuid);
+        if (!actor) return;
+
+        await game.assistant.socket.decreaseCondition(actor, conditionSlug, options);
     }
 
     async increaseCondition(
@@ -72,7 +78,10 @@ export class AssistantSocket {
         conditionSlug: ConditionSlug,
         options?: { max?: number; value?: number | null },
     ) {
-        await game.assistant.socket.increaseCondition((await fromUuid(actorUuid)) as ActorPF2e, conditionSlug, options);
+        let actor = await fromUuid<ActorPF2e>(actorUuid);
+        if (!actor) return;
+
+        await game.assistant.socket.increaseCondition(actor, conditionSlug, options);
     }
 
     async toggleCondition(actor: ActorPF2e, conditionSlug: ConditionSlug, options?: { active?: boolean }) {
@@ -85,7 +94,10 @@ export class AssistantSocket {
     }
 
     async #toggleCondition(actorUuid: ActorUUID, conditionSlug: ConditionSlug, options?: { active?: boolean }) {
-        await game.assistant.socket.toggleCondition((await fromUuid(actorUuid)) as ActorPF2e, conditionSlug, options);
+        let actor = await fromUuid<ActorPF2e>(actorUuid);
+        if (!actor) return;
+
+        await game.assistant.socket.toggleCondition(actor, conditionSlug, options);
     }
 
     async rollSave(actor: ActorPF2e, save: SaveType, args?: StatisticRollParameters) {
@@ -153,18 +165,21 @@ export class AssistantSocket {
             createMessage?: boolean;
         },
     ) {
+        let actor = await fromUuid<ActorPF2e>(actorUuid);
+        if (!actor) return;
+
         await game.assistant.socket.rollSave(
-            (await fromUuid(actorUuid)) as ActorPF2e,
+            actor,
             save,
             !args
                 ? undefined
                 : {
                       identifier: args.identifier,
                       action: args.action,
-                      token: !args.token ? undefined : ((await fromUuid(args.token)) as TokenDocumentPF2e),
+                      token: !args.token ? undefined : await fromUuid<TokenDocumentPF2e>(args.token),
                       attackNumber: args.attackNumber,
-                      target: !args.target ? undefined : ((await fromUuid(args.target)) as ActorPF2e),
-                      origin: !args.origin ? undefined : ((await fromUuid(args.origin)) as ActorPF2e),
+                      target: !args.target ? undefined : await fromUuid<ActorPF2e>(args.target),
+                      origin: !args.origin ? undefined : await fromUuid<ActorPF2e>(args.origin),
                       dc: args.dc,
                       label: args?.label,
                       slug: args.slug,

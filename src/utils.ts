@@ -53,12 +53,12 @@ export namespace Utils {
         }
 
         export async function getItem(itemUuid: ItemUUID): Promise<ItemPF2e<ActorPF2e> | undefined> {
-            let item = (await fromUuid(itemUuid)) as ItemPF2e<ActorPF2e> ;
+            let item = await fromUuid<ItemPF2e<ActorPF2e>>(itemUuid);
             if (!item) {
                 let parts = itemUuid.split(".");
-                let actor = (await fromUuid(parts.slice(0, -2).join("."))) as ActorPF2e;
+                let actor = await fromUuid<ActorPF2e>(parts.slice(0, -2).join("."));
                 if (actor) {
-                    item = actor.system.actions?.find((x) => x.item.id == parts.at(-1))?.item as ItemPF2e<ActorPF2e> ;
+                    item = actor.system.actions?.find((x) => x.item.id == parts.at(-1))?.item as ItemPF2e<ActorPF2e>;
                 }
             }
 
