@@ -1,0 +1,31 @@
+name: Automation Feature Request
+description: File a feature request to add new automation to PF2e Assistant.
+title: "[Feature Request]: <Feat/Feature/Spell/Etc Name>"
+labels: ["enhancement"]
+assignees:
+  - 7H3LaughingMan
+body:
+  - type: input
+    attributes:
+      label: Archives of Nethys / Demiplane Link
+      description: Please provide a link to the feat/feature/spell/etc.
+      placeholder: "https://app.demiplane.com/nexus/pathfinder2e/class-features/panache"
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Description
+      description: Please provide a detailed description of how the automation should work.
+    validations:
+      required: true
+  - type: checkboxes
+    attributes:
+      label: Confirmation
+      description: Please confirm the following.
+      options:
+        - label: I have confirmed this automation does not exist in the current version of PF2e Assistant.
+          required: true
+        - label: I have confirmed that there is not an open feature request for this.
+          required: true
+        - label: I am not an idiot.
+          required: true

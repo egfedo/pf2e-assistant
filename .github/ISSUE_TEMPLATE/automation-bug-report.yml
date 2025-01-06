@@ -21,15 +21,22 @@ body:
   - type: input
     attributes:
       label: Foundry VTT Version
-      description: Please provide which version of Foundry VTT you are using.
+      description: Please provide which version of Foundry VTT that you are using.
       placeholder: "12.331"
     validations:
       required: true
   - type: input
     attributes:
       label: PF2e Version
-      description: Please provide which version of the PF2e Game System you are using.
+      description: Please provide which version of the PF2e Game System that you are using.
       placeholder: "6.8.1"
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: PF2e Assistant Version
+      description: Please provide which version of the PF2e Assistant that you are using.
+      placeholder: "6.0.0"
     validations:
       required: true
   - type: checkboxes
@@ -37,9 +44,9 @@ body:
       label: Confirmation
       description: Please confirm the following.
       options:
-        - label: I have tested and confirm that this issue occurs with no other modules active.
+        - label: I have confirmed that this issue is not the result of another module by using [Find the Culprit!](https://foundryvtt.com/packages/find-the-culprit/).
           required: true
-        - label: I have double checked that there is not an open issue related to this feat/feature/spell/etc.
+        - label: I have confirmed that there is not an open issue for this.
           required: true
         - label: I am not an idiot.
           required: true
