@@ -67,9 +67,9 @@ export namespace Utils {
                 return !actor.classDC
                     ? undefined
                     : {
-                          label: `${actor.classDC.label} DC`,
-                          value: actor.classDC.dc.value,
-                      };
+                        label: `${actor.classDC.label} DC`,
+                        value: actor.classDC.dc.value,
+                    };
             }
 
             if (actor.isOfType("npc")) {
@@ -106,12 +106,6 @@ export namespace Utils {
 
         export function isCheckContext(context?: ChatContextFlag): context is CheckContextChatFlag {
             return CHECK_TYPE.includes(context?.type ?? "");
-        }
-    }
-
-    export namespace Conditions {
-        export function getUUID(slug: ConditionSlug): ItemUUID {
-            return game.pf2e.ConditionManager.getCondition(slug).uuid;
         }
     }
 

@@ -1,7 +1,7 @@
 import { EffectSource, ItemPF2e } from "foundry-pf2e";
-import { AssistantAction } from "../../action.ts";
-import { AssistantMessage } from "../../message.ts";
-import { Utils } from "../../utils.ts";
+import { AssistantAction } from "action.ts";
+import { AssistantMessage } from "message.ts";
+import { Utils } from "utils.ts";
 
 export const actions: AssistantAction[] = [
     {

@@ -13,6 +13,7 @@
             "foundry-pf2e/pf2e-toolbelt",
             "foundry-pf2e/socketlib"
         ],
+        "baseUrl": "./src",
         "noEmit": true,
         "strict": true,
         "noFallthroughCasesInSwitch": true,

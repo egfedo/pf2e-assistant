@@ -1,5 +1,6 @@
-import { AssistantAction } from "./action.ts";
-import { AssistantMessage } from "./message.ts";
+import { AssistantAction } from "action.ts";
+import { AssistantMessage } from "message.ts";
+
 
 const modules = import.meta.glob("./data/**/*.ts", { import: "actions" });
 

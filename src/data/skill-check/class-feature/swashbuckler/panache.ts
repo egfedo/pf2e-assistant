@@ -1,6 +1,6 @@
 import { EffectPF2e } from "foundry-pf2e";
-import { AssistantAction } from "../../../action.ts";
-import { AssistantMessage } from "../../../message.ts";
+import { AssistantAction } from "action.ts";
+import { AssistantMessage } from "message.ts";
 
 export const actions: AssistantAction[] = [
     {
@@ -46,7 +46,6 @@ export const actions: AssistantAction[] = [
                     rules: [
                         {
                             key: "GrantItem",
-                            // @ts-expect-error
                             onDeleteActions: {
                                 grantee: "restrict",
                             },

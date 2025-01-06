@@ -1,5 +1,5 @@
 import { ActorPF2e, ChatMessagePF2e, CheckRoll, ItemPF2e, PredicateStatement, TokenDocumentPF2e } from "foundry-pf2e";
-import { Utils } from "./utils.ts";
+import { Utils } from "utils.ts";
 
 export class AssistantMessage {
     trigger: string;

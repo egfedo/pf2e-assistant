@@ -19,7 +19,8 @@
         "prompts": "^2.4.2",
         "tsx": "^4.19.2",
         "typescript": "^5.7.2",
-        "vite": "^6.0.7"
+        "vite": "^6.0.7",
+        "vite-tsconfig-paths": "^5.1.4"
     },
     "dependencies": {
         "foundry-pf2e": "github:7H3LaughingMan/foundry-pf2e"

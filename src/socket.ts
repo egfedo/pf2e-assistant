@@ -14,7 +14,8 @@ import {
     TraitViewData,
 } from "foundry-pf2e";
 import module from "../module.json" with { type: "json" };
-import { Utils } from "./utils.ts";
+import { Utils } from "utils.ts";
+
 
 export class AssistantSocket {
     #socket: SocketlibSocket;
@@ -109,28 +110,28 @@ export class AssistantSocket {
                 !args
                     ? undefined
                     : {
-                          identifier: args.identifier,
-                          action: args.action,
-                          token: !args.token ? undefined : args.token.uuid,
-                          attackNumber: args.attackNumber,
-                          target: !args.target ? undefined : args.target.uuid,
-                          origin: !args.origin ? undefined : args.origin.uuid,
-                          dc: args.dc,
-                          label: args.label,
-                          slug: args.slug,
-                          title: args.title,
-                          extraRollNotes: args.extraRollNotes,
-                          extraRollOptions: args.extraRollOptions,
-                          modifiers: args.modifiers,
-                          item: !args.item ? undefined : args.item.uuid,
-                          rollMode: args.rollMode,
-                          skipDialog: args.skipDialog,
-                          rollTwice: args.rollTwice,
-                          traits: args.traits,
-                          damaging: args.damaging,
-                          melee: args.melee,
-                          createMessage: args.createMessage,
-                      },
+                        identifier: args.identifier,
+                        action: args.action,
+                        token: !args.token ? undefined : args.token.uuid,
+                        attackNumber: args.attackNumber,
+                        target: !args.target ? undefined : args.target.uuid,
+                        origin: !args.origin ? undefined : args.origin.uuid,
+                        dc: args.dc,
+                        label: args.label,
+                        slug: args.slug,
+                        title: args.title,
+                        extraRollNotes: args.extraRollNotes,
+                        extraRollOptions: args.extraRollOptions,
+                        modifiers: args.modifiers,
+                        item: !args.item ? undefined : args.item.uuid,
+                        rollMode: args.rollMode,
+                        skipDialog: args.skipDialog,
+                        rollTwice: args.rollTwice,
+                        traits: args.traits,
+                        damaging: args.damaging,
+                        melee: args.melee,
+                        createMessage: args.createMessage,
+                    },
             );
             return;
         }
@@ -174,28 +175,28 @@ export class AssistantSocket {
             !args
                 ? undefined
                 : {
-                      identifier: args.identifier,
-                      action: args.action,
-                      token: !args.token ? undefined : await fromUuid<TokenDocumentPF2e>(args.token),
-                      attackNumber: args.attackNumber,
-                      target: !args.target ? undefined : await fromUuid<ActorPF2e>(args.target),
-                      origin: !args.origin ? undefined : await fromUuid<ActorPF2e>(args.origin),
-                      dc: args.dc,
-                      label: args?.label,
-                      slug: args.slug,
-                      title: args.title,
-                      extraRollNotes: args.extraRollNotes,
-                      extraRollOptions: args.extraRollOptions,
-                      modifiers: args.modifiers,
-                      item: !args.item ? undefined : await Utils.Actor.getItem(args.item),
-                      rollMode: args.rollMode,
-                      skipDialog: args.skipDialog,
-                      rollTwice: args.rollTwice,
-                      traits: args.traits,
-                      damaging: args.damaging,
-                      melee: args.melee,
-                      createMessage: args.createMessage,
-                  },
+                    identifier: args.identifier,
+                    action: args.action,
+                    token: !args.token ? undefined : await fromUuid<TokenDocumentPF2e>(args.token),
+                    attackNumber: args.attackNumber,
+                    target: !args.target ? undefined : await fromUuid<ActorPF2e>(args.target),
+                    origin: !args.origin ? undefined : await fromUuid<ActorPF2e>(args.origin),
+                    dc: args.dc,
+                    label: args?.label,
+                    slug: args.slug,
+                    title: args.title,
+                    extraRollNotes: args.extraRollNotes,
+                    extraRollOptions: args.extraRollOptions,
+                    modifiers: args.modifiers,
+                    item: !args.item ? undefined : await Utils.Actor.getItem(args.item),
+                    rollMode: args.rollMode,
+                    skipDialog: args.skipDialog,
+                    rollTwice: args.rollTwice,
+                    traits: args.traits,
+                    damaging: args.damaging,
+                    melee: args.melee,
+                    createMessage: args.createMessage,
+                },
         );
     }
 }

@@ -1,4 +1,5 @@
 import { defineConfig } from "vite";
+import tsconfigPaths from "vite-tsconfig-paths";
 import module from "./module.json" with { type: "json" };
 
 export default defineConfig({
@@ -16,5 +17,6 @@ export default defineConfig({
             }
         },
         sourcemap: true,
-    }
+    },
+    plugins: [tsconfigPaths()]
 });
