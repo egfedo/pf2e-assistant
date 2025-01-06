@@ -7,38 +7,38 @@ assignees:
 body:
   - type: input
     attributes:
-      label: "Archives of Nethys / Demiplane Link"
-      description: "Please provide a link to the feat/feature/spell/etc."
+      label: Archives of Nethys / Demiplane Link
+      description: Please provide a link to the feat/feature/spell/etc.
       placeholder: "https://app.demiplane.com/nexus/pathfinder2e/class-features/panache"
     validations:
       required: true
   - type: textarea
     attributes:
-      label: "Description"
-      description: "Please provide a detailed description of what happened."
+      label: Description
+      description: Please provide a detailed description of what happened.
     validations:
       required: true
   - type: input
     attributes:
-      label: "Foundry VTT Version"
-      description: "Please provide which version of Foundry VTT you are using.."
+      label: Foundry VTT Version
+      description: Please provide which version of Foundry VTT you are using.
       placeholder: "12.331"
     validations:
       required: true
   - type: input
     attributes:
-      label: "PF2e Version"
-      description: "Please provide which version of the PF2e Game System you are using."
+      label: PF2e Version
+      description: Please provide which version of the PF2e Game System you are using.
       placeholder: "6.8.1"
     validations:
       required: true
   - type: checkboxes
     attributes:
-      label: "Confirmation"
-      description: "Please confirm the following."
+      label: Confirmation
+      description: Please confirm the following.
       options:
-        - label: "I have tested and confirm that this issue occurs with no other modules active."
-        - label: "I have double checked that there is not an open issue related to this feat/feature/spell/etc."
-        - label: "I am not an idiot."
+        - label: I have tested and confirm that this issue occurs with no other modules active.
+        - label: I have double checked that there is not an open issue related to this feat/feature/spell/etc.
+        - label: I am not an idiot.
       validations:
         required: true
