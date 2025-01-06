@@ -1,8 +1,8 @@
 {
   "id": "pf2e-assistant",
   "title": "PF2e Assistant",
-  "description": "",
-  "version": "0.0.0",
+  "description": "Your personal assistant for your Pathfinder 2nd Edition games, helps automate things that aren't autmated by the game system.",
+  "version": "6.0.0",
   "authors": [
     {
       "name": "7H3LaughingMan",
