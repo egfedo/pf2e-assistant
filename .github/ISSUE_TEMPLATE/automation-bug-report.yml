@@ -1,6 +1,6 @@
 name: Automation Bug Report
 description: File a bug report regarding a specific automation in PF2e Assitant.
-title: "[Bug]: <Title>"
+title: "[Bug]: <Feat/Feature/Spell/Etc Name>"
 labels: ["bug"]
 assignees:
   - 7H3LaughingMan
@@ -36,3 +36,17 @@ body:
       placeholder: "6.8.1"
     validations:
       required: true
+  - type: checkboxes
+    id: idiot-check
+    attributes:
+      label: "Confirmation"
+      description: "Please confirm the following."
+      options:
+        - label: "I have tested and confirm that this issue occurs with no other modules active."
+          required: true
+        - label: "I have double checked that there is not an open issue related to this feat/feature/spell/etc."
+          required: true
+        - label: "I am not an idiot."
+          required: true
+      validations:
+        required: true
