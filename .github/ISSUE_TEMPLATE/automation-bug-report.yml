@@ -13,3 +13,10 @@ body:
       placeholder: "https://app.demiplane.com/nexus/pathfinder2e/class-features/panache"
     validations:
       required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      description: "Please provide a detailed description of what happened."
+    validations:
+      required: true
