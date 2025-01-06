@@ -38,10 +38,7 @@ body:
       description: "Please confirm the following."
       options:
         - label: "I have tested and confirm that this issue occurs with no other modules active."
-          required: true
         - label: "I have double checked that there is not an open issue related to this feat/feature/spell/etc."
-          required: true
         - label: "I am not an idiot."
-          required: true
       validations:
         required: true
