@@ -6,7 +6,6 @@ assignees:
   - 7H3LaughingMan
 body:
   - type: input
-    id: link
     attributes:
       label: "Archives of Nethys / Demiplane Link"
       description: "Please provide a link to the feat/feature/spell/etc."
@@ -14,14 +13,12 @@ body:
     validations:
       required: true
   - type: textarea
-    id: description
     attributes:
       label: "Description"
       description: "Please provide a detailed description of what happened."
     validations:
       required: true
   - type: input
-    id: foundry-version
     attributes:
       label: "Foundry VTT Version"
       description: "Please provide which version of Foundry VTT you are using.."
@@ -29,7 +26,6 @@ body:
     validations:
       required: true
   - type: input
-    id: pf2e-version
     attributes:
       label: "PF2e Version"
       description: "Please provide which version of the PF2e Game System you are using."
@@ -37,7 +33,6 @@ body:
     validations:
       required: true
   - type: checkboxes
-    id: idiot-check
     attributes:
       label: "Confirmation"
       description: "Please confirm the following."
