@@ -16,5 +16,5 @@ Hooks.on("createChatMessage", async function (chatMessage: ChatMessagePF2e) {
     if (!chatMessage.isAuthor)
         return;
 
-    game.assistant.storage.process(await AssistantMessage.initialize(chatMessage));
+    game.assistant.storage.process(new AssistantMessage(chatMessage));
 });

@@ -2,9 +2,11 @@ import { ActorPF2e, ChatMessagePF2e, CheckRoll, ItemPF2e, PredicateStatement, To
 import { Utils } from "./utils.ts";
 
 export class AssistantMessage {
-    trigger: string = "";
+    trigger: string;
 
-    rollOptions: string[] = [];
+    rollOptions: string[];
+
+    chatMessage: ChatMessagePF2e;
 
     checkRoll?: CheckRoll;
 
@@ -25,24 +27,24 @@ export class AssistantMessage {
         token?: TokenDocumentPF2e;
     };
 
-    static async initialize(chatMessage: ChatMessagePF2e): Promise<AssistantMessage> {
-        let message = new AssistantMessage();
-        message.trigger = chatMessage.flags.pf2e.context?.type ?? "";
-        message.item = chatMessage.item ?? undefined;
+    constructor(chatMessage: ChatMessagePF2e) {
+        this.trigger = chatMessage.flags.pf2e.context?.type ?? "";
+        this.chatMessage = chatMessage;
+        this.item = chatMessage.item ?? undefined;
 
         const rollOptions = new Set(chatMessage.flags.pf2e.context?.options ?? []);
         const outcome = chatMessage.flags.pf2e.context?.outcome;
         if (outcome) rollOptions.add(`check:outcome:${game.pf2e.system.sluggify(outcome)}`);
 
         if (chatMessage.actor && chatMessage.token) {
-            message.speaker = {
+            this.speaker = {
                 actor: chatMessage.actor,
                 token: chatMessage.token,
             };
         }
 
         if (chatMessage.target?.actor && chatMessage.target?.actor) {
-            message.target = {
+            this.target = {
                 actor: chatMessage.target.actor,
                 token: chatMessage.target.token,
             };
@@ -52,13 +54,13 @@ export class AssistantMessage {
             let checkContext = chatMessage.flags.pf2e.context;
 
             if (checkContext.origin) {
-                let actor = await fromUuid<ActorPF2e>(checkContext.origin.actor);
+                let actor = fromUuidSync<ActorPF2e>(checkContext.origin.actor);
                 let token = !checkContext.origin.token
                     ? undefined
-                    : await fromUuid<TokenDocumentPF2e>(checkContext.origin.token) ?? undefined;
+                    : (fromUuidSync<TokenDocumentPF2e>(checkContext.origin.token) ?? undefined);
 
                 if (actor) {
-                    message.origin = {
+                    this.origin = {
                         actor,
                         token,
                     };
@@ -68,18 +70,17 @@ export class AssistantMessage {
 
         let strike = Utils.ChatMessage.getStrike(chatMessage.flags);
         if (strike) {
-            let actor = await fromUuid<ActorPF2e>(strike.actor);
+            let actor = fromUuidSync<ActorPF2e>(strike.actor);
             if (actor) {
-                message.item = actor.system.actions?.[strike.index].item;
+                this.item = actor.system.actions?.[strike.index].item;
             }
         }
 
         if (chatMessage.isCheckRoll) {
-            message.checkRoll = chatMessage.rolls.at(0) as CheckRoll;
+            this.checkRoll = chatMessage.rolls.at(0) as CheckRoll;
         }
 
-        message.rollOptions = Array.from(rollOptions).sort();
-        return message;
+        this.rollOptions = Array.from(rollOptions).sort();
     }
 
     test(predicate?: PredicateStatement[]): boolean {
