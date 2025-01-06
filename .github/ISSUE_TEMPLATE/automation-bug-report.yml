@@ -40,5 +40,3 @@ body:
         - label: I have tested and confirm that this issue occurs with no other modules active.
         - label: I have double checked that there is not an open issue related to this feat/feature/spell/etc.
         - label: I am not an idiot.
-      validations:
-        required: true
