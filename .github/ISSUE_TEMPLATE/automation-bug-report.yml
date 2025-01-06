@@ -1,6 +1,6 @@
 name: Automation Bug Report
 description: File a bug report regarding a specific automation in PF2e Assitant.
-title: "[Bug]: "
+title: "[Bug]: <Title>"
 labels: ["bug"]
 assignees:
   - 7H3LaughingMan
@@ -18,5 +18,21 @@ body:
     attributes:
       label: "Description"
       description: "Please provide a detailed description of what happened."
+    validations:
+      required: true
+  - type: input
+    id: foundry-version
+    attributes:
+      label: "Foundry VTT Version"
+      description: "Please provide which version of Foundry VTT you are using.."
+      placeholder: "12.331"
+    validations:
+      required: true
+  - type: input
+    id: pf2e-version
+    attributes:
+      label: "PF2e Version"
+      description: "Please provide which version of the PF2e Game System you are using."
+      placeholder: "6.8.1"
     validations:
       required: true
