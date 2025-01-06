@@ -43,5 +43,3 @@ body:
           required: true
         - label: I am not an idiot.
           required: true
-      validations:
-        required: true
