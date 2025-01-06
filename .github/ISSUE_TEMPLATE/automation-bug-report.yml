@@ -1,0 +1,15 @@
+name: Automation Bug Report
+description: File a bug report regarding a specific automation in PF2e Assitant.
+title: "[Bug]: "
+labels: ["bug"]
+assignees:
+  - 7H3LaughingMan
+body:
+  - type: input
+    id: link
+    attributes:
+      label: "Archives of Nethys / Demiplane Link"
+      description: "Please provide a link to the feat/feature/spell/etc."
+      placeholder: "https://app.demiplane.com/nexus/pathfinder2e/class-features/panache"
+    validations:
+      required: true
