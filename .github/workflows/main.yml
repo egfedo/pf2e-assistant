@@ -21,7 +21,7 @@ jobs:
 
       - name: Build Packs
         run: |
-          npm clean install
+          npm clean-install
           npm run build
 
       - name: Extract Version From Tag
