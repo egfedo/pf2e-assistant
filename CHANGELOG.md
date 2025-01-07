@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 
 - Grapple (Critical Success, Success, Failure)
+- Trip (Critical Success, Succes, Failure)
 
 ## [6.0.0] - 2025-01-06
 

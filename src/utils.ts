@@ -15,10 +15,11 @@ import {
     CheckDC,
     ClassPF2e,
     ConditionPF2e,
-    ConditionSlug,
     ConsumablePF2e,
     ContainerPF2e,
     CreaturePF2e,
+    DamageRoll,
+    DamageRollData,
     DeityPF2e,
     EffectPF2e,
     EquipmentPF2e,
@@ -61,15 +62,17 @@ interface ChatMessageStrikePF2e {
 }
 
 export namespace Utils {
+    export const ChatMessagePF2e = getDocumentClass("ChatMessage");
+
     export namespace Actor {
         export function getClassDC(actor: ActorPF2e): CheckDC | number | undefined {
             if (actor.isOfType("character")) {
                 return !actor.classDC
                     ? undefined
                     : {
-                        label: `${actor.classDC.label} DC`,
-                        value: actor.classDC.dc.value,
-                    };
+                          label: `${actor.classDC.label} DC`,
+                          value: actor.classDC.dc.value,
+                      };
             }
 
             if (actor.isOfType("npc")) {
@@ -183,6 +186,16 @@ export namespace Utils {
         }
     }
 
+    export namespace Roll {
+        let _DamageRoll: typeof DamageRoll;
+
+        export function newDamageRoll(formula: string, data?: {}, options?: DamageRollData): DamageRoll {
+            return new (_DamageRoll ??= CONFIG.Dice.rolls.find(
+                (roll) => roll.name === "DamageRoll",
+            ) as typeof DamageRoll)(formula, data, options);
+        }
+    }
+    
     export function isInstanceOf(obj: unknown, cls: "ActorPF2e"): obj is ActorPF2e;
     export function isInstanceOf(obj: unknown, cls: "ArmyPF2e"): obj is ArmyPF2e;
     export function isInstanceOf(obj: unknown, cls: "CharacterPF2e"): obj is CharacterPF2e;
