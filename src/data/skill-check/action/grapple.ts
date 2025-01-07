@@ -12,7 +12,7 @@ export const actions: AssistantAction[] = [
             game.assistant.socket.createEmbeddedItem(message.target.actor, {
                 _id: null,
                 type: "effect",
-                img: "systems/pf2e/icons/conditions/restrained.webp",
+                img: "icons/skills/melee/unarmed-punch-fist-white.webp",
                 name: "Effect: Grapple (Critical Success)",
                 system: {
                     context: {
@@ -54,7 +54,7 @@ export const actions: AssistantAction[] = [
             game.assistant.socket.createEmbeddedItem(message.target.actor, {
                 _id: null,
                 type: "effect",
-                img: "systems/pf2e/icons/conditions/grabbed.webp",
+                img: "icons/skills/melee/unarmed-punch-fist-white.webp",
                 name: "Effect: Grapple (Success)",
                 system: {
                     context: {

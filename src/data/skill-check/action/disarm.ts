@@ -24,7 +24,7 @@ export const actions: AssistantAction[] = [
             await game.assistant.socket.createEmbeddedItem(message.speaker.actor, {
                 _id: null,
                 type: "effect",
-                img: "icons/skills/melee/sword-damaged-broken-glow-red.webp",
+                img: "icons/skills/melee/unarmed-punch-fist-white.webp",
                 name: "Effect: Disarm (Critical Failure)",
                 system: {
                     context: {
