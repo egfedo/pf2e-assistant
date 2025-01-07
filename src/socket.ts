@@ -3,6 +3,7 @@ import {
     CheckDC,
     CheckDCReference,
     ConditionSlug,
+    ItemPF2e,
     ItemSourcePF2e,
     ModifierPF2e,
     RollNotePF2e,
@@ -21,17 +22,30 @@ export class AssistantSocket {
 
     constructor() {
         this.#socket = socketlib.registerModule(module.id)!;
+
         this.#socket.register("createEmbeddedItem", this.#createEmbeddedItem);
+        this.#socket.register("deleteEmbeddedItem", this.#deleteEmbeddedItem);
+
         this.#socket.register("decreaseCondition", this.#decreaseCondition);
         this.#socket.register("increaseCondition", this.#increaseCondition);
         this.#socket.register("toggleCondition", this.#toggleCondition);
-        this.#socket.register("removeEffect", this.#removeEffect);
+
         this.#socket.register("rollSave", this.#rollSave);
+    }
+
+    async #executeAsActor(actor: ActorPF2e, handler: string | Function, ...args: any[]) {
+        const primaryUser = Utils.Actor.getPrimaryUser(actor);
+
+        if (primaryUser) {
+            return this.#socket.executeAsUser(handler, primaryUser.id, args);
+        }
+
+        return null;
     }
 
     async createEmbeddedItem(actor: ActorPF2e, data: PreCreate<ItemSourcePF2e>) {
         if (!actor.canUserModify(game.user, "update")) {
-            this.#socket.executeAsGM("createEmbeddedItem", actor.uuid, data);
+            this.#executeAsActor(actor, "createEmbeddedItem", actor.uuid, data);
             return;
         }
 
@@ -45,9 +59,27 @@ export class AssistantSocket {
         await game.assistant.socket.createEmbeddedItem(actor, data);
     }
 
+    async deleteEmbeddedItem(item: ItemPF2e) {
+        if (!item.parent) return;
+
+        if (!item.parent.canUserModify(game.user, "update")) {
+            this.#executeAsActor(item.parent, "deleteEmbeddedItem", item.uuid);
+            return;
+        }
+
+        await item.delete();
+    }
+
+    async #deleteEmbeddedItem(itemUuid: ItemUUID) {
+        let item = await fromUuid<ItemPF2e>(itemUuid);
+        if (!item) return;
+
+        await game.assistant.socket.deleteEmbeddedItem(item);
+    }
+
     async decreaseCondition(actor: ActorPF2e, conditionSlug: ConditionSlug, options?: { forceRemove: boolean }) {
         if (!actor.canUserModify(game.user, "update")) {
-            this.#socket.executeAsGM("decreaseCondition", actor.uuid, conditionSlug, options);
+            this.#executeAsActor(actor, "decreaseCondition", actor.uuid, conditionSlug, options);
             return;
         }
 
@@ -67,7 +99,7 @@ export class AssistantSocket {
         options?: { max?: number; value?: number | null },
     ) {
         if (!actor.canUserModify(game.user, "update")) {
-            this.#socket.executeAsGM("increaseCondition", actor.uuid, conditionSlug, options);
+            this.#executeAsActor(actor, "increaseCondition", actor.uuid, conditionSlug, options);
             return;
         }
 
@@ -87,7 +119,7 @@ export class AssistantSocket {
 
     async toggleCondition(actor: ActorPF2e, conditionSlug: ConditionSlug, options?: { active?: boolean }) {
         if (!actor.canUserModify(game.user, "update")) {
-            this.#socket.executeAsGM("toggleCondition", actor.uuid, conditionSlug, options);
+            this.#executeAsActor(actor, "toggleCondition", actor.uuid, conditionSlug, options);
             return;
         }
 
@@ -101,28 +133,9 @@ export class AssistantSocket {
         await game.assistant.socket.toggleCondition(actor, conditionSlug, options);
     }
 
-    async removeEffect(actor: ActorPF2e, origin: ActorPF2e, slug: string) {
-        if (!actor.canUserModify(game.user, "update")) {
-            this.#socket.executeAsGM("toggleCondition", actor.uuid, origin.uuid, slug);
-            return;
-        }
-
-        await actor.itemTypes.effect.filter((e) => e.origin === origin && e.slug === slug).forEach((e) => e.delete());
-    }
-
-    async #removeEffect(actorUuid: ActorUUID, originUuid: ActorUUID, slug: string) {
-        let actor = await fromUuid<ActorPF2e>(actorUuid);
-        if (!actor) return;
-
-        let origin = await fromUuid<ActorPF2e>(originUuid);
-        if (!origin) return;
-
-        await game.assistant.socket.removeEffect(actor, origin, slug);
-    }
-
     async rollSave(actor: ActorPF2e, save: SaveType, args?: StatisticRollParameters) {
         if (!actor.canUserModify(game.user, "update")) {
-            this.#socket.executeAsGM(
+            this.#executeAsActor(actor,
                 "rollSave",
                 actor.uuid,
                 save,
