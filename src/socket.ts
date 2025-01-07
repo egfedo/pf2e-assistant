@@ -16,7 +16,6 @@ import {
 import module from "../module.json" with { type: "json" };
 import { Utils } from "utils.ts";
 
-
 export class AssistantSocket {
     #socket: SocketlibSocket;
 
@@ -26,6 +25,7 @@ export class AssistantSocket {
         this.#socket.register("decreaseCondition", this.#decreaseCondition);
         this.#socket.register("increaseCondition", this.#increaseCondition);
         this.#socket.register("toggleCondition", this.#toggleCondition);
+        this.#socket.register("removeEffect", this.#removeEffect);
         this.#socket.register("rollSave", this.#rollSave);
     }
 
@@ -99,6 +99,25 @@ export class AssistantSocket {
         if (!actor) return;
 
         await game.assistant.socket.toggleCondition(actor, conditionSlug, options);
+    }
+
+    async removeEffect(actor: ActorPF2e, origin: ActorPF2e, slug: string) {
+        if (!actor.canUserModify(game.user, "update")) {
+            this.#socket.executeAsGM("toggleCondition", actor.uuid, origin.uuid, slug);
+            return;
+        }
+
+        await actor.itemTypes.effect.filter((e) => e.origin === origin && e.slug === slug).forEach((e) => e.delete());
+    }
+
+    async #removeEffect(actorUuid: ActorUUID, originUuid: ActorUUID, slug: string) {
+        let actor = await fromUuid<ActorPF2e>(actorUuid);
+        if (!actor) return;
+
+        let origin = await fromUuid<ActorPF2e>(originUuid);
+        if (!origin) return;
+
+        await game.assistant.socket.removeEffect(actor, origin, slug);
     }
 
     async rollSave(actor: ActorPF2e, save: SaveType, args?: StatisticRollParameters) {

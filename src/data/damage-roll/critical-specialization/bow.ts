@@ -36,6 +36,7 @@ export const actions: AssistantAction[] = [
                     rules: [
                         {
                             key: "GrantItem",
+                            // @ts-expect-error
                             onDeleteActions: {
                                 grantee: "restrict",
                             },
