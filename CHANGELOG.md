@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 - Disarm (Success, Critical Failure)
 - Feint (Critical Success, Success, Critical Failure)
-  - Please note that for a succesful feint the effect lasts untill the end of your current turn, you will have to manually remove the effect after your next melee attack.
+  - Please note that for a successful feint the effect lasts until the end of your current turn, you will have to manually remove the effect after your next melee attack.
 
 ### Changed
 
