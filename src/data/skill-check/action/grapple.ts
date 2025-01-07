@@ -93,8 +93,13 @@ export const actions: AssistantAction[] = [
             if (!message.speaker?.actor) return;
             if (!message.target?.actor) return;
 
-            await game.assistant.socket.removeEffect(message.target.actor, message.speaker.actor, "effect-grapple-critical-success");
-            await game.assistant.socket.removeEffect(message.target.actor, message.speaker.actor, "effect-grapple-success");
+            message.target.actor.itemTypes.effect
+                .filter((effect) => effect.slug === "effect-grapple-critical-success" && effect.system.context?.origin.actor === message.speaker?.actor.uuid)
+                .forEach(async (effect) => await game.assistant.socket.deleteEmbeddedItem(effect));
+
+            message.target.actor.itemTypes.effect
+                .filter((effect) => effect.slug === "effect-grapple-success" && effect.system.context?.origin.actor === message.speaker?.actor.uuid)
+                .forEach(async (effect) => await game.assistant.socket.deleteEmbeddedItem(effect));
         },
     },
 ];

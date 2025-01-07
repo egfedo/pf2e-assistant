@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Disarm (Success, Critical Failure)
+
+### Changed
+
+- Made sure any updates or rolls are done from the primary user of an actor, if there are multiple users or no primary user than make sure it's done by the active GM.
+
 ## [6.0.1] - 2025-01-07
 
 ### Added
