@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- Disarm/Feint effect icons now match the system's icon for those actions.
+
 ## [6.0.2] - 2025-01-07
 
 ### Added
