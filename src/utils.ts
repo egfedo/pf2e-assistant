@@ -38,6 +38,7 @@ import {
     SpellcastingEntryPF2e,
     SpellPF2e,
     TreasurePF2e,
+    UserPF2e,
     VehiclePF2e,
     WeaponPF2e,
 } from "foundry-pf2e";
@@ -70,9 +71,9 @@ export namespace Utils {
                 return !actor.classDC
                     ? undefined
                     : {
-                          label: `${actor.classDC.label} DC`,
-                          value: actor.classDC.dc.value,
-                      };
+                        label: `${actor.classDC.label} DC`,
+                        value: actor.classDC.dc.value,
+                    };
             }
 
             if (actor.isOfType("npc")) {
@@ -95,6 +96,17 @@ export namespace Utils {
             if (item) return item;
 
             return undefined;
+        }
+
+        export function getPrimaryUser(actor: ActorPF2e): UserPF2e | null {
+            const activeUsers = game.users.filter((user) => user.active);
+            const primaryPlayer = actor.isToken ? null : activeUsers.find((user) => user.character?.id === actor.id);
+            if (primaryPlayer) return primaryPlayer;
+
+            const activeUpdaters = activeUsers.filter((user) => actor.canUserModify(user, "update"));
+            if (activeUpdaters.length === 1) return activeUpdaters[0];
+
+            return game.users.activeGM;
         }
     }
 
@@ -195,7 +207,7 @@ export namespace Utils {
             ) as typeof DamageRoll)(formula, data, options);
         }
     }
-    
+
     export function isInstanceOf(obj: unknown, cls: "ActorPF2e"): obj is ActorPF2e;
     export function isInstanceOf(obj: unknown, cls: "ArmyPF2e"): obj is ArmyPF2e;
     export function isInstanceOf(obj: unknown, cls: "CharacterPF2e"): obj is CharacterPF2e;
