@@ -7,10 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [6.0.3] - 2025-01-08
+
 ### Added
 
 - Basic support for Dice So Nice!
-  - This is reliant on whoever is rolling to have 3D dice enabled, if they have it disabled it can process automations on their end before the dice finishing rolling for other users.
+  - This is reliant on whoever is rolling to have 3D dice enabled, if they have it disabled than it will start processing their automations while it's still rolling on everyone else's screen.
 - Bon Mot (Critical Success, Success, Critical Failure)
 - Demoralize (Critical Success, Success)
 - Stunning Blows (Failure, Critical Failure)
@@ -46,7 +48,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Auto Self-Applied Effects (This is disabled if PF2e Toolbelt is doing this as well)
 - Swashbuckler Panache
 
-[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.0.2...HEAD
+[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.0.3...HEAD
+[6.0.3]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.0.2...v6.0.3
 [6.0.2]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.0.1...v6.0.2
 [6.0.1]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.0.0...v6.0.1
 [6.0.0]: https://github.com/7H3LaughingMan/pf2e-assistant/releases/tag/v6.0.0
