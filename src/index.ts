@@ -7,14 +7,29 @@ Hooks.once("init", function () {
     Object.assign(game, {
         assistant: {
             socket: new AssistantSocket(),
-            storage: new AssistantStorage()
-        }
+            storage: new AssistantStorage(),
+        },
     });
 });
 
-Hooks.on("createChatMessage", async function (chatMessage: ChatMessagePF2e) {
-    if (!chatMessage.isAuthor)
-        return;
+Hooks.once("ready", function () {
+    if (game.modules.get("dice-so-nice")?.active) {
+        Hooks.on("diceSoNiceRollComplete", diceSoNiceRollComplete);
+    } else {
+        Hooks.on("createChatMessage", createChatMessage);
+    }
+});
+
+async function createChatMessage(chatMessage: ChatMessagePF2e) {
+    if (!chatMessage.isAuthor) return;
 
     game.assistant.storage.process(new AssistantMessage(chatMessage));
-});
+}
+
+async function diceSoNiceRollComplete(messageId: string) {
+    const chatMessage = game.messages.get(messageId);
+
+    if (chatMessage) {
+        await createChatMessage(chatMessage);
+    }
+}
