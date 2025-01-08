@@ -11,7 +11,7 @@ export const actions: AssistantAction[] = [
             if (!message.target?.actor) return;
 
             let effect = await fromUuid<EffectPF2e>("Compendium.pf2e.other-effects.Item.PuDS0DEq0CnaSIFV");
-            if (effect) game.assistant.socket.createEmbeddedItem(message.target.actor, effect.toObject());
+            if (effect) await game.assistant.socket.createEmbeddedItem(message.target.actor, effect.toObject());
         },
     },
     {

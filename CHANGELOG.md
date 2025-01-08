@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 - Basic support for Dice So Nice!
   - This is reliant on whoever is rolling to have 3D dice enabled, if they have it disabled it can process automations on their end before the dice finishing rolling for other users.
+- Bon Mot (Critical Success, Success, Critical Failure)
 
 ### Changed
 
