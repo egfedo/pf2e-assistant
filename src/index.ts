@@ -14,22 +14,23 @@ Hooks.once("init", function () {
 
 Hooks.once("ready", function () {
     if (game.modules.get("dice-so-nice")?.active) {
-        Hooks.on("diceSoNiceRollComplete", diceSoNiceRollComplete);
+        Hooks.on("diceSoNiceMessageProcessed", diceSoNiceMessageProcessed);
     } else {
         Hooks.on("createChatMessage", createChatMessage);
     }
 });
 
-async function createChatMessage(chatMessage: ChatMessagePF2e) {
+async function createChatMessage(chatMessage: Maybe<ChatMessagePF2e>) {
+    if (!chatMessage) return;
     if (!chatMessage.isAuthor) return;
 
     game.assistant.storage.process(new AssistantMessage(chatMessage));
 }
 
-async function diceSoNiceRollComplete(messageId: string) {
-    const chatMessage = game.messages.get(messageId);
-
-    if (chatMessage) {
-        await createChatMessage(chatMessage);
+async function diceSoNiceMessageProcessed(messageId: string, { willTrigger3DRoll }: { willTrigger3DRoll: boolean }) {
+    if (willTrigger3DRoll) {
+        await game.dice3d.waitFor3DAnimationByMessageID(messageId);
     }
+
+    createChatMessage(game.messages.get(messageId));
 }

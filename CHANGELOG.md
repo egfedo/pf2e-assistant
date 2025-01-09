@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Tumble Behind
+
+### Changed
+
+- Improved Dice So Nice! support
+
 ## [6.0.4] - 2025-01-09
 
 ### Changed
