@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [6.0.4] - 2025-01-09
+
+### Changed
+
+- Added Demoralize Immunity
+
 ## [6.0.3] - 2025-01-08
 
 ### Added
@@ -48,7 +54,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Auto Self-Applied Effects (This is disabled if PF2e Toolbelt is doing this as well)
 - Swashbuckler Panache
 
-[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.0.3...HEAD
+[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.0.4...HEAD
+[6.0.4]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.0.3...v6.0.4
 [6.0.3]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.0.2...v6.0.3
 [6.0.2]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.0.1...v6.0.2
 [6.0.1]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.0.0...v6.0.1
