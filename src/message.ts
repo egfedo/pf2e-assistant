@@ -41,12 +41,20 @@ export class AssistantMessage {
                     game.i18n.format("PF2E.ConsumableMessage.UseSingle", { name: chatMessage.item.name }),
                 ];
 
-                if (messages.some((value) => chatMessage.content.startsWith(value))) {
+                if (
+                    messages.some(
+                        (value) => chatMessage.content.startsWith(value) || chatMessage.flavor.startsWith(value),
+                    )
+                ) {
                     trigger = "consume";
                 }
             }
         }
 
+        if (chatMessage.item) {
+            this.item = chatMessage.item;
+        }
+        
         const rollOptions = new Set(chatMessage.flags.pf2e.context?.options ?? []);
         const outcome = chatMessage.flags.pf2e.context?.outcome;
         if (outcome) rollOptions.add(`check:outcome:${game.pf2e.system.sluggify(outcome)}`);
