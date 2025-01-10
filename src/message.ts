@@ -28,22 +28,37 @@ export class AssistantMessage {
     };
 
     constructor(chatMessage: ChatMessagePF2e) {
-        this.trigger = chatMessage.flags.pf2e.context?.type ?? "";
-        this.chatMessage = chatMessage;
-        this.item = chatMessage.item ?? undefined;
+        let trigger = chatMessage.flags.pf2e.context?.type as string | undefined;
+
+        if (!trigger || trigger === "spell-cast") {
+            if (chatMessage.item?.isOfType("condition") && chatMessage.item.slug === "persistent-damage") {
+                trigger = "damage-roll";
+            } else if (chatMessage.item?.isOfType("action", "feat", "spell")) {
+                trigger = "action";
+            } else if (chatMessage.item?.isOfType("consumable") && chatMessage.content) {
+                const messages = [
+                    game.i18n.format("PF2E.ConsumableMessage.UseExhausted", { name: chatMessage.item.name }),
+                    game.i18n.format("PF2E.ConsumableMessage.UseSingle", { name: chatMessage.item.name }),
+                ];
+
+                if (messages.some((value) => chatMessage.content.startsWith(value))) {
+                    trigger = "consume";
+                }
+            }
+        }
 
         const rollOptions = new Set(chatMessage.flags.pf2e.context?.options ?? []);
         const outcome = chatMessage.flags.pf2e.context?.outcome;
         if (outcome) rollOptions.add(`check:outcome:${game.pf2e.system.sluggify(outcome)}`);
 
-        if (chatMessage.actor && chatMessage.token) {
+        if (chatMessage.actor) {
             this.speaker = {
                 actor: chatMessage.actor,
-                token: chatMessage.token,
+                token: chatMessage.token ?? undefined,
             };
         }
 
-        if (chatMessage.target?.actor && chatMessage.target?.actor) {
+        if (chatMessage.target?.actor) {
             this.target = {
                 actor: chatMessage.target.actor,
                 token: chatMessage.target.token,
@@ -80,7 +95,13 @@ export class AssistantMessage {
             this.checkRoll = chatMessage.rolls.at(0) as CheckRoll;
         }
 
+        if (chatMessage.item) {
+            chatMessage.item.getRollOptions().forEach((value) => rollOptions.add(value));
+        }
+
+        this.trigger = trigger ?? "";
         this.rollOptions = Array.from(rollOptions).sort();
+        this.chatMessage = chatMessage;
     }
 
     test(predicate?: PredicateStatement[]): boolean {

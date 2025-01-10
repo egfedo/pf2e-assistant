@@ -1,12 +1,13 @@
 {
   "name": "pf2e-assistant",
   "scripts": {
-    "build:vite": "vite build",
-    "build": "npm run clean && npm run build:vite",
+    "build": "npm run clean && vite build",
     "changelog": "changelog --format markdownlint --create --release",
     "clean": "tsx ./build/clean.ts",
+    "compile": "tsx ./build/compile.ts",
+    "extract": "tsx ./build/extract.ts",
     "fvtt": "fvtt",
-    "link": "tsx ./build/link-foundry.ts",
+    "link": "tsx ./build/link.ts",
     "unlock": "tsx ./build/unlock.ts"
   },
   "author": "7H3LaughingMan",
@@ -15,6 +16,9 @@
   "devDependencies": {
     "@foundryvtt/foundryvtt-cli": "^1.0.3",
     "@types/prompts": "^2.4.9",
+    "chalk": "^5.4.1",
+    "classic-level": "^2.0.0",
+    "glob": "^11.0.0",
     "keep-a-changelog": "^2.5.3",
     "prettier": "^3.4.2",
     "prompts": "^2.4.2",

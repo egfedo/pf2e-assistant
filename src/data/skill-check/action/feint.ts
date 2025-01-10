@@ -4,7 +4,7 @@ import { AssistantMessage } from "message.ts";
 export const actions: AssistantAction[] = [
     {
         trigger: "skill-check",
-        predicate: ["action:feint", "check:outcome:critical-success"],
+        predicate: ["action:feint", { "not": "feature:scoundrel" }, "check:outcome:critical-success"],
         process: async (message: AssistantMessage) => {
             if (!message.speaker?.actor) return;
             if (!message.target?.actor) return;
@@ -55,7 +55,7 @@ export const actions: AssistantAction[] = [
     },
     {
         trigger: "skill-check",
-        predicate: ["action:feint", "check:outcome:success"],
+        predicate: ["action:feint", { "not": "feature:scoundrel" }, "check:outcome:success"],
         process: async (message: AssistantMessage) => {
             if (!message.speaker?.actor) return;
             if (!message.target?.actor) return;
