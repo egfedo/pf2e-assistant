@@ -1,0 +1,59 @@
+{
+  "folder": "msOstmYQoBRBAzrr",
+  "name": "Effect: Temporary Panache",
+  "type": "effect",
+  "effects": [],
+  "system": {
+    "description": {
+      "gm": "",
+      "value": "<p>You gain panache until the end of your next turn.</p>"
+    },
+    "rules": [
+      {
+        "key": "GrantItem",
+        "onDeleteActions": {
+          "grantee": "restrict"
+        },
+        "uuid": "Compendium.pf2e.feat-effects.Item.uBJsxCzNhje8m8jj"
+      }
+    ],
+    "slug": "effect-temporary-panache",
+    "traits": {
+      "otherTags": [],
+      "value": []
+    },
+    "publication": {
+      "title": "Pathfinder Player Core 2",
+      "authors": "",
+      "license": "ORC",
+      "remaster": true
+    },
+    "level": {
+      "value": 1
+    },
+    "duration": {
+      "value": 1,
+      "unit": "rounds",
+      "expiry": "turn-end",
+      "sustained": false
+    },
+    "start": {
+      "value": 0,
+      "initiative": null
+    },
+    "tokenIcon": {
+      "show": false
+    },
+    "badge": null,
+    "context": null,
+    "unidentified": false
+  },
+  "_id": "AVzxZwYQ8XvuzxPj",
+  "img": "icons/commodities/treasure/crown-gold-laurel-wreath.webp",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_key": "!items!AVzxZwYQ8XvuzxPj"
+}

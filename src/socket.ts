@@ -23,6 +23,7 @@ export class AssistantSocket {
     constructor() {
         this.#socket = socketlib.registerModule(module.id)!;
 
+        this.#socket.register("addEmbeddedItem", this.#addEmbeddedItem);
         this.#socket.register("createEmbeddedItem", this.#createEmbeddedItem);
         this.#socket.register("deleteEmbeddedItem", this.#deleteEmbeddedItem);
 
@@ -41,6 +42,27 @@ export class AssistantSocket {
         }
 
         return null;
+    }
+
+    async addEmbeddedItem(actor: ActorPF2e, itemUuid: ItemUUID, data?: PreCreate<ItemSourcePF2e>) {
+        if (!actor.canUserModify(game.user, "update")) {
+            this.#executeAsActor(actor, "addEmbeddedItem", actor.uuid, itemUuid, data);
+            return;
+        }
+
+        const item = await fromUuid<ItemPF2e>(itemUuid);
+
+        if (item) {
+            const itemSource = !data ? item.toObject() : foundry.utils.mergeObject(item.toObject(), data);
+            await actor.createEmbeddedDocuments("Item", [itemSource]);
+        }
+    }
+
+    async #addEmbeddedItem(actorUuid: ActorUUID, itemUuid: ItemUUID, data?: PreCreate<ItemSourcePF2e>) {
+        let actor = await fromUuid<ActorPF2e>(actorUuid);
+        if (!actor) return;
+
+        await game.assistant.socket.addEmbeddedItem(actor, itemUuid, data);
     }
 
     async createEmbeddedItem(actor: ActorPF2e, data: PreCreate<ItemSourcePF2e>) {
@@ -135,35 +157,36 @@ export class AssistantSocket {
 
     async rollSave(actor: ActorPF2e, save: SaveType, args?: StatisticRollParameters) {
         if (!actor.canUserModify(game.user, "update")) {
-            this.#executeAsActor(actor,
+            this.#executeAsActor(
+                actor,
                 "rollSave",
                 actor.uuid,
                 save,
                 !args
                     ? undefined
                     : {
-                        identifier: args.identifier,
-                        action: args.action,
-                        token: !args.token ? undefined : args.token.uuid,
-                        attackNumber: args.attackNumber,
-                        target: !args.target ? undefined : args.target.uuid,
-                        origin: !args.origin ? undefined : args.origin.uuid,
-                        dc: args.dc,
-                        label: args.label,
-                        slug: args.slug,
-                        title: args.title,
-                        extraRollNotes: args.extraRollNotes,
-                        extraRollOptions: args.extraRollOptions,
-                        modifiers: args.modifiers,
-                        item: !args.item ? undefined : args.item.uuid,
-                        rollMode: args.rollMode,
-                        skipDialog: args.skipDialog,
-                        rollTwice: args.rollTwice,
-                        traits: args.traits,
-                        damaging: args.damaging,
-                        melee: args.melee,
-                        createMessage: args.createMessage,
-                    },
+                          identifier: args.identifier,
+                          action: args.action,
+                          token: !args.token ? undefined : args.token.uuid,
+                          attackNumber: args.attackNumber,
+                          target: !args.target ? undefined : args.target.uuid,
+                          origin: !args.origin ? undefined : args.origin.uuid,
+                          dc: args.dc,
+                          label: args.label,
+                          slug: args.slug,
+                          title: args.title,
+                          extraRollNotes: args.extraRollNotes,
+                          extraRollOptions: args.extraRollOptions,
+                          modifiers: args.modifiers,
+                          item: !args.item ? undefined : args.item.uuid,
+                          rollMode: args.rollMode,
+                          skipDialog: args.skipDialog,
+                          rollTwice: args.rollTwice,
+                          traits: args.traits,
+                          damaging: args.damaging,
+                          melee: args.melee,
+                          createMessage: args.createMessage,
+                      },
             );
             return;
         }
@@ -207,28 +230,28 @@ export class AssistantSocket {
             !args
                 ? undefined
                 : {
-                    identifier: args.identifier,
-                    action: args.action,
-                    token: !args.token ? undefined : await fromUuid<TokenDocumentPF2e>(args.token),
-                    attackNumber: args.attackNumber,
-                    target: !args.target ? undefined : await fromUuid<ActorPF2e>(args.target),
-                    origin: !args.origin ? undefined : await fromUuid<ActorPF2e>(args.origin),
-                    dc: args.dc,
-                    label: args?.label,
-                    slug: args.slug,
-                    title: args.title,
-                    extraRollNotes: args.extraRollNotes,
-                    extraRollOptions: args.extraRollOptions,
-                    modifiers: args.modifiers,
-                    item: !args.item ? undefined : await Utils.Actor.getItem(args.item),
-                    rollMode: args.rollMode,
-                    skipDialog: args.skipDialog,
-                    rollTwice: args.rollTwice,
-                    traits: args.traits,
-                    damaging: args.damaging,
-                    melee: args.melee,
-                    createMessage: args.createMessage,
-                },
+                      identifier: args.identifier,
+                      action: args.action,
+                      token: !args.token ? undefined : await fromUuid<TokenDocumentPF2e>(args.token),
+                      attackNumber: args.attackNumber,
+                      target: !args.target ? undefined : await fromUuid<ActorPF2e>(args.target),
+                      origin: !args.origin ? undefined : await fromUuid<ActorPF2e>(args.origin),
+                      dc: args.dc,
+                      label: args?.label,
+                      slug: args.slug,
+                      title: args.title,
+                      extraRollNotes: args.extraRollNotes,
+                      extraRollOptions: args.extraRollOptions,
+                      modifiers: args.modifiers,
+                      item: !args.item ? undefined : await Utils.Actor.getItem(args.item),
+                      rollMode: args.rollMode,
+                      skipDialog: args.skipDialog,
+                      rollTwice: args.rollTwice,
+                      traits: args.traits,
+                      damaging: args.damaging,
+                      melee: args.melee,
+                      createMessage: args.createMessage,
+                  },
         );
     }
 }

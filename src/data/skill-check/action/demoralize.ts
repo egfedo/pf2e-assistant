@@ -1,4 +1,5 @@
 import { AssistantAction } from "action.ts";
+import { EffectSource } from "foundry-pf2e";
 import { AssistantMessage } from "message.ts";
 
 export const actions: AssistantAction[] = [
@@ -30,39 +31,31 @@ export const actions: AssistantAction[] = [
                 await game.assistant.socket.increaseCondition(message.target.actor, "frightened", { max: 2, value: 2 });
             }
 
-            await game.assistant.socket.createEmbeddedItem(message.target?.actor, {
-                _id: null,
-                type: "effect",
-                img: "icons/skills/social/intimidation-impressing.webp",
-                name: `Effect: Demoralize Immunity`,
-                system: {
-                    context: {
-                        origin: {
-                            actor: message.speaker.actor.uuid,
-                            token: message.speaker.token?.uuid ?? null,
-                            item: null,
-                            spellcasting: null,
-                        },
-                        target: {
-                            actor: message.target.actor.uuid,
-                            token: message.target.token?.uuid ?? null,
-                        },
-                        roll: {
-                            total: message.checkRoll?.total,
-                            degreeOfSuccess: 3,
+            game.assistant.socket.addEmbeddedItem(
+                message.target.actor,
+                "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.1Yt5WmhS76y4hibk",
+                {
+                    _id: null,
+                    system: {
+                        context: {
+                            origin: {
+                                actor: message.speaker.actor.uuid,
+                                token: message.speaker.token?.uuid ?? null,
+                                item: null,
+                                spellcasting: null,
+                            },
+                            target: {
+                                actor: message.target.actor.uuid,
+                                token: message.target.token?.uuid ?? null,
+                            },
+                            roll: {
+                                degreeOfSuccess: message.checkRoll?.degreeOfSuccess,
+                                total: message.checkRoll?.total ?? null,
+                            },
                         },
                     },
-                    description: {
-                        value: "You are temporarily immune to further attempts to @UUID[Compendium.pf2e.actionspf2e.Item.2u915NdUyQan6uKF]{Demoralize} for 10 minutes.",
-                    },
-                    duration: {
-                        expiry: "turn-start",
-                        unit: "minutes",
-                        value: 10,
-                    },
-                    slug: "effect-demoralize-immunity",
-                },
-            });
+                } as EffectSource,
+            );
         },
     },
     {
@@ -93,39 +86,31 @@ export const actions: AssistantAction[] = [
                 await game.assistant.socket.increaseCondition(message.target.actor, "frightened", { max: 1, value: 1 });
             }
 
-            await game.assistant.socket.createEmbeddedItem(message.target?.actor, {
-                _id: null,
-                type: "effect",
-                img: "icons/skills/social/intimidation-impressing.webp",
-                name: `Effect: Demoralize Immunity`,
-                system: {
-                    context: {
-                        origin: {
-                            actor: message.speaker.actor.uuid,
-                            token: message.speaker.token?.uuid ?? null,
-                            item: null,
-                            spellcasting: null,
-                        },
-                        target: {
-                            actor: message.target.actor.uuid,
-                            token: message.target.token?.uuid ?? null,
-                        },
-                        roll: {
-                            total: message.checkRoll?.total,
-                            degreeOfSuccess: 3,
+            game.assistant.socket.addEmbeddedItem(
+                message.target.actor,
+                "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.1Yt5WmhS76y4hibk",
+                {
+                    _id: null,
+                    system: {
+                        context: {
+                            origin: {
+                                actor: message.speaker.actor.uuid,
+                                token: message.speaker.token?.uuid ?? null,
+                                item: null,
+                                spellcasting: null,
+                            },
+                            target: {
+                                actor: message.target.actor.uuid,
+                                token: message.target.token?.uuid ?? null,
+                            },
+                            roll: {
+                                degreeOfSuccess: message.checkRoll?.degreeOfSuccess,
+                                total: message.checkRoll?.total ?? null,
+                            },
                         },
                     },
-                    description: {
-                        value: "You are temporarily immune to further attempts to @UUID[Compendium.pf2e.actionspf2e.Item.2u915NdUyQan6uKF]{Demoralize} for 10 minutes.",
-                    },
-                    duration: {
-                        expiry: "turn-start",
-                        unit: "minutes",
-                        value: 10,
-                    },
-                    slug: "effect-demoralize-immunity",
-                },
-            });
+                } as EffectSource,
+            );
         },
     },
     {
@@ -135,39 +120,31 @@ export const actions: AssistantAction[] = [
             if (!message.speaker?.actor) return;
             if (!message.target?.actor) return;
 
-            await game.assistant.socket.createEmbeddedItem(message.target?.actor, {
-                _id: null,
-                type: "effect",
-                img: "icons/skills/social/intimidation-impressing.webp",
-                name: `Effect: Demoralize Immunity`,
-                system: {
-                    context: {
-                        origin: {
-                            actor: message.speaker.actor.uuid,
-                            token: message.speaker.token?.uuid ?? null,
-                            item: null,
-                            spellcasting: null,
-                        },
-                        target: {
-                            actor: message.target.actor.uuid,
-                            token: message.target.token?.uuid ?? null,
-                        },
-                        roll: {
-                            total: message.checkRoll?.total,
-                            degreeOfSuccess: 3,
+            game.assistant.socket.addEmbeddedItem(
+                message.target.actor,
+                "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.1Yt5WmhS76y4hibk",
+                {
+                    _id: null,
+                    system: {
+                        context: {
+                            origin: {
+                                actor: message.speaker.actor.uuid,
+                                token: message.speaker.token?.uuid ?? null,
+                                item: null,
+                                spellcasting: null,
+                            },
+                            target: {
+                                actor: message.target.actor.uuid,
+                                token: message.target.token?.uuid ?? null,
+                            },
+                            roll: {
+                                degreeOfSuccess: message.checkRoll?.degreeOfSuccess,
+                                total: message.checkRoll?.total ?? null,
+                            },
                         },
                     },
-                    description: {
-                        value: "You are temporarily immune to further attempts to @UUID[Compendium.pf2e.actionspf2e.Item.2u915NdUyQan6uKF]{Demoralize} for 10 minutes.",
-                    },
-                    duration: {
-                        expiry: "turn-start",
-                        unit: "minutes",
-                        value: 10,
-                    },
-                    slug: "effect-demoralize-immunity",
-                },
-            });
+                } as EffectSource,
+            );
         },
     },
 ];

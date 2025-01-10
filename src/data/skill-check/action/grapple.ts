@@ -1,4 +1,5 @@
 import { AssistantAction } from "action.ts";
+import { EffectSource } from "foundry-pf2e";
 import { AssistantMessage } from "message.ts";
 
 export const actions: AssistantAction[] = [
@@ -9,39 +10,31 @@ export const actions: AssistantAction[] = [
             if (!message.speaker?.actor) return;
             if (!message.target?.actor) return;
 
-            game.assistant.socket.createEmbeddedItem(message.target.actor, {
-                _id: null,
-                type: "effect",
-                img: "icons/skills/melee/unarmed-punch-fist-white.webp",
-                name: "Effect: Grapple (Critical Success)",
-                system: {
-                    context: {
-                        origin: {
-                            actor: message.speaker.actor.uuid,
-                            token: message.speaker.token?.uuid ?? null,
-                        },
-                    },
-                    description: {
-                        value: "You are restrained until the end of the target's next turn unless they move or you @UUID[Compendium.pf2e.actionspf2e.Item.SkZAQRkLLkmBQNB9]{Escape}.",
-                    },
-                    duration: {
-                        expiry: "turn-end",
-                        unit: "rounds",
-                        value: 1,
-                    },
-                    rules: [
-                        {
-                            key: "GrantItem",
-                            // @ts-expect-error
-                            onDeleteActions: {
-                                grantee: "restrict",
+            game.assistant.socket.addEmbeddedItem(
+                message.target.actor,
+                "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.d9zE07hIacDCHuPw",
+                {
+                    _id: null,
+                    system: {
+                        context: {
+                            origin: {
+                                actor: message.speaker.actor.uuid,
+                                token: message.speaker.token?.uuid ?? null,
+                                item: null,
+                                spellcasting: null,
                             },
-                            uuid: "Compendium.pf2e.conditionitems.Item.VcDeM8A5oI6VqhbM",
+                            target: {
+                                actor: message.target.actor.uuid,
+                                token: message.target.token?.uuid ?? null,
+                            },
+                            roll: {
+                                degreeOfSuccess: message.checkRoll?.degreeOfSuccess,
+                                total: message.checkRoll?.total ?? null,
+                            },
                         },
-                    ],
-                    slug: "effect-grapple-critical-success"
-                },
-            });
+                    },
+                } as EffectSource,
+            );
         },
     },
     {
@@ -51,39 +44,31 @@ export const actions: AssistantAction[] = [
             if (!message.speaker?.actor) return;
             if (!message.target?.actor) return;
 
-            game.assistant.socket.createEmbeddedItem(message.target.actor, {
-                _id: null,
-                type: "effect",
-                img: "icons/skills/melee/unarmed-punch-fist-white.webp",
-                name: "Effect: Grapple (Success)",
-                system: {
-                    context: {
-                        origin: {
-                            actor: message.speaker.actor.uuid,
-                            token: message.speaker.token?.uuid ?? null,
-                        },
-                    },
-                    description: {
-                        value: "You are grabbed until the end of the target's next turn unless they move or you @UUID[Compendium.pf2e.actionspf2e.Item.SkZAQRkLLkmBQNB9]{Escape}.",
-                    },
-                    duration: {
-                        expiry: "turn-end",
-                        unit: "rounds",
-                        value: 1,
-                    },
-                    rules: [
-                        {
-                            key: "GrantItem",
-                            // @ts-expect-error
-                            onDeleteActions: {
-                                grantee: "restrict",
+            game.assistant.socket.addEmbeddedItem(
+                message.target.actor,
+                "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.d9zE07hIacDCHuPw",
+                {
+                    _id: null,
+                    system: {
+                        context: {
+                            origin: {
+                                actor: message.speaker.actor.uuid,
+                                token: message.speaker.token?.uuid ?? null,
+                                item: null,
+                                spellcasting: null,
                             },
-                            uuid: "Compendium.pf2e.conditionitems.Item.kWc1fhmv9LBiTuei",
+                            target: {
+                                actor: message.target.actor.uuid,
+                                token: message.target.token?.uuid ?? null,
+                            },
+                            roll: {
+                                degreeOfSuccess: message.checkRoll?.degreeOfSuccess,
+                                total: message.checkRoll?.total ?? null,
+                            },
                         },
-                    ],
-                    slug: "effect-grapple-success"
-                },
-            });
+                    },
+                } as EffectSource,
+            );
         },
     },
     {
@@ -94,11 +79,12 @@ export const actions: AssistantAction[] = [
             if (!message.target?.actor) return;
 
             message.target.actor.itemTypes.effect
-                .filter((effect) => effect.slug === "effect-grapple-critical-success" && effect.system.context?.origin.actor === message.speaker?.actor.uuid)
-                .forEach(async (effect) => await game.assistant.socket.deleteEmbeddedItem(effect));
-
-            message.target.actor.itemTypes.effect
-                .filter((effect) => effect.slug === "effect-grapple-success" && effect.system.context?.origin.actor === message.speaker?.actor.uuid)
+                .filter(
+                    (effect) =>
+                        effect.slug?.startsWith("effect-grapple") &&
+                        effect.system.context?.origin.actor === message.speaker?.actor.uuid &&
+                        effect.system.context?.target?.actor === message.target?.actor.uuid,
+                )
                 .forEach(async (effect) => await game.assistant.socket.deleteEmbeddedItem(effect));
         },
     },

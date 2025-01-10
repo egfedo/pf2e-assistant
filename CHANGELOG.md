@@ -7,15 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [6.1.0] - 2025-01-10
+
 ### Added
 
 - Tumble Behind
 - Mistform Elixir
 - Elixir of Life
+- Antidote
+- Antiplague
 
 ### Changed
 
 - Improved Dice So Nice! support
+- Moved all custom effects into a Compendium
 
 ## [6.0.4] - 2025-01-09
 
@@ -64,7 +69,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Auto Self-Applied Effects (This is disabled if PF2e Toolbelt is doing this as well)
 - Swashbuckler Panache
 
-[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.0.4...HEAD
+[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.1.0...HEAD
+[6.1.0]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.0.4...v6.1.0
 [6.0.4]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.0.3...v6.0.4
 [6.0.3]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.0.2...v6.0.3
 [6.0.2]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.0.1...v6.0.2

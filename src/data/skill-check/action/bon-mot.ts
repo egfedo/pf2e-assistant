@@ -1,5 +1,5 @@
-import { EffectPF2e, EffectSource } from "foundry-pf2e";
 import { AssistantAction } from "action.ts";
+import { EffectSource } from "foundry-pf2e";
 import { AssistantMessage } from "message.ts";
 
 export const actions: AssistantAction[] = [
@@ -10,9 +10,10 @@ export const actions: AssistantAction[] = [
             if (!message.speaker?.actor) return;
             if (!message.target?.actor) return;
 
-            const effect = await fromUuid<EffectPF2e>("Compendium.pf2e.feat-effects.Item.GoSls6SKCFmSoDxT");
-            if (effect) {
-                const effectSource: EffectSource = foundry.utils.mergeObject(effect.toObject(), {
+            game.assistant.socket.addEmbeddedItem(
+                message.target.actor,
+                "Compendium.pf2e.feat-effects.Item.GoSls6SKCFmSoDxT",
+                {
                     _id: null,
                     system: {
                         context: {
@@ -21,32 +22,29 @@ export const actions: AssistantAction[] = [
                                 token: message.speaker.token?.uuid ?? null,
                                 item: null,
                                 spellcasting: null,
-                                rollOptions: [],
                             },
                             target: {
                                 actor: message.target.actor.uuid,
                                 token: message.target.token?.uuid ?? null,
                             },
                             roll: {
-                                degreeOfSuccess: 3,
+                                degreeOfSuccess: message.checkRoll?.degreeOfSuccess,
                                 total: message.checkRoll?.total ?? null,
                             },
                         },
                     },
-                });
+                } as EffectSource,
+            );
 
-                await game.assistant.socket.createEmbeddedItem(message.target.actor, effectSource);
-
-                message.speaker.actor.itemTypes.effect
-                    .filter(
-                        (effect) =>
-                            effect.slug === "effect-bon-mot" &&
-                            effect.system.context?.origin.actor === message.speaker?.actor.uuid &&
-                            effect.system.context?.target?.actor === message.target?.actor.uuid &&
-                            effect.system.context?.roll?.degreeOfSuccess === 0,
-                    )
-                    .forEach(async (effect) => await game.assistant.socket.deleteEmbeddedItem(effect));
-            }
+            message.speaker.actor.itemTypes.effect
+                .filter(
+                    (effect) =>
+                        effect.slug === "effect-bon-mot" &&
+                        effect.system.context?.origin.actor === message.speaker?.actor.uuid &&
+                        effect.system.context?.target?.actor === message.target?.actor.uuid &&
+                        effect.system.context?.roll?.degreeOfSuccess === 0,
+                )
+                .forEach(async (effect) => await game.assistant.socket.deleteEmbeddedItem(effect));
         },
     },
     {
@@ -56,9 +54,10 @@ export const actions: AssistantAction[] = [
             if (!message.speaker?.actor) return;
             if (!message.target?.actor) return;
 
-            const effect = await fromUuid<EffectPF2e>("Compendium.pf2e.feat-effects.Item.GoSls6SKCFmSoDxT");
-            if (effect) {
-                const effectSource: EffectSource = foundry.utils.mergeObject(effect.toObject(), {
+            game.assistant.socket.addEmbeddedItem(
+                message.target.actor,
+                "Compendium.pf2e.feat-effects.Item.GoSls6SKCFmSoDxT",
+                {
                     _id: null,
                     system: {
                         context: {
@@ -67,32 +66,29 @@ export const actions: AssistantAction[] = [
                                 token: message.speaker.token?.uuid ?? null,
                                 item: null,
                                 spellcasting: null,
-                                rollOptions: [],
                             },
                             target: {
                                 actor: message.target.actor.uuid,
                                 token: message.target.token?.uuid ?? null,
                             },
                             roll: {
-                                degreeOfSuccess: 2,
+                                degreeOfSuccess: message.checkRoll?.degreeOfSuccess,
                                 total: message.checkRoll?.total ?? null,
                             },
                         },
                     },
-                });
+                } as EffectSource,
+            );
 
-                await game.assistant.socket.createEmbeddedItem(message.target.actor, effectSource);
-
-                message.speaker.actor.itemTypes.effect
-                    .filter(
-                        (effect) =>
-                            effect.slug === "effect-bon-mot" &&
-                            effect.system.context?.origin.actor === message.speaker?.actor.uuid &&
-                            effect.system.context?.target?.actor === message.target?.actor.uuid &&
-                            effect.system.context?.roll?.degreeOfSuccess === 0,
-                    )
-                    .forEach(async (effect) => await game.assistant.socket.deleteEmbeddedItem(effect));
-            }
+            message.speaker.actor.itemTypes.effect
+                .filter(
+                    (effect) =>
+                        effect.slug === "effect-bon-mot" &&
+                        effect.system.context?.origin.actor === message.speaker?.actor.uuid &&
+                        effect.system.context?.target?.actor === message.target?.actor.uuid &&
+                        effect.system.context?.roll?.degreeOfSuccess === 0,
+                )
+                .forEach(async (effect) => await game.assistant.socket.deleteEmbeddedItem(effect));
         },
     },
     {
@@ -102,9 +98,10 @@ export const actions: AssistantAction[] = [
             if (!message.speaker?.actor) return;
             if (!message.target?.actor) return;
 
-            const effect = await fromUuid<EffectPF2e>("Compendium.pf2e.feat-effects.Item.GoSls6SKCFmSoDxT");
-            if (effect) {
-                const effectSource: EffectSource = foundry.utils.mergeObject(effect.toObject(), {
+            game.assistant.socket.addEmbeddedItem(
+                message.speaker.actor,
+                "Compendium.pf2e.feat-effects.Item.GoSls6SKCFmSoDxT",
+                {
                     _id: null,
                     system: {
                         context: {
@@ -113,22 +110,19 @@ export const actions: AssistantAction[] = [
                                 token: message.speaker.token?.uuid ?? null,
                                 item: null,
                                 spellcasting: null,
-                                rollOptions: [],
                             },
                             target: {
                                 actor: message.target.actor.uuid,
                                 token: message.target.token?.uuid ?? null,
                             },
                             roll: {
-                                degreeOfSuccess: 0,
+                                degreeOfSuccess: message.checkRoll?.degreeOfSuccess,
                                 total: message.checkRoll?.total ?? null,
                             },
                         },
                     },
-                });
-
-                await game.assistant.socket.createEmbeddedItem(message.speaker.actor, effectSource);
-            }
+                } as EffectSource,
+            );
         },
     },
 ];

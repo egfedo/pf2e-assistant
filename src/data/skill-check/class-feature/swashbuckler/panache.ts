@@ -1,5 +1,5 @@
-import { EffectPF2e } from "foundry-pf2e";
 import { AssistantAction } from "action.ts";
+import { EffectSource } from "foundry-pf2e";
 import { AssistantMessage } from "message.ts";
 
 export const actions: AssistantAction[] = [
@@ -13,8 +13,31 @@ export const actions: AssistantAction[] = [
         process: async (message: AssistantMessage) => {
             if (!message.speaker?.actor) return;
 
-            let effect = await fromUuid<EffectPF2e>("Compendium.pf2e.feat-effects.Item.uBJsxCzNhje8m8jj");
-            if (effect) game.assistant.socket.createEmbeddedItem(message.speaker.actor, effect.toObject());
+            game.assistant.socket.addEmbeddedItem(
+                message.speaker.actor,
+                "Compendium.pf2e.feat-effects.Item.uBJsxCzNhje8m8jj",
+                {
+                    _id: null,
+                    system: {
+                        context: {
+                            origin: {
+                                actor: message.speaker.actor.uuid,
+                                token: message.speaker.token?.uuid ?? null,
+                                item: null,
+                                spellcasting: null,
+                            },
+                            target: {
+                                actor: message.target?.actor.uuid,
+                                token: message.target?.token?.uuid ?? null,
+                            },
+                            roll: {
+                                degreeOfSuccess: message.checkRoll?.degreeOfSuccess,
+                                total: message.checkRoll?.total ?? null,
+                            },
+                        },
+                    },
+                } as EffectSource,
+            );
         },
     },
     {
@@ -23,38 +46,31 @@ export const actions: AssistantAction[] = [
         process: async (message: AssistantMessage) => {
             if (!message.speaker?.actor) return;
 
-            game.assistant.socket.createEmbeddedItem(message.speaker.actor, {
-                _id: null,
-                type: "effect",
-                img: "icons/commodities/treasure/crown-gold-laurel-wreath.webp",
-                name: "Effect: Panache (1 Round)",
-                system: {
-                    context: {
-                        origin: {
-                            actor: message.speaker.actor.uuid,
-                            token: message.speaker.token?.uuid ?? null,
-                        },
-                    },
-                    description: {
-                        value: "You gain panache until the end of your next turn.",
-                    },
-                    duration: {
-                        expiry: "turn-end",
-                        unit: "rounds",
-                        value: 1,
-                    },
-                    rules: [
-                        {
-                            key: "GrantItem",
-                            // @ts-expect-error
-                            onDeleteActions: {
-                                grantee: "restrict",
+            game.assistant.socket.addEmbeddedItem(
+                message.speaker.actor,
+                "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.AVzxZwYQ8XvuzxPj",
+                {
+                    _id: null,
+                    system: {
+                        context: {
+                            origin: {
+                                actor: message.speaker.actor.uuid,
+                                token: message.speaker.token?.uuid ?? null,
+                                item: null,
+                                spellcasting: null,
                             },
-                            uuid: "Compendium.pf2e.feat-effects.Item.uBJsxCzNhje8m8jj",
+                            target: {
+                                actor: message.target?.actor.uuid,
+                                token: message.target?.token?.uuid ?? null,
+                            },
+                            roll: {
+                                degreeOfSuccess: message.checkRoll?.degreeOfSuccess,
+                                total: message.checkRoll?.total ?? null,
+                            },
                         },
-                    ],
-                },
-            });
+                    },
+                } as EffectSource,
+            );
         },
     },
 ];

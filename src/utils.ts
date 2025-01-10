@@ -37,6 +37,7 @@ import {
     ShieldPF2e,
     SpellcastingEntryPF2e,
     SpellPF2e,
+    TokenPF2e,
     TreasurePF2e,
     UserPF2e,
     VehiclePF2e,
@@ -205,6 +206,12 @@ export namespace Utils {
             return new (_DamageRoll ??= CONFIG.Dice.rolls.find(
                 (roll) => roll.name === "DamageRoll",
             ) as typeof DamageRoll)(formula, data, options);
+        }
+    }
+
+    export namespace User {
+        export function getTargets(): TokenPF2e[] {
+            return Array.from(game.user.targets);
         }
     }
 

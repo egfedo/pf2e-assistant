@@ -2,7 +2,7 @@
   "id": "pf2e-assistant",
   "title": "PF2e Assistant",
   "description": "Your personal assistant for your Pathfinder 2nd Edition games, helps automate various things that aren't automated by the game system.",
-  "version": "6.0.4",
+  "version": "6.1.0",
   "authors": [
     {
       "name": "7H3LaughingMan",
@@ -17,9 +17,7 @@
     "verified": "12.331",
     "maximum": "12"
   },
-  "esmodules": [
-    "dist/pf2e-assistant.js"
-  ],
+  "esmodules": ["dist/pf2e-assistant.js"],
   "relationships": {
     "requires": [
       {
@@ -38,12 +36,6 @@
       }
     ]
   },
-  "url": "https://github.com/7H3LaughingMan/pf2e-assistant",
-  "manifest": "",
-  "license": "https://github.com/7H3LaughingMan/pf2e-assistant/blob/main/LICENSE.md",
-  "readme": "https://github.com/7H3LaughingMan/pf2e-assistant/blob/main/README.md",
-  "bugs": "https://github.com/7H3LaughingMan/pf2e-assistant/issues",
-  "changelog": "https://github.com/7H3LaughingMan/pf2e-assistant/blob/main/CHANGELOG.md",
   "packs": [
     {
       "name": "pf2e-assistant-effects",
@@ -56,5 +48,11 @@
       },
       "system": "pf2e"
     }
-  ]
+  ],
+  "url": "https://github.com/7H3LaughingMan/pf2e-assistant",
+  "manifest": "",
+  "license": "https://github.com/7H3LaughingMan/pf2e-assistant/blob/main/LICENSE.md",
+  "readme": "https://github.com/7H3LaughingMan/pf2e-assistant/blob/main/README.md",
+  "bugs": "https://github.com/7H3LaughingMan/pf2e-assistant/issues",
+  "changelog": "https://github.com/7H3LaughingMan/pf2e-assistant/blob/main/CHANGELOG.md"
 }

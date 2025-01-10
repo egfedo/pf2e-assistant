@@ -1,6 +1,6 @@
 import { AssistantAction } from "action.ts";
+import { EffectSource } from "foundry-pf2e";
 import { AssistantMessage } from "message.ts";
-import { Utils } from "utils.ts";
 
 export const actions: AssistantAction[] = [
     {
@@ -13,50 +13,34 @@ export const actions: AssistantAction[] = [
             "item:group:brawling",
         ],
         process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor || !message.origin?.actor) return;
+            if (!message.speaker?.actor) return;
+            if (!message.origin?.actor) return;
 
-            await game.assistant.socket.createEmbeddedItem(message.speaker?.actor, {
-                _id: null,
-                type: "effect",
-                img: "systems/pf2e/icons/effects/critical-effect.webp",
-                name: `${game.i18n.localize("PF2E.Actor.Creature.CriticalSpecialization")} (${game.i18n.localize("PF2E.WeaponGroupBrawling")})`,
-                system: {
-                    context: {
-                        origin: {
-                            actor: message.origin.actor.uuid,
-                            token: message.origin.token?.uuid ?? null,
-                            item: message.item?.uuid ?? null,
-                            spellcasting: null,
-                        },
-                        target: {
-                            actor: message.speaker.actor.uuid,
-                            token: message.speaker.token?.uuid ?? null,
-                        },
-                        roll: {
-                            total: message.checkRoll?.total,
-                            degreeOfSuccess: message.checkRoll?.degreeOfSuccess ?? null,
-                        },
-                    },
-                    description: {
-                        value: game.i18n.localize("PF2E.Item.Weapon.CriticalSpecialization.brawling"),
-                    },
-                    duration: {
-                        expiry: "turn-end",
-                        unit: "rounds",
-                        value: 1,
-                    },
-                    rules: [
-                        {
-                            key: "GrantItem",
-                            // @ts-expect-error
-                            onDeleteActions: {
-                                grantee: "restrict",
+            game.assistant.socket.addEmbeddedItem(
+                message.speaker.actor,
+                "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.iSaDovIXZCJNPOOj",
+                {
+                    _id: null,
+                    system: {
+                        context: {
+                            origin: {
+                                actor: message.origin.actor.uuid,
+                                token: message.origin.token?.uuid ?? null,
+                                item: null,
+                                spellcasting: null,
                             },
-                            uuid: "Compendium.pf2e.conditionitems.Item.xYTAsEpcJE1Ccni3",
+                            target: {
+                                actor: message.speaker.actor.uuid,
+                                token: message.speaker.token?.uuid ?? null,
+                            },
+                            roll: {
+                                degreeOfSuccess: message.checkRoll?.degreeOfSuccess,
+                                total: message.checkRoll?.total ?? null,
+                            },
                         },
-                    ],
-                },
-            });
+                    },
+                } as EffectSource,
+            );
         },
     },
 ];
