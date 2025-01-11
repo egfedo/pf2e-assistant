@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Eagle Eye Elixir
 - Energy Mutagen
 - Juggernaut Mutagen
+- Numbing Tonic
 
 ## [6.1.0] - 2025-01-10
 
