@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [6.1.1] - 2025-01-11
+
 ### Added
 
 - Bestial Mutagen
@@ -26,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Silvertongue Mutagen
 - Skeptic's Elixir
 - Theatrical Mutagen
+- War Blood Mutagen
 
 ## [6.1.0] - 2025-01-10
 
@@ -89,7 +92,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Auto Self-Applied Effects (This is disabled if PF2e Toolbelt is doing this as well)
 - Swashbuckler Panache
 
-[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.1.0...HEAD
+[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.1.1...HEAD
+[6.1.1]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.1.0...v6.1.1
 [6.1.0]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.0.4...v6.1.0
 [6.0.4]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.0.3...v6.0.4
 [6.0.3]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.0.2...v6.0.3
