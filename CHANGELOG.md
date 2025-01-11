@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Quicksilver Mutagen
 - Sanguine Mutagen
 - Serene Mutagen
+- Silvertongue Mutagen
 
 ## [6.1.0] - 2025-01-10
 
