@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Energy Mutagen
 - Juggernaut Mutagen
 - Numbing Tonic
+- Prey Mutagen
 
 ## [6.1.0] - 2025-01-10
 
