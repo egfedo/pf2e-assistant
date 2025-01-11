@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Cognitive Mutagen
 - Deadweight Mutagen
 - Drakeheart Mutagen
+- Eagle Eye Elixir
 
 ## [6.1.0] - 2025-01-10
 
