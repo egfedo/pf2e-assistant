@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Choker-Arm Mutagen
 - Cognitive Mutagen
 - Deadweight Mutagen
+- Drakeheart Mutagen
 
 ## [6.1.0] - 2025-01-10
 
