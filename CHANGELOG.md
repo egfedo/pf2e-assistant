@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Bestial Mutagen
+
 ## [6.1.0] - 2025-01-10
 
 ### Added
