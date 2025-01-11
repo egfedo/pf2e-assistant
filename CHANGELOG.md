@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Deadweight Mutagen
 - Drakeheart Mutagen
 - Eagle Eye Elixir
+- Energy Mutagen
 
 ## [6.1.0] - 2025-01-10
 
