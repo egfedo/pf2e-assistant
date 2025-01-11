@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Prey Mutagen
 - Quicksilver Mutagen
 - Sanguine Mutagen
+- Serene Mutagen
 
 ## [6.1.0] - 2025-01-10
 
