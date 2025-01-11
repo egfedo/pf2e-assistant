@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Cheetah's Elixir
 - Choker-Arm Mutagen
 - Cognitive Mutagen
+- Deadweight Mutagen
 
 ## [6.1.0] - 2025-01-10
 
