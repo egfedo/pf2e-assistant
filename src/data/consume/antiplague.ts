@@ -19,26 +19,22 @@ export const actions: AssistantAction[] = [
             if (!message.speaker?.actor) return;
             const target = message.target?.actor ?? message.speaker.actor;
 
-            game.assistant.socket.addEmbeddedItem(
-                target,
-                "Compendium.pf2e.equipment-srd.Item.UqinuuCWePTYGhVO",
-                {
-                    _id: null,
-                    system: {
-                        context: {
-                            origin: {
-                                actor: message.speaker.actor.uuid,
-                                token: message.speaker.token?.uuid ?? null,
-                                item: message.item?.uuid ?? null,
-                                spellcasting: null,
-                                rollOptions: message.item?.getOriginData().rollOptions ?? [],
-                            },
-                            target: null,
-                            roll: null,
+            game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-srd.Item.UqinuuCWePTYGhVO", {
+                _id: null,
+                system: {
+                    context: {
+                        origin: {
+                            actor: message.speaker.actor.uuid,
+                            token: message.speaker.token?.uuid ?? null,
+                            item: message.item?.uuid ?? null,
+                            spellcasting: null,
+                            rollOptions: message.item?.getOriginData().rollOptions ?? [],
                         },
+                        target: null,
+                        roll: null,
                     },
-                } as EffectSource,
-            );
+                },
+            } as EffectSource);
         },
     },
 ];

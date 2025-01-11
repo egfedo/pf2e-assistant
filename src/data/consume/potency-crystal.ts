@@ -5,14 +5,13 @@ import { AssistantMessage } from "message.ts";
 export const actions: AssistantAction[] = [
     {
         trigger: "consume",
-        predicate: ["consumable:mistform-elixir-lesser"],
+        predicate: ["consumable:potency-crystal"],
         process: async (message: AssistantMessage) => {
             if (!message.speaker?.actor) return;
-            const target = message.target?.actor ?? message.speaker.actor;
 
             game.assistant.socket.addEmbeddedItem(
-                target,
-                "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.SZfUd4SIABrmaZ4T",
+                message.speaker.actor,
+                "Compendium.pf2e.equipment-effects.Item.R5ugeFK3MPwkbv0s",
                 {
                     _id: null,
                     system: {
@@ -34,14 +33,13 @@ export const actions: AssistantAction[] = [
     },
     {
         trigger: "consume",
-        predicate: ["consumable:mistform-elixir-moderate"],
+        predicate: ["consumable:insight-coffee-greater"],
         process: async (message: AssistantMessage) => {
             if (!message.speaker?.actor) return;
-            const target = message.target?.actor ?? message.speaker.actor;
 
             game.assistant.socket.addEmbeddedItem(
-                target,
-                "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.qakQkye2t3b8ELPq",
+                message.speaker.actor,
+                "Compendium.pf2e.equipment-effects.Item.Acox3S5hpJAqq1jc",
                 {
                     _id: null,
                     system: {
@@ -63,14 +61,13 @@ export const actions: AssistantAction[] = [
     },
     {
         trigger: "consume",
-        predicate: ["consumable:mistform-elixir-greater"],
+        predicate: ["consumable:insight-coffee-major"],
         process: async (message: AssistantMessage) => {
             if (!message.speaker?.actor) return;
-            const target = message.target?.actor ?? message.speaker.actor;
 
             game.assistant.socket.addEmbeddedItem(
-                target,
-                "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.2bApaOOOWXqQAgy2",
+                message.speaker.actor,
+                "Compendium.pf2e.equipment-effects.Item.VMVrJA4SkyOfklmj",
                 {
                     _id: null,
                     system: {

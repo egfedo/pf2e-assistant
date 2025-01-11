@@ -8,12 +8,9 @@ export const actions: AssistantAction[] = [
         predicate: [
             {
                 or: [
-                    "consumable:elixir-of-life-minor",
-                    "consumable:elixir-of-life-lesser",
-                    "consumable:elixir-of-life-moderate",
-                    "consumable:elixir-of-life-greater",
-                    "consumable:elixir-of-life-major",
-                    "consumable:elixir-of-life-true",
+                    "consumable:blood-booster-lesser",
+                    "consumable:blood-booster-moderate",
+                    "consumable:blood-booster-greater",
                 ],
             },
         ],
@@ -21,7 +18,7 @@ export const actions: AssistantAction[] = [
             if (!message.speaker?.actor) return;
             const target = message.target?.actor ?? message.speaker.actor;
 
-            game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-effects.Item.lPRuIRbu0rHBkoKY", {
+            game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-effects.Item.LfhCO3rP5ImzPyNY", {
                 _id: null,
                 system: {
                     context: {
