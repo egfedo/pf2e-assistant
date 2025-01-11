@@ -12,7 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Changed
 
 - Minor internal changes to how messages are processed
-- Removed Dice So Nice! support due to bugs
+
+### Removed
+
+- Support for Dice So Nice! has been removed due to some issues with how it processes chat messages
 
 ## [6.1.2] - 2025-01-11
 
