@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 - Bestial Mutagen
 - Cheetah's Elixir
+- Choker-Arm Mutagen
 
 ## [6.1.0] - 2025-01-10
 
