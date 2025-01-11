@@ -14,10 +14,17 @@ export class AssistantStorage {
         }
     }
 
+    add(action: AssistantAction) {
+        this.#data.push(action);
+    }
+
     async process(message: AssistantMessage) {
         if (message.trigger == "") return;
 
-        let actions = this.#data.filter((x) => x.trigger == message.trigger && message.test(x.predicate));
+        let actions = this.#data.filter(
+            (action) =>
+                action.trigger == message.trigger && game.pf2e.Predicate.test(action.predicate, message.rollOptions),
+        );
 
         actions.forEach((action) => {
             action.process(message);

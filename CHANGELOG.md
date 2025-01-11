@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [6.1.3] - 2025-01-11
+
+### Changed
+
+- Minor internal changes to how messages are processed
+- Removed Dice So Nice! support due to bugs
+
 ## [6.1.2] - 2025-01-11
 
 ### Added
@@ -120,7 +127,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Auto Self-Applied Effects (This is disabled if PF2e Toolbelt is doing this as well)
 - Swashbuckler Panache
 
-[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.1.2...HEAD
+[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.1.3...HEAD
+[6.1.3]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.1.2...v6.1.3
 [6.1.2]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.1.1...v6.1.2
 [6.1.1]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.1.0...v6.1.1
 [6.1.0]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.0.4...v6.1.0

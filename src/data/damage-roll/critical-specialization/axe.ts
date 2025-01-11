@@ -8,5 +8,5 @@ export const actions: AssistantAction[] = [
         process: async (message: AssistantMessage) => {
             if (!message.speaker?.actor || !message.target?.actor) return;
         },
-    }
+    },
 ];

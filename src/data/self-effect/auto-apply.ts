@@ -8,9 +8,14 @@ export const actions: AssistantAction[] = [
         trigger: "self-effect",
         predicate: [],
         process: async (message: AssistantMessage) => {
-            if (game.modules.get("pf2e-toolbelt")?.active && game.settings.get("pf2e-toolbelt", "useButton.selfApplied")) return;
+            if (
+                game.modules.get("pf2e-toolbelt")?.active &&
+                game.settings.get("pf2e-toolbelt", "useButton.selfApplied")
+            )
+                return;
             if (!message.speaker?.actor) return;
             if (!message.item) return;
+            if (!message.chatMessage) return;
 
             const effect =
                 message.item.isOfType("action", "feat") && message.item.system.selfEffect
