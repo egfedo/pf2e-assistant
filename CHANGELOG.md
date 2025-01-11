@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Serene Mutagen
 - Silvertongue Mutagen
 - Skeptic's Elixir
+- Theatrical Mutagen
 
 ## [6.1.0] - 2025-01-10
 
