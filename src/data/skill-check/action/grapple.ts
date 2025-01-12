@@ -46,7 +46,7 @@ export const actions: AssistantAction[] = [
 
             game.assistant.socket.addEmbeddedItem(
                 message.target.actor,
-                "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.d9zE07hIacDCHuPw",
+                "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.ptAsHbG8GbO1o8Wx",
                 {
                     _id: null,
                     system: {
