@@ -73,9 +73,9 @@ export namespace Utils {
                 return !actor.classDC
                     ? undefined
                     : {
-                          label: `${actor.classDC.label} DC`,
-                          value: actor.classDC.dc.value,
-                      };
+                        label: `${actor.classDC.label} DC`,
+                        value: actor.classDC.dc.value,
+                    };
             }
 
             if (actor.isOfType("npc")) {

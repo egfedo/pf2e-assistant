@@ -1,0 +1,8 @@
+<section class="standard-form scrollable" style="gap: 0;">
+    {{#each files as |file|}}
+    <div class="form-group">
+        <label>{{file.label}}</label>
+        <input type="checkbox" name="{{file.path}}" {{checked file.enabled}} />
+    </div>
+    {{/each}}
+</section>

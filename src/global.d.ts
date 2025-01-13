@@ -9,3 +9,10 @@ declare module "foundry-pf2e" {
         };
     }
 }
+
+declare global {
+    interface ClientSettings {
+        get(module: "pf2e-assistant", setting: "disabledFiles"): string[];
+        set(module: "pf2e-assistant", setting: "disabledFiles", value: string[]): Promise<string[]>;
+    }
+}

@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [6.2.0] - 2025-01-13
+
+### Added
+
+- Added settings that allow you to disable specific automations
+
+### Changed
+
+- Restructured data layout for better support of the new settings
+
+### Fixed
+
+- Fixed a minor problem that prevented a target from rolling their save automatically
+
 ## [6.1.6] - 2025-01-13
 
 ### Added
@@ -156,7 +170,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Auto Self-Applied Effects (This is disabled if PF2e Toolbelt is doing this as well)
 - Swashbuckler Panache
 
-[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.1.6...HEAD
+[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.2.0...HEAD
+[6.2.0]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.1.6...v6.2.0
 [6.1.6]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.1.5...v6.1.6
 [6.1.5]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.1.4...v6.1.5
 [6.1.4]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.1.3...v6.1.4
