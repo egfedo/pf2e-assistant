@@ -1,4 +1,4 @@
-import { ActorPF2e, ChatMessagePF2e, CheckRoll, ItemPF2e, TokenDocumentPF2e } from "foundry-pf2e";
+import { ActorPF2e, ChatMessagePF2e, ItemPF2e, TokenDocumentPF2e } from "foundry-pf2e";
 import { Utils } from "utils.ts";
 
 export interface AssistantMessage {
@@ -8,9 +8,9 @@ export interface AssistantMessage {
 
     chatMessage?: ChatMessagePF2e;
 
-    checkRoll?: CheckRoll;
+    roll?: Roll;
 
-    item?: ItemPF2e;
+    item?: ItemPF2e<ActorPF2e>;
 
     speaker?: {
         actor: ActorPF2e;
@@ -26,6 +26,18 @@ export interface AssistantMessage {
         actor: ActorPF2e;
         token?: TokenDocumentPF2e;
     };
+}
+
+let HEALING_REGEX: RegExp;
+function isFastHealing(chatMessage: ChatMessagePF2e): boolean {
+    HEALING_REGEX ??= (() => {
+        const healing = [
+            game.i18n.localize("PF2E.Encounter.Broadcast.FastHealing.fast-healing.ReceivedMessage"),
+            game.i18n.localize("PF2E.Encounter.Broadcast.FastHealing.regeneration.ReceivedMessage"),
+        ];
+        return new RegExp(`^<div>(${healing.join("|")})</div>`);
+    })();
+    return HEALING_REGEX.test(chatMessage.flavor);
 }
 
 export function createMessage(chatMessage: ChatMessagePF2e): AssistantMessage {
@@ -67,6 +79,9 @@ export function createMessage(chatMessage: ChatMessagePF2e): AssistantMessage {
                     };
                 }
             }
+        } else if (chatMessage.isDamageRoll && isFastHealing(chatMessage)) {
+            trigger = "damage-roll";
+            rollOptions.add("condition:fast-healing");
         }
     }
 
@@ -117,8 +132,8 @@ export function createMessage(chatMessage: ChatMessagePF2e): AssistantMessage {
         }
     }
 
-    if (chatMessage.isCheckRoll) {
-        message.checkRoll = chatMessage.rolls.at(0) as CheckRoll;
+    if (chatMessage.isCheckRoll || chatMessage.isDamageRoll) {
+        message.roll = chatMessage.rolls.at(0);
     }
 
     if (["action", "consume", "damage-roll", "self-effect"].includes(trigger)) {

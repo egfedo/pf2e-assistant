@@ -1,6 +1,7 @@
 import { AssistantAction } from "action.ts";
 import { EffectSource } from "foundry-pf2e";
 import { AssistantMessage } from "message.ts";
+import { Utils } from "utils.ts";
 
 export const actions: AssistantAction[] = [
     {
@@ -9,6 +10,7 @@ export const actions: AssistantAction[] = [
         process: async (message: AssistantMessage) => {
             if (!message.speaker?.actor) return;
             if (!message.target?.actor) return;
+            if (!Utils.isInstanceOf(message.roll, "CheckRoll")) return;
 
             game.assistant.socket.addEmbeddedItem(
                 message.target.actor,
@@ -28,8 +30,8 @@ export const actions: AssistantAction[] = [
                                 token: message.target.token?.uuid ?? null,
                             },
                             roll: {
-                                degreeOfSuccess: message.checkRoll?.degreeOfSuccess,
-                                total: message.checkRoll?.total ?? null,
+                                degreeOfSuccess: message.roll?.degreeOfSuccess,
+                                total: message.roll?.total ?? null,
                             },
                         },
                     },

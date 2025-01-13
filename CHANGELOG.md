@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [6.1.6] - 2025-01-13
+
+### Added
+
+- Persistent Damage
+- Persistent Healing
+
 ## [6.1.5] - 2025-01-13
 
 ### Added
@@ -149,7 +156,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Auto Self-Applied Effects (This is disabled if PF2e Toolbelt is doing this as well)
 - Swashbuckler Panache
 
-[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.1.5...HEAD
+[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.1.6...HEAD
+[6.1.6]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.1.5...v6.1.6
 [6.1.5]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.1.4...v6.1.5
 [6.1.4]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.1.3...v6.1.4
 [6.1.3]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.1.2...v6.1.3

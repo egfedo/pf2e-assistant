@@ -226,6 +226,7 @@ export namespace Utils {
     export function isInstanceOf(obj: unknown, cls: "PartyPF2e"): obj is PartyPF2e;
     export function isInstanceOf(obj: unknown, cls: "NPCPF2e"): obj is NPCPF2e;
     export function isInstanceOf(obj: unknown, cls: "VehiclePF2e"): obj is VehiclePF2e;
+
     export function isInstanceOf(obj: unknown, cls: "ItemPF2e"): obj is ItemPF2e;
     export function isInstanceOf(obj: unknown, cls: "AbilityItemPF2e"): obj is AbilityItemPF2e;
     export function isInstanceOf(obj: unknown, cls: "AfflictionPF2e"): obj is AfflictionPF2e;
@@ -251,7 +252,10 @@ export namespace Utils {
     export function isInstanceOf(obj: unknown, cls: "SpellcastingEntryPF2e"): obj is SpellcastingEntryPF2e;
     export function isInstanceOf(obj: unknown, cls: "TreasurePF2e"): obj is TreasurePF2e;
     export function isInstanceOf(obj: unknown, cls: "WeaponPF2e"): obj is WeaponPF2e;
-    export function isInstanceOf(obj: unknown, cls: "CheckRoll"): obj is CheckRoll;
+
+    export function isInstanceOf(obj: Maybe<Roll>, cls: "CheckRoll"): obj is CheckRoll;
+    export function isInstanceOf(obj: Maybe<Roll>, cls: "DamageRoll"): obj is DamageRoll;
+
     export function isInstanceOf(obj: unknown, cls: string) {
         if (typeof obj !== "object" || obj === null || obj === undefined) return false;
 
