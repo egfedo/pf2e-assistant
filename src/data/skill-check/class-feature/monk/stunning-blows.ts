@@ -24,14 +24,7 @@ export const actions: AssistantAction[] = [
             if (!message.speaker?.actor) return;
             if (!message.origin?.actor) return;
 
-            const stunned = message.speaker.actor.getCondition("stunned");
-            const value = stunned?.value ?? 0;
-            if (value < 1) {
-                await game.assistant.socket.increaseCondition(message.speaker.actor, "stunned", {
-                    max: 1,
-                    value: 1,
-                });
-            }
+            await game.assistant.socket.setCondition(message.speaker.actor, "stunned", 1);
         },
     },
     {
@@ -41,14 +34,7 @@ export const actions: AssistantAction[] = [
             if (!message.speaker?.actor) return;
             if (!message.origin?.actor) return;
 
-            const stunned = message.speaker.actor.getCondition("stunned");
-            const value = stunned?.value ?? 0;
-            if (value < 3) {
-                await game.assistant.socket.increaseCondition(message.speaker.actor, "stunned", {
-                    max: 3,
-                    value: 3,
-                });
-            }
+            await game.assistant.socket.setCondition(message.speaker.actor, "stunned", 3);
         },
     },
 ];

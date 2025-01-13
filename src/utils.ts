@@ -13,6 +13,7 @@ import {
     ChatMessageFlagsPF2e,
     CheckContextChatFlag,
     CheckDC,
+    CheckRoll,
     ClassPF2e,
     ConditionPF2e,
     ConsumablePF2e,
@@ -250,6 +251,7 @@ export namespace Utils {
     export function isInstanceOf(obj: unknown, cls: "SpellcastingEntryPF2e"): obj is SpellcastingEntryPF2e;
     export function isInstanceOf(obj: unknown, cls: "TreasurePF2e"): obj is TreasurePF2e;
     export function isInstanceOf(obj: unknown, cls: "WeaponPF2e"): obj is WeaponPF2e;
+    export function isInstanceOf(obj: unknown, cls: "CheckRoll"): obj is CheckRoll;
     export function isInstanceOf(obj: unknown, cls: string) {
         if (typeof obj !== "object" || obj === null || obj === undefined) return false;
 

@@ -25,11 +25,7 @@ export const actions: AssistantAction[] = [
                 return;
             }
 
-            const frightened = message.target.actor.getCondition("frightened");
-            const value = frightened?.value ?? 0;
-            if (value < 2) {
-                await game.assistant.socket.increaseCondition(message.target.actor, "frightened", { max: 2, value: 2 });
-            }
+            await game.assistant.socket.setCondition(message.target.actor, "frightened", 2);
 
             game.assistant.socket.addEmbeddedItem(
                 message.target.actor,
@@ -80,11 +76,7 @@ export const actions: AssistantAction[] = [
                 return;
             }
 
-            const frightened = message.target.actor.getCondition("frightened");
-            const value = frightened?.value ?? 0;
-            if (value < 1) {
-                await game.assistant.socket.increaseCondition(message.target.actor, "frightened", { max: 1, value: 1 });
-            }
+            await game.assistant.socket.setCondition(message.target.actor, "frightened", 1);
 
             game.assistant.socket.addEmbeddedItem(
                 message.target.actor,

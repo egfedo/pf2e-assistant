@@ -34,14 +34,22 @@ export function createMessage(chatMessage: ChatMessagePF2e): AssistantMessage {
         rollOptions: [],
     };
 
-    let trigger = chatMessage.flags.pf2e.context?.type as string | undefined;
+    let trigger = chatMessage.flags.pf2e.context?.type ?? "";
     const rollOptions = new Set(chatMessage.flags.pf2e.context?.options ?? []);
 
-    if (!trigger || trigger === "spell-cast") {
+    if (["", "spell-cast"].includes(trigger)) {
         if (chatMessage.item?.isOfType("condition") && chatMessage.item.slug === "persistent-damage") {
             trigger = "damage-roll";
         } else if (chatMessage.item?.isOfType("action", "feat", "spell")) {
             trigger = "action";
+
+            const target = Utils.User.getTargets()[0];
+            if (target && target.actor) {
+                message.target = {
+                    actor: target.actor,
+                    token: target.document,
+                };
+            }
         } else if (chatMessage.item?.isOfType("consumable") && chatMessage.flags.pf2e.origin) {
             const origin = new Map(Object.entries(chatMessage.flags.pf2e.origin));
             if (
@@ -50,7 +58,6 @@ export function createMessage(chatMessage: ChatMessagePF2e): AssistantMessage {
                 origin.get("uuid") === chatMessage.item.uuid
             ) {
                 trigger = "consume";
-                chatMessage.item.getRollOptions().forEach((value) => rollOptions.add(value));
 
                 const target = Utils.User.getTargets()[0];
                 if (target && target.actor) {
@@ -114,7 +121,11 @@ export function createMessage(chatMessage: ChatMessagePF2e): AssistantMessage {
         message.checkRoll = chatMessage.rolls.at(0) as CheckRoll;
     }
 
-    message.trigger = trigger ?? "";
+    if (["action", "consume", "damage-roll", "self-effect"].includes(trigger)) {
+        (message.item?.getRollOptions() ?? []).forEach((option) => rollOptions.add(option));
+    }
+
+    message.trigger = trigger;
     message.rollOptions = Array.from(rollOptions).sort();
     message.chatMessage = chatMessage;
 

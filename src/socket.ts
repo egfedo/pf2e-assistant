@@ -30,6 +30,7 @@ export class AssistantSocket {
         this.#socket.register("decreaseCondition", this.#decreaseCondition);
         this.#socket.register("increaseCondition", this.#increaseCondition);
         this.#socket.register("toggleCondition", this.#toggleCondition);
+        this.#socket.register("setCondition", this.#setCondition);
 
         this.#socket.register("rollSave", this.#rollSave);
     }
@@ -46,7 +47,7 @@ export class AssistantSocket {
 
     async addEmbeddedItem(actor: ActorPF2e, itemUuid: ItemUUID, data?: PreCreate<ItemSourcePF2e>) {
         if (!actor.canUserModify(game.user, "update")) {
-            this.#executeAsActor(actor, "addEmbeddedItem", actor.uuid, itemUuid, data);
+            await this.#executeAsActor(actor, "addEmbeddedItem", actor.uuid, itemUuid, data);
             return;
         }
 
@@ -67,7 +68,7 @@ export class AssistantSocket {
 
     async createEmbeddedItem(actor: ActorPF2e, data: PreCreate<ItemSourcePF2e>) {
         if (!actor.canUserModify(game.user, "update")) {
-            this.#executeAsActor(actor, "createEmbeddedItem", actor.uuid, data);
+            await this.#executeAsActor(actor, "createEmbeddedItem", actor.uuid, data);
             return;
         }
 
@@ -85,7 +86,7 @@ export class AssistantSocket {
         if (!item.parent) return;
 
         if (!item.parent.canUserModify(game.user, "update")) {
-            this.#executeAsActor(item.parent, "deleteEmbeddedItem", item.uuid);
+            await this.#executeAsActor(item.parent, "deleteEmbeddedItem", item.uuid);
             return;
         }
 
@@ -101,7 +102,7 @@ export class AssistantSocket {
 
     async decreaseCondition(actor: ActorPF2e, conditionSlug: ConditionSlug, options?: { forceRemove: boolean }) {
         if (!actor.canUserModify(game.user, "update")) {
-            this.#executeAsActor(actor, "decreaseCondition", actor.uuid, conditionSlug, options);
+            await this.#executeAsActor(actor, "decreaseCondition", actor.uuid, conditionSlug, options);
             return;
         }
 
@@ -121,7 +122,7 @@ export class AssistantSocket {
         options?: { max?: number; value?: number | null },
     ) {
         if (!actor.canUserModify(game.user, "update")) {
-            this.#executeAsActor(actor, "increaseCondition", actor.uuid, conditionSlug, options);
+            await this.#executeAsActor(actor, "increaseCondition", actor.uuid, conditionSlug, options);
             return;
         }
 
@@ -141,7 +142,7 @@ export class AssistantSocket {
 
     async toggleCondition(actor: ActorPF2e, conditionSlug: ConditionSlug, options?: { active?: boolean }) {
         if (!actor.canUserModify(game.user, "update")) {
-            this.#executeAsActor(actor, "toggleCondition", actor.uuid, conditionSlug, options);
+            await this.#executeAsActor(actor, "toggleCondition", actor.uuid, conditionSlug, options);
             return;
         }
 
@@ -155,9 +156,33 @@ export class AssistantSocket {
         await game.assistant.socket.toggleCondition(actor, conditionSlug, options);
     }
 
+    async setCondition(actor: ActorPF2e, conditionSlug: Exclude<ConditionSlug, "persistent-damage">, value: number) {
+        if (!actor.canUserModify(game.user, "update")) {
+            await this.#executeAsActor(actor, "setCondition", actor.uuid, conditionSlug, value);
+            return;
+        }
+
+        const condition = actor.getCondition(conditionSlug);
+        const conditionValue = condition?.value ?? 0;
+        if (conditionValue < value) {
+            await actor.increaseCondition(conditionSlug, { value, max: value });
+        }
+    }
+
+    async #setCondition(
+        actorUuid: ActorUUID,
+        conditionSlug: Exclude<ConditionSlug, "persistent-damage">,
+        value: number,
+    ) {
+        let actor = await fromUuid<ActorPF2e>(actorUuid);
+        if (!actor) return;
+
+        await game.assistant.socket.setCondition(actor, conditionSlug, value);
+    }
+
     async rollSave(actor: ActorPF2e, save: SaveType, args?: StatisticRollParameters) {
         if (!actor.canUserModify(game.user, "update")) {
-            this.#executeAsActor(
+            await this.#executeAsActor(
                 actor,
                 "rollSave",
                 actor.uuid,
