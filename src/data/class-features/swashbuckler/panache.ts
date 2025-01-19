@@ -15,7 +15,7 @@ export const actions: AssistantAction[] = [
         ],
         process: async (message: AssistantMessage) => {
             if (!message.speaker?.actor) return;
-            if (!Utils.isInstanceOf(message.roll, "CheckRoll")) return;
+            if (!Utils.Roll.isCheckRoll(message.roll)) return;
 
             game.assistant.socket.addEmbeddedItem(
                 message.speaker.actor,
@@ -49,7 +49,7 @@ export const actions: AssistantAction[] = [
         predicate: ["item:trait:bravado", { not: "self:effect:panache" }, "check:outcome:failure"],
         process: async (message: AssistantMessage) => {
             if (!message.speaker?.actor) return;
-            if (!Utils.isInstanceOf(message.roll, "CheckRoll")) return;
+            if (!Utils.Roll.isCheckRoll(message.roll)) return;
 
             game.assistant.socket.addEmbeddedItem(
                 message.speaker.actor,

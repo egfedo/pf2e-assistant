@@ -1,4 +1,4 @@
-import { EffectSource, ItemPF2e } from "foundry-pf2e";
+import { EffectPF2e, EffectSource } from "foundry-pf2e";
 import { AssistantAction } from "action.ts";
 import { AssistantMessage } from "message.ts";
 import { Utils } from "utils.ts";
@@ -21,10 +21,10 @@ export const actions: AssistantAction[] = [
 
             const effect =
                 message.item.isOfType("action", "feat") && message.item.system.selfEffect
-                    ? await fromUuid<ItemPF2e>(message.item.system.selfEffect.uuid)
+                    ? await fromUuid<EffectPF2e>(message.item.system.selfEffect.uuid)
                     : null;
 
-            if (Utils.isInstanceOf(message.speaker.actor, "ActorPF2e") && Utils.isInstanceOf(effect, "EffectPF2e")) {
+            if (effect) {
                 const traits =
                     message.item.system.traits.value?.filter((t) => t in effect.constructor.validTraits) ?? [];
                 const effectSource: EffectSource = foundry.utils.mergeObject(effect.toObject(), {

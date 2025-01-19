@@ -12,7 +12,7 @@ export const actions: AssistantAction[] = [
             if (!message.speaker?.actor || !message.target?.actor) return;
 
             game.assistant.socket.rollSave(message.target.actor, "reflex", {
-                origin: message.speaker?.actor,
+                origin: message.speaker.actor,
                 dc: Utils.Actor.getClassDC(message.speaker.actor),
                 extraRollOptions: ["critical-specialization", "item:group:sling"],
             });

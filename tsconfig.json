@@ -12,7 +12,8 @@
             "foundry-pf2e",
             "foundry-pf2e/dice-so-nice",
             "foundry-pf2e/pf2e-toolbelt",
-            "foundry-pf2e/socketlib"
+            "foundry-pf2e/socketlib",
+            "jquery"
         ],
         "baseUrl": "./src",
         "noEmit": true,

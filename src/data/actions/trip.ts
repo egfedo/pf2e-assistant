@@ -20,7 +20,7 @@ export const actions: AssistantAction[] = [
                 ? '<div class="tags" data-tooltip-class="pf2e"></div><hr><div class="tags modifiers"><span class="tag tag_transparent">1d6 Bludgeoning</span></div>'
                 : '<div class="tags" data-tooltip-class="pf2e"></div><hr><div class="tags modifiers"><span class="tag tag_transparent" data-visibility="gm">1d6 Bludgeoning</span></div>';
 
-            const roll = Utils.Roll.newDamageRoll("{1d6[bludgeoning]}", {}, { showBreakdown });
+            const roll = new (Utils.Roll.getDamageRoll())("{1d6[bludgeoning]}", {}, { showBreakdown });
 
             const contextFlag: DamageDamageContextFlag = {
                 type: "damage-roll",
@@ -57,7 +57,7 @@ export const actions: AssistantAction[] = [
                 { create: false },
             );
 
-            await Utils.ChatMessagePF2e.create(messageData, { rollMode: game.settings.get("core", "rollMode") });
+            await ChatMessage.create(messageData, { rollMode: game.settings.get("core", "rollMode") });
         },
     },
     {

@@ -13,7 +13,7 @@ export const actions: AssistantAction[] = [
             if (!message.speaker?.actor) return;
             if (!message.speaker?.token) return;
             if (!message.item?.isOfType("condition")) return;
-            if (!Utils.isInstanceOf(message.roll, "DamageRoll")) return;
+            if (!Utils.Roll.isDamageRoll(message.roll)) return;
 
             if (
                 !(

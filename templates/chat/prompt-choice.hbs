@@ -1,0 +1,12 @@
+<div class="pf2e chat-card">
+    <section class="card-content">
+        {{description}}
+    </section>
+    <section class="card-buttons">
+        {{#each choices as |choice|}}
+        <button type="button" data-action="choice" data-visibility="owner" value="{{choice.value}}">
+            {{choice.label}}
+        </button>
+        {{/each}}
+    </section>
+</div>

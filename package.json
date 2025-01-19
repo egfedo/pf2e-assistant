@@ -25,6 +25,7 @@
     "vite-tsconfig-paths": "^5.1.4"
   },
   "dependencies": {
-    "foundry-pf2e": "github:7H3LaughingMan/foundry-pf2e"
+    "foundry-pf2e": "github:7H3LaughingMan/foundry-pf2e",
+    "remeda": "^2.19.2"
   }
 }

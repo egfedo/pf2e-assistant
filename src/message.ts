@@ -1,4 +1,4 @@
-import { ActorPF2e, ChatMessagePF2e, ItemPF2e, TokenDocumentPF2e } from "foundry-pf2e";
+import { ActorPF2e, ChatMessagePF2e, ItemPF2e, ScenePF2e, TokenDocumentPF2e } from "foundry-pf2e";
 import { Utils } from "utils.ts";
 
 export interface AssistantMessage {
@@ -14,17 +14,17 @@ export interface AssistantMessage {
 
     speaker?: {
         actor: ActorPF2e;
-        token?: TokenDocumentPF2e;
+        token: TokenDocumentPF2e<ScenePF2e>;
     };
 
     target?: {
         actor: ActorPF2e;
-        token?: TokenDocumentPF2e;
+        token: TokenDocumentPF2e<ScenePF2e>;
     };
 
     origin?: {
         actor: ActorPF2e;
-        token?: TokenDocumentPF2e;
+        token: TokenDocumentPF2e<ScenePF2e>;
     };
 }
 
@@ -92,14 +92,14 @@ export function createMessage(chatMessage: ChatMessagePF2e): AssistantMessage {
     const outcome = chatMessage.flags.pf2e.context?.outcome;
     if (outcome) rollOptions.add(`check:outcome:${game.pf2e.system.sluggify(outcome)}`);
 
-    if (chatMessage.actor) {
+    if (chatMessage.actor && chatMessage.token) {
         message.speaker = {
             actor: chatMessage.actor,
-            token: chatMessage.token ?? undefined,
+            token: chatMessage.token,
         };
     }
 
-    if (chatMessage.target?.actor) {
+    if (chatMessage.target) {
         message.target = {
             actor: chatMessage.target.actor,
             token: chatMessage.target.token,
@@ -111,11 +111,9 @@ export function createMessage(chatMessage: ChatMessagePF2e): AssistantMessage {
 
         if (checkContext.origin) {
             let actor = fromUuidSync<ActorPF2e>(checkContext.origin.actor);
-            let token = !checkContext.origin.token
-                ? undefined
-                : (fromUuidSync<TokenDocumentPF2e>(checkContext.origin.token) ?? undefined);
+            let token = fromUuidSync<TokenDocumentPF2e<ScenePF2e>>(checkContext.origin.token ?? "");
 
-            if (actor) {
+            if (actor && token) {
                 message.origin = {
                     actor,
                     token,

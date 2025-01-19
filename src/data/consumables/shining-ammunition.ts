@@ -17,7 +17,7 @@ export const actions: AssistantAction[] = [
         process: async (message: AssistantMessage) => {
             if (!message.speaker?.actor) return;
             if (!message.target?.actor) return;
-            if (!Utils.isInstanceOf(message.roll, "CheckRoll")) return;
+            if (!Utils.Roll.isCheckRoll(message.roll)) return;
 
             game.assistant.socket.addEmbeddedItem(
                 message.target.actor,

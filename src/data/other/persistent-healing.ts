@@ -11,7 +11,7 @@ export const actions: AssistantAction[] = [
         process: async (message: AssistantMessage) => {
             if (!message.speaker?.actor) return;
             if (!message.speaker?.token) return;
-            if (!Utils.isInstanceOf(message.roll, "DamageRoll")) return;
+            if (!Utils.Roll.isDamageRoll(message.roll)) return;
 
             if (
                 !(

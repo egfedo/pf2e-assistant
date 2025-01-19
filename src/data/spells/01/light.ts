@@ -15,7 +15,7 @@ export const actions: AssistantAction[] = [
 
             game.assistant.socket.addEmbeddedItem(
                 message.target.actor,
-                "Compendium.pf2e.spell-effects.Item.cVVZXNbV0nElVOPZ",
+                "Compendium.pf2e.spell-effects.Item.xsy1yaCj0SVsn502",
                 {
                     _id: null,
                     system: {
@@ -33,10 +33,7 @@ export const actions: AssistantAction[] = [
                                 },
                                 rollOptions: message.chatMessage?.flags.pf2e.origin?.rollOptions,
                             },
-                            target: {
-                                actor: message.target.actor.uuid,
-                                token: message.target.token?.uuid ?? null,
-                            },
+                            target: null,
                             roll: null,
                         },
                         level: {

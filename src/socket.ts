@@ -1,18 +1,15 @@
 import {
     ActorPF2e,
+    ChatMessageFlagsPF2e,
+    ChatMessagePF2e,
     CheckDC,
     CheckDCReference,
     ConditionSlug,
     ItemPF2e,
     ItemSourcePF2e,
-    ModifierPF2e,
-    RollNotePF2e,
-    RollNoteSource,
-    RollTwiceOption,
     SaveType,
-    StatisticRollParameters,
+    ScenePF2e,
     TokenDocumentPF2e,
-    TraitViewData,
 } from "foundry-pf2e";
 import module from "../module.json" with { type: "json" };
 import { Utils } from "utils.ts";
@@ -33,6 +30,10 @@ export class AssistantSocket {
         this.#socket.register("setCondition", this.#setCondition);
 
         this.#socket.register("rollSave", this.#rollSave);
+
+        this.#socket.register("deleteChatMessage", this.#deleteChatMessage);
+
+        this.#socket.register("promptChoice", this.#promptChoice);
     }
 
     async #executeAsActor(actor: ActorPF2e, handler: string | Function, ...args: any[]) {
@@ -180,103 +181,150 @@ export class AssistantSocket {
         await game.assistant.socket.setCondition(actor, conditionSlug, value);
     }
 
-    async rollSave(actor: ActorPF2e, save: SaveType, args?: StatisticRollParameters) {
+    async rollSave(actor: ActorPF2e, save: SaveType, args: SocketTypes.Save.RollParameters) {
         if (!actor.canUserModify(game.user, "update")) {
-            await this.#executeAsActor(
-                actor,
-                "rollSave",
-                actor.uuid,
-                save,
-                !args
-                    ? undefined
-                    : {
-                        identifier: args.identifier,
-                        action: args.action,
-                        token: !args.token ? undefined : args.token.uuid,
-                        attackNumber: args.attackNumber,
-                        target: !args.target ? undefined : args.target.uuid,
-                        origin: !args.origin ? undefined : args.origin.uuid,
-                        dc: args.dc,
-                        label: args.label,
-                        slug: args.slug,
-                        title: args.title,
-                        extraRollNotes: args.extraRollNotes,
-                        extraRollOptions: args.extraRollOptions,
-                        modifiers: args.modifiers,
-                        item: !args.item ? undefined : args.item.uuid,
-                        rollMode: args.rollMode,
-                        skipDialog: args.skipDialog,
-                        rollTwice: args.rollTwice,
-                        traits: args.traits,
-                        damaging: args.damaging,
-                        melee: args.melee,
-                        createMessage: args.createMessage,
-                    },
-            );
+            await this.#executeAsActor(actor, "rollSave", actor.uuid, save, {
+                origin: args.origin?.uuid,
+                dc: args.dc,
+                extraRollOptions: args.extraRollOptions,
+            });
             return;
         }
 
         await actor.saves?.[save]?.roll(args);
     }
 
-    async #rollSave(
-        actorUuid: ActorUUID,
-        save: SaveType,
-        args?: {
-            identifier?: string;
-            action?: string;
-            token?: TokenDocumentUUID;
-            attackNumber?: number;
-            target?: ActorUUID;
-            origin?: ActorUUID;
-            dc?: CheckDC | CheckDCReference | number | null;
-            label?: string;
-            slug?: string;
-            title?: string;
-            extraRollNotes?: (RollNotePF2e | RollNoteSource)[];
-            extraRollOptions?: string[];
-            modifiers?: ModifierPF2e[];
-            item?: ItemUUID;
-            rollMode?: RollMode | "roll";
-            skipDialog?: boolean;
-            rollTwice?: RollTwiceOption;
-            traits?: (TraitViewData | string)[];
-            damaging?: boolean;
-            melee?: boolean;
-            createMessage?: boolean;
-        },
-    ) {
+    async #rollSave(actorUuid: ActorUUID, save: SaveType, args: SocketTypes.Save.SerializedRollParameters) {
         let actor = await fromUuid<ActorPF2e>(actorUuid);
         if (!actor) return;
 
-        await game.assistant.socket.rollSave(
-            actor,
-            save,
-            !args
-                ? undefined
-                : {
-                    identifier: args.identifier,
-                    action: args.action,
-                    token: !args.token ? undefined : await fromUuid<TokenDocumentPF2e>(args.token),
-                    attackNumber: args.attackNumber,
-                    target: !args.target ? undefined : await fromUuid<ActorPF2e>(args.target),
-                    origin: !args.origin ? undefined : await fromUuid<ActorPF2e>(args.origin),
-                    dc: args.dc,
-                    label: args?.label,
-                    slug: args.slug,
-                    title: args.title,
-                    extraRollNotes: args.extraRollNotes,
-                    extraRollOptions: args.extraRollOptions,
-                    modifiers: args.modifiers,
-                    item: !args.item ? undefined : await Utils.Actor.getItem(args.item),
-                    rollMode: args.rollMode,
-                    skipDialog: args.skipDialog,
-                    rollTwice: args.rollTwice,
-                    traits: args.traits,
-                    damaging: args.damaging,
-                    melee: args.melee,
-                    createMessage: args.createMessage,
+        await game.assistant.socket.rollSave(actor, save, {
+            origin: args.origin ? await fromUuid<ActorPF2e>(args.origin) : undefined,
+            dc: args.dc,
+            extraRollOptions: args.extraRollOptions,
+        });
+    }
+
+    async deleteChatMessage(chatMessage: ChatMessagePF2e) {
+        if (!chatMessage.canUserModify(game.user, "delete")) {
+            await this.#socket.executeAsGM("deleteChatMessage", chatMessage.uuid);
+        }
+        await chatMessage.delete();
+    }
+
+    async #deleteChatMessage(chatMessageUuid: ChatMessageUUID) {
+        let chatMessage = await fromUuid<ChatMessagePF2e>(chatMessageUuid);
+        if (!chatMessage) return;
+
+        await game.assistant.socket.deleteChatMessage(chatMessage);
+    }
+
+    async promptChoice(actor: ActorPF2e, param: SocketTypes.Prompt.ChoiceParameters) {
+        if (!actor.canUserModify(game.user, "update")) {
+            await this.#executeAsActor(actor, "promptChoice", actor.uuid, {});
+            return;
+        }
+
+        const flags: DeepPartial<ChatMessageFlagsPF2e> = {
+            core: {
+                canPopout: false,
+            },
+            pf2e: {
+                context: {
+                    target: param.target
+                        ? { actor: param.target.actor.uuid, token: param.target.token.uuid }
+                        : undefined,
                 },
-        );
+                origin: param.item ? param.item.getOriginData() : undefined,
+                casting:
+                    param.item?.isOfType("spell") && param.item.spellcasting?.statistic
+                        ? {
+                              id: param.item.spellcasting.id,
+                              tradition: param.item.spellcasting.tradition ?? param.item.traditions.first() ?? "arcane",
+                              embeddedSpell: param.item.parentItem ? param.item.toObject() : undefined,
+                          }
+                        : undefined,
+            },
+            "pf2e-assistant": {
+                process: false,
+            },
+        };
+
+        ChatMessage.create({
+            content: await renderTemplate("modules/pf2e-assistant/templates/chat/prompt-choice.hbs", param.data),
+            flags,
+            speaker: ChatMessage.getSpeaker(param.speaker),
+            whisper: game.users.filter((user) => param.speaker.actor.canUserModify(user, "update")),
+        });
+        return;
+    }
+
+    async #promptChoice(actorUuid: ActorUUID, param: SocketTypes.Prompt.SerializedChoiceParameters) {
+        let actor = await fromUuid<ActorPF2e>(actorUuid);
+        if (!actor) return;
+
+        const speaker = {
+            actor: await fromUuid<ActorPF2e>(param.speaker.actor),
+            token: await fromUuid<TokenDocumentPF2e<ScenePF2e>>(param.speaker.token),
+        };
+        const item = param.item ? await fromUuid<ItemPF2e>(param.item) : undefined;
+        const target = param.target
+            ? {
+                  actor: await fromUuid<ActorPF2e>(param.target.actor),
+                  token: await fromUuid<TokenDocumentPF2e<ScenePF2e>>(param.target.token),
+              }
+            : undefined;
+        const data = param.data;
+
+        if (Utils.Actor.isActorToken(speaker)) {
+            await game.assistant.socket.promptChoice(actor, {
+                speaker,
+                item: item ? item : undefined,
+                target: target && Utils.Actor.isActorToken(target) ? target : undefined,
+                data,
+            });
+        }
+    }
+}
+
+namespace SocketTypes {
+    export namespace Prompt {
+        export interface SerializedChoiceParameters {
+            speaker: { actor: ActorUUID; token: TokenDocumentUUID };
+            item?: ItemUUID;
+            target?: { actor: ActorUUID; token: TokenDocumentUUID };
+            data: ChoiceData;
+        }
+
+        export interface ChoiceParameters {
+            speaker: { actor: ActorPF2e; token: TokenDocumentPF2e<ScenePF2e> };
+            item?: ItemPF2e;
+            target?: { actor: ActorPF2e; token: TokenDocumentPF2e<ScenePF2e> };
+            data: ChoiceData;
+        }
+
+        export interface ChoiceData {
+            description: string;
+            choices: Choice[];
+        }
+
+        export interface Choice {
+            label: string;
+            value: string;
+        }
+    }
+
+    export namespace Save {
+        export interface RollParameters {
+            origin?: Maybe<ActorPF2e>;
+            dc?: CheckDC | CheckDCReference | number | null;
+            extraRollOptions?: string[];
+        }
+
+        export interface SerializedRollParameters {
+            origin?: ActorUUID;
+            dc?: CheckDC | CheckDCReference | number | null;
+            extraRollOptions?: string[];
+        }
     }
 }

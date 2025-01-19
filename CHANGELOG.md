@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [6.3.0] - 2025-01-19
+
+### Added
+
+- Chat Message Prompts
+  - Some automations require a choice from someone because their are multiple options, in these cases you will now see a whisper prompting you to make a decision.
+- Aberrant Form
+- Grapple (Critical Failure)
+
+### Changed
+
+- Refactor Utility Functions
+
 ## [6.2.0] - 2025-01-13
 
 ### Added
@@ -170,7 +183,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Auto Self-Applied Effects (This is disabled if PF2e Toolbelt is doing this as well)
 - Swashbuckler Panache
 
-[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.2.0...HEAD
+[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.3.0...HEAD
+[6.3.0]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.2.0...v6.3.0
 [6.2.0]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.1.6...v6.2.0
 [6.1.6]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.1.5...v6.1.6
 [6.1.5]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.1.4...v6.1.5

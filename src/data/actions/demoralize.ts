@@ -12,7 +12,7 @@ export const actions: AssistantAction[] = [
         process: async (message: AssistantMessage) => {
             if (!message.speaker?.actor) return;
             if (!message.target?.actor) return;
-            if (!Utils.isInstanceOf(message.roll, "CheckRoll")) return;
+            if (!Utils.Roll.isCheckRoll(message.roll)) return;
 
             const immunity = message.target.actor.itemTypes.effect.find(
                 (effect) =>
@@ -29,7 +29,13 @@ export const actions: AssistantAction[] = [
                 return;
             }
 
-            await game.assistant.socket.setCondition(message.target.actor, "frightened", 2);
+            // Check Mindless & Mental Immunity
+            if (
+                !message.target.actor.traits.has("mindless") &&
+                !message.target.actor.attributes.immunities.some((i) => i.type === "mental")
+            ) {
+                await game.assistant.socket.setCondition(message.target.actor, "frightened", 2);
+            }
 
             game.assistant.socket.addEmbeddedItem(
                 message.target.actor,
@@ -64,7 +70,7 @@ export const actions: AssistantAction[] = [
         process: async (message: AssistantMessage) => {
             if (!message.speaker?.actor) return;
             if (!message.target?.actor) return;
-            if (!Utils.isInstanceOf(message.roll, "CheckRoll")) return;
+            if (!Utils.Roll.isCheckRoll(message.roll)) return;
 
             const immunity = message.target.actor.itemTypes.effect.find(
                 (effect) =>
@@ -81,7 +87,13 @@ export const actions: AssistantAction[] = [
                 return;
             }
 
-            await game.assistant.socket.setCondition(message.target.actor, "frightened", 1);
+            // Check Mindless & Mental Immunity
+            if (
+                !message.target.actor.traits.has("mindless") &&
+                !message.target.actor.attributes.immunities.some((i) => i.type === "mental")
+            ) {
+                await game.assistant.socket.setCondition(message.target.actor, "frightened", 1);
+            }
 
             game.assistant.socket.addEmbeddedItem(
                 message.target.actor,
@@ -116,7 +128,7 @@ export const actions: AssistantAction[] = [
         process: async (message: AssistantMessage) => {
             if (!message.speaker?.actor) return;
             if (!message.target?.actor) return;
-            if (!Utils.isInstanceOf(message.roll, "CheckRoll")) return;
+            if (!Utils.Roll.isCheckRoll(message.roll)) return;
 
             game.assistant.socket.addEmbeddedItem(
                 message.target.actor,
