@@ -36,14 +36,14 @@ export class AssistantSocket {
         this.#socket.register("promptChoice", this.#promptChoice);
     }
 
-    async #executeAsActor(actor: ActorPF2e, handler: string | Function, ...args: any[]) {
+    async #executeAsActor<T>(actor: ActorPF2e, handler: string | Function, ...args: any[]): Promise<T | undefined> {
         const primaryUser = Utils.Actor.getPrimaryUser(actor);
 
         if (primaryUser) {
-            return this.#socket.executeAsUser(handler, primaryUser.id, ...args);
+            return this.#socket.executeAsUser<T>(handler, primaryUser.id, ...args);
         }
 
-        return null;
+        return undefined;
     }
 
     async addEmbeddedItem(actor: ActorPF2e, itemUuid: ItemUUID, data?: PreCreate<ItemSourcePF2e>) {
@@ -209,6 +209,7 @@ export class AssistantSocket {
         if (!chatMessage.canUserModify(game.user, "delete")) {
             await this.#socket.executeAsGM("deleteChatMessage", chatMessage.uuid);
         }
+
         await chatMessage.delete();
     }
 
@@ -219,10 +220,17 @@ export class AssistantSocket {
         await game.assistant.socket.deleteChatMessage(chatMessage);
     }
 
-    async promptChoice(actor: ActorPF2e, param: SocketTypes.Prompt.ChoiceParameters) {
+    async promptChoice(
+        actor: ActorPF2e,
+        param: SocketTypes.Prompt.ChoiceParameters,
+    ): Promise<ChatMessageUUID | undefined> {
         if (!actor.canUserModify(game.user, "update")) {
-            await this.#executeAsActor(actor, "promptChoice", actor.uuid, {});
-            return;
+            return await this.#executeAsActor(actor, "promptChoice", actor.uuid, {
+                speaker: { actor: param.speaker.actor.uuid, token: param.speaker.token.uuid },
+                item: param.item ? param.item.uuid : undefined,
+                target: param.target ? { actor: param.target.actor.uuid, token: param.target.token.uuid } : undefined,
+                data: param.data,
+            } satisfies SocketTypes.Prompt.SerializedChoiceParameters);
         }
 
         const flags: DeepPartial<ChatMessageFlagsPF2e> = {
@@ -250,16 +258,19 @@ export class AssistantSocket {
             },
         };
 
-        ChatMessage.create({
+        let chatMessage = await ChatMessage.create({
             content: await renderTemplate("modules/pf2e-assistant/templates/chat/prompt-choice.hbs", param.data),
             flags,
             speaker: ChatMessage.getSpeaker(param.speaker),
             whisper: game.users.filter((user) => param.speaker.actor.canUserModify(user, "update")),
         });
-        return;
+        return chatMessage?.uuid;
     }
 
-    async #promptChoice(actorUuid: ActorUUID, param: SocketTypes.Prompt.SerializedChoiceParameters) {
+    async #promptChoice(
+        actorUuid: ActorUUID,
+        param: SocketTypes.Prompt.SerializedChoiceParameters,
+    ): Promise<ChatMessageUUID | undefined> {
         let actor = await fromUuid<ActorPF2e>(actorUuid);
         if (!actor) return;
 
@@ -277,13 +288,14 @@ export class AssistantSocket {
         const data = param.data;
 
         if (Utils.Actor.isActorToken(speaker)) {
-            await game.assistant.socket.promptChoice(actor, {
+            return await game.assistant.socket.promptChoice(actor, {
                 speaker,
                 item: item ? item : undefined,
                 target: target && Utils.Actor.isActorToken(target) ? target : undefined,
                 data,
             });
         }
+        return undefined;
     }
 }
 

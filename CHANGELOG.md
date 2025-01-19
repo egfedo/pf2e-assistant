@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [6.3.1] - 2025-01-19
+
+### Fixed
+
+- Grapple (Critical Failure)
+
 ## [6.3.0] - 2025-01-19
 
 ### Added
@@ -183,7 +189,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Auto Self-Applied Effects (This is disabled if PF2e Toolbelt is doing this as well)
 - Swashbuckler Panache
 
-[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.3.0...HEAD
+[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.3.1...HEAD
+[6.3.1]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.3.0...v6.3.1
 [6.3.0]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.2.0...v6.3.0
 [6.2.0]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.1.6...v6.2.0
 [6.1.6]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.1.5...v6.1.6

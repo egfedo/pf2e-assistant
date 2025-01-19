@@ -92,8 +92,26 @@ export const actions: AssistantAction[] = [
                         effect.system.context?.target?.actor === message.target?.actor.uuid,
                 )
                 .forEach(async (effect) => await game.assistant.socket.deleteEmbeddedItem(effect));
+        },
+    },
+    {
+        trigger: "skill-check",
+        predicate: ["action:grapple", "check:outcome:critical-failure"],
+        process: async (message: AssistantMessage) => {
+            if (!message.speaker) return;
+            if (!message.target) return;
+            if (!Utils.Roll.isCheckRoll(message.roll)) return;
 
-            game.assistant.socket.promptChoice(message.target.actor, {
+            message.target.actor.itemTypes.effect
+                .filter(
+                    (effect) =>
+                        effect.slug?.startsWith("effect-grapple") &&
+                        effect.system.context?.origin.actor === message.speaker?.actor.uuid &&
+                        effect.system.context?.target?.actor === message.target?.actor.uuid,
+                )
+                .forEach(async (effect) => await game.assistant.socket.deleteEmbeddedItem(effect));
+
+            await game.assistant.socket.promptChoice(message.target.actor, {
                 speaker: { actor: message.target.actor, token: message.target.token },
                 target: { actor: message.speaker.actor, token: message.speaker.token },
                 data: {
