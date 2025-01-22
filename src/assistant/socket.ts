@@ -11,10 +11,10 @@ import {
     ScenePF2e,
     TokenDocumentPF2e,
 } from "foundry-pf2e";
-import module from "../module.json" with { type: "json" };
 import { Utils } from "utils.ts";
+import module from "../../module.json" with { type: "json" };
 
-export class AssistantSocket {
+export class Socket {
     #socket: SocketlibSocket;
 
     constructor() {
@@ -36,51 +36,55 @@ export class AssistantSocket {
         this.#socket.register("promptChoice", this.#promptChoice);
     }
 
-    async #executeAsActor<T>(actor: ActorPF2e, handler: string | Function, ...args: any[]): Promise<T | undefined> {
+    async #executeAsActor<T>(actor: ActorPF2e, handler: string | Function, ...args: any[]): Promise<Maybe<T>> {
         const primaryUser = Utils.Actor.getPrimaryUser(actor);
 
         if (primaryUser) {
-            return this.#socket.executeAsUser<T>(handler, primaryUser.id, ...args);
+            return this.#socket.executeAsUser<Maybe<T>>(handler, primaryUser.id, ...args);
         }
 
         return undefined;
     }
 
-    async addEmbeddedItem(actor: ActorPF2e, itemUuid: ItemUUID, data?: PreCreate<ItemSourcePF2e>) {
+    async addEmbeddedItem(actor: ActorPF2e, itemUuid: ItemUUID, data?: PreCreate<ItemSourcePF2e>): Promise<Maybe<ItemUUID>> {
         if (!actor.canUserModify(game.user, "update")) {
-            await this.#executeAsActor(actor, "addEmbeddedItem", actor.uuid, itemUuid, data);
-            return;
+            return await this.#executeAsActor(actor, "addEmbeddedItem", actor.uuid, itemUuid, data);
         }
 
         const item = await fromUuid<ItemPF2e>(itemUuid);
 
         if (item) {
             const itemSource = !data ? item.toObject() : foundry.utils.mergeObject(item.toObject(), data);
-            await actor.createEmbeddedDocuments("Item", [itemSource]);
+            const createdItem = await actor.createEmbeddedDocuments("Item", [itemSource]);
+            if (createdItem.length !== 0) return createdItem[0].uuid;
         }
+
+        return undefined;
     }
 
-    async #addEmbeddedItem(actorUuid: ActorUUID, itemUuid: ItemUUID, data?: PreCreate<ItemSourcePF2e>) {
+    async #addEmbeddedItem(actorUuid: ActorUUID, itemUuid: ItemUUID, data?: PreCreate<ItemSourcePF2e>): Promise<Maybe<ItemUUID>> {
         let actor = await fromUuid<ActorPF2e>(actorUuid);
-        if (!actor) return;
+        if (!actor) return undefined;
 
-        await game.assistant.socket.addEmbeddedItem(actor, itemUuid, data);
+        return await game.assistant.socket.addEmbeddedItem(actor, itemUuid, data);
     }
 
-    async createEmbeddedItem(actor: ActorPF2e, data: PreCreate<ItemSourcePF2e>) {
+    async createEmbeddedItem(actor: ActorPF2e, data: PreCreate<ItemSourcePF2e>): Promise<Maybe<ItemUUID>> {
         if (!actor.canUserModify(game.user, "update")) {
-            await this.#executeAsActor(actor, "createEmbeddedItem", actor.uuid, data);
-            return;
+            return await this.#executeAsActor(actor, "createEmbeddedItem", actor.uuid, data);
         }
 
-        await actor.createEmbeddedDocuments("Item", [data]);
+        const createdItem = await actor.createEmbeddedDocuments("Item", [data]);
+        if (createdItem.length !== 0) return createdItem[0].uuid;
+
+        return undefined;
     }
 
-    async #createEmbeddedItem(actorUuid: ActorUUID, data: PreCreate<ItemSourcePF2e>) {
+    async #createEmbeddedItem(actorUuid: ActorUUID, data: PreCreate<ItemSourcePF2e>): Promise<Maybe<ItemUUID>> {
         let actor = await fromUuid<ActorPF2e>(actorUuid);
-        if (!actor) return;
+        if (!actor) return undefined;
 
-        await game.assistant.socket.createEmbeddedItem(actor, data);
+        return await game.assistant.socket.createEmbeddedItem(actor, data);
     }
 
     async deleteEmbeddedItem(item: ItemPF2e) {
@@ -157,28 +161,27 @@ export class AssistantSocket {
         await game.assistant.socket.toggleCondition(actor, conditionSlug, options);
     }
 
-    async setCondition(actor: ActorPF2e, conditionSlug: Exclude<ConditionSlug, "persistent-damage">, value: number) {
+    async setCondition(actor: ActorPF2e, conditionSlug: ConditionSlug, value: number): Promise<Maybe<number>> {
         if (!actor.canUserModify(game.user, "update")) {
-            await this.#executeAsActor(actor, "setCondition", actor.uuid, conditionSlug, value);
-            return;
+            return await this.#executeAsActor(actor, "setCondition", actor.uuid, conditionSlug, value);
         }
+
+        if (conditionSlug === "persistent-damage") return;
 
         const condition = actor.getCondition(conditionSlug);
         const conditionValue = condition?.value ?? 0;
         if (conditionValue < value) {
             await actor.increaseCondition(conditionSlug, { value, max: value });
         }
+
+        return conditionValue;
     }
 
-    async #setCondition(
-        actorUuid: ActorUUID,
-        conditionSlug: Exclude<ConditionSlug, "persistent-damage">,
-        value: number,
-    ) {
+    async #setCondition(actorUuid: ActorUUID, conditionSlug: ConditionSlug, value: number): Promise<Maybe<number>> {
         let actor = await fromUuid<ActorPF2e>(actorUuid);
         if (!actor) return;
 
-        await game.assistant.socket.setCondition(actor, conditionSlug, value);
+        return await game.assistant.socket.setCondition(actor, conditionSlug, value);
     }
 
     async rollSave(actor: ActorPF2e, save: SaveType, args: SocketTypes.Save.RollParameters) {
@@ -209,6 +212,7 @@ export class AssistantSocket {
         if (!chatMessage.canUserModify(game.user, "delete")) {
             await this.#socket.executeAsGM("deleteChatMessage", chatMessage.uuid);
         }
+        if (chatMessage.flags["pf2e-assistant"]?.process !== false) return;
 
         await chatMessage.delete();
     }
@@ -223,14 +227,14 @@ export class AssistantSocket {
     async promptChoice(
         actor: ActorPF2e,
         param: SocketTypes.Prompt.ChoiceParameters,
-    ): Promise<ChatMessageUUID | undefined> {
+    ): Promise<Maybe<ChatMessageUUID>> {
         if (!actor.canUserModify(game.user, "update")) {
             return await this.#executeAsActor(actor, "promptChoice", actor.uuid, {
                 speaker: { actor: param.speaker.actor.uuid, token: param.speaker.token.uuid },
                 item: param.item ? param.item.uuid : undefined,
                 target: param.target ? { actor: param.target.actor.uuid, token: param.target.token.uuid } : undefined,
                 data: param.data,
-            } satisfies SocketTypes.Prompt.SerializedChoiceParameters);
+            });
         }
 
         const flags: DeepPartial<ChatMessageFlagsPF2e> = {
@@ -247,10 +251,10 @@ export class AssistantSocket {
                 casting:
                     param.item?.isOfType("spell") && param.item.spellcasting?.statistic
                         ? {
-                              id: param.item.spellcasting.id,
-                              tradition: param.item.spellcasting.tradition ?? param.item.traditions.first() ?? "arcane",
-                              embeddedSpell: param.item.parentItem ? param.item.toObject() : undefined,
-                          }
+                            id: param.item.spellcasting.id,
+                            tradition: param.item.spellcasting.tradition ?? param.item.traditions.first() ?? "arcane",
+                            embeddedSpell: param.item.parentItem ? param.item.toObject() : undefined,
+                        }
                         : undefined,
             },
             "pf2e-assistant": {
@@ -270,9 +274,9 @@ export class AssistantSocket {
     async #promptChoice(
         actorUuid: ActorUUID,
         param: SocketTypes.Prompt.SerializedChoiceParameters,
-    ): Promise<ChatMessageUUID | undefined> {
+    ): Promise<Maybe<ChatMessageUUID>> {
         let actor = await fromUuid<ActorPF2e>(actorUuid);
-        if (!actor) return;
+        if (!actor) return undefined;
 
         const speaker = {
             actor: await fromUuid<ActorPF2e>(param.speaker.actor),
@@ -281,9 +285,9 @@ export class AssistantSocket {
         const item = param.item ? await fromUuid<ItemPF2e>(param.item) : undefined;
         const target = param.target
             ? {
-                  actor: await fromUuid<ActorPF2e>(param.target.actor),
-                  token: await fromUuid<TokenDocumentPF2e<ScenePF2e>>(param.target.token),
-              }
+                actor: await fromUuid<ActorPF2e>(param.target.actor),
+                token: await fromUuid<TokenDocumentPF2e<ScenePF2e>>(param.target.token),
+            }
             : undefined;
         const data = param.data;
 

@@ -1,11 +1,18 @@
-import { AssistantSocket } from "socket.ts";
-import { AssistantStorage } from "storage.ts";
+import { Assistant } from "assistant.ts";
+import { ConditionSlug } from "foundry-pf2e";
 
 declare module "foundry-pf2e" {
     interface GamePF2e {
         assistant: {
-            socket: AssistantSocket;
-            storage: AssistantStorage;
+            socket: Assistant.Socket;
+            storage: Assistant.Storage;
+        };
+    }
+
+    interface ChatMessageFlagsPF2e {
+        "pf2e-assistant"?: {
+            process?: boolean;
+            reroll?: Assistant.Reroll;
         };
     }
 }

@@ -1,83 +1,63 @@
-import { AssistantAction } from "action.ts";
-import { DamageDamageContextFlag } from "foundry-pf2e";
-import { AssistantMessage } from "message.ts";
+import { Assistant } from "assistant.ts";
 import { Utils } from "utils.ts";
 
-export const label = "Actions | Trip";
+export const path = ["Actions", "Trip"];
 
-export const actions: AssistantAction[] = [
+export const actions: Assistant.Action[] = [
     {
         trigger: "skill-check",
         predicate: ["action:trip", "check:outcome:critical-success"],
-        process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor) return;
-            if (!message.target?.actor) return;
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            if (!data.target) return;
+            const reroll = Assistant.createReroll();
 
-            game.assistant.socket.toggleCondition(message.target.actor, "prone", { active: true });
+            if (!data.target.actor.hasCondition("prone")) {
+                await game.assistant.socket.toggleCondition(data.target.actor, "prone", { active: true });
+                reroll.removeCondition.push({ actor: data.target.actor.uuid, condition: "prone" });
+            }
 
-            const showBreakdown = game.pf2e.settings.metagame.breakdowns || !!message.speaker.actor.hasPlayerOwner;
-            const flavor = showBreakdown
-                ? '<div class="tags" data-tooltip-class="pf2e"></div><hr><div class="tags modifiers"><span class="tag tag_transparent">1d6 Bludgeoning</span></div>'
-                : '<div class="tags" data-tooltip-class="pf2e"></div><hr><div class="tags modifiers"><span class="tag tag_transparent" data-visibility="gm">1d6 Bludgeoning</span></div>';
+            const showBreakdown = game.pf2e.settings.metagame.breakdowns || !!data.speaker.actor.hasPlayerOwner;
+            const roll = await Utils.Roll.newDamageRoll("{1d6[bludgeoning]}", {}, { showBreakdown }).evaluate();
+            const createdMessage = await roll.toMessage({
+                flags: { "pf2e-assistant": { process: false } },
+                speaker: ChatMessage.getSpeaker({ actor: data.speaker.actor, token: data.speaker.token }),
+            });
+            reroll.deleteChatMessage.push(createdMessage.uuid);
 
-            const roll = new (Utils.Roll.getDamageRoll())("{1d6[bludgeoning]}", {}, { showBreakdown });
-
-            const contextFlag: DamageDamageContextFlag = {
-                type: "damage-roll",
-                sourceType: "save",
-                actor: message.speaker.actor.id,
-                token: message.speaker.token?.id ?? null,
-                target: null,
-                domains: ["damage", "inline-damage"],
-                options: message.speaker.actor.getRollOptions(),
-                notes: [],
-                secret: false,
-                rollMode: game.settings.get("core", "rollMode"),
-                traits: [],
-                skipDialog: true,
-                outcome: null,
-                unadjustedOutcome: null,
-            };
-
-            const messageData = await roll.toMessage(
-                {
-                    speaker: ChatMessage.getSpeaker({ actor: message.speaker.actor, token: message.speaker.token }),
-                    flavor,
-                    flags: {
-                        pf2e: {
-                            context: contextFlag,
-                            target: null,
-                            modifiers: [],
-                            dice: [],
-                            strike: null,
-                            preformatted: "both",
-                        },
-                    },
-                },
-                { create: false },
-            );
-
-            await ChatMessage.create(messageData, { rollMode: game.settings.get("core", "rollMode") });
+            return reroll;
         },
     },
     {
         trigger: "skill-check",
         predicate: ["action:trip", "check:outcome:success"],
-        process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor) return;
-            if (!message.target?.actor) return;
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            if (!data.target) return;
+            const reroll = Assistant.createReroll();
 
-            game.assistant.socket.toggleCondition(message.target.actor, "prone", { active: true });
+            if (!data.target.actor.hasCondition("prone")) {
+                await game.assistant.socket.toggleCondition(data.target.actor, "prone", { active: true });
+                reroll.removeCondition.push({ actor: data.target.actor.uuid, condition: "prone" });
+            }
+
+            return reroll;
         },
     },
     {
         trigger: "skill-check",
         predicate: ["action:trip", "check:outcome:critical-failure"],
-        process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor) return;
-            if (!message.target?.actor) return;
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            if (!data.target) return;
+            const reroll = Assistant.createReroll();
 
-            game.assistant.socket.toggleCondition(message.speaker.actor, "prone", { active: true });
+            if (!data.speaker.actor.hasCondition("prone")) {
+                await game.assistant.socket.toggleCondition(data.speaker.actor, "prone", { active: true });
+                reroll.removeCondition.push({ actor: data.target.actor.uuid, condition: "prone" });
+            }
+
+            return reroll;
         },
     },
 ];

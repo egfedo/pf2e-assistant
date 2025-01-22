@@ -1,20 +1,19 @@
-import { AssistantAction } from "action.ts";
-import { AssistantMessage } from "message.ts";
+import { Assistant } from "assistant.ts";
 import { Utils } from "utils.ts";
 
-export const label = "Class Features | Monk | Stunning Blows";
+export const path = ["Class Features", "Monk", "Stunning Blows"];
 
-export const actions: AssistantAction[] = [
+export const actions: Assistant.Action[] = [
     {
         trigger: "damage-roll",
         predicate: ["stunning-blows"],
-        process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor) return;
-            if (!message.target?.actor) return;
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            if (!data.target) return;
 
-            game.assistant.socket.rollSave(message.target.actor, "fortitude", {
-                origin: message.speaker?.actor,
-                dc: Utils.Actor.getClassDC(message.speaker.actor),
+            game.assistant.socket.rollSave(data.target.actor, "fortitude", {
+                origin: data.speaker.actor,
+                dc: Utils.Actor.getClassDC(data.speaker.actor),
                 extraRollOptions: ["stunning-blows"],
             });
         },
@@ -22,21 +21,29 @@ export const actions: AssistantAction[] = [
     {
         trigger: "saving-throw",
         predicate: ["stunning-blows", "check:outcome:failure"],
-        process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor) return;
-            if (!message.origin?.actor) return;
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            if (!data.origin) return;
+            const reroll = Assistant.createReroll();
 
-            await game.assistant.socket.setCondition(message.speaker.actor, "stunned", 1);
+            const conditionValue = await game.assistant.socket.setCondition(data.speaker.actor, "stunned", 1);
+            if (conditionValue) reroll.setCondition.push({ actor: data.speaker.actor.uuid, condition: "stunned", value: conditionValue });
+
+            return reroll;
         },
     },
     {
         trigger: "saving-throw",
         predicate: ["stunning-blows", "check:outcome:critical-failure"],
-        process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor) return;
-            if (!message.origin?.actor) return;
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            if (!data.origin) return;
+            const reroll = Assistant.createReroll();
 
-            await game.assistant.socket.setCondition(message.speaker.actor, "stunned", 3);
+            const conditionValue = await game.assistant.socket.setCondition(data.speaker.actor, "stunned", 3);
+            if (conditionValue) reroll.setCondition.push({ actor: data.speaker.actor.uuid, condition: "stunned", value: conditionValue });
+
+            return reroll;
         },
     },
 ];

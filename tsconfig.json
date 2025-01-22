@@ -8,12 +8,13 @@
             "DOM"
         ],
         "types": [
-            "vite/client",
             "foundry-pf2e",
             "foundry-pf2e/dice-so-nice",
+            "foundry-pf2e/lib-wrapper",
             "foundry-pf2e/pf2e-toolbelt",
             "foundry-pf2e/socketlib",
-            "jquery"
+            "jquery",
+            "vite/client"
         ],
         "baseUrl": "./src",
         "noEmit": true,

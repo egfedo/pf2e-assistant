@@ -1,17 +1,16 @@
-import { AssistantAction } from "action.ts";
-import { AssistantMessage } from "message.ts";
+import { Assistant } from "assistant.ts";
 import { Utils } from "utils.ts";
 
-export const label = "Other | Persistent Healing";
+export const path = ["Other", "Persistent Healing"];
 
-export const actions: AssistantAction[] = [
+export const actions: Assistant.Action[] = [
     {
         trigger: "damage-roll",
         predicate: ["condition:fast-healing"],
-        process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor) return;
-            if (!message.speaker?.token) return;
-            if (!Utils.Roll.isDamageRoll(message.roll)) return;
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            if (!data.speaker) return;
+            if (!Utils.Roll.isDamageRoll(data.roll)) return;
 
             if (
                 !(
@@ -19,10 +18,10 @@ export const actions: AssistantAction[] = [
                     game.settings.get("xdy-pf2e-workbench", "applyPersistentHealing")
                 )
             ) {
-                await message.speaker.actor.applyDamage({
-                    damage: -(message.roll.total ?? 0),
-                    token: message.speaker.token,
-                    rollOptions: new Set([...message.speaker.actor.getSelfRollOptions()]),
+                await data.speaker.actor.applyDamage({
+                    damage: -(data.roll.total ?? 0),
+                    token: data.speaker.token,
+                    rollOptions: new Set([...data.speaker.actor.getSelfRollOptions()]),
                     skipIWR: true,
                 });
             }

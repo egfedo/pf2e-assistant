@@ -1,0 +1,7 @@
+<section class="standard-form scrollable" style="gap: 0; flex: auto;">
+    <ul class="automation-list" style="list-style-type: none; margin: 0; padding: 0;">
+        {{#each rootFolder.children}}
+        {{> "modules/pf2e-assistant/templates/apps/automation-folder.hbs" node=this}}
+        {{/each}}
+    </ul>
+</section>

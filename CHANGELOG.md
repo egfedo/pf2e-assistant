@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [6.4.0] - 2025-01-22
+
+### Added
+
+- Reroll Support
+    - When rerolling a check any effects/conditions/etc. that were created from the first result of the check will be removed
+
+### Changed
+
+- Refactor Assistant Classes/Data
+
+### Fixed
+
+- Critical Specializations
+
 ## [6.3.1] - 2025-01-19
 
 ### Fixed
@@ -18,7 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 
 - Chat Message Prompts
-  - Some automations require a choice from someone because their are multiple options, in these cases you will now see a whisper prompting you to make a decision.
+    - Some automations require a choice from someone because their are multiple options, in these cases you will now see a whisper prompting you to make a decision.
 - Aberrant Form
 - Grapple (Critical Failure)
 
@@ -153,7 +168,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 
 - Basic support for Dice So Nice!
-  - This is reliant on whoever is rolling to have 3D dice enabled, if they have it disabled than it will start processing their automations while it's still rolling on everyone else's screen.
+    - This is reliant on whoever is rolling to have 3D dice enabled, if they have it disabled than it will start processing their automations while it's still rolling on everyone else's screen.
 - Bon Mot (Critical Success, Success, Critical Failure)
 - Demoralize (Critical Success, Success)
 - Stunning Blows (Failure, Critical Failure)
@@ -168,7 +183,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 - Disarm (Success, Critical Failure)
 - Feint (Critical Success, Success, Critical Failure)
-  - Please note that for a successful feint the effect lasts until the end of your current turn, you will have to manually remove the effect after your next melee attack.
+    - Please note that for a successful feint the effect lasts until the end of your current turn, you will have to manually remove the effect after your next melee attack.
 
 ### Changed
 
@@ -189,7 +204,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Auto Self-Applied Effects (This is disabled if PF2e Toolbelt is doing this as well)
 - Swashbuckler Panache
 
-[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.3.1...HEAD
+[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.4.0...HEAD
+[6.4.0]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.3.1...v6.4.0
 [6.3.1]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.3.0...v6.3.1
 [6.3.0]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.2.0...v6.3.0
 [6.2.0]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.1.6...v6.2.0

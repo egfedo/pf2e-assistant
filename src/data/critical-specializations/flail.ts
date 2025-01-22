@@ -1,19 +1,19 @@
-import { AssistantAction } from "action.ts";
-import { AssistantMessage } from "message.ts";
+import { Assistant } from "assistant.ts";
 import { Utils } from "utils.ts";
 
-export const label = "Critical Specializations | Flail";
+export const path = ["Critical Specializations", "Flail"];
 
-export const actions: AssistantAction[] = [
+export const actions: Assistant.Action[] = [
     {
         trigger: "damage-roll",
         predicate: ["check:outcome:critical-success", "critical-specialization", "item:group:flail"],
-        process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor || !message.target?.actor) return;
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            if (!data.target) return;
 
-            game.assistant.socket.rollSave(message.target.actor, "reflex", {
-                origin: message.speaker?.actor,
-                dc: Utils.Actor.getClassDC(message.speaker.actor),
+            game.assistant.socket.rollSave(data.target.actor, "reflex", {
+                origin: data.speaker.actor,
+                dc: Utils.Actor.getClassDC(data.speaker.actor),
                 extraRollOptions: ["critical-specialization", "item:group:flail"],
             });
         },
@@ -21,16 +21,21 @@ export const actions: AssistantAction[] = [
     {
         trigger: "saving-throw",
         predicate: [
-            {
-                or: ["check:outcome:failure", "check:outcome:critical-failure"],
-            },
+            { or: ["check:outcome:failure", "check:outcome:critical-failure"] },
             "critical-specialization",
             "item:group:flail",
         ],
-        process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor || !message.origin?.actor) return;
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            if (!data.origin) return;
+            const reroll = Assistant.createReroll();
 
-            await game.assistant.socket.toggleCondition(message.speaker?.actor, "prone", { active: true });
+            if (!data.speaker.actor.hasCondition("prone")) {
+                await game.assistant.socket.toggleCondition(data.speaker.actor, "prone", { active: true });
+                reroll.removeCondition.push({ actor: data.speaker.actor.uuid, condition: "prone" });
+            }
+
+            return reroll;
         },
     },
 ];

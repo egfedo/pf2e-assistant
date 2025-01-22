@@ -1,19 +1,18 @@
-import { AssistantAction } from "action.ts";
+import { Assistant } from "assistant.ts";
 import { DamageRoll } from "foundry-pf2e";
-import { AssistantMessage } from "message.ts";
 import { Utils } from "utils.ts";
 
-export const label = "Other | Persistent Damage";
+export const path = ["Other", "Persistent Damage"];
 
-export const actions: AssistantAction[] = [
+export const actions: Assistant.Action[] = [
     {
         trigger: "damage-roll",
         predicate: ["condition:persistent-damage"],
-        process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor) return;
-            if (!message.speaker?.token) return;
-            if (!message.item?.isOfType("condition")) return;
-            if (!Utils.Roll.isDamageRoll(message.roll)) return;
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            if (!data.speaker) return;
+            if (!data.item?.isOfType("condition")) return;
+            if (!Utils.Roll.isDamageRoll(data.roll)) return;
 
             if (
                 !(
@@ -21,13 +20,13 @@ export const actions: AssistantAction[] = [
                     game.settings.get("xdy-pf2e-workbench", "applyPersistentDamage")
                 )
             ) {
-                await message.speaker.actor.applyDamage({
-                    damage: message.roll as Rolled<DamageRoll>,
-                    token: message.speaker.token,
-                    item: message.item,
+                await data.speaker.actor.applyDamage({
+                    damage: data.roll as Rolled<DamageRoll>,
+                    token: data.speaker.token,
+                    item: data.item,
                     rollOptions: new Set([
-                        ...message.item.getRollOptions("item"),
-                        ...message.speaker.actor.getSelfRollOptions(),
+                        ...data.item.getRollOptions("item"),
+                        ...data.speaker.actor.getSelfRollOptions(),
                     ]),
                     skipIWR: false,
                 });
@@ -39,7 +38,7 @@ export const actions: AssistantAction[] = [
                     game.settings.get("xdy-pf2e-workbench", "applyPersistentDamageRecoveryRoll")
                 )
             ) {
-                await message.item.rollRecovery();
+                await data.item.rollRecovery();
             }
         },
     },

@@ -1,32 +1,31 @@
-import { AssistantAction } from "action.ts";
-import { AssistantMessage } from "message.ts";
+import { Assistant } from "assistant.ts";
 
-export const label = "Spells | 1st Rank | Stabilize";
+export const path = ["Spells", "1st Rank", "Stabilize"];
 
-export const actions: AssistantAction[] = [
+export const actions: Assistant.Action[] = [
     {
         trigger: "action",
         predicate: ["spell:stabilize"],
-        process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor) return;
-            if (!message.target?.actor) return;
-            if (!message.item?.isOfType("spell")) return;
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            if (!data.target) return;
+            if (!data.item?.isOfType("spell")) return;
 
-            if (!message.target.actor.itemTypes.condition.some((c) => c.slug === "dying")) {
+            if (!data.target.actor.itemTypes.condition.some((c) => c.slug === "dying")) {
                 ui.notifications.warn(`The target is not dying.`);
                 return;
             }
 
-            await game.assistant.socket.decreaseCondition(message.target.actor, "dying", { forceRemove: true });
+            await game.assistant.socket.decreaseCondition(data.target.actor, "dying", { forceRemove: true });
 
             if (
                 !(
                     game.modules.get("xdy-pf2e-workbench")?.active &&
                     game.settings.get("xdy-pf2e-workbench", "giveUnconsciousIfDyingRemovedAt0HP")
                 ) &&
-                message.target.actor.hitPoints?.value === 0
+                data.target.actor.hitPoints?.value === 0
             ) {
-                await game.assistant.socket.toggleCondition(message.target.actor, "unconscious", { active: true });
+                await game.assistant.socket.toggleCondition(data.target.actor, "unconscious", { active: true });
             }
 
             if (
@@ -35,7 +34,7 @@ export const actions: AssistantAction[] = [
                     game.settings.get("xdy-pf2e-workbench", "giveWoundedWhenDyingRemoved")
                 )
             ) {
-                await game.assistant.socket.increaseCondition(message.target.actor, "wounded");
+                await game.assistant.socket.increaseCondition(data.target.actor, "wounded");
             }
         },
     },

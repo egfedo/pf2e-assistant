@@ -1,27 +1,26 @@
-import { AssistantAction } from "action.ts";
+import { Assistant } from "assistant.ts";
 import { EffectSource } from "foundry-pf2e";
-import { AssistantMessage } from "message.ts";
 
-export const label = "Consumables | Soothing Tonic";
+export const path = ["Consumables", "Soothing Tonic"];
 
-export const actions: AssistantAction[] = [
+export const actions: Assistant.Action[] = [
     {
         trigger: "consume",
         predicate: ["consumable:soothing-tonic-lesser"],
-        process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor) return;
-            const target = message.target?.actor ?? message.speaker.actor;
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            const target = data.target?.actor ?? data.speaker.actor;
 
             game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-effects.Item.FqSsAjkaHfVFCw0P", {
                 _id: null,
                 system: {
                     context: {
                         origin: {
-                            actor: message.speaker.actor.uuid,
-                            token: message.speaker.token?.uuid ?? null,
-                            item: message.item?.uuid ?? null,
+                            actor: data.speaker.actor.uuid,
+                            token: data.speaker.token?.uuid ?? null,
+                            item: data.item?.uuid ?? null,
                             spellcasting: null,
-                            rollOptions: message.item?.getOriginData().rollOptions ?? [],
+                            rollOptions: data.item?.getOriginData().rollOptions ?? [],
                         },
                         target: null,
                         roll: null,
@@ -33,20 +32,20 @@ export const actions: AssistantAction[] = [
     {
         trigger: "consume",
         predicate: ["consumable:soothing-tonic-moderate"],
-        process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor) return;
-            const target = message.target?.actor ?? message.speaker.actor;
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            const target = data.target?.actor ?? data.speaker.actor;
 
             game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-effects.Item.VPDBv6t8nBt3Vfp7", {
                 _id: null,
                 system: {
                     context: {
                         origin: {
-                            actor: message.speaker.actor.uuid,
-                            token: message.speaker.token?.uuid ?? null,
-                            item: message.item?.uuid ?? null,
+                            actor: data.speaker.actor.uuid,
+                            token: data.speaker.token?.uuid ?? null,
+                            item: data.item?.uuid ?? null,
                             spellcasting: null,
-                            rollOptions: message.item?.getOriginData().rollOptions ?? [],
+                            rollOptions: data.item?.getOriginData().rollOptions ?? [],
                         },
                         target: null,
                         roll: null,
@@ -58,20 +57,20 @@ export const actions: AssistantAction[] = [
     {
         trigger: "consume",
         predicate: ["consumable:soothing-tonic-greater"],
-        process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor) return;
-            const target = message.target?.actor ?? message.speaker.actor;
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            const target = data.target?.actor ?? data.speaker.actor;
 
             game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-effects.Item.Vj2vytSr9jEtesYu", {
                 _id: null,
                 system: {
                     context: {
                         origin: {
-                            actor: message.speaker.actor.uuid,
-                            token: message.speaker.token?.uuid ?? null,
-                            item: message.item?.uuid ?? null,
+                            actor: data.speaker.actor.uuid,
+                            token: data.speaker.token?.uuid ?? null,
+                            item: data.item?.uuid ?? null,
                             spellcasting: null,
-                            rollOptions: message.item?.getOriginData().rollOptions ?? [],
+                            rollOptions: data.item?.getOriginData().rollOptions ?? [],
                         },
                         target: null,
                         roll: null,
@@ -83,20 +82,20 @@ export const actions: AssistantAction[] = [
     {
         trigger: "consume",
         predicate: ["consumable:soothing-tonic-major"],
-        process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor) return;
-            const target = message.target?.actor ?? message.speaker.actor;
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            const target = data.target?.actor ?? data.speaker.actor;
 
             game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-effects.Item.187xZfkgmYqQ0jnV", {
                 _id: null,
                 system: {
                     context: {
                         origin: {
-                            actor: message.speaker.actor.uuid,
-                            token: message.speaker.token?.uuid ?? null,
-                            item: message.item?.uuid ?? null,
+                            actor: data.speaker.actor.uuid,
+                            token: data.speaker.token?.uuid ?? null,
+                            item: data.item?.uuid ?? null,
                             spellcasting: null,
-                            rollOptions: message.item?.getOriginData().rollOptions ?? [],
+                            rollOptions: data.item?.getOriginData().rollOptions ?? [],
                         },
                         target: null,
                         roll: null,

@@ -1,56 +1,54 @@
+import { Assistant } from "assistant.ts";
 import { EffectPF2e, EffectSource } from "foundry-pf2e";
-import { AssistantAction } from "action.ts";
-import { AssistantMessage } from "message.ts";
 import { Utils } from "utils.ts";
 
-export const label = "Other | Self-Applied Effects";
+export const path = ["Other", "Self-Applied Effects"];
 
-export const actions: AssistantAction[] = [
+export const actions: Assistant.Action[] = [
     {
         trigger: "self-effect",
         predicate: [],
-        process: async (message: AssistantMessage) => {
+        process: async (data: Assistant.Data) => {
             if (
                 game.modules.get("pf2e-toolbelt")?.active &&
                 game.settings.get("pf2e-toolbelt", "useButton.selfApplied")
             )
                 return;
-            if (!message.speaker?.actor) return;
-            if (!message.item) return;
-            if (!message.chatMessage) return;
+            if (!data.speaker) return;
+            if (!data.item) return;
+            if (!data.chatMessage) return;
 
             const effect =
-                message.item.isOfType("action", "feat") && message.item.system.selfEffect
-                    ? await fromUuid<EffectPF2e>(message.item.system.selfEffect.uuid)
+                data.item.isOfType("action", "feat") && data.item.system.selfEffect
+                    ? await fromUuid<EffectPF2e>(data.item.system.selfEffect.uuid)
                     : null;
 
             if (effect) {
-                const traits =
-                    message.item.system.traits.value?.filter((t) => t in effect.constructor.validTraits) ?? [];
+                const traits = data.item.system.traits.value?.filter((t) => t in effect.constructor.validTraits) ?? [];
                 const effectSource: EffectSource = foundry.utils.mergeObject(effect.toObject(), {
                     _id: null,
                     system: {
                         context: {
                             origin: {
-                                actor: message.speaker.actor.uuid,
-                                token: message.speaker.token?.uuid ?? null,
-                                item: message.item.uuid,
+                                actor: data.speaker.actor.uuid,
+                                token: data.speaker.token?.uuid ?? null,
+                                item: data.item.uuid,
                                 spellcasting: null,
-                                rollOptions: message.item.getOriginData().rollOptions,
+                                rollOptions: data.item.getOriginData().rollOptions,
                             },
                             target: {
-                                actor: message.speaker.actor.uuid,
-                                token: message.speaker.token?.uuid ?? null,
+                                actor: data.speaker.actor.uuid,
+                                token: data.speaker.token?.uuid ?? null,
                             },
                             roll: null,
                         },
                         traits: { value: traits },
                     },
                 });
-                await game.assistant.socket.createEmbeddedItem(message.speaker.actor, effectSource);
+                await game.assistant.socket.createEmbeddedItem(data.speaker.actor, effectSource);
                 const parsedMessageContent = ((): HTMLElement => {
                     const container = document.createElement("div");
-                    container.innerHTML = message.chatMessage.content;
+                    container.innerHTML = data.chatMessage.content;
                     return container;
                 })();
 
@@ -62,7 +60,7 @@ export const actions: AssistantAction[] = [
                     const statement = game.i18n.format(locKey, { effect: anchor.outerHTML });
                     span.innerHTML = statement;
                     Utils.DOM.htmlQuery(buttons, "button[data-action=apply-effect]")?.replaceWith(span);
-                    await message.chatMessage.update({ content: parsedMessageContent.innerHTML });
+                    await data.chatMessage.update({ content: parsedMessageContent.innerHTML });
                 }
             }
         },

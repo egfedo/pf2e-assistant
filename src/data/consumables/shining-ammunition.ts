@@ -1,11 +1,11 @@
-import { AssistantAction } from "action.ts";
+import { Assistant } from "assistant.ts";
 import { EffectSource } from "foundry-pf2e";
-import { AssistantMessage } from "message.ts";
+
 import { Utils } from "utils.ts";
 
-export const label = "Consumables | Shining Ammunition";
+export const path = ["Consumables", "Shining Ammunition"];
 
-export const actions: AssistantAction[] = [
+export const actions: Assistant.Action[] = [
     {
         trigger: "attack-roll",
         predicate: [
@@ -14,32 +14,32 @@ export const actions: AssistantAction[] = [
                 or: ["check:outcome:critical-success", "check:outcome:success"],
             },
         ],
-        process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor) return;
-            if (!message.target?.actor) return;
-            if (!Utils.Roll.isCheckRoll(message.roll)) return;
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            if (!data.target) return;
+            if (!Utils.Roll.isCheckRoll(data.roll)) return;
 
             game.assistant.socket.addEmbeddedItem(
-                message.target.actor,
+                data.target.actor,
                 "Compendium.pf2e.equipment-effects.Item.TjBxxlTvb6tJP1jS",
                 {
                     _id: null,
                     system: {
                         context: {
                             origin: {
-                                actor: message.speaker.actor.uuid,
-                                token: message.speaker.token?.uuid ?? null,
-                                item: message.item?.uuid ?? null,
+                                actor: data.speaker.actor.uuid,
+                                token: data.speaker.token?.uuid ?? null,
+                                item: data.item?.uuid ?? null,
                                 spellcasting: null,
-                                rollOptions: message.item?.getOriginData().rollOptions ?? [],
+                                rollOptions: data.item?.getOriginData().rollOptions ?? [],
                             },
                             target: {
-                                actor: message.target.actor.uuid,
-                                token: message.target.token?.uuid ?? null,
+                                actor: data.target.actor.uuid,
+                                token: data.target.token?.uuid ?? null,
                             },
                             roll: {
-                                total: message.roll?.total,
-                                degreeOfSuccess: message.roll?.degreeOfSuccess,
+                                total: data.roll?.total,
+                                degreeOfSuccess: data.roll?.degreeOfSuccess,
                             },
                         },
                     },

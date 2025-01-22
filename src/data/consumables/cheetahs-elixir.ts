@@ -1,27 +1,26 @@
-import { AssistantAction } from "action.ts";
+import { Assistant } from "assistant.ts";
 import { EffectSource } from "foundry-pf2e";
-import { AssistantMessage } from "message.ts";
 
-export const label = "Consumables | Cheetah's Elixir";
+export const path = ["Consumables", "Cheetah's Elixir"];
 
-export const actions: AssistantAction[] = [
+export const actions: Assistant.Action[] = [
     {
         trigger: "consume",
         predicate: ["consumable:cheetahs-elixir-lesser"],
-        process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor) return;
-            const target = message.target?.actor ?? message.speaker.actor;
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            const target = data.target?.actor ?? data.speaker.actor;
 
             game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-effects.Item.lNWACCNe9RYgaFxb", {
                 _id: null,
                 system: {
                     context: {
                         origin: {
-                            actor: message.speaker.actor.uuid,
-                            token: message.speaker.token?.uuid ?? null,
-                            item: message.item?.uuid ?? null,
+                            actor: data.speaker.actor.uuid,
+                            token: data.speaker.token?.uuid ?? null,
+                            item: data.item?.uuid ?? null,
                             spellcasting: null,
-                            rollOptions: message.item?.getOriginData().rollOptions ?? [],
+                            rollOptions: data.item?.getOriginData().rollOptions ?? [],
                         },
                         target: null,
                         roll: null,
@@ -33,20 +32,20 @@ export const actions: AssistantAction[] = [
     {
         trigger: "consume",
         predicate: ["consumable:cheetahs-elixir-moderate"],
-        process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor) return;
-            const target = message.target?.actor ?? message.speaker.actor;
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            const target = data.target?.actor ?? data.speaker.actor;
 
             game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-effects.Item.j9zVZwRBVAcnpEkE", {
                 _id: null,
                 system: {
                     context: {
                         origin: {
-                            actor: message.speaker.actor.uuid,
-                            token: message.speaker.token?.uuid ?? null,
-                            item: message.item?.uuid ?? null,
+                            actor: data.speaker.actor.uuid,
+                            token: data.speaker.token?.uuid ?? null,
+                            item: data.item?.uuid ?? null,
                             spellcasting: null,
-                            rollOptions: message.item?.getOriginData().rollOptions ?? [],
+                            rollOptions: data.item?.getOriginData().rollOptions ?? [],
                         },
                         target: null,
                         roll: null,
@@ -58,20 +57,20 @@ export const actions: AssistantAction[] = [
     {
         trigger: "consume",
         predicate: ["consumable:cheetahs-elixir-greater"],
-        process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor) return;
-            const target = message.target?.actor ?? message.speaker.actor;
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            const target = data.target?.actor ?? data.speaker.actor;
 
             game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-srd.Item.t4X6GDybqLmt7UkN", {
                 _id: null,
                 system: {
                     context: {
                         origin: {
-                            actor: message.speaker.actor.uuid,
-                            token: message.speaker.token?.uuid ?? null,
-                            item: message.item?.uuid ?? null,
+                            actor: data.speaker.actor.uuid,
+                            token: data.speaker.token?.uuid ?? null,
+                            item: data.item?.uuid ?? null,
                             spellcasting: null,
-                            rollOptions: message.item?.getOriginData().rollOptions ?? [],
+                            rollOptions: data.item?.getOriginData().rollOptions ?? [],
                         },
                         target: null,
                         roll: null,

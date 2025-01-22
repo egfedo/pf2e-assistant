@@ -1,134 +1,143 @@
-import { AssistantAction } from "action.ts";
+import { Assistant } from "assistant.ts";
 import { EffectSource } from "foundry-pf2e";
-import { AssistantMessage } from "message.ts";
 import { Utils } from "utils.ts";
 
-export const label = "Actions | Bon Mot";
+export const path = ["Actions", "Bon Mot"];
 
-export const actions: AssistantAction[] = [
+export const actions: Assistant.Action[] = [
     {
         trigger: "skill-check",
         predicate: ["action:bon-mot", "check:outcome:critical-success"],
-        process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor) return;
-            if (!message.target?.actor) return;
-            if (!Utils.Roll.isCheckRoll(message.roll)) return;
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            if (!data.target) return;
+            if (!Utils.Roll.isCheckRoll(data.roll)) return;
+            const reroll = Assistant.createReroll();
 
-            game.assistant.socket.addEmbeddedItem(
-                message.target.actor,
+            const embeddedItem = await game.assistant.socket.addEmbeddedItem(
+                data.target.actor,
                 "Compendium.pf2e.feat-effects.Item.GoSls6SKCFmSoDxT",
                 {
                     _id: null,
                     system: {
                         context: {
                             origin: {
-                                actor: message.speaker.actor.uuid,
-                                token: message.speaker.token?.uuid ?? null,
+                                actor: data.speaker.actor.uuid,
+                                token: data.speaker.token?.uuid ?? null,
                                 item: null,
                                 spellcasting: null,
                             },
                             target: {
-                                actor: message.target.actor.uuid,
-                                token: message.target.token?.uuid ?? null,
+                                actor: data.target.actor.uuid,
+                                token: data.target.token?.uuid ?? null,
                             },
                             roll: {
-                                degreeOfSuccess: message.roll?.degreeOfSuccess,
-                                total: message.roll?.total ?? null,
+                                degreeOfSuccess: data.roll?.degreeOfSuccess,
+                                total: data.roll?.total ?? null,
                             },
                         },
                     },
                 } as EffectSource,
             );
+            if (embeddedItem) reroll.removeItem.push({ actor: data.target.actor.uuid, item: embeddedItem });
 
-            message.speaker.actor.itemTypes.effect
-                .filter(
-                    (effect) =>
-                        effect.slug === "effect-bon-mot" &&
-                        effect.system.context?.origin.actor === message.speaker?.actor.uuid &&
-                        effect.system.context?.target?.actor === message.target?.actor.uuid &&
-                        effect.system.context?.roll?.degreeOfSuccess === 0,
-                )
-                .forEach(async (effect) => await game.assistant.socket.deleteEmbeddedItem(effect));
+            const effects = Utils.Actor.getEffects(data.speaker.actor, {
+                slugs: ["effect-bon-mot"],
+                origin: data.speaker.actor.uuid,
+                target: data.target.actor.uuid,
+                degreeOfSuccess: 0,
+            });
+            effects.forEach((effect) => reroll.addItem.push({ actor: effect.parent.uuid, item: effect.toObject() }));
+            effects.forEach(async (effect) => await game.assistant.socket.deleteEmbeddedItem(effect));
+
+            return reroll;
         },
     },
     {
         trigger: "skill-check",
         predicate: ["action:bon-mot", "check:outcome:success"],
-        process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor) return;
-            if (!message.target?.actor) return;
-            if (!Utils.Roll.isCheckRoll(message.roll)) return;
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            if (!data.target) return;
+            if (!Utils.Roll.isCheckRoll(data.roll)) return;
+            const reroll = Assistant.createReroll();
 
-            game.assistant.socket.addEmbeddedItem(
-                message.target.actor,
+            const embeddedItem = await game.assistant.socket.addEmbeddedItem(
+                data.target.actor,
                 "Compendium.pf2e.feat-effects.Item.GoSls6SKCFmSoDxT",
                 {
                     _id: null,
                     system: {
                         context: {
                             origin: {
-                                actor: message.speaker.actor.uuid,
-                                token: message.speaker.token?.uuid ?? null,
+                                actor: data.speaker.actor.uuid,
+                                token: data.speaker.token?.uuid ?? null,
                                 item: null,
                                 spellcasting: null,
                             },
                             target: {
-                                actor: message.target.actor.uuid,
-                                token: message.target.token?.uuid ?? null,
+                                actor: data.target.actor.uuid,
+                                token: data.target.token?.uuid ?? null,
                             },
                             roll: {
-                                degreeOfSuccess: message.roll?.degreeOfSuccess,
-                                total: message.roll?.total ?? null,
+                                degreeOfSuccess: data.roll?.degreeOfSuccess,
+                                total: data.roll?.total ?? null,
                             },
                         },
                     },
                 } as EffectSource,
             );
+            if (embeddedItem) reroll.removeItem.push({ actor: data.target.actor.uuid, item: embeddedItem });
 
-            message.speaker.actor.itemTypes.effect
-                .filter(
-                    (effect) =>
-                        effect.slug === "effect-bon-mot" &&
-                        effect.system.context?.origin.actor === message.speaker?.actor.uuid &&
-                        effect.system.context?.target?.actor === message.target?.actor.uuid &&
-                        effect.system.context?.roll?.degreeOfSuccess === 0,
-                )
-                .forEach(async (effect) => await game.assistant.socket.deleteEmbeddedItem(effect));
+            const effects = Utils.Actor.getEffects(data.speaker.actor, {
+                slugs: ["effect-bon-mot"],
+                origin: data.speaker.actor.uuid,
+                target: data.target.actor.uuid,
+                degreeOfSuccess: 0,
+            });
+            effects.forEach((effect) => reroll.addItem.push({ actor: effect.parent.uuid, item: effect.toObject() }));
+            effects.forEach(async (effect) => await game.assistant.socket.deleteEmbeddedItem(effect));
+
+            return reroll;
         },
     },
     {
         trigger: "skill-check",
         predicate: ["action:bon-mot", "check:outcome:critical-failure"],
-        process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor) return;
-            if (!message.target?.actor) return;
-            if (!Utils.Roll.isCheckRoll(message.roll)) return;
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            if (!data.target) return;
+            if (!Utils.Roll.isCheckRoll(data.roll)) return;
+            const reroll = Assistant.createReroll();
 
-            game.assistant.socket.addEmbeddedItem(
-                message.speaker.actor,
+            const embeddedItem = await game.assistant.socket.addEmbeddedItem(
+                data.speaker.actor,
                 "Compendium.pf2e.feat-effects.Item.GoSls6SKCFmSoDxT",
                 {
                     _id: null,
                     system: {
                         context: {
                             origin: {
-                                actor: message.speaker.actor.uuid,
-                                token: message.speaker.token?.uuid ?? null,
+                                actor: data.speaker.actor.uuid,
+                                token: data.speaker.token?.uuid ?? null,
                                 item: null,
                                 spellcasting: null,
                             },
                             target: {
-                                actor: message.target.actor.uuid,
-                                token: message.target.token?.uuid ?? null,
+                                actor: data.target.actor.uuid,
+                                token: data.target.token?.uuid ?? null,
                             },
                             roll: {
-                                degreeOfSuccess: message.roll?.degreeOfSuccess,
-                                total: message.roll?.total ?? null,
+                                degreeOfSuccess: data.roll?.degreeOfSuccess,
+                                total: data.roll?.total ?? null,
                             },
                         },
                     },
                 } as EffectSource,
             );
+
+            if (embeddedItem) reroll.removeItem.push({ actor: data.speaker.actor.uuid, item: embeddedItem });
+            return reroll;
         },
     },
 ];

@@ -1,59 +1,62 @@
 {
-  "id": "pf2e-assistant",
-  "title": "PF2e Assistant",
-  "description": "Your personal assistant for your Pathfinder 2nd Edition games, helps automate various things that aren't automated by the game system.",
-  "version": "",
-  "authors": [
-    {
-      "name": "7H3LaughingMan",
-      "discord": "7h3laughingman",
-      "url": "https://github.com/7H3LaughingMan",
-      "flags": {}
-    }
-  ],
-  "socket": true,
-  "compatibility": {
-    "minimum": "12.331",
-    "verified": "12.331",
-    "maximum": "12"
-  },
-  "esmodules": ["dist/pf2e-assistant.js"],
-  "relationships": {
-    "requires": [
-      {
-        "id": "socketlib",
-        "type": "module",
-        "compatibility": {}
-      }
-    ],
-    "systems": [
-      {
-        "id": "pf2e",
-        "type": "system",
-        "compatibility": {
-          "minimum": "6.8.0"
+    "id": "pf2e-assistant",
+    "title": "PF2e Assistant",
+    "description": "Your personal assistant for your Pathfinder 2nd Edition games, helps automate various things that aren't automated by the game system.",
+    "version": "",
+    "authors": [
+        {
+            "name": "7H3LaughingMan",
+            "discord": "7h3laughingman",
+            "url": "https://github.com/7H3LaughingMan",
+            "flags": {}
         }
-      }
-    ]
-  },
-  "packs": [
-    {
-      "name": "pf2e-assistant-effects",
-      "label": "PF2e Assistant Effects",
-      "path": "packs/pf2e-assistant-effects",
-      "type": "Item",
-      "ownership": {
-        "PLAYER": "OBSERVER",
-        "ASSISTANT": "OWNER"
-      },
-      "system": "pf2e"
-    }
-  ],
-  "url": "https://github.com/7H3LaughingMan/pf2e-assistant",
-  "manifest": "",
-  "download": "",
-  "license": "https://github.com/7H3LaughingMan/pf2e-assistant/blob/main/LICENSE.md",
-  "readme": "https://github.com/7H3LaughingMan/pf2e-assistant/blob/main/README.md",
-  "bugs": "https://github.com/7H3LaughingMan/pf2e-assistant/issues",
-  "changelog": "https://github.com/7H3LaughingMan/pf2e-assistant/blob/main/CHANGELOG.md"
+    ],
+    "socket": true,
+    "compatibility": {
+        "minimum": "12.331",
+        "verified": "12.331",
+        "maximum": "12"
+    },
+    "esmodules": ["dist/pf2e-assistant.js"],
+    "relationships": {
+        "requires": [
+            {
+                "id": "socketlib",
+                "type": "module"
+            },
+            {
+                "id": "lib-wrapper",
+                "type": "module"
+            }
+        ],
+        "systems": [
+            {
+                "id": "pf2e",
+                "type": "system",
+                "compatibility": {
+                    "minimum": "6.8.0"
+                }
+            }
+        ]
+    },
+    "packs": [
+        {
+            "name": "pf2e-assistant-effects",
+            "label": "PF2e Assistant Effects",
+            "path": "packs/pf2e-assistant-effects",
+            "type": "Item",
+            "ownership": {
+                "PLAYER": "OBSERVER",
+                "ASSISTANT": "OWNER"
+            },
+            "system": "pf2e"
+        }
+    ],
+    "url": "https://github.com/7H3LaughingMan/pf2e-assistant",
+    "manifest": "",
+    "download": "",
+    "license": "https://github.com/7H3LaughingMan/pf2e-assistant/blob/main/LICENSE.md",
+    "readme": "https://github.com/7H3LaughingMan/pf2e-assistant/blob/main/README.md",
+    "bugs": "https://github.com/7H3LaughingMan/pf2e-assistant/issues",
+    "changelog": "https://github.com/7H3LaughingMan/pf2e-assistant/blob/main/CHANGELOG.md"
 }

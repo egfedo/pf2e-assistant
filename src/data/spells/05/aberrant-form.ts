@@ -1,20 +1,19 @@
-import { AssistantAction } from "action.ts";
+import { Assistant } from "assistant.ts";
 import { EffectSource } from "foundry-pf2e";
-import { AssistantMessage } from "message.ts";
 
-export const label = "Spells | 5th Rank | Aberrant Form";
+export const path = ["Spells", "5th Rank", "Aberrant Form"];
 
-export const actions: AssistantAction[] = [
+export const actions: Assistant.Action[] = [
     {
         trigger: "action",
         predicate: ["spell:aberrant-form"],
-        process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor) return;
-            if (!message.item?.isOfType("spell")) return;
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            if (!data.item?.isOfType("spell")) return;
 
-            game.assistant.socket.promptChoice(message.speaker.actor, {
-                speaker: message.speaker,
-                item: message.item,
+            game.assistant.socket.promptChoice(data.speaker.actor, {
+                speaker: data.speaker,
+                item: data.item,
                 data: {
                     description: "Please choose which form that I should transform into.",
                     choices: [
@@ -42,33 +41,33 @@ export const actions: AssistantAction[] = [
     {
         trigger: "choice",
         predicate: ["spell:aberrant-form", "choice:aberrant-form-chuul"],
-        process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor) return;
-            if (!message.item?.isOfType("spell")) return;
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            if (!data.item?.isOfType("spell")) return;
 
             game.assistant.socket.addEmbeddedItem(
-                message.speaker.actor,
+                data.speaker.actor,
                 "Compendium.pf2e.spell-effects.Item.xsy1yaCj0SVsn502",
                 {
                     _id: null,
                     system: {
                         context: {
                             origin: {
-                                actor: message.speaker.actor.uuid,
-                                token: message.speaker.token?.uuid ?? null,
-                                item: message.item.uuid,
+                                actor: data.speaker.actor.uuid,
+                                token: data.speaker.token?.uuid ?? null,
+                                item: data.item.uuid,
                                 spellcasting: {
                                     attribute: {
-                                        type: message.item.attribute,
-                                        mod: message.item.spellcasting?.statistic?.attributeModifier?.value ?? 0,
+                                        type: data.item.attribute,
+                                        mod: data.item.spellcasting?.statistic?.attributeModifier?.value ?? 0,
                                     },
-                                    tradition: message.item.spellcasting?.tradition,
+                                    tradition: data.item.spellcasting?.tradition,
                                 },
-                                rollOptions: message.chatMessage?.flags.pf2e.origin?.rollOptions,
+                                rollOptions: data.chatMessage?.flags.pf2e.origin?.rollOptions,
                             },
                         },
                         level: {
-                            value: message.item.rank,
+                            value: data.item.rank,
                         },
                     },
                 } as EffectSource,
@@ -78,33 +77,33 @@ export const actions: AssistantAction[] = [
     {
         trigger: "choice",
         predicate: ["spell:aberrant-form", "choice:aberrant-form-gogiteth"],
-        process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor) return;
-            if (!message.item?.isOfType("spell")) return;
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            if (!data.item?.isOfType("spell")) return;
 
             game.assistant.socket.addEmbeddedItem(
-                message.speaker.actor,
+                data.speaker.actor,
                 "Compendium.pf2e.spell-effects.Item.gKGErrsS1WoAyWub",
                 {
                     _id: null,
                     system: {
                         context: {
                             origin: {
-                                actor: message.speaker.actor.uuid,
-                                token: message.speaker.token?.uuid ?? null,
-                                item: message.item.uuid,
+                                actor: data.speaker.actor.uuid,
+                                token: data.speaker.token?.uuid ?? null,
+                                item: data.item.uuid,
                                 spellcasting: {
                                     attribute: {
-                                        type: message.item.attribute,
-                                        mod: message.item.spellcasting?.statistic?.attributeModifier?.value ?? 0,
+                                        type: data.item.attribute,
+                                        mod: data.item.spellcasting?.statistic?.attributeModifier?.value ?? 0,
                                     },
-                                    tradition: message.item.spellcasting?.tradition,
+                                    tradition: data.item.spellcasting?.tradition,
                                 },
-                                rollOptions: message.chatMessage?.flags.pf2e.origin?.rollOptions,
+                                rollOptions: data.chatMessage?.flags.pf2e.origin?.rollOptions,
                             },
                         },
                         level: {
-                            value: message.item.rank,
+                            value: data.item.rank,
                         },
                     },
                 } as EffectSource,
@@ -114,33 +113,33 @@ export const actions: AssistantAction[] = [
     {
         trigger: "choice",
         predicate: ["spell:aberrant-form", "choice:aberrant-form-gug"],
-        process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor) return;
-            if (!message.item?.isOfType("spell")) return;
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            if (!data.item?.isOfType("spell")) return;
 
             game.assistant.socket.addEmbeddedItem(
-                message.speaker.actor,
+                data.speaker.actor,
                 "Compendium.pf2e.spell-effects.Item.sfJyQKmoxSRo6FyP",
                 {
                     _id: null,
                     system: {
                         context: {
                             origin: {
-                                actor: message.speaker.actor.uuid,
-                                token: message.speaker.token?.uuid ?? null,
-                                item: message.item.uuid,
+                                actor: data.speaker.actor.uuid,
+                                token: data.speaker.token?.uuid ?? null,
+                                item: data.item.uuid,
                                 spellcasting: {
                                     attribute: {
-                                        type: message.item.attribute,
-                                        mod: message.item.spellcasting?.statistic?.attributeModifier?.value ?? 0,
+                                        type: data.item.attribute,
+                                        mod: data.item.spellcasting?.statistic?.attributeModifier?.value ?? 0,
                                     },
-                                    tradition: message.item.spellcasting?.tradition,
+                                    tradition: data.item.spellcasting?.tradition,
                                 },
-                                rollOptions: message.chatMessage?.flags.pf2e.origin?.rollOptions,
+                                rollOptions: data.chatMessage?.flags.pf2e.origin?.rollOptions,
                             },
                         },
                         level: {
-                            value: message.item.rank,
+                            value: data.item.rank,
                         },
                     },
                 } as EffectSource,
@@ -150,33 +149,33 @@ export const actions: AssistantAction[] = [
     {
         trigger: "choice",
         predicate: ["spell:aberrant-form", "choice:aberrant-form-otyugh"],
-        process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor) return;
-            if (!message.item?.isOfType("spell")) return;
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            if (!data.item?.isOfType("spell")) return;
 
             game.assistant.socket.addEmbeddedItem(
-                message.speaker.actor,
+                data.speaker.actor,
                 "Compendium.pf2e.spell-effects.Item.SjfDoeymtnYKoGUD",
                 {
                     _id: null,
                     system: {
                         context: {
                             origin: {
-                                actor: message.speaker.actor.uuid,
-                                token: message.speaker.token?.uuid ?? null,
-                                item: message.item.uuid,
+                                actor: data.speaker.actor.uuid,
+                                token: data.speaker.token?.uuid ?? null,
+                                item: data.item.uuid,
                                 spellcasting: {
                                     attribute: {
-                                        type: message.item.attribute,
-                                        mod: message.item.spellcasting?.statistic?.attributeModifier?.value ?? 0,
+                                        type: data.item.attribute,
+                                        mod: data.item.spellcasting?.statistic?.attributeModifier?.value ?? 0,
                                     },
-                                    tradition: message.item.spellcasting?.tradition,
+                                    tradition: data.item.spellcasting?.tradition,
                                 },
-                                rollOptions: message.chatMessage?.flags.pf2e.origin?.rollOptions,
+                                rollOptions: data.chatMessage?.flags.pf2e.origin?.rollOptions,
                             },
                         },
                         level: {
-                            value: message.item.rank,
+                            value: data.item.rank,
                         },
                     },
                 } as EffectSource,

@@ -1,11 +1,10 @@
-import { AssistantAction } from "action.ts";
+import { Assistant } from "assistant.ts";
 import { EffectSource } from "foundry-pf2e";
-import { AssistantMessage } from "message.ts";
 import { Utils } from "utils.ts";
 
-export const label = "Feats | Tumble Behind";
+export const path = ["Feats", "Tumble Behind"];
 
-export const actions: AssistantAction[] = [
+export const actions: Assistant.Action[] = [
     {
         trigger: "skill-check",
         predicate: [
@@ -13,36 +12,40 @@ export const actions: AssistantAction[] = [
             { or: ["feat:tumble-behind-rogue", "feat:tumble-behind-swashbuckler"] },
             { or: ["check:outcome:critical-success", "check:outcome:success"] },
         ],
-        process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor) return;
-            if (!message.target?.actor) return;
-            if (!Utils.Roll.isCheckRoll(message.roll)) return;
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            if (!data.target) return;
+            if (!Utils.Roll.isCheckRoll(data.roll)) return;
+            const reroll = Assistant.createReroll();
 
-            game.assistant.socket.addEmbeddedItem(
-                message.speaker.actor,
+            const embeddedItem = await game.assistant.socket.addEmbeddedItem(
+                data.speaker.actor,
                 "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.aUzN2fOd33tZXa5s",
                 {
                     _id: null,
                     system: {
                         context: {
                             origin: {
-                                actor: message.speaker.actor.uuid,
-                                token: message.speaker.token?.uuid ?? null,
+                                actor: data.speaker.actor.uuid,
+                                token: data.speaker.token?.uuid ?? null,
                                 item: null,
                                 spellcasting: null,
                             },
                             target: {
-                                actor: message.target.actor.uuid,
-                                token: message.target.token?.uuid ?? null,
+                                actor: data.target.actor.uuid,
+                                token: data.target.token?.uuid ?? null,
                             },
                             roll: {
-                                degreeOfSuccess: message.roll?.degreeOfSuccess,
-                                total: message.roll?.total ?? null,
+                                degreeOfSuccess: data.roll?.degreeOfSuccess,
+                                total: data.roll?.total ?? null,
                             },
                         },
                     },
                 } as EffectSource,
             );
+            if (embeddedItem) reroll.removeItem.push({ actor: data.speaker.actor.uuid, item: embeddedItem });
+
+            return reroll;
         },
     },
 ];

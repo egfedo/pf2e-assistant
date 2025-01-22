@@ -1,43 +1,42 @@
-import { AssistantAction } from "action.ts";
+import { Assistant } from "assistant.ts";
 import { EffectSource } from "foundry-pf2e";
-import { AssistantMessage } from "message.ts";
 
-export const label = "Spells | 1st Rank | Light";
+export const path = ["Spells", "1st Rank", "Light"];
 
-export const actions: AssistantAction[] = [
+export const actions: Assistant.Action[] = [
     {
         trigger: "action",
         predicate: ["spell:light"],
-        process: async (message: AssistantMessage) => {
-            if (!message.speaker?.actor) return;
-            if (!message.target?.actor) return;
-            if (!message.item?.isOfType("spell")) return;
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            if (!data.target) return;
+            if (!data.item?.isOfType("spell")) return;
 
             game.assistant.socket.addEmbeddedItem(
-                message.target.actor,
+                data.target.actor,
                 "Compendium.pf2e.spell-effects.Item.xsy1yaCj0SVsn502",
                 {
                     _id: null,
                     system: {
                         context: {
                             origin: {
-                                actor: message.speaker.actor.uuid,
-                                token: message.speaker.token?.uuid ?? null,
-                                item: message.item.uuid,
+                                actor: data.speaker.actor.uuid,
+                                token: data.speaker.token?.uuid ?? null,
+                                item: data.item.uuid,
                                 spellcasting: {
                                     attribute: {
-                                        type: message.item.attribute,
-                                        mod: message.item.spellcasting?.statistic?.attributeModifier?.value ?? 0,
+                                        type: data.item.attribute,
+                                        mod: data.item.spellcasting?.statistic?.attributeModifier?.value ?? 0,
                                     },
-                                    tradition: message.item.spellcasting?.tradition,
+                                    tradition: data.item.spellcasting?.tradition,
                                 },
-                                rollOptions: message.chatMessage?.flags.pf2e.origin?.rollOptions,
+                                rollOptions: data.chatMessage?.flags.pf2e.origin?.rollOptions,
                             },
                             target: null,
                             roll: null,
                         },
                         level: {
-                            value: message.item.rank,
+                            value: data.item.rank,
                         },
                     },
                 } as EffectSource,

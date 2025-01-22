@@ -1,0 +1,14 @@
+<li>
+    <span class="assistant-caret" data-action="toggle"
+        style="display: list-item; color: var(--color-text-primary); line-height: var(--input-height);"><i
+            class="fa-solid fa-caret-right" style="width: 0.625rem;"></i>
+        {{node.label}}</span>
+    <ul class="assistant-nested" style="list-style-type: none; display: none;">
+        {{#each node.children}}
+        {{> "modules/pf2e-assistant/templates/apps/automation-folder.hbs" node=this}}
+        {{/each}}
+        {{#each node.entries}}
+        {{> "modules/pf2e-assistant/templates/apps/automation-file.hbs" node=this}}
+        {{/each}}
+    </ul>
+</li>
