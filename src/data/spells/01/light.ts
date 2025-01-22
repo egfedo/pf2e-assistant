@@ -14,7 +14,7 @@ export const actions: Assistant.Action[] = [
 
             game.assistant.socket.addEmbeddedItem(
                 data.target.actor,
-                "Compendium.pf2e.spell-effects.Item.xsy1yaCj0SVsn502",
+                "Compendium.pf2e.spell-effects.Item.cVVZXNbV0nElVOPZ",
                 {
                     _id: null,
                     system: {
