@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Changed
 
 - Refactor Assistant Classes/Data
+- Reworked the list of automations so that it's now a tree view
 
 ### Fixed
 
