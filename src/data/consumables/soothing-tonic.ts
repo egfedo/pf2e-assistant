@@ -6,7 +6,7 @@ export const path = ["Consumables", "Soothing Tonic"];
 export const actions: Assistant.Action[] = [
     {
         trigger: "consume",
-        predicate: ["consumable:soothing-tonic-lesser"],
+        predicate: ["item:slug:soothing-tonic-lesser"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target?.actor ?? data.speaker.actor;
@@ -17,7 +17,7 @@ export const actions: Assistant.Action[] = [
                     context: {
                         origin: {
                             actor: data.speaker.actor.uuid,
-                            token: data.speaker.token?.uuid ?? null,
+                            token: data.speaker.token.uuid,
                             item: data.item?.uuid ?? null,
                             spellcasting: null,
                             rollOptions: data.item?.getOriginData().rollOptions ?? [],
@@ -31,7 +31,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "consume",
-        predicate: ["consumable:soothing-tonic-moderate"],
+        predicate: ["item:slug:soothing-tonic-moderate"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target?.actor ?? data.speaker.actor;
@@ -42,7 +42,7 @@ export const actions: Assistant.Action[] = [
                     context: {
                         origin: {
                             actor: data.speaker.actor.uuid,
-                            token: data.speaker.token?.uuid ?? null,
+                            token: data.speaker.token.uuid,
                             item: data.item?.uuid ?? null,
                             spellcasting: null,
                             rollOptions: data.item?.getOriginData().rollOptions ?? [],
@@ -56,7 +56,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "consume",
-        predicate: ["consumable:soothing-tonic-greater"],
+        predicate: ["item:slug:soothing-tonic-greater"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target?.actor ?? data.speaker.actor;
@@ -67,7 +67,7 @@ export const actions: Assistant.Action[] = [
                     context: {
                         origin: {
                             actor: data.speaker.actor.uuid,
-                            token: data.speaker.token?.uuid ?? null,
+                            token: data.speaker.token.uuid,
                             item: data.item?.uuid ?? null,
                             spellcasting: null,
                             rollOptions: data.item?.getOriginData().rollOptions ?? [],
@@ -81,7 +81,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "consume",
-        predicate: ["consumable:soothing-tonic-major"],
+        predicate: ["item:slug:soothing-tonic-major"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target?.actor ?? data.speaker.actor;
@@ -92,7 +92,7 @@ export const actions: Assistant.Action[] = [
                     context: {
                         origin: {
                             actor: data.speaker.actor.uuid,
-                            token: data.speaker.token?.uuid ?? null,
+                            token: data.speaker.token.uuid,
                             item: data.item?.uuid ?? null,
                             spellcasting: null,
                             rollOptions: data.item?.getOriginData().rollOptions ?? [],

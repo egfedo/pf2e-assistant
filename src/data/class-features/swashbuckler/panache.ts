@@ -26,7 +26,7 @@ export const actions: Assistant.Action[] = [
                         context: {
                             origin: {
                                 actor: data.speaker.actor.uuid,
-                                token: data.speaker.token?.uuid ?? null,
+                                token: data.speaker.token.uuid,
                                 item: null,
                                 spellcasting: null,
                             },
@@ -64,7 +64,7 @@ export const actions: Assistant.Action[] = [
                         context: {
                             origin: {
                                 actor: data.speaker.actor.uuid,
-                                token: data.speaker.token?.uuid ?? null,
+                                token: data.speaker.token.uuid,
                                 item: null,
                                 spellcasting: null,
                             },

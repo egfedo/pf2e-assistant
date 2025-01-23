@@ -1,4 +1,4 @@
-import * as R from "remeda";
+import { Utils } from "utils.ts";
 import { Action } from "./action.ts";
 import { Data } from "./data.ts";
 import { File } from "./file.ts";
@@ -64,7 +64,7 @@ export class Storage {
     }
 
     getRootFolder() {
-        return R.clone(this.#rootFolder);
+        return Utils.Remeda.clone(this.#rootFolder);
     }
 
     async process(data: Data) {

@@ -9,9 +9,9 @@ export const actions: Assistant.Action[] = [
         predicate: [
             {
                 or: [
-                    "consumable:chromatic-jellyfish-oil-lesser",
-                    "consumable:chromatic-jellyfish-oil-moderate",
-                    "consumable:chromatic-jellyfish-oil-greater",
+                    "item:slug:chromatic-jellyfish-oil-lesser",
+                    "item:slug:chromatic-jellyfish-oil-moderate",
+                    "item:slug:chromatic-jellyfish-oil-greater",
                 ],
             },
         ],
@@ -25,7 +25,7 @@ export const actions: Assistant.Action[] = [
                     context: {
                         origin: {
                             actor: data.speaker.actor.uuid,
-                            token: data.speaker.token?.uuid ?? null,
+                            token: data.speaker.token.uuid,
                             item: data.item?.uuid ?? null,
                             spellcasting: null,
                             rollOptions: data.item?.getOriginData().rollOptions ?? [],

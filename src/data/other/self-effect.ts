@@ -31,14 +31,14 @@ export const actions: Assistant.Action[] = [
                         context: {
                             origin: {
                                 actor: data.speaker.actor.uuid,
-                                token: data.speaker.token?.uuid ?? null,
+                                token: data.speaker.token.uuid,
                                 item: data.item.uuid,
                                 spellcasting: null,
                                 rollOptions: data.item.getOriginData().rollOptions,
                             },
                             target: {
                                 actor: data.speaker.actor.uuid,
-                                token: data.speaker.token?.uuid ?? null,
+                                token: data.speaker.token.uuid,
                             },
                             roll: null,
                         },

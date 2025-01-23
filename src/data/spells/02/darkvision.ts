@@ -1,53 +1,22 @@
 import { Assistant } from "assistant.ts";
 import { EffectSource } from "foundry-pf2e";
 
-export const path = ["Spells", "5th Rank", "Aberrant Form"];
+export const path = ["Spells", "2nd Rank", "Darkvision"];
 
 export const actions: Assistant.Action[] = [
     {
         trigger: "action",
-        predicate: ["item:slug:aberrant-form"],
-        process: async (data: Assistant.Data) => {
-            if (!data.speaker) return;
-            if (!data.item?.isOfType("spell")) return;
-
-            game.assistant.socket.promptChoice(data.speaker.actor, {
-                speaker: data.speaker,
-                item: data.item,
-                data: {
-                    description: "Please choose which form that I should transform into.",
-                    choices: [
-                        {
-                            label: "Chuul",
-                            value: "aberrant-form-chuul",
-                        },
-                        {
-                            label: "Gogiteth",
-                            value: "aberrant-form-gogiteth",
-                        },
-                        {
-                            label: "Gug",
-                            value: "aberrant-form-gug",
-                        },
-                        {
-                            label: "Otyugh",
-                            value: "aberrant-form-otyugh",
-                        },
-                    ],
-                },
-            });
-        },
-    },
-    {
-        trigger: "choice",
-        predicate: ["item:slug:aberrant-form", "choice:aberrant-form-chuul"],
+        predicate: [
+            "item:slug:darkvision",
+            { "lt": ["item:rank", 3] }
+        ],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             if (!data.item?.isOfType("spell")) return;
 
             game.assistant.socket.addEmbeddedItem(
                 data.speaker.actor,
-                "Compendium.pf2e.spell-effects.Item.xsy1yaCj0SVsn502",
+                "Compendium.pf2e.spell-effects.Item.IXS15IQXYCZ8vsmX",
                 {
                     _id: null,
                     system: {
@@ -65,6 +34,11 @@ export const actions: Assistant.Action[] = [
                                 },
                                 rollOptions: data.chatMessage?.flags.pf2e.origin?.rollOptions,
                             },
+                            target: {
+                                actor: data.speaker.actor.uuid,
+                                token: data.speaker.token.uuid
+                            },
+                            roll: null,
                         },
                         level: {
                             value: data.item.rank,
@@ -75,15 +49,20 @@ export const actions: Assistant.Action[] = [
         },
     },
     {
-        trigger: "choice",
-        predicate: ["item:slug:aberrant-form", "choice:aberrant-form-gogiteth"],
+        trigger: "action",
+        predicate: [
+            "item:slug:darkvision",
+            { "gte": ["item:rank", 3] },
+            { "lt": ["item:rank", 5] },
+        ],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
+            if (!data.target) return;
             if (!data.item?.isOfType("spell")) return;
 
             game.assistant.socket.addEmbeddedItem(
-                data.speaker.actor,
-                "Compendium.pf2e.spell-effects.Item.gKGErrsS1WoAyWub",
+                data.target.actor,
+                "Compendium.pf2e.spell-effects.Item.IXS15IQXYCZ8vsmX",
                 {
                     _id: null,
                     system: {
@@ -101,6 +80,11 @@ export const actions: Assistant.Action[] = [
                                 },
                                 rollOptions: data.chatMessage?.flags.pf2e.origin?.rollOptions,
                             },
+                            target: {
+                                actor: data.target.actor.uuid,
+                                token: data.target.token.uuid
+                            },
+                            roll: null,
                         },
                         level: {
                             value: data.item.rank,
@@ -111,15 +95,19 @@ export const actions: Assistant.Action[] = [
         },
     },
     {
-        trigger: "choice",
-        predicate: ["item:slug:aberrant-form", "choice:aberrant-form-gug"],
+        trigger: "action",
+        predicate: [
+            "item:slug:darkvision",
+            { "gte": ["item:rank", 5] },
+        ],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
+            if (!data.target) return;
             if (!data.item?.isOfType("spell")) return;
 
             game.assistant.socket.addEmbeddedItem(
-                data.speaker.actor,
-                "Compendium.pf2e.spell-effects.Item.sfJyQKmoxSRo6FyP",
+                data.target.actor,
+                "Compendium.pf2e.spell-effects.Item.inNfTmtWpsxeGBI9",
                 {
                     _id: null,
                     system: {
@@ -137,42 +125,11 @@ export const actions: Assistant.Action[] = [
                                 },
                                 rollOptions: data.chatMessage?.flags.pf2e.origin?.rollOptions,
                             },
-                        },
-                        level: {
-                            value: data.item.rank,
-                        },
-                    },
-                } as EffectSource,
-            );
-        },
-    },
-    {
-        trigger: "choice",
-        predicate: ["item:slug:aberrant-form", "choice:aberrant-form-otyugh"],
-        process: async (data: Assistant.Data) => {
-            if (!data.speaker) return;
-            if (!data.item?.isOfType("spell")) return;
-
-            game.assistant.socket.addEmbeddedItem(
-                data.speaker.actor,
-                "Compendium.pf2e.spell-effects.Item.SjfDoeymtnYKoGUD",
-                {
-                    _id: null,
-                    system: {
-                        context: {
-                            origin: {
-                                actor: data.speaker.actor.uuid,
-                                token: data.speaker.token.uuid,
-                                item: data.item.uuid,
-                                spellcasting: {
-                                    attribute: {
-                                        type: data.item.attribute,
-                                        mod: data.item.spellcasting?.statistic?.attributeModifier?.value ?? 0,
-                                    },
-                                    tradition: data.item.spellcasting?.tradition,
-                                },
-                                rollOptions: data.chatMessage?.flags.pf2e.origin?.rollOptions,
+                            target: {
+                                actor: data.target.actor.uuid,
+                                token: data.target.token.uuid
                             },
+                            roll: null,
                         },
                         level: {
                             value: data.item.rank,

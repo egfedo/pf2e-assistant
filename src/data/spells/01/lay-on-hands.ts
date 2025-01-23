@@ -1,20 +1,24 @@
 import { Assistant } from "assistant.ts";
 import { EffectSource } from "foundry-pf2e";
 
-export const path = ["Spells", "1st Rank", "Light"];
+export const path = ["Spells", "1st Rank", "Lay on Hands"];
 
 export const actions: Assistant.Action[] = [
     {
         trigger: "action",
-        predicate: ["item:slug:light"],
+        predicate: [
+            "item:slug:lay-on-hands",
+            { "not": "target:mode:undead" },
+        ],
         process: async (data: Assistant.Data) => {
+            if (!data.item?.isOfType("spell")) return;
             if (!data.speaker) return;
             if (!data.target) return;
-            if (!data.item?.isOfType("spell")) return;
+            if (data.speaker.actor.signature === data.target.actor.signature) return;
 
             game.assistant.socket.addEmbeddedItem(
                 data.target.actor,
-                "Compendium.pf2e.spell-effects.Item.cVVZXNbV0nElVOPZ",
+                "Compendium.pf2e.spell-effects.Item.lyLMiauxIVUM3oF1",
                 {
                     _id: null,
                     system: {
@@ -30,9 +34,12 @@ export const actions: Assistant.Action[] = [
                                     },
                                     tradition: data.item.spellcasting?.tradition,
                                 },
-                                rollOptions: data.chatMessage?.flags.pf2e.origin?.rollOptions,
+                                rollOptions: data.item.getOriginData().rollOptions,
                             },
-                            target: null,
+                            target: {
+                                actor: data.target.actor.uuid,
+                                token: data.target.token.uuid,
+                            },
                             roll: null,
                         },
                         level: {

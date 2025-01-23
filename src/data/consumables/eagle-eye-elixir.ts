@@ -6,7 +6,7 @@ export const path = ["Consumables", "Eagle Eye Elixir"];
 export const actions: Assistant.Action[] = [
     {
         trigger: "consume",
-        predicate: ["consumable:eagle-eye-elixir-lesser"],
+        predicate: ["item:slug:eagle-eye-elixir-lesser"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target?.actor ?? data.speaker.actor;
@@ -17,7 +17,7 @@ export const actions: Assistant.Action[] = [
                     context: {
                         origin: {
                             actor: data.speaker.actor.uuid,
-                            token: data.speaker.token?.uuid ?? null,
+                            token: data.speaker.token.uuid,
                             item: data.item?.uuid ?? null,
                             spellcasting: null,
                             rollOptions: data.item?.getOriginData().rollOptions ?? [],
@@ -31,7 +31,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "consume",
-        predicate: ["consumable:eagle-eye-elixir-moderate"],
+        predicate: ["item:slug:eagle-eye-elixir-moderate"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target?.actor ?? data.speaker.actor;
@@ -42,7 +42,7 @@ export const actions: Assistant.Action[] = [
                     context: {
                         origin: {
                             actor: data.speaker.actor.uuid,
-                            token: data.speaker.token?.uuid ?? null,
+                            token: data.speaker.token.uuid,
                             item: data.item?.uuid ?? null,
                             spellcasting: null,
                             rollOptions: data.item?.getOriginData().rollOptions ?? [],
@@ -56,7 +56,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "consume",
-        predicate: ["consumable:eagle-eye-elixir-greater"],
+        predicate: ["item:slug:eagle-eye-elixir-greater"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target?.actor ?? data.speaker.actor;
@@ -67,7 +67,7 @@ export const actions: Assistant.Action[] = [
                     context: {
                         origin: {
                             actor: data.speaker.actor.uuid,
-                            token: data.speaker.token?.uuid ?? null,
+                            token: data.speaker.token.uuid,
                             item: data.item?.uuid ?? null,
                             spellcasting: null,
                             rollOptions: data.item?.getOriginData().rollOptions ?? [],
@@ -81,7 +81,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "consume",
-        predicate: ["consumable:eagle-eye-elixir-major"],
+        predicate: ["item:slug:eagle-eye-elixir-major"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target?.actor ?? data.speaker.actor;
@@ -92,7 +92,7 @@ export const actions: Assistant.Action[] = [
                     context: {
                         origin: {
                             actor: data.speaker.actor.uuid,
-                            token: data.speaker.token?.uuid ?? null,
+                            token: data.speaker.token.uuid,
                             item: data.item?.uuid ?? null,
                             spellcasting: null,
                             rollOptions: data.item?.getOriginData().rollOptions ?? [],

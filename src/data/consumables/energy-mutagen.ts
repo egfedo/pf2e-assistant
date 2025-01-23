@@ -6,7 +6,7 @@ export const path = ["Consumables", "Energy Mutagen"];
 export const actions: Assistant.Action[] = [
     {
         trigger: "consume",
-        predicate: ["consumable:energy-mutagen-lesser"],
+        predicate: ["item:slug:energy-mutagen-lesser"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target?.actor ?? data.speaker.actor;
@@ -17,7 +17,7 @@ export const actions: Assistant.Action[] = [
                     context: {
                         origin: {
                             actor: data.speaker.actor.uuid,
-                            token: data.speaker.token?.uuid ?? null,
+                            token: data.speaker.token.uuid,
                             item: data.item?.uuid ?? null,
                             spellcasting: null,
                             rollOptions: data.item?.getOriginData().rollOptions ?? [],
@@ -31,7 +31,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "consume",
-        predicate: ["consumable:energy-mutagen-moderate"],
+        predicate: ["item:slug:energy-mutagen-moderate"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target?.actor ?? data.speaker.actor;
@@ -42,7 +42,7 @@ export const actions: Assistant.Action[] = [
                     context: {
                         origin: {
                             actor: data.speaker.actor.uuid,
-                            token: data.speaker.token?.uuid ?? null,
+                            token: data.speaker.token.uuid,
                             item: data.item?.uuid ?? null,
                             spellcasting: null,
                             rollOptions: data.item?.getOriginData().rollOptions ?? [],
@@ -56,7 +56,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "consume",
-        predicate: ["consumable:energy-mutagen-greater"],
+        predicate: ["item:slug:energy-mutagen-greater"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target?.actor ?? data.speaker.actor;
@@ -67,7 +67,7 @@ export const actions: Assistant.Action[] = [
                     context: {
                         origin: {
                             actor: data.speaker.actor.uuid,
-                            token: data.speaker.token?.uuid ?? null,
+                            token: data.speaker.token.uuid,
                             item: data.item?.uuid ?? null,
                             spellcasting: null,
                             rollOptions: data.item?.getOriginData().rollOptions ?? [],
@@ -81,7 +81,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "consume",
-        predicate: ["consumable:energy-mutagen-major"],
+        predicate: ["item:slug:energy-mutagen-major"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target?.actor ?? data.speaker.actor;
@@ -92,7 +92,7 @@ export const actions: Assistant.Action[] = [
                     context: {
                         origin: {
                             actor: data.speaker.actor.uuid,
-                            token: data.speaker.token?.uuid ?? null,
+                            token: data.speaker.token.uuid,
                             item: data.item?.uuid ?? null,
                             spellcasting: null,
                             rollOptions: data.item?.getOriginData().rollOptions ?? [],

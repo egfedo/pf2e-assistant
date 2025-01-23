@@ -20,14 +20,34 @@ export function isCheckContextFlag(flag?: ChatContextFlag): flag is CheckContext
     return !!flag && !["damage-roll", "spell-cast"].includes(flag.type);
 }
 
-let HEALING_REGEX: RegExp;
+let FAST_HEALING_REGEX: RegExp[];
 export function isFastHealing(chatMessage: ChatMessagePF2e): boolean {
-    HEALING_REGEX ??= (() => {
-        const healing = [
-            game.i18n.localize("PF2E.Encounter.Broadcast.FastHealing.fast-healing.ReceivedMessage"),
-            game.i18n.localize("PF2E.Encounter.Broadcast.FastHealing.regeneration.ReceivedMessage"),
-        ];
-        return new RegExp(`^<div>(${healing.join("|")})</div>`);
-    })();
-    return HEALING_REGEX.test(chatMessage.flavor);
+    FAST_HEALING_REGEX ??= [
+        new RegExp(`<div>${game.i18n.localize("PF2E.Encounter.Broadcast.FastHealing.fast-healing.ReceivedMessage")}</div>`),
+        new RegExp(`<div>${game.i18n.localize("PF2E.Encounter.Broadcast.FastHealing.regeneration.ReceivedMessage")}</div>`)
+    ];
+
+    return FAST_HEALING_REGEX.some((value) => value.test(chatMessage.flavor));
+}
+
+export function isConsume(chatMessage: ChatMessagePF2e): boolean {
+    if (!chatMessage.flags.pf2e.origin) return false;
+    if (!chatMessage.item) return false;
+
+    const origin = new Map(Object.entries(chatMessage.flags.pf2e.origin));
+    return (
+        origin.get("sourceId") === chatMessage.item.sourceId &&
+        origin.get("type") === "consumable" &&
+        origin.get("uuid") === chatMessage.item.uuid
+    );
+}
+
+let SHIELD_BLOCK_REGEX: RegExp[];
+export function isShieldBlock(chatMessage: ChatMessagePF2e): boolean {
+    SHIELD_BLOCK_REGEX ??= [
+        new RegExp(game.i18n.format("PF2E.Actor.ApplyDamage.DamagedForNShield", { actor: "(.*)", absorbedDamage: "([0-9]*)", hpDamage: "([0-9]*)" }).replace("<actor>", "<span class=\"target-name\">").replace("</actor>", "</span>")),
+        new RegExp(game.i18n.format("PF2E.Actor.ApplyDamage.ShieldAbsorbsAll", { actor: "(.*)", absorbedDamage: "([0-9]*)", hpDamage: "([0-9]*)" }).replace("<actor>", "<span class=\"target-name\">").replace("</actor>", "</span>"))
+    ];
+
+    return SHIELD_BLOCK_REGEX.some((value) => value.test(chatMessage.content));
 }

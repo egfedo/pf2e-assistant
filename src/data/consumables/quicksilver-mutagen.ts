@@ -6,7 +6,7 @@ export const path = ["Consumables", "Quicksilver Mutagen"];
 export const actions: Assistant.Action[] = [
     {
         trigger: "consume",
-        predicate: ["consumable:quicksilver-mutagen-lesser"],
+        predicate: ["item:slug:quicksilver-mutagen-lesser"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target?.actor ?? data.speaker.actor;
@@ -17,7 +17,7 @@ export const actions: Assistant.Action[] = [
                     context: {
                         origin: {
                             actor: data.speaker.actor.uuid,
-                            token: data.speaker.token?.uuid ?? null,
+                            token: data.speaker.token.uuid,
                             item: data.item?.uuid ?? null,
                             spellcasting: null,
                             rollOptions: data.item?.getOriginData().rollOptions ?? [],
@@ -31,7 +31,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "consume",
-        predicate: ["consumable:quicksilver-mutagen-moderate"],
+        predicate: ["item:slug:quicksilver-mutagen-moderate"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target?.actor ?? data.speaker.actor;
@@ -42,7 +42,7 @@ export const actions: Assistant.Action[] = [
                     context: {
                         origin: {
                             actor: data.speaker.actor.uuid,
-                            token: data.speaker.token?.uuid ?? null,
+                            token: data.speaker.token.uuid,
                             item: data.item?.uuid ?? null,
                             spellcasting: null,
                             rollOptions: data.item?.getOriginData().rollOptions ?? [],
@@ -56,7 +56,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "consume",
-        predicate: ["consumable:quicksilver-mutagen-greater"],
+        predicate: ["item:slug:quicksilver-mutagen-greater"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target?.actor ?? data.speaker.actor;
@@ -67,7 +67,7 @@ export const actions: Assistant.Action[] = [
                     context: {
                         origin: {
                             actor: data.speaker.actor.uuid,
-                            token: data.speaker.token?.uuid ?? null,
+                            token: data.speaker.token.uuid,
                             item: data.item?.uuid ?? null,
                             spellcasting: null,
                             rollOptions: data.item?.getOriginData().rollOptions ?? [],
@@ -81,7 +81,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "consume",
-        predicate: ["consumable:quicksilver-mutagen-major"],
+        predicate: ["item:slug:quicksilver-mutagen-major"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target?.actor ?? data.speaker.actor;
@@ -92,7 +92,7 @@ export const actions: Assistant.Action[] = [
                     context: {
                         origin: {
                             actor: data.speaker.actor.uuid,
-                            token: data.speaker.token?.uuid ?? null,
+                            token: data.speaker.token.uuid,
                             item: data.item?.uuid ?? null,
                             spellcasting: null,
                             rollOptions: data.item?.getOriginData().rollOptions ?? [],

@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [6.4.1] - 2025-01-23
+
+### Added
+
+- Accelerating Touch
+- Agile Feet
+- Angelic Halo
+- Angelic Wings
+- Ant Haul
+- Athletic Rush
+- Darkvision
+- Lay on Hands
+- Shield
+
+### Changed
+
+- Gather more roll options and remove duplicates
+
 ### Fixed
 
 - Light
@@ -209,7 +227,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Auto Self-Applied Effects (This is disabled if PF2e Toolbelt is doing this as well)
 - Swashbuckler Panache
 
-[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.4.0...HEAD
+[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.4.1...HEAD
+[6.4.1]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.4.0...v6.4.1
 [6.4.0]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.3.1...v6.4.0
 [6.3.1]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.3.0...v6.3.1
 [6.3.0]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.2.0...v6.3.0

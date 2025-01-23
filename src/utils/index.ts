@@ -5,5 +5,7 @@ export * as ChatMessage from "./chat-message.ts";
 export * as DOM from "./dom.ts";
 export * as Item from "./item.ts";
 export * as JSON from "./json.ts";
+export * as Remeda from "remeda";
 export * as Roll from "./roll.ts";
+export * as Rules from "./rules.ts";
 export * as User from "./user.ts";

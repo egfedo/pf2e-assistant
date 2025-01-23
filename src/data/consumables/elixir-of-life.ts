@@ -9,12 +9,12 @@ export const actions: Assistant.Action[] = [
         predicate: [
             {
                 or: [
-                    "consumable:elixir-of-life-minor",
-                    "consumable:elixir-of-life-lesser",
-                    "consumable:elixir-of-life-moderate",
-                    "consumable:elixir-of-life-greater",
-                    "consumable:elixir-of-life-major",
-                    "consumable:elixir-of-life-true",
+                    "item:slug:elixir-of-life-minor",
+                    "item:slug:elixir-of-life-lesser",
+                    "item:slug:elixir-of-life-moderate",
+                    "item:slug:elixir-of-life-greater",
+                    "item:slug:elixir-of-life-major",
+                    "item:slug:elixir-of-life-true",
                 ],
             },
         ],
@@ -28,7 +28,7 @@ export const actions: Assistant.Action[] = [
                     context: {
                         origin: {
                             actor: data.speaker.actor.uuid,
-                            token: data.speaker.token?.uuid ?? null,
+                            token: data.speaker.token.uuid,
                             item: data.item?.uuid ?? null,
                             spellcasting: null,
                             rollOptions: data.item?.getOriginData().rollOptions ?? [],

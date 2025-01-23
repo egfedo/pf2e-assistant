@@ -6,7 +6,7 @@ export const path = ["Consumables", "Mistform Elixir"];
 export const actions: Assistant.Action[] = [
     {
         trigger: "consume",
-        predicate: ["consumable:mistform-elixir-lesser"],
+        predicate: ["item:slug:mistform-elixir-lesser"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target?.actor ?? data.speaker.actor;
@@ -20,7 +20,7 @@ export const actions: Assistant.Action[] = [
                         context: {
                             origin: {
                                 actor: data.speaker.actor.uuid,
-                                token: data.speaker.token?.uuid ?? null,
+                                token: data.speaker.token.uuid,
                                 item: data.item?.uuid ?? null,
                                 spellcasting: null,
                                 rollOptions: data.item?.getOriginData().rollOptions ?? [],
@@ -35,7 +35,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "consume",
-        predicate: ["consumable:mistform-elixir-moderate"],
+        predicate: ["item:slug:mistform-elixir-moderate"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target?.actor ?? data.speaker.actor;
@@ -49,7 +49,7 @@ export const actions: Assistant.Action[] = [
                         context: {
                             origin: {
                                 actor: data.speaker.actor.uuid,
-                                token: data.speaker.token?.uuid ?? null,
+                                token: data.speaker.token.uuid,
                                 item: data.item?.uuid ?? null,
                                 spellcasting: null,
                                 rollOptions: data.item?.getOriginData().rollOptions ?? [],
@@ -64,7 +64,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "consume",
-        predicate: ["consumable:mistform-elixir-greater"],
+        predicate: ["item:slug:mistform-elixir-greater"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target?.actor ?? data.speaker.actor;
@@ -78,7 +78,7 @@ export const actions: Assistant.Action[] = [
                         context: {
                             origin: {
                                 actor: data.speaker.actor.uuid,
-                                token: data.speaker.token?.uuid ?? null,
+                                token: data.speaker.token.uuid,
                                 item: data.item?.uuid ?? null,
                                 spellcasting: null,
                                 rollOptions: data.item?.getOriginData().rollOptions ?? [],

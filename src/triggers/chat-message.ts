@@ -26,35 +26,16 @@ function processChatMessage(chatMessage: ChatMessagePF2e): Assistant.Data {
             data.trigger = "damage-roll";
         } else if (chatMessage.item?.isOfType("action", "feat", "spell")) {
             data.trigger = "action";
-
-            const target = Utils.User.getTargets()[0];
-            if (target && target.actor) {
-                data.target = {
-                    actor: target.actor,
-                    token: target.document,
-                };
-            }
-        } else if (chatMessage.item?.isOfType("consumable") && chatMessage.flags.pf2e.origin) {
-            const origin = new Map(Object.entries(chatMessage.flags.pf2e.origin));
-            if (
-                origin.get("sourceId") === chatMessage.item.sourceId &&
-                origin.get("type") === "consumable" &&
-                origin.get("uuid") === chatMessage.item.uuid
-            ) {
-                data.trigger = "consume";
-
-                const target = Utils.User.getTargets()[0];
-                if (target && target.actor) {
-                    data.target = {
-                        actor: target.actor,
-                        token: target.document,
-                    };
-                }
-            }
+        } else if (chatMessage.item?.isOfType("consumable") && Utils.ChatMessage.isConsume(chatMessage)) {
+            data.trigger = "consume";
         } else if (chatMessage.isDamageRoll && Utils.ChatMessage.isFastHealing(chatMessage)) {
             data.trigger = "damage-roll";
-            data.rollOptions.push("condition:fast-healing");
+            data.rollOptions.push("self:condition:fast-healing");
         }
+    }
+
+    if (data.trigger === "damage-taken" && Utils.ChatMessage.isShieldBlock(chatMessage)) {
+        data.rollOptions.push("self:shield:block");
     }
 
     if (chatMessage.item) {
@@ -76,6 +57,15 @@ function processChatMessage(chatMessage: ChatMessagePF2e): Assistant.Data {
             actor: chatMessage.target.actor,
             token: chatMessage.target.token,
         };
+    } else {
+        const target = Utils.User.getTargets()[0];
+
+        if (target && target.actor) {
+            data.target = {
+                actor: target.actor,
+                token: target.document,
+            };
+        }
     }
 
     if (Utils.ChatMessage.isCheckContextFlag(chatMessage.flags.pf2e.context)) {
@@ -106,9 +96,11 @@ function processChatMessage(chatMessage: ChatMessagePF2e): Assistant.Data {
         data.roll = chatMessage.rolls.at(0);
     }
 
-    if (["action", "consume", "damage-roll", "self-effect"].includes(data.trigger)) {
-        data.rollOptions.push(...(data.item?.getRollOptions() ?? []));
-    }
+    if (data.item) data.rollOptions.push(...data.item.getRollOptions("item"));
+    if (data.speaker) data.rollOptions.push(...data.speaker.actor.getRollOptions());
+    if (data.target) data.rollOptions.push(...data.target.actor.getSelfRollOptions("target"));
+    if (data.origin) data.rollOptions.push(...data.origin.actor.getSelfRollOptions("origin"));
 
+    data.rollOptions = Array.from(new Set(data.rollOptions)).sort();
     return data;
 }

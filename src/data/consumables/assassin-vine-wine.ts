@@ -8,7 +8,7 @@ export const actions: Assistant.Action[] = [
         trigger: "consume",
         predicate: [
             {
-                or: ["consumable:assassin-vine-wine", "consumable:aged-assassin-vine-wine"],
+                or: ["item:slug:assassin-vine-wine", "item:slug:aged-assassin-vine-wine"],
             },
         ],
         process: async (data: Assistant.Data) => {
@@ -21,7 +21,7 @@ export const actions: Assistant.Action[] = [
                     context: {
                         origin: {
                             actor: data.speaker.actor.uuid,
-                            token: data.speaker.token?.uuid ?? null,
+                            token: data.speaker.token.uuid,
                             item: data.item?.uuid ?? null,
                             spellcasting: null,
                             rollOptions: data.item?.getOriginData().rollOptions ?? [],

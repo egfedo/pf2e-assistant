@@ -23,13 +23,13 @@ export const actions: Assistant.Action[] = [
                         context: {
                             origin: {
                                 actor: data.speaker.actor.uuid,
-                                token: data.speaker.token?.uuid ?? null,
+                                token: data.speaker.token.uuid,
                                 item: null,
                                 spellcasting: null,
                             },
                             target: {
                                 actor: data.target.actor.uuid,
-                                token: data.target.token?.uuid ?? null,
+                                token: data.target.token.uuid,
                             },
                             roll: {
                                 degreeOfSuccess: data.roll?.degreeOfSuccess,
@@ -62,13 +62,13 @@ export const actions: Assistant.Action[] = [
                         context: {
                             origin: {
                                 actor: data.speaker.actor.uuid,
-                                token: data.speaker.token?.uuid ?? null,
+                                token: data.speaker.token.uuid,
                                 item: null,
                                 spellcasting: null,
                             },
                             target: {
                                 actor: data.target.actor.uuid,
-                                token: data.target.token?.uuid ?? null,
+                                token: data.target.token.uuid,
                             },
                             roll: {
                                 degreeOfSuccess: data.roll?.degreeOfSuccess,
@@ -160,13 +160,13 @@ export const actions: Assistant.Action[] = [
                         context: {
                             origin: {
                                 actor: data.speaker.actor.uuid,
-                                token: data.speaker.token?.uuid ?? null,
+                                token: data.speaker.token.uuid,
                                 item: null,
                                 spellcasting: null,
                             },
                             target: {
                                 actor: data.target.actor.uuid,
-                                token: data.target.token?.uuid ?? null,
+                                token: data.target.token.uuid,
                             },
                             roll: {
                                 degreeOfSuccess: 2,

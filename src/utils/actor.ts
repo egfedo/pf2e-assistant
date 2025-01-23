@@ -5,9 +5,9 @@ export function getClassDC(actor: ActorPF2e): CheckDC | number | undefined {
         return !actor.classDC
             ? undefined
             : {
-                  label: `${actor.classDC.label} DC`,
-                  value: actor.classDC.dc.value,
-              };
+                label: `${actor.classDC.label} DC`,
+                value: actor.classDC.dc.value,
+            };
     }
 
     if (actor.isOfType("npc")) {
@@ -40,14 +40,13 @@ export function isActorToken(data: { actor: Maybe<ActorPF2e>; token: Maybe<Token
     return false;
 }
 
+export function getEffect(actor: ActorPF2e, slug: string): Maybe<EffectPF2e<ActorPF2e>> {
+    return actor.itemTypes.effect.find((effect) => !effect.isExpired && effect.slug === slug);
+}
+
 export function getEffects(
     actor: ActorPF2e,
-    {
-        slugs,
-        origin,
-        target,
-        degreeOfSuccess,
-    }: { slugs: string[]; origin?: ActorUUID; target?: ActorUUID; degreeOfSuccess?: ZeroToThree },
+    { slugs, origin, target, degreeOfSuccess }: { slugs: string[]; origin?: ActorUUID; target?: ActorUUID; degreeOfSuccess?: ZeroToThree },
 ): EffectPF2e<ActorPF2e>[] {
     let effects = actor.itemTypes.effect.filter((effect) => !effect.isExpired && slugs.includes(effect.slug ?? ""));
 

@@ -9,9 +9,9 @@ export const actions: Assistant.Action[] = [
         predicate: [
             {
                 or: [
-                    "consumable:blood-booster-lesser",
-                    "consumable:blood-booster-moderate",
-                    "consumable:blood-booster-greater",
+                    "item:slug:blood-booster-lesser",
+                    "item:slug:blood-booster-moderate",
+                    "item:slug:blood-booster-greater",
                 ],
             },
         ],
@@ -25,7 +25,7 @@ export const actions: Assistant.Action[] = [
                     context: {
                         origin: {
                             actor: data.speaker.actor.uuid,
-                            token: data.speaker.token?.uuid ?? null,
+                            token: data.speaker.token.uuid,
                             item: data.item?.uuid ?? null,
                             spellcasting: null,
                             rollOptions: data.item?.getOriginData().rollOptions ?? [],

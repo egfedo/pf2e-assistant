@@ -6,7 +6,7 @@ export const path = ["Consumables", "Potency Crystal"];
 export const actions: Assistant.Action[] = [
     {
         trigger: "consume",
-        predicate: ["consumable:potency-crystal"],
+        predicate: ["item:slug:potency-crystal"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
 
@@ -19,7 +19,7 @@ export const actions: Assistant.Action[] = [
                         context: {
                             origin: {
                                 actor: data.speaker.actor.uuid,
-                                token: data.speaker.token?.uuid ?? null,
+                                token: data.speaker.token.uuid,
                                 item: data.item?.uuid ?? null,
                                 spellcasting: null,
                                 rollOptions: data.item?.getOriginData().rollOptions ?? [],
@@ -34,7 +34,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "consume",
-        predicate: ["consumable:insight-coffee-greater"],
+        predicate: ["item:slug:insight-coffee-greater"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
 
@@ -47,7 +47,7 @@ export const actions: Assistant.Action[] = [
                         context: {
                             origin: {
                                 actor: data.speaker.actor.uuid,
-                                token: data.speaker.token?.uuid ?? null,
+                                token: data.speaker.token.uuid,
                                 item: data.item?.uuid ?? null,
                                 spellcasting: null,
                                 rollOptions: data.item?.getOriginData().rollOptions ?? [],
@@ -62,7 +62,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "consume",
-        predicate: ["consumable:insight-coffee-major"],
+        predicate: ["item:slug:insight-coffee-major"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
 
@@ -75,7 +75,7 @@ export const actions: Assistant.Action[] = [
                         context: {
                             origin: {
                                 actor: data.speaker.actor.uuid,
-                                token: data.speaker.token?.uuid ?? null,
+                                token: data.speaker.token.uuid,
                                 item: data.item?.uuid ?? null,
                                 spellcasting: null,
                                 rollOptions: data.item?.getOriginData().rollOptions ?? [],

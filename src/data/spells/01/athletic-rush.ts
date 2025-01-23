@@ -1,20 +1,19 @@
 import { Assistant } from "assistant.ts";
 import { EffectSource } from "foundry-pf2e";
 
-export const path = ["Spells", "1st Rank", "Light"];
+export const path = ["Spells", "1st Rank", "Athletic Rush"];
 
 export const actions: Assistant.Action[] = [
     {
         trigger: "action",
-        predicate: ["item:slug:light"],
+        predicate: ["item:slug:athletic-rush"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
-            if (!data.target) return;
             if (!data.item?.isOfType("spell")) return;
 
             game.assistant.socket.addEmbeddedItem(
-                data.target.actor,
-                "Compendium.pf2e.spell-effects.Item.cVVZXNbV0nElVOPZ",
+                data.speaker.actor,
+                "Compendium.pf2e.spell-effects.Item.57lnrCzGUcNUBP2O",
                 {
                     _id: null,
                     system: {
@@ -32,7 +31,10 @@ export const actions: Assistant.Action[] = [
                                 },
                                 rollOptions: data.chatMessage?.flags.pf2e.origin?.rollOptions,
                             },
-                            target: null,
+                            target: {
+                                actor: data.speaker.actor.uuid,
+                                token: data.speaker.token.uuid
+                            },
                             roll: null,
                         },
                         level: {

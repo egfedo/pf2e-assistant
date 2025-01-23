@@ -23,6 +23,7 @@ export class Socket {
         this.#socket.register("addEmbeddedItem", this.#addEmbeddedItem);
         this.#socket.register("createEmbeddedItem", this.#createEmbeddedItem);
         this.#socket.register("deleteEmbeddedItem", this.#deleteEmbeddedItem);
+        this.#socket.register("updateEmbeddedItem", this.#updateEmbeddedItem);
 
         this.#socket.register("decreaseCondition", this.#decreaseCondition);
         this.#socket.register("increaseCondition", this.#increaseCondition);
@@ -103,6 +104,24 @@ export class Socket {
         if (!item) return;
 
         await game.assistant.socket.deleteEmbeddedItem(item);
+    }
+
+    async updateEmbeddedItem(item: ItemPF2e, data: Record<string, unknown>) {
+        if (!item.parent) return;
+
+        if (!item.parent.canUserModify(game.user, "update")) {
+            await this.#executeAsActor(item.parent, "updateEmbeddedItem", item.uuid);
+            return;
+        }
+
+        await item.update(data);
+    }
+
+    async #updateEmbeddedItem(itemUuid: ItemUUID, data: Record<string, unknown>) {
+        let item = await fromUuid<ItemPF2e>(itemUuid);
+        if (!item) return;
+
+        await game.assistant.socket.updateEmbeddedItem(item, data);
     }
 
     async decreaseCondition(actor: ActorPF2e, conditionSlug: ConditionSlug, options?: { forceRemove: boolean }) {

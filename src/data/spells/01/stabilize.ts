@@ -5,7 +5,7 @@ export const path = ["Spells", "1st Rank", "Stabilize"];
 export const actions: Assistant.Action[] = [
     {
         trigger: "action",
-        predicate: ["spell:stabilize"],
+        predicate: ["item:slug:stabilize"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             if (!data.target) return;

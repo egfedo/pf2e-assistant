@@ -1,30 +1,22 @@
 import { Assistant } from "assistant.ts";
 import { EffectSource } from "foundry-pf2e";
-import { Utils } from "utils.ts";
 
-export const path = ["Spells", "1st Rank", "Guidance"];
+export const path = ["Spells", "3rd Rank", "Angelic Wings"];
 
 export const actions: Assistant.Action[] = [
     {
         trigger: "action",
-        predicate: ["item:slug:guidance"],
+        predicate: [
+            "item:slug:angelic-wings",
+            { "lt": ["item:rank", 5] }
+        ],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
-            if (!data.target) return;
             if (!data.item?.isOfType("spell")) return;
 
-            const immunities = Utils.Actor.getEffects(data.target.actor, {
-                slugs: ["effect-guidance-immunity"],
-            });
-
-            if (immunities.length !== 0) {
-                ui.notifications.warn(`The target is temporarily immune to Guidance.`);
-                return;
-            }
-
             game.assistant.socket.addEmbeddedItem(
-                data.target.actor,
-                "Compendium.pf2e.spell-effects.Item.3qHKBDF7lrHw8jFK",
+                data.speaker.actor,
+                "Compendium.pf2e.spell-effects.Item.iZYjxY0qYvg5yPP3",
                 {
                     _id: null,
                     system: {
@@ -40,11 +32,11 @@ export const actions: Assistant.Action[] = [
                                     },
                                     tradition: data.item.spellcasting?.tradition,
                                 },
-                                rollOptions: data.item.getOriginData().rollOptions,
+                                rollOptions: data.chatMessage?.flags.pf2e.origin?.rollOptions,
                             },
                             target: {
-                                actor: data.target.actor.uuid,
-                                token: data.target.token.uuid,
+                                actor: data.speaker.actor.uuid,
+                                token: data.speaker.token.uuid
                             },
                             roll: null,
                         },
@@ -54,10 +46,21 @@ export const actions: Assistant.Action[] = [
                     },
                 } as EffectSource,
             );
+        },
+    },
+    {
+        trigger: "action",
+        predicate: [
+            "item:slug:angelic-wings",
+            { "gte": ["item:rank", 5] }
+        ],
+        process: async (data: Assistant.Data) => {
+            if (!data.speaker) return;
+            if (!data.item?.isOfType("spell")) return;
 
             game.assistant.socket.addEmbeddedItem(
-                data.target.actor,
-                "Compendium.pf2e.spell-effects.Item.3LyOkV25p7wA181H",
+                data.speaker.actor,
+                "Compendium.pf2e.spell-effects.Item.iZYjxY0qYvg5yPP3",
                 {
                     _id: null,
                     system: {
@@ -73,13 +76,20 @@ export const actions: Assistant.Action[] = [
                                     },
                                     tradition: data.item.spellcasting?.tradition,
                                 },
-                                rollOptions: data.item.getOriginData().rollOptions,
+                                rollOptions: data.chatMessage?.flags.pf2e.origin?.rollOptions,
                             },
                             target: {
-                                actor: data.target.actor.uuid,
-                                token: data.target.token.uuid,
+                                actor: data.speaker.actor.uuid,
+                                token: data.speaker.token.uuid
                             },
                             roll: null,
+                        },
+                        duration: {
+                            unit: "minutes",
+                            value: 1,
+                        },
+                        level: {
+                            value: data.item.rank,
                         },
                     },
                 } as EffectSource,

@@ -6,7 +6,7 @@ export const path = ["Consumables", "Predator's Claw"];
 export const actions: Assistant.Action[] = [
     {
         trigger: "consume",
-        predicate: ["consumable:predators-claw"],
+        predicate: ["item:slug:predators-claw"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
 
@@ -19,7 +19,7 @@ export const actions: Assistant.Action[] = [
                         context: {
                             origin: {
                                 actor: data.speaker.actor.uuid,
-                                token: data.speaker.token?.uuid ?? null,
+                                token: data.speaker.token.uuid,
                                 item: data.item?.uuid ?? null,
                                 spellcasting: null,
                                 rollOptions: data.item?.getOriginData().rollOptions ?? [],
