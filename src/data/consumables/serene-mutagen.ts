@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { EffectSource } from "foundry-pf2e";
 
 export const path = ["Consumables", "Serene Mutagen"];
 
@@ -9,99 +8,71 @@ export const actions: Assistant.Action[] = [
         predicate: ["item:slug:serene-mutagen-lesser"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
-            const target = data.target?.actor ?? data.speaker.actor;
+            const target = data.target ?? data.speaker;
 
-            game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-effects.Item.5xgapIXn5DwbXHKh", {
-                _id: null,
-                system: {
-                    context: {
-                        origin: {
-                            actor: data.speaker.actor.uuid,
-                            token: data.speaker.token.uuid,
-                            item: data.item?.uuid ?? null,
-                            spellcasting: null,
-                            rollOptions: data.item?.getOriginData().rollOptions ?? [],
-                        },
-                        target: null,
-                        roll: null,
-                    },
-                },
-            } as EffectSource);
-        },
+            await game.assistant.socket.addEffect(
+                target.actor,
+                PF2E_EQUIPMENT_EFFECTS["effect-serene-mutagen-lesser"],
+                {
+                    origin: data.speaker,
+                    item: data.item,
+                    target: target
+                }
+            );
+        }
     },
     {
         trigger: "consume",
         predicate: ["item:slug:serene-mutagen-moderate"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
-            const target = data.target?.actor ?? data.speaker.actor;
+            const target = data.target ?? data.speaker;
 
-            game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-effects.Item.yrbz0rZzp8aZEqbv", {
-                _id: null,
-                system: {
-                    context: {
-                        origin: {
-                            actor: data.speaker.actor.uuid,
-                            token: data.speaker.token.uuid,
-                            item: data.item?.uuid ?? null,
-                            spellcasting: null,
-                            rollOptions: data.item?.getOriginData().rollOptions ?? [],
-                        },
-                        target: null,
-                        roll: null,
-                    },
-                },
-            } as EffectSource);
-        },
+            await game.assistant.socket.addEffect(
+                target.actor,
+                PF2E_EQUIPMENT_EFFECTS["effect-serene-mutagen-moderate"],
+                {
+                    origin: data.speaker,
+                    item: data.item,
+                    target: target
+                }
+            );
+        }
     },
     {
         trigger: "consume",
         predicate: ["item:slug:serene-mutagen-greater"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
-            const target = data.target?.actor ?? data.speaker.actor;
+            const target = data.target ?? data.speaker;
 
-            game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-effects.Item.jw6Tr9FbErjLAFLQ", {
-                _id: null,
-                system: {
-                    context: {
-                        origin: {
-                            actor: data.speaker.actor.uuid,
-                            token: data.speaker.token.uuid,
-                            item: data.item?.uuid ?? null,
-                            spellcasting: null,
-                            rollOptions: data.item?.getOriginData().rollOptions ?? [],
-                        },
-                        target: null,
-                        roll: null,
-                    },
-                },
-            } as EffectSource);
-        },
+            await game.assistant.socket.addEffect(
+                target.actor,
+                PF2E_EQUIPMENT_EFFECTS["effect-serene-mutagen-greater"],
+                {
+                    origin: data.speaker,
+                    item: data.item,
+                    target: target
+                }
+            );
+        }
     },
     {
         trigger: "consume",
         predicate: ["item:slug:serene-mutagen-major"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
-            const target = data.target?.actor ?? data.speaker.actor;
+            const target = data.target ?? data.speaker;
 
-            game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-effects.Item.t7VUJHSUT6bkVUjg", {
-                _id: null,
-                system: {
-                    context: {
-                        origin: {
-                            actor: data.speaker.actor.uuid,
-                            token: data.speaker.token.uuid,
-                            item: data.item?.uuid ?? null,
-                            spellcasting: null,
-                            rollOptions: data.item?.getOriginData().rollOptions ?? [],
-                        },
-                        target: null,
-                        roll: null,
-                    },
-                },
-            } as EffectSource);
-        },
-    },
+            await game.assistant.socket.addEffect(
+                target.actor,
+                PF2E_EQUIPMENT_EFFECTS["effect-serene-mutagen-major"],
+                {
+                    origin: data.speaker,
+                    item: data.item,
+                    target: target
+                }
+            );
+        }
+    }
 ];

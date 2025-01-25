@@ -6,26 +6,29 @@ Hooks.on("renderChatLog", function (_application: ChatLog, html: JQuery, _data: 
         const { message } = Utils.ChatLog.getMessage(event);
         if (!message) return;
 
-        const button = Utils.DOM.htmlClosest<HTMLButtonElement>(event.target, "button[data-action]");
+        const button = Utils.DOM.htmlClosest<HTMLButtonElement>(
+            event.target,
+            "button[data-action]"
+        );
         if (!button) return;
 
         if (button.dataset.action === "choice") {
             let data: Assistant.Data = {
                 trigger: "choice",
-                rollOptions: [`choice:${button.value}`],
+                rollOptions: [`choice:${button.value}`]
             };
 
             if (message.actor && message.token) {
                 data.speaker = {
                     actor: message.actor,
-                    token: message.token,
+                    token: message.token
                 };
             }
 
             if (message.target) {
                 data.target = {
                     actor: message.target.actor,
-                    token: message.target.token,
+                    token: message.target.token
                 };
             }
 

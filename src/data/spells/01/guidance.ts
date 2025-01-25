@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { EffectSource } from "foundry-pf2e";
 import { Utils } from "utils.ts";
 
 export const path = ["Spells", "1st Rank", "Guidance"];
@@ -13,77 +12,22 @@ export const actions: Assistant.Action[] = [
             if (!data.target) return;
             if (!data.item?.isOfType("spell")) return;
 
-            const immunities = Utils.Actor.getEffects(data.target.actor, {
-                slugs: ["effect-guidance-immunity"],
-            });
-
-            if (immunities.length !== 0) {
+            if (Utils.Actor.hasEffect(data.target.actor, "effect-guidance-immunity")) {
                 ui.notifications.warn(`The target is temporarily immune to Guidance.`);
                 return;
             }
 
-            game.assistant.socket.addEmbeddedItem(
+            await game.assistant.socket.addEffect(
                 data.target.actor,
-                "Compendium.pf2e.spell-effects.Item.3qHKBDF7lrHw8jFK",
-                {
-                    _id: null,
-                    system: {
-                        context: {
-                            origin: {
-                                actor: data.speaker.actor.uuid,
-                                token: data.speaker.token.uuid,
-                                item: data.item.uuid,
-                                spellcasting: {
-                                    attribute: {
-                                        type: data.item.attribute,
-                                        mod: data.item.spellcasting?.statistic?.attributeModifier?.value ?? 0,
-                                    },
-                                    tradition: data.item.spellcasting?.tradition,
-                                },
-                                rollOptions: data.item.getOriginData().rollOptions,
-                            },
-                            target: {
-                                actor: data.target.actor.uuid,
-                                token: data.target.token.uuid,
-                            },
-                            roll: null,
-                        },
-                        level: {
-                            value: data.item.rank,
-                        },
-                    },
-                } as EffectSource,
+                PF2E_SPELL_EFFECTS["spell-effect-guidance"],
+                { origin: data.speaker, item: data.item, target: data.target }
             );
 
-            game.assistant.socket.addEmbeddedItem(
+            await game.assistant.socket.addEffect(
                 data.target.actor,
-                "Compendium.pf2e.spell-effects.Item.3LyOkV25p7wA181H",
-                {
-                    _id: null,
-                    system: {
-                        context: {
-                            origin: {
-                                actor: data.speaker.actor.uuid,
-                                token: data.speaker.token.uuid,
-                                item: data.item.uuid,
-                                spellcasting: {
-                                    attribute: {
-                                        type: data.item.attribute,
-                                        mod: data.item.spellcasting?.statistic?.attributeModifier?.value ?? 0,
-                                    },
-                                    tradition: data.item.spellcasting?.tradition,
-                                },
-                                rollOptions: data.item.getOriginData().rollOptions,
-                            },
-                            target: {
-                                actor: data.target.actor.uuid,
-                                token: data.target.token.uuid,
-                            },
-                            roll: null,
-                        },
-                    },
-                } as EffectSource,
+                PF2E_SPELL_EFFECTS["effect-guidance-immunity"],
+                { origin: data.speaker, item: data.item, target: data.target }
             );
-        },
-    },
+        }
+    }
 ];

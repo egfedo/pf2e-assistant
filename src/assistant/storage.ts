@@ -67,13 +67,26 @@ export class Storage {
         return Utils.Remeda.clone(this.#rootFolder);
     }
 
+    private static filterActions(action: Action, data: Data) {
+        if (action.trigger !== data.trigger) return false;
+
+        if (!game.pf2e.Predicate.test(action.predicate, data.rollOptions)) return false;
+
+        if (action.selectors) {
+            if (data.domains) {
+                return action.selectors.some((selection) => data.domains!.includes(selection));
+            }
+            return false;
+        }
+
+        return true;
+    }
+
     async process(data: Data) {
         if (data.trigger == "") return;
         const reroll = createReroll();
 
-        let actions = this.#actions.filter(
-            (action) => action.trigger == data.trigger && game.pf2e.Predicate.test(action.predicate, data.rollOptions),
-        );
+        let actions = this.#actions.filter((action) => Storage.filterActions(action, data));
 
         for (const action of actions) {
             const returnedData = await action.process(data);

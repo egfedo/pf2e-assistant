@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { EffectSource } from "foundry-pf2e";
 
 export const path = ["Consumables", "Cognitive Mutagen"];
 
@@ -9,99 +8,71 @@ export const actions: Assistant.Action[] = [
         predicate: ["item:slug:cognitive-mutagen-lesser"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
-            const target = data.target?.actor ?? data.speaker.actor;
+            const target = data.target ?? data.speaker;
 
-            game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-effects.Item.jaBMZKdoywOTrQvP", {
-                _id: null,
-                system: {
-                    context: {
-                        origin: {
-                            actor: data.speaker.actor.uuid,
-                            token: data.speaker.token.uuid,
-                            item: data.item?.uuid ?? null,
-                            spellcasting: null,
-                            rollOptions: data.item?.getOriginData().rollOptions ?? [],
-                        },
-                        target: null,
-                        roll: null,
-                    },
-                },
-            } as EffectSource);
-        },
+            await game.assistant.socket.addEffect(
+                target.actor,
+                PF2E_EQUIPMENT_EFFECTS["effect-cognitive-mutagen-lesser"],
+                {
+                    origin: data.speaker,
+                    item: data.item,
+                    target: target
+                }
+            );
+        }
     },
     {
         trigger: "consume",
         predicate: ["item:slug:cognitive-mutagen-moderate"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
-            const target = data.target?.actor ?? data.speaker.actor;
+            const target = data.target ?? data.speaker;
 
-            game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-srd.Item.qpzL9UnTi4cDhy6J", {
-                _id: null,
-                system: {
-                    context: {
-                        origin: {
-                            actor: data.speaker.actor.uuid,
-                            token: data.speaker.token.uuid,
-                            item: data.item?.uuid ?? null,
-                            spellcasting: null,
-                            rollOptions: data.item?.getOriginData().rollOptions ?? [],
-                        },
-                        target: null,
-                        roll: null,
-                    },
-                },
-            } as EffectSource);
-        },
+            await game.assistant.socket.addEffect(
+                target.actor,
+                PF2E_EQUIPMENT_EFFECTS["effect-cognitive-mutagen-moderate"],
+                {
+                    origin: data.speaker,
+                    item: data.item,
+                    target: target
+                }
+            );
+        }
     },
     {
         trigger: "consume",
         predicate: ["item:slug:cognitive-mutagen-greater"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
-            const target = data.target?.actor ?? data.speaker.actor;
+            const target = data.target ?? data.speaker;
 
-            game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-srd.Item.ZGojRKG1yYiVWemRp", {
-                _id: null,
-                system: {
-                    context: {
-                        origin: {
-                            actor: data.speaker.actor.uuid,
-                            token: data.speaker.token.uuid,
-                            item: data.item?.uuid ?? null,
-                            spellcasting: null,
-                            rollOptions: data.item?.getOriginData().rollOptions ?? [],
-                        },
-                        target: null,
-                        roll: null,
-                    },
-                },
-            } as EffectSource);
-        },
+            await game.assistant.socket.addEffect(
+                target.actor,
+                PF2E_EQUIPMENT_EFFECTS["effect-cognitive-mutagen-greater"],
+                {
+                    origin: data.speaker,
+                    item: data.item,
+                    target: target
+                }
+            );
+        }
     },
     {
         trigger: "consume",
         predicate: ["item:slug:cognitive-mutagen-major"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
-            const target = data.target?.actor ?? data.speaker.actor;
+            const target = data.target ?? data.speaker;
 
-            game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-srd.Item.VBK9i74dry8yf8f0", {
-                _id: null,
-                system: {
-                    context: {
-                        origin: {
-                            actor: data.speaker.actor.uuid,
-                            token: data.speaker.token.uuid,
-                            item: data.item?.uuid ?? null,
-                            spellcasting: null,
-                            rollOptions: data.item?.getOriginData().rollOptions ?? [],
-                        },
-                        target: null,
-                        roll: null,
-                    },
-                },
-            } as EffectSource);
-        },
-    },
+            await game.assistant.socket.addEffect(
+                target.actor,
+                PF2E_EQUIPMENT_EFFECTS["effect-cognitive-mutagen-major"],
+                {
+                    origin: data.speaker,
+                    item: data.item,
+                    target: target
+                }
+            );
+        }
+    }
 ];

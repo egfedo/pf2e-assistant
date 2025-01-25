@@ -1,37 +1,27 @@
 import { Assistant } from "assistant.ts";
-import { EffectSource } from "foundry-pf2e";
 
 export const path = ["Critical Specializations", "Spear"];
 
 export const actions: Assistant.Action[] = [
     {
         trigger: "damage-roll",
-        predicate: ["check:outcome:critical-success", "critical-specialization", "item:group:spear"],
+        predicate: [
+            "check:outcome:critical-success",
+            "critical-specialization",
+            "item:group:spear"
+        ],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             if (!data.target) return;
 
-            game.assistant.socket.addEmbeddedItem(
+            await game.assistant.socket.addEffect(
                 data.target.actor,
-                "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.s8oIiJnrJuWvDIeM",
+                PF2E_ASSISTANT_EFFECTS["effect-critical-specialization-spear"],
                 {
-                    _id: null,
-                    system: {
-                        context: {
-                            origin: {
-                                actor: data.speaker.actor.uuid,
-                                token: data.speaker.token.uuid,
-                                item: null,
-                                spellcasting: null,
-                            },
-                            target: {
-                                actor: data.target.actor.uuid,
-                                token: data.target.token.uuid,
-                            },
-                        },
-                    },
-                } as EffectSource,
+                    origin: data.speaker,
+                    target: data.target
+                }
             );
-        },
-    },
+        }
+    }
 ];

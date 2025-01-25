@@ -1,5 +1,6 @@
 import { Assistant } from "assistant.ts";
-import { ConditionSlug } from "foundry-pf2e";
+import "effects.d.ts";
+import "foundry-pf2e";
 
 declare module "foundry-pf2e" {
     interface GamePF2e {

@@ -7,7 +7,7 @@ Hooks.once("init", () => {
         hint: "Allows you to manage which automations are enabled/disabled.",
         icon: "fas fa-gears",
         type: AutomationList,
-        restricted: true,
+        restricted: true
     });
 
     game.settings.register("pf2e-assistant", "disabledFiles", {
@@ -15,6 +15,6 @@ Hooks.once("init", () => {
         scope: "world",
         config: false,
         type: Array,
-        default: [],
+        default: []
     });
 });

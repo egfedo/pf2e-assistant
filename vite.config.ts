@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import module from "./module.json" with { type: "json" };
+import define from "./vite.defines.ts";
 
 export default defineConfig({
     build: {
@@ -12,11 +13,12 @@ export default defineConfig({
         rollupOptions: {
             output: {
                 manualChunks: () => {
-                    return module.id
+                    return module.id;
                 }
             }
         },
-        sourcemap: true,
+        sourcemap: true
     },
+    define,
     plugins: [tsconfigPaths()]
 });

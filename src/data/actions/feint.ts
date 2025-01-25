@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { EffectPF2e, EffectSource } from "foundry-pf2e";
 import { Utils } from "utils.ts";
 
 export const path = ["Actions", "Feint"];
@@ -14,35 +13,22 @@ export const actions: Assistant.Action[] = [
             if (!Utils.Roll.isCheckRoll(data.roll)) return;
             const reroll = Assistant.createReroll();
 
-            const embeddedItem = await game.assistant.socket.addEmbeddedItem(
+            const embeddedItem = await game.assistant.socket.addEffect(
                 data.speaker.actor,
-                "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.TJzFIRf9S5P91qgf",
+                PF2E_ASSISTANT_EFFECTS["effect-feint-critical-success"],
                 {
-                    _id: null,
-                    system: {
-                        context: {
-                            origin: {
-                                actor: data.speaker.actor.uuid,
-                                token: data.speaker.token.uuid,
-                                item: null,
-                                spellcasting: null,
-                            },
-                            target: {
-                                actor: data.target.actor.uuid,
-                                token: data.target.token.uuid,
-                            },
-                            roll: {
-                                degreeOfSuccess: data.roll?.degreeOfSuccess,
-                                total: data.roll?.total ?? null,
-                            },
-                        },
-                    },
-                } as EffectSource,
+                    origin: data.speaker,
+                    target: data.target,
+                    roll: data.roll,
+                    tokenMark: { slug: "feint", token: data.target.token }
+                }
             );
 
-            if (embeddedItem) reroll.removeItem.push({ actor: data.speaker.actor.uuid, item: embeddedItem });
+            if (embeddedItem)
+                reroll.removeItem.push({ actor: data.speaker.actor.uuid, item: embeddedItem });
+
             return reroll;
-        },
+        }
     },
     {
         trigger: "skill-check",
@@ -53,35 +39,22 @@ export const actions: Assistant.Action[] = [
             if (!Utils.Roll.isCheckRoll(data.roll)) return;
             const reroll = Assistant.createReroll();
 
-            const embeddedItem = await game.assistant.socket.addEmbeddedItem(
+            const embeddedItem = await game.assistant.socket.addEffect(
                 data.speaker.actor,
-                "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.csAEJ72jCsHuHlLO",
+                PF2E_ASSISTANT_EFFECTS["effect-feint-success"],
                 {
-                    _id: null,
-                    system: {
-                        context: {
-                            origin: {
-                                actor: data.speaker.actor.uuid,
-                                token: data.speaker.token.uuid,
-                                item: null,
-                                spellcasting: null,
-                            },
-                            target: {
-                                actor: data.target.actor.uuid,
-                                token: data.target.token.uuid,
-                            },
-                            roll: {
-                                degreeOfSuccess: data.roll?.degreeOfSuccess,
-                                total: data.roll?.total ?? null,
-                            },
-                        },
-                    },
-                } as EffectSource,
+                    origin: data.speaker,
+                    target: data.target,
+                    roll: data.roll,
+                    tokenMark: { slug: "feint", token: data.target.token }
+                }
             );
 
-            if (embeddedItem) reroll.removeItem.push({ actor: data.speaker.actor.uuid, item: embeddedItem });
+            if (embeddedItem)
+                reroll.removeItem.push({ actor: data.speaker.actor.uuid, item: embeddedItem });
+
             return reroll;
-        },
+        }
     },
     {
         trigger: "skill-check",
@@ -92,42 +65,21 @@ export const actions: Assistant.Action[] = [
             if (!Utils.Roll.isCheckRoll(data.roll)) return;
             const reroll = Assistant.createReroll();
 
-            let effect = await fromUuid<EffectPF2e>(
-                "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.9f4YzsgcAs3A5Xra",
+            const embeddedItem = await game.assistant.socket.addEffect(
+                data.target.actor,
+                PF2E_ASSISTANT_EFFECTS["effect-feint-critical-failure"],
+                {
+                    origin: data.speaker,
+                    target: data.speaker,
+                    roll: data.roll,
+                    tokenMark: { slug: "feint", token: data.speaker.token }
+                }
             );
 
-            if (effect) {
-                const effectSource: EffectSource = foundry.utils.mergeObject(effect.toObject(), {
-                    _id: null,
-                    system: {
-                        context: {
-                            origin: {
-                                actor: data.speaker.actor.uuid,
-                                token: data.speaker.token.uuid,
-                                item: null,
-                                spellcasting: null,
-                            },
-                            target: {
-                                actor: data.speaker.actor.uuid,
-                                token: data.speaker.token.uuid,
-                            },
-                            roll: {
-                                degreeOfSuccess: data.roll?.degreeOfSuccess,
-                                total: data.roll?.total ?? null,
-                            },
-                        },
-                    },
-                });
-
-                // @ts-expect-error
-                effectSource.system.rules.find((value) => value.key === "TokenMark" && value.slug === "feint").uuid =
-                    data.speaker.token?.uuid;
-
-                const embeddedItem = await game.assistant.socket.createEmbeddedItem(data.target.actor, effectSource);
-                if (embeddedItem) reroll.removeItem.push({ actor: data.target.actor.uuid, item: embeddedItem });
-            }
+            if (embeddedItem)
+                reroll.removeItem.push({ actor: data.speaker.actor.uuid, item: embeddedItem });
 
             return reroll;
-        },
-    },
+        }
+    }
 ];

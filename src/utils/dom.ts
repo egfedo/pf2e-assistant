@@ -6,24 +6,26 @@ type MaybeHTML = Maybe<Document | Element | EventTarget>;
 
 export function createHTMLElement<K extends keyof HTMLElementTagNameMap>(
     nodeName: K,
-    options?: CreateHTMLElementOptionsWithChildren,
+    options?: CreateHTMLElementOptionsWithChildren
 ): HTMLElementTagNameMap[K];
 export function createHTMLElement<K extends keyof HTMLElementTagNameMap>(
     nodeName: K,
-    options?: CreateHTMLElementOptionsWithInnerHTML,
+    options?: CreateHTMLElementOptionsWithInnerHTML
 ): HTMLElementTagNameMap[K];
 export function createHTMLElement<K extends keyof HTMLElementTagNameMap>(
     nodeName: K,
-    options?: CreateHTMLElementOptionsWithNeither,
+    options?: CreateHTMLElementOptionsWithNeither
 ): HTMLElementTagNameMap[K];
 export function createHTMLElement<K extends keyof HTMLElementTagNameMap>(
     nodeName: K,
-    { classes = [], dataset = {}, children = [], innerHTML }: CreateHTMLElementOptions = {},
+    { classes = [], dataset = {}, children = [], innerHTML }: CreateHTMLElementOptions = {}
 ): HTMLElementTagNameMap[K] {
     const element = document.createElement(nodeName);
     if (classes.length > 0) element.classList.add(...classes);
 
-    for (const [key, value] of Object.entries(dataset).filter(([, v]) => R.isNonNullish(v) && v !== false)) {
+    for (const [key, value] of Object.entries(dataset).filter(
+        ([, v]) => R.isNonNullish(v) && v !== false
+    )) {
         element.dataset[key] = value === true ? "" : String(value);
     }
 
@@ -63,10 +65,13 @@ interface CreateHTMLElementOptionsWithNeither extends CreateHTMLElementOptions {
 
 export function htmlQuery<K extends keyof HTMLElementTagNameMap>(
     parent: MaybeHTML,
-    selectors: K,
+    selectors: K
 ): HTMLElementTagNameMap[K] | null;
 export function htmlQuery(parent: MaybeHTML, selectors: string): HTMLElement | null;
-export function htmlQuery<E extends HTMLElement = HTMLElement>(parent: MaybeHTML, selectors: string): E | null;
+export function htmlQuery<E extends HTMLElement = HTMLElement>(
+    parent: MaybeHTML,
+    selectors: string
+): E | null;
 export function htmlQuery(parent: MaybeHTML, selectors: string): HTMLElement | null {
     if (!(parent instanceof Element || parent instanceof Document)) return null;
     return parent.querySelector<HTMLElement>(selectors);
@@ -74,10 +79,13 @@ export function htmlQuery(parent: MaybeHTML, selectors: string): HTMLElement | n
 
 export function htmlQueryAll<K extends keyof HTMLElementTagNameMap>(
     parent: MaybeHTML,
-    selectors: K,
+    selectors: K
 ): HTMLElementTagNameMap[K][];
 export function htmlQueryAll(parent: MaybeHTML, selectors: string): HTMLElement[];
-export function htmlQueryAll<E extends HTMLElement = HTMLElement>(parent: MaybeHTML, selectors: string): E[];
+export function htmlQueryAll<E extends HTMLElement = HTMLElement>(
+    parent: MaybeHTML,
+    selectors: string
+): E[];
 export function htmlQueryAll(parent: MaybeHTML, selectors: string): HTMLElement[] {
     if (!(parent instanceof Element || parent instanceof Document)) return [];
     return Array.from(parent.querySelectorAll<HTMLElement>(selectors));
@@ -85,10 +93,13 @@ export function htmlQueryAll(parent: MaybeHTML, selectors: string): HTMLElement[
 
 export function htmlClosest<K extends keyof HTMLElementTagNameMap>(
     parent: MaybeHTML,
-    selectors: K,
+    selectors: K
 ): HTMLElementTagNameMap[K] | null;
 export function htmlClosest(child: MaybeHTML, selectors: string): HTMLElement | null;
-export function htmlClosest<E extends HTMLElement = HTMLElement>(parent: MaybeHTML, selectors: string): E | null;
+export function htmlClosest<E extends HTMLElement = HTMLElement>(
+    parent: MaybeHTML,
+    selectors: string
+): E | null;
 export function htmlClosest(child: MaybeHTML, selectors: string): HTMLElement | null {
     if (!(child instanceof Element)) return null;
     return child.closest<HTMLElement>(selectors);
@@ -100,7 +111,7 @@ export function htmlSelectorFor(element: HTMLElement): string {
     const classesString = classes.length > 0 ? `.${classes.join(".")}` : "";
     const datasetEntries = Object.entries(element.dataset).map(([k, v]) => [
         k.replace(/([A-Z])/g, "-$1").toLowerCase(),
-        v,
+        v
     ]);
     const datasetString = datasetEntries.map(([k, v]) => `[data-${k}="${v}"]`).join("");
 

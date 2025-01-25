@@ -1,157 +1,35 @@
 import { Assistant } from "assistant.ts";
-import { EffectSource } from "foundry-pf2e";
 
 export const path = ["Consumables", "Numbing Tonic"];
 
 export const actions: Assistant.Action[] = [
     {
         trigger: "consume",
-        predicate: ["item:slug:numbing-tonic-minor"],
+        predicate: [
+            {
+                or: [
+                    "item:slug:numbing-tonic-minor",
+                    "item:slug:numbing-tonic-lesser",
+                    "item:slug:numbing-tonic-moderate",
+                    "item:slug:numbing-tonic-greater",
+                    "item:slug:numbing-tonic-major",
+                    "item:slug:numbing-tonic-true"
+                ]
+            }
+        ],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
-            const target = data.target?.actor ?? data.speaker.actor;
+            const target = data.target ?? data.speaker;
 
-            game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-effects.Item.BTWuGksjSU1SYUcf", {
-                _id: null,
-                system: {
-                    context: {
-                        origin: {
-                            actor: data.speaker.actor.uuid,
-                            token: data.speaker.token.uuid,
-                            item: data.item?.uuid ?? null,
-                            spellcasting: null,
-                            rollOptions: data.item?.getOriginData().rollOptions ?? [],
-                        },
-                        target: null,
-                        roll: null,
-                    },
-                },
-            } as EffectSource);
-        },
-    },
-    {
-        trigger: "consume",
-        predicate: ["item:slug:numbing-tonic-lesser"],
-        process: async (data: Assistant.Data) => {
-            if (!data.speaker) return;
-            const target = data.target?.actor ?? data.speaker.actor;
-
-            game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-effects.Item.M5veiDPQNQBevg7m", {
-                _id: null,
-                system: {
-                    context: {
-                        origin: {
-                            actor: data.speaker.actor.uuid,
-                            token: data.speaker.token.uuid,
-                            item: data.item?.uuid ?? null,
-                            spellcasting: null,
-                            rollOptions: data.item?.getOriginData().rollOptions ?? [],
-                        },
-                        target: null,
-                        roll: null,
-                    },
-                },
-            } as EffectSource);
-        },
-    },
-    {
-        trigger: "consume",
-        predicate: ["item:slug:numbing-tonic-moderate"],
-        process: async (data: Assistant.Data) => {
-            if (!data.speaker) return;
-            const target = data.target?.actor ?? data.speaker.actor;
-
-            game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-effects.Item.EqXWI80FBz59VC6v", {
-                _id: null,
-                system: {
-                    context: {
-                        origin: {
-                            actor: data.speaker.actor.uuid,
-                            token: data.speaker.token.uuid,
-                            item: data.item?.uuid ?? null,
-                            spellcasting: null,
-                            rollOptions: data.item?.getOriginData().rollOptions ?? [],
-                        },
-                        target: null,
-                        roll: null,
-                    },
-                },
-            } as EffectSource);
-        },
-    },
-    {
-        trigger: "consume",
-        predicate: ["item:slug:numbing-tonic-greater"],
-        process: async (data: Assistant.Data) => {
-            if (!data.speaker) return;
-            const target = data.target?.actor ?? data.speaker.actor;
-
-            game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-effects.Item.doyduaLONE2FVxAc", {
-                _id: null,
-                system: {
-                    context: {
-                        origin: {
-                            actor: data.speaker.actor.uuid,
-                            token: data.speaker.token.uuid,
-                            item: data.item?.uuid ?? null,
-                            spellcasting: null,
-                            rollOptions: data.item?.getOriginData().rollOptions ?? [],
-                        },
-                        target: null,
-                        roll: null,
-                    },
-                },
-            } as EffectSource);
-        },
-    },
-    {
-        trigger: "consume",
-        predicate: ["item:slug:numbing-tonic-major"],
-        process: async (data: Assistant.Data) => {
-            if (!data.speaker) return;
-            const target = data.target?.actor ?? data.speaker.actor;
-
-            game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-effects.Item.dEsaVzTWOctpl8XP", {
-                _id: null,
-                system: {
-                    context: {
-                        origin: {
-                            actor: data.speaker.actor.uuid,
-                            token: data.speaker.token.uuid,
-                            item: data.item?.uuid ?? null,
-                            spellcasting: null,
-                            rollOptions: data.item?.getOriginData().rollOptions ?? [],
-                        },
-                        target: null,
-                        roll: null,
-                    },
-                },
-            } as EffectSource);
-        },
-    },
-    {
-        trigger: "consume",
-        predicate: ["item:slug:numbing-tonic-true"],
-        process: async (data: Assistant.Data) => {
-            if (!data.speaker) return;
-            const target = data.target?.actor ?? data.speaker.actor;
-
-            game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-effects.Item.bIOHtDiqtJZB86tV", {
-                _id: null,
-                system: {
-                    context: {
-                        origin: {
-                            actor: data.speaker.actor.uuid,
-                            token: data.speaker.token.uuid,
-                            item: data.item?.uuid ?? null,
-                            spellcasting: null,
-                            rollOptions: data.item?.getOriginData().rollOptions ?? [],
-                        },
-                        target: null,
-                        roll: null,
-                    },
-                },
-            } as EffectSource);
-        },
-    },
+            await game.assistant.socket.addEffect(
+                target.actor,
+                PF2E_EQUIPMENT_EFFECTS["effect-numbing-tonic"],
+                {
+                    origin: data.speaker,
+                    item: data.item,
+                    target: target
+                }
+            );
+        }
+    }
 ];

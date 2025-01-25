@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { EffectSource } from "foundry-pf2e";
 import { Utils } from "utils.ts";
 
 export const path = ["Class Features", "Swashbuckler", "Panache"];
@@ -10,42 +9,27 @@ export const actions: Assistant.Action[] = [
         predicate: [
             "item:trait:bravado",
             { not: "self:effect:panache" },
-            { or: ["check:outcome:critical-success", "check:outcome:success"] },
+            { or: ["check:outcome:critical-success", "check:outcome:success"] }
         ],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             if (!Utils.Roll.isCheckRoll(data.roll)) return;
             const reroll = Assistant.createReroll();
 
-            const embeddedItem = await game.assistant.socket.addEmbeddedItem(
+            const panache = await game.assistant.socket.addEffect(
                 data.speaker.actor,
-                "Compendium.pf2e.feat-effects.Item.uBJsxCzNhje8m8jj",
+                PF2E_FEAT_EFFECTS["effect-panache"],
                 {
-                    _id: null,
-                    system: {
-                        context: {
-                            origin: {
-                                actor: data.speaker.actor.uuid,
-                                token: data.speaker.token.uuid,
-                                item: null,
-                                spellcasting: null,
-                            },
-                            target: {
-                                actor: data.target?.actor.uuid,
-                                token: data.target?.token?.uuid ?? null,
-                            },
-                            roll: {
-                                degreeOfSuccess: data.roll?.degreeOfSuccess,
-                                total: data.roll?.total ?? null,
-                            },
-                        },
-                    },
-                } as EffectSource,
+                    origin: data.speaker,
+                    target: data.speaker,
+                    roll: data.roll
+                }
             );
-            if (embeddedItem) reroll.removeItem.push({ actor: data.speaker.actor.uuid, item: embeddedItem });
+
+            if (panache) reroll.removeItem.push({ actor: data.speaker.actor.uuid, item: panache });
 
             return reroll;
-        },
+        }
     },
     {
         trigger: "skill-check",
@@ -55,34 +39,20 @@ export const actions: Assistant.Action[] = [
             if (!Utils.Roll.isCheckRoll(data.roll)) return;
             const reroll = Assistant.createReroll();
 
-            const embeddedItem = await game.assistant.socket.addEmbeddedItem(
+            const panache = await game.assistant.socket.addEffect(
                 data.speaker.actor,
-                "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.AVzxZwYQ8XvuzxPj",
+                PF2E_FEAT_EFFECTS["effect-panache"],
                 {
-                    _id: null,
-                    system: {
-                        context: {
-                            origin: {
-                                actor: data.speaker.actor.uuid,
-                                token: data.speaker.token.uuid,
-                                item: null,
-                                spellcasting: null,
-                            },
-                            target: {
-                                actor: data.target?.actor.uuid,
-                                token: data.target?.token?.uuid ?? null,
-                            },
-                            roll: {
-                                degreeOfSuccess: data.roll?.degreeOfSuccess,
-                                total: data.roll?.total ?? null,
-                            },
-                        },
-                    },
-                } as EffectSource,
+                    origin: data.speaker,
+                    target: data.speaker,
+                    roll: data.roll,
+                    duration: { expiry: "turn-end", sustained: false, unit: "rounds", value: 1 }
+                }
             );
-            if (embeddedItem) reroll.removeItem.push({ actor: data.speaker.actor.uuid, item: embeddedItem });
+
+            if (panache) reroll.removeItem.push({ actor: data.speaker.actor.uuid, item: panache });
 
             return reroll;
-        },
-    },
+        }
+    }
 ];

@@ -6,7 +6,11 @@ export const path = ["Critical Specializations", "Hammer"];
 export const actions: Assistant.Action[] = [
     {
         trigger: "damage-roll",
-        predicate: ["check:outcome:critical-success", "critical-specialization", "item:group:hammer"],
+        predicate: [
+            "check:outcome:critical-success",
+            "critical-specialization",
+            "item:group:hammer"
+        ],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             if (!data.target) return;
@@ -14,16 +18,16 @@ export const actions: Assistant.Action[] = [
             game.assistant.socket.rollSave(data.target.actor, "fortitude", {
                 origin: data.speaker.actor,
                 dc: Utils.Actor.getClassDC(data.speaker.actor),
-                extraRollOptions: ["critical-specialization", "item:group:hammer"],
+                extraRollOptions: ["critical-specialization", "item:group:hammer"]
             });
-        },
+        }
     },
     {
         trigger: "saving-throw",
         predicate: [
             { or: ["check:outcome:failure", "check:outcome:critical-failure"] },
             "critical-specialization",
-            "item:group:hammer",
+            "item:group:hammer"
         ],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
@@ -31,11 +35,13 @@ export const actions: Assistant.Action[] = [
             const reroll = Assistant.createReroll();
 
             if (!data.speaker.actor.hasCondition("prone")) {
-                await game.assistant.socket.toggleCondition(data.speaker.actor, "prone", { active: true });
+                await game.assistant.socket.toggleCondition(data.speaker.actor, "prone", {
+                    active: true
+                });
                 reroll.removeCondition.push({ actor: data.speaker.actor.uuid, condition: "prone" });
             }
 
             return reroll;
-        },
-    },
+        }
+    }
 ];

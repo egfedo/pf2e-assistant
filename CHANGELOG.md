@@ -7,6 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [6.4.2] - 2025-01-25
+
+### Added
+
+- Bullhorn
+- Boost Eidolon
+- Deep Sight
+- Mystic Armor
+- Heroism
+- Wooden Fists
+- Darkened Sight
+- Wind Jump
+- Weapon Surge
+- Traveler's Transit
+- Warp Step
+- Vital Beacon
+
+### Changed
+
+- Effects are now added via a factory method to reduce code size
+
 ## [6.4.1] - 2025-01-23
 
 ### Added
@@ -227,7 +248,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Auto Self-Applied Effects (This is disabled if PF2e Toolbelt is doing this as well)
 - Swashbuckler Panache
 
-[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.4.1...HEAD
+[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.4.2...HEAD
+[6.4.2]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.4.1...v6.4.2
 [6.4.1]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.4.0...v6.4.1
 [6.4.0]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.3.1...v6.4.0
 [6.3.1]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.3.0...v6.3.1

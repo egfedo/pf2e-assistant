@@ -7,6 +7,7 @@ Hooks.once("ready", function () {
         assistant: {
             socket: new Assistant.Socket(),
             storage: new Assistant.Storage(),
-        },
+            getSlugs: Assistant.getSlugs
+        }
     });
 });

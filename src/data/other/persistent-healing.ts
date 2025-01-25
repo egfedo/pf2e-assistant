@@ -22,9 +22,9 @@ export const actions: Assistant.Action[] = [
                     damage: -(data.roll.total ?? 0),
                     token: data.speaker.token,
                     rollOptions: new Set([...data.speaker.actor.getSelfRollOptions()]),
-                    skipIWR: true,
+                    skipIWR: true
                 });
             }
-        },
-    },
+        }
+    }
 ];

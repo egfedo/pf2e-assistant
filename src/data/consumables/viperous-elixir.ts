@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { EffectSource } from "foundry-pf2e";
 
 export const path = ["Consumables", "Viperous Elixir"];
 
@@ -9,74 +8,53 @@ export const actions: Assistant.Action[] = [
         predicate: ["item:slug:viperous-elixir-lesser"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
-            const target = data.target?.actor ?? data.speaker.actor;
+            const target = data.target ?? data.speaker;
 
-            game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-effects.Item.zao2sENSQlMLYhyr", {
-                _id: null,
-                system: {
-                    context: {
-                        origin: {
-                            actor: data.speaker.actor.uuid,
-                            token: data.speaker.token.uuid,
-                            item: data.item?.uuid ?? null,
-                            spellcasting: null,
-                            rollOptions: data.item?.getOriginData().rollOptions ?? [],
-                        },
-                        target: null,
-                        roll: null,
-                    },
-                },
-            } as EffectSource);
-        },
+            await game.assistant.socket.addEffect(
+                target.actor,
+                PF2E_EQUIPMENT_EFFECTS["effect-viperous-elixir-lesser"],
+                {
+                    origin: data.speaker,
+                    item: data.item,
+                    target: target
+                }
+            );
+        }
     },
     {
         trigger: "consume",
         predicate: ["item:slug:viperous-elixir-moderate"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
-            const target = data.target?.actor ?? data.speaker.actor;
+            const target = data.target ?? data.speaker;
 
-            game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-effects.Item.FgwkowiWGfZpnIAc", {
-                _id: null,
-                system: {
-                    context: {
-                        origin: {
-                            actor: data.speaker.actor.uuid,
-                            token: data.speaker.token.uuid,
-                            item: data.item?.uuid ?? null,
-                            spellcasting: null,
-                            rollOptions: data.item?.getOriginData().rollOptions ?? [],
-                        },
-                        target: null,
-                        roll: null,
-                    },
-                },
-            } as EffectSource);
-        },
+            await game.assistant.socket.addEffect(
+                target.actor,
+                PF2E_EQUIPMENT_EFFECTS["effect-viperous-elixir-moderate"],
+                {
+                    origin: data.speaker,
+                    item: data.item,
+                    target: target
+                }
+            );
+        }
     },
     {
         trigger: "consume",
         predicate: ["item:slug:viperous-elixir-greater"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
-            const target = data.target?.actor ?? data.speaker.actor;
+            const target = data.target ?? data.speaker;
 
-            game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-effects.Item.zW8adCNIRo46mfEH", {
-                _id: null,
-                system: {
-                    context: {
-                        origin: {
-                            actor: data.speaker.actor.uuid,
-                            token: data.speaker.token.uuid,
-                            item: data.item?.uuid ?? null,
-                            spellcasting: null,
-                            rollOptions: data.item?.getOriginData().rollOptions ?? [],
-                        },
-                        target: null,
-                        roll: null,
-                    },
-                },
-            } as EffectSource);
-        },
-    },
+            await game.assistant.socket.addEffect(
+                target.actor,
+                PF2E_EQUIPMENT_EFFECTS["effect-viperous-elixir-greater"],
+                {
+                    origin: data.speaker,
+                    item: data.item,
+                    target: target
+                }
+            );
+        }
+    }
 ];

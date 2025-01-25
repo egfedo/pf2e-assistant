@@ -8,19 +8,19 @@ export class AutomationList extends HandlebarsApplicationMixin(ApplicationV2) {
         tag: "form",
         window: {
             contentClasses: ["standard-form"],
-            title: "PF2e Assistant - Automation List",
+            title: "PF2e Assistant - Automation List"
         },
         position: {
             width: 480,
-            height: 500,
+            height: 500
         },
         form: {
             closeOnSubmit: true,
-            handler: AutomationList.#onSubmit,
+            handler: AutomationList.#onSubmit
         },
         actions: {
-            toggle: AutomationList.#onToggle,
-        },
+            toggle: AutomationList.#onToggle
+        }
     };
 
     static override PARTS = {
@@ -28,23 +28,27 @@ export class AutomationList extends HandlebarsApplicationMixin(ApplicationV2) {
             template: "modules/pf2e-assistant/templates/apps/automation-list.hbs",
             templates: [
                 "modules/pf2e-assistant/templates/apps/automation-file.hbs",
-                "modules/pf2e-assistant/templates/apps/automation-folder.hbs",
+                "modules/pf2e-assistant/templates/apps/automation-folder.hbs"
             ],
-            scrollable: [""],
+            scrollable: [""]
         },
         footer: {
-            template: "templates/generic/form-footer.hbs",
-        },
+            template: "templates/generic/form-footer.hbs"
+        }
     };
 
     protected override async _prepareContext(_options: ApplicationRenderOptions) {
         return {
             rootFolder: game.assistant.storage.getRootFolder(),
-            buttons: [{ type: "submit", icon: "fa-solid fa-save", label: "Save Changes" }],
+            buttons: [{ type: "submit", icon: "fa-solid fa-save", label: "Save Changes" }]
         };
     }
 
-    static async #onSubmit(_event: SubmitEvent, form: HTMLFormElement, _formData: FormDataExtended) {
+    static async #onSubmit(
+        _event: SubmitEvent,
+        form: HTMLFormElement,
+        _formData: FormDataExtended
+    ) {
         var disabledFiles: string[] = [];
 
         var inputs = form.getElementsByTagName("input");

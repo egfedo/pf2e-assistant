@@ -26,9 +26,9 @@ export const actions: Assistant.Action[] = [
                     item: data.item,
                     rollOptions: new Set([
                         ...data.item.getRollOptions("item"),
-                        ...data.speaker.actor.getSelfRollOptions(),
+                        ...data.speaker.actor.getSelfRollOptions()
                     ]),
-                    skipIWR: false,
+                    skipIWR: false
                 });
             }
 
@@ -40,6 +40,6 @@ export const actions: Assistant.Action[] = [
             ) {
                 await data.item.rollRecovery();
             }
-        },
-    },
+        }
+    }
 ];

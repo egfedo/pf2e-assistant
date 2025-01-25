@@ -1,5 +1,10 @@
 import { RuleElementSource } from "foundry-pf2e";
 
+export interface MarkTokenSource extends RuleElementSource {
+    slug?: JSONValue;
+    uuid?: JSONValue;
+}
+
 export interface RollOptionSource extends RuleElementSource {
     domain?: JSONValue;
     option?: JSONValue;
@@ -13,7 +18,7 @@ export interface RollOptionSource extends RuleElementSource {
     removeAfterRoll?: JSONValue;
 }
 
-export function isRuleElement(ruleElement: RuleElementSource, key: "RollOption"): ruleElement is RollOptionSource;
-export function isRuleElement(ruleElement: RuleElementSource, key: string) {
-    return ruleElement.key === key;
-}
+export const isMarkToken = (ruleElement: RuleElementSource): ruleElement is MarkTokenSource =>
+    ruleElement.key === "MarkToken";
+export const isRollOption = (ruleElement: RuleElementSource): ruleElement is RollOptionSource =>
+    ruleElement.key === "MarkToken";

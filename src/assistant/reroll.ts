@@ -10,5 +10,12 @@ export interface Reroll {
 }
 
 export function createReroll(): Reroll {
-    return { addCondition: [], removeCondition: [], setCondition: [], removeItem: [], addItem: [], deleteChatMessage: [] };
+    return {
+        addCondition: [],
+        removeCondition: [],
+        setCondition: [],
+        removeItem: [],
+        addItem: [],
+        deleteChatMessage: []
+    };
 }

@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { EffectSource } from "foundry-pf2e";
 
 export const path = ["Spells", "1st Rank", "Light"];
 
@@ -12,35 +11,11 @@ export const actions: Assistant.Action[] = [
             if (!data.target) return;
             if (!data.item?.isOfType("spell")) return;
 
-            game.assistant.socket.addEmbeddedItem(
+            await game.assistant.socket.addEffect(
                 data.target.actor,
-                "Compendium.pf2e.spell-effects.Item.cVVZXNbV0nElVOPZ",
-                {
-                    _id: null,
-                    system: {
-                        context: {
-                            origin: {
-                                actor: data.speaker.actor.uuid,
-                                token: data.speaker.token.uuid,
-                                item: data.item.uuid,
-                                spellcasting: {
-                                    attribute: {
-                                        type: data.item.attribute,
-                                        mod: data.item.spellcasting?.statistic?.attributeModifier?.value ?? 0,
-                                    },
-                                    tradition: data.item.spellcasting?.tradition,
-                                },
-                                rollOptions: data.chatMessage?.flags.pf2e.origin?.rollOptions,
-                            },
-                            target: null,
-                            roll: null,
-                        },
-                        level: {
-                            value: data.item.rank,
-                        },
-                    },
-                } as EffectSource,
+                PF2E_SPELL_EFFECTS["spell-effect-light"],
+                { origin: data.speaker, item: data.item, target: data.target }
             );
-        },
-    },
+        }
+    }
 ];

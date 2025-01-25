@@ -5,18 +5,15 @@ export const path = ["Spells", "1st Rank", "Stabilize"];
 export const actions: Assistant.Action[] = [
     {
         trigger: "action",
-        predicate: ["item:slug:stabilize"],
+        predicate: ["item:slug:stabilize", "target:condition:dying"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             if (!data.target) return;
             if (!data.item?.isOfType("spell")) return;
 
-            if (!data.target.actor.itemTypes.condition.some((c) => c.slug === "dying")) {
-                ui.notifications.warn(`The target is not dying.`);
-                return;
-            }
-
-            await game.assistant.socket.decreaseCondition(data.target.actor, "dying", { forceRemove: true });
+            await game.assistant.socket.decreaseCondition(data.target.actor, "dying", {
+                forceRemove: true
+            });
 
             if (
                 !(
@@ -25,7 +22,9 @@ export const actions: Assistant.Action[] = [
                 ) &&
                 data.target.actor.hitPoints?.value === 0
             ) {
-                await game.assistant.socket.toggleCondition(data.target.actor, "unconscious", { active: true });
+                await game.assistant.socket.toggleCondition(data.target.actor, "unconscious", {
+                    active: true
+                });
             }
 
             if (
@@ -36,6 +35,6 @@ export const actions: Assistant.Action[] = [
             ) {
                 await game.assistant.socket.increaseCondition(data.target.actor, "wounded");
             }
-        },
-    },
+        }
+    }
 ];

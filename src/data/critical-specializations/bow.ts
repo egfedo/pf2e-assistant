@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { EffectSource } from "foundry-pf2e";
 
 export const path = ["Critical Specializations", "Bow"];
 
@@ -11,27 +10,14 @@ export const actions: Assistant.Action[] = [
             if (!data.speaker) return;
             if (!data.target) return;
 
-            game.assistant.socket.addEmbeddedItem(
+            await game.assistant.socket.addEffect(
                 data.target.actor,
-                "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.Cs5YffU6KGMK1Ikw",
+                PF2E_ASSISTANT_EFFECTS["effect-critical-specialization-bow"],
                 {
-                    _id: null,
-                    system: {
-                        context: {
-                            origin: {
-                                actor: data.speaker.actor.uuid,
-                                token: data.speaker.token.uuid,
-                                item: null,
-                                spellcasting: null,
-                            },
-                            target: {
-                                actor: data.target.actor.uuid,
-                                token: data.target.token.uuid,
-                            },
-                        },
-                    },
-                } as EffectSource,
+                    origin: data.speaker,
+                    target: data.target
+                }
             );
-        },
-    },
+        }
+    }
 ];

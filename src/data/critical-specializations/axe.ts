@@ -9,6 +9,6 @@ export const actions: Assistant.Action[] = [
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             if (!data.target) return;
-        },
-    },
+        }
+    }
 ];

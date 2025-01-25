@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { EffectSource } from "foundry-pf2e";
 import { Utils } from "utils.ts";
 
 export const path = ["Feats", "Tumble Behind"];
@@ -10,7 +9,7 @@ export const actions: Assistant.Action[] = [
         predicate: [
             "action:tumble-through",
             { or: ["feat:tumble-behind-rogue", "feat:tumble-behind-swashbuckler"] },
-            { or: ["check:outcome:critical-success", "check:outcome:success"] },
+            { or: ["check:outcome:critical-success", "check:outcome:success"] }
         ],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
@@ -18,34 +17,20 @@ export const actions: Assistant.Action[] = [
             if (!Utils.Roll.isCheckRoll(data.roll)) return;
             const reroll = Assistant.createReroll();
 
-            const embeddedItem = await game.assistant.socket.addEmbeddedItem(
+            const effect = await game.assistant.socket.addEffect(
                 data.speaker.actor,
-                "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.aUzN2fOd33tZXa5s",
+                PF2E_ASSISTANT_EFFECTS["effect-tumble-behind"],
                 {
-                    _id: null,
-                    system: {
-                        context: {
-                            origin: {
-                                actor: data.speaker.actor.uuid,
-                                token: data.speaker.token.uuid,
-                                item: null,
-                                spellcasting: null,
-                            },
-                            target: {
-                                actor: data.target.actor.uuid,
-                                token: data.target.token.uuid,
-                            },
-                            roll: {
-                                degreeOfSuccess: data.roll?.degreeOfSuccess,
-                                total: data.roll?.total ?? null,
-                            },
-                        },
-                    },
-                } as EffectSource,
+                    origin: data.speaker,
+                    target: data.target,
+                    roll: data.roll,
+                    tokenMark: { slug: "tumble-behind", token: data.target.token }
+                }
             );
-            if (embeddedItem) reroll.removeItem.push({ actor: data.speaker.actor.uuid, item: embeddedItem });
+
+            if (effect) reroll.removeItem.push({ actor: data.speaker.actor.uuid, item: effect });
 
             return reroll;
-        },
-    },
+        }
+    }
 ];

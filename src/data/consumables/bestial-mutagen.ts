@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { EffectSource } from "foundry-pf2e";
 
 export const path = ["Consumables", "Bestial Mutagen"];
 
@@ -9,99 +8,71 @@ export const actions: Assistant.Action[] = [
         predicate: ["item:slug:bestial-mutagen-lesser"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
-            const target = data.target?.actor ?? data.speaker.actor;
+            const target = data.target ?? data.speaker;
 
-            game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-effects.Item.fIpzDpuwLdIS4tW5", {
-                _id: null,
-                system: {
-                    context: {
-                        origin: {
-                            actor: data.speaker.actor.uuid,
-                            token: data.speaker.token.uuid,
-                            item: data.item?.uuid ?? null,
-                            spellcasting: null,
-                            rollOptions: data.item?.getOriginData().rollOptions ?? [],
-                        },
-                        target: null,
-                        roll: null,
-                    },
-                },
-            } as EffectSource);
-        },
+            await game.assistant.socket.addEffect(
+                target.actor,
+                PF2E_EQUIPMENT_EFFECTS["effect-bestial-mutagen-lesser"],
+                {
+                    origin: data.speaker,
+                    item: data.item,
+                    target: target
+                }
+            );
+        }
     },
     {
         trigger: "consume",
         predicate: ["item:slug:bestial-mutagen-moderate"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
-            const target = data.target?.actor ?? data.speaker.actor;
+            const target = data.target ?? data.speaker;
 
-            game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-effects.Item.xFQRiVU6h8EA6Lw9", {
-                _id: null,
-                system: {
-                    context: {
-                        origin: {
-                            actor: data.speaker.actor.uuid,
-                            token: data.speaker.token.uuid,
-                            item: data.item?.uuid ?? null,
-                            spellcasting: null,
-                            rollOptions: data.item?.getOriginData().rollOptions ?? [],
-                        },
-                        target: null,
-                        roll: null,
-                    },
-                },
-            } as EffectSource);
-        },
+            await game.assistant.socket.addEffect(
+                target.actor,
+                PF2E_EQUIPMENT_EFFECTS["effect-bestial-mutagen-moderate"],
+                {
+                    origin: data.speaker,
+                    item: data.item,
+                    target: target
+                }
+            );
+        }
     },
     {
         trigger: "consume",
         predicate: ["item:slug:bestial-mutagen-greater"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
-            const target = data.target?.actor ?? data.speaker.actor;
+            const target = data.target ?? data.speaker;
 
-            game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-effects.Item.kwD0wuW5Ndkc9YXB", {
-                _id: null,
-                system: {
-                    context: {
-                        origin: {
-                            actor: data.speaker.actor.uuid,
-                            token: data.speaker.token.uuid,
-                            item: data.item?.uuid ?? null,
-                            spellcasting: null,
-                            rollOptions: data.item?.getOriginData().rollOptions ?? [],
-                        },
-                        target: null,
-                        roll: null,
-                    },
-                },
-            } as EffectSource);
-        },
+            await game.assistant.socket.addEffect(
+                target.actor,
+                PF2E_EQUIPMENT_EFFECTS["effect-bestial-mutagen-greater"],
+                {
+                    origin: data.speaker,
+                    item: data.item,
+                    target: target
+                }
+            );
+        }
     },
     {
         trigger: "consume",
         predicate: ["item:slug:bestial-mutagen-major"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
-            const target = data.target?.actor ?? data.speaker.actor;
+            const target = data.target ?? data.speaker;
 
-            game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-effects.Item.1ouUo8lLK6H79Rqh", {
-                _id: null,
-                system: {
-                    context: {
-                        origin: {
-                            actor: data.speaker.actor.uuid,
-                            token: data.speaker.token.uuid,
-                            item: data.item?.uuid ?? null,
-                            spellcasting: null,
-                            rollOptions: data.item?.getOriginData().rollOptions ?? [],
-                        },
-                        target: null,
-                        roll: null,
-                    },
-                },
-            } as EffectSource);
-        },
-    },
+            await game.assistant.socket.addEffect(
+                target.actor,
+                PF2E_EQUIPMENT_EFFECTS["effect-bestial-mutagen-major"],
+                {
+                    origin: data.speaker,
+                    item: data.item,
+                    target: target
+                }
+            );
+        }
+    }
 ];

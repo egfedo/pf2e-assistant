@@ -1,4 +1,9 @@
-import { ChatContextFlag, ChatMessageFlagsPF2e, ChatMessagePF2e, CheckContextChatFlag } from "foundry-pf2e";
+import {
+    ChatContextFlag,
+    ChatMessageFlagsPF2e,
+    ChatMessagePF2e,
+    CheckContextChatFlag
+} from "foundry-pf2e";
 
 interface ChatMessageStrikePF2e {
     actor: ActorUUID;
@@ -23,8 +28,12 @@ export function isCheckContextFlag(flag?: ChatContextFlag): flag is CheckContext
 let FAST_HEALING_REGEX: RegExp[];
 export function isFastHealing(chatMessage: ChatMessagePF2e): boolean {
     FAST_HEALING_REGEX ??= [
-        new RegExp(`<div>${game.i18n.localize("PF2E.Encounter.Broadcast.FastHealing.fast-healing.ReceivedMessage")}</div>`),
-        new RegExp(`<div>${game.i18n.localize("PF2E.Encounter.Broadcast.FastHealing.regeneration.ReceivedMessage")}</div>`)
+        new RegExp(
+            `<div>${game.i18n.localize("PF2E.Encounter.Broadcast.FastHealing.fast-healing.ReceivedMessage")}</div>`
+        ),
+        new RegExp(
+            `<div>${game.i18n.localize("PF2E.Encounter.Broadcast.FastHealing.regeneration.ReceivedMessage")}</div>`
+        )
     ];
 
     return FAST_HEALING_REGEX.some((value) => value.test(chatMessage.flavor));
@@ -45,8 +54,26 @@ export function isConsume(chatMessage: ChatMessagePF2e): boolean {
 let SHIELD_BLOCK_REGEX: RegExp[];
 export function isShieldBlock(chatMessage: ChatMessagePF2e): boolean {
     SHIELD_BLOCK_REGEX ??= [
-        new RegExp(game.i18n.format("PF2E.Actor.ApplyDamage.DamagedForNShield", { actor: "(.*)", absorbedDamage: "([0-9]*)", hpDamage: "([0-9]*)" }).replace("<actor>", "<span class=\"target-name\">").replace("</actor>", "</span>")),
-        new RegExp(game.i18n.format("PF2E.Actor.ApplyDamage.ShieldAbsorbsAll", { actor: "(.*)", absorbedDamage: "([0-9]*)", hpDamage: "([0-9]*)" }).replace("<actor>", "<span class=\"target-name\">").replace("</actor>", "</span>"))
+        new RegExp(
+            game.i18n
+                .format("PF2E.Actor.ApplyDamage.DamagedForNShield", {
+                    actor: "(.*)",
+                    absorbedDamage: "([0-9]*)",
+                    hpDamage: "([0-9]*)"
+                })
+                .replace("<actor>", '<span class="target-name">')
+                .replace("</actor>", "</span>")
+        ),
+        new RegExp(
+            game.i18n
+                .format("PF2E.Actor.ApplyDamage.ShieldAbsorbsAll", {
+                    actor: "(.*)",
+                    absorbedDamage: "([0-9]*)",
+                    hpDamage: "([0-9]*)"
+                })
+                .replace("<actor>", '<span class="target-name">')
+                .replace("</actor>", "</span>")
+        )
     ];
 
     return SHIELD_BLOCK_REGEX.some((value) => value.test(chatMessage.content));

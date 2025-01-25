@@ -9,7 +9,7 @@ Hooks.once("ready", async () => {
         async function (
             this: CheckPF2e,
             message: ChatMessagePF2e,
-            { heroPoint = false }: { heroPoint?: boolean } = {},
+            { heroPoint = false }: { heroPoint?: boolean } = {}
         ) {
             if (!(message.isAuthor || game.user.isGM)) return;
 
@@ -28,7 +28,7 @@ Hooks.once("ready", async () => {
 
             await processReroll(message);
         },
-        "LISTENER",
+        "LISTENER"
     );
 });
 
@@ -40,7 +40,9 @@ async function processReroll(chatMessage: ChatMessagePF2e) {
             const actor = await fromUuid<ActorPF2e>(data.actor);
 
             if (actor) {
-                await game.assistant.socket.toggleCondition(actor, data.condition, { active: true });
+                await game.assistant.socket.toggleCondition(actor, data.condition, {
+                    active: true
+                });
             }
         }
 
@@ -48,7 +50,9 @@ async function processReroll(chatMessage: ChatMessagePF2e) {
             const actor = await fromUuid<ActorPF2e>(data.actor);
 
             if (actor) {
-                await game.assistant.socket.decreaseCondition(actor, data.condition, { forceRemove: true });
+                await game.assistant.socket.decreaseCondition(actor, data.condition, {
+                    forceRemove: true
+                });
             }
         }
 

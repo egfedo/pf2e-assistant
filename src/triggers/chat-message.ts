@@ -4,29 +4,44 @@ import { Utils } from "utils.ts";
 
 Hooks.on(
     "createChatMessage",
-    async function (chatMessage: ChatMessagePF2e, _options: DatabaseCreateOperation<ChatMessagePF2e>, userId: string) {
+    async function (
+        chatMessage: ChatMessagePF2e,
+        _options: DatabaseCreateOperation<ChatMessagePF2e>,
+        userId: string
+    ) {
         if (game.userId !== userId) return;
         if (chatMessage.flags["pf2e-assistant"]?.process === false) return;
-        if (chatMessage.flags["pf2e-assistant"]?.reroll) await chatMessage.unsetFlag("pf2e-assistant", "reroll");
+        if (chatMessage.flags["pf2e-assistant"]?.reroll)
+            await chatMessage.unsetFlag("pf2e-assistant", "reroll");
 
         const data = processChatMessage(chatMessage);
         game.assistant.storage.process(data);
-    },
+    }
 );
 
 function processChatMessage(chatMessage: ChatMessagePF2e): Assistant.Data {
     let data: Assistant.Data = {
         trigger: chatMessage.flags.pf2e.context?.type ?? "",
         rollOptions: chatMessage.flags.pf2e.context?.options ?? [],
-        chatMessage: chatMessage,
+        chatMessage: chatMessage
     };
 
+    if (chatMessage.flags.pf2e.context?.domains) {
+        data.domains = chatMessage.flags.pf2e.context.domains;
+    }
+
     if (["", "spell-cast"].includes(data.trigger)) {
-        if (chatMessage.item?.isOfType("condition") && chatMessage.item.slug === "persistent-damage") {
+        if (
+            chatMessage.item?.isOfType("condition") &&
+            chatMessage.item.slug === "persistent-damage"
+        ) {
             data.trigger = "damage-roll";
         } else if (chatMessage.item?.isOfType("action", "feat", "spell")) {
             data.trigger = "action";
-        } else if (chatMessage.item?.isOfType("consumable") && Utils.ChatMessage.isConsume(chatMessage)) {
+        } else if (
+            chatMessage.item?.isOfType("consumable") &&
+            Utils.ChatMessage.isConsume(chatMessage)
+        ) {
             data.trigger = "consume";
         } else if (chatMessage.isDamageRoll && Utils.ChatMessage.isFastHealing(chatMessage)) {
             data.trigger = "damage-roll";
@@ -48,14 +63,14 @@ function processChatMessage(chatMessage: ChatMessagePF2e): Assistant.Data {
     if (chatMessage.actor && chatMessage.token) {
         data.speaker = {
             actor: chatMessage.actor,
-            token: chatMessage.token,
+            token: chatMessage.token
         };
     }
 
     if (chatMessage.target) {
         data.target = {
             actor: chatMessage.target.actor,
-            token: chatMessage.target.token,
+            token: chatMessage.target.token
         };
     } else {
         const target = Utils.User.getTargets()[0];
@@ -63,7 +78,7 @@ function processChatMessage(chatMessage: ChatMessagePF2e): Assistant.Data {
         if (target && target.actor) {
             data.target = {
                 actor: target.actor,
-                token: target.document,
+                token: target.document
             };
         }
     }
@@ -78,7 +93,7 @@ function processChatMessage(chatMessage: ChatMessagePF2e): Assistant.Data {
             if (actor && token) {
                 data.origin = {
                     actor,
-                    token,
+                    token
                 };
             }
         }

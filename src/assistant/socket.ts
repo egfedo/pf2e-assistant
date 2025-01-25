@@ -4,12 +4,14 @@ import {
     ChatMessagePF2e,
     CheckDC,
     CheckDCReference,
+    CheckRoll,
     ConditionSlug,
+    EffectSystemData,
     ItemPF2e,
     ItemSourcePF2e,
     SaveType,
     ScenePF2e,
-    TokenDocumentPF2e,
+    TokenDocumentPF2e
 } from "foundry-pf2e";
 import { Utils } from "utils.ts";
 import module from "../../module.json" with { type: "json" };
@@ -37,7 +39,11 @@ export class Socket {
         this.#socket.register("promptChoice", this.#promptChoice);
     }
 
-    async #executeAsActor<T>(actor: ActorPF2e, handler: string | Function, ...args: any[]): Promise<Maybe<T>> {
+    async #executeAsActor<T>(
+        actor: ActorPF2e,
+        handler: string | Function,
+        ...args: any[]
+    ): Promise<Maybe<T>> {
         const primaryUser = Utils.Actor.getPrimaryUser(actor);
 
         if (primaryUser) {
@@ -47,7 +53,77 @@ export class Socket {
         return undefined;
     }
 
-    async addEmbeddedItem(actor: ActorPF2e, itemUuid: ItemUUID, data?: PreCreate<ItemSourcePF2e>): Promise<Maybe<ItemUUID>> {
+    async addEffect(
+        actor: ActorPF2e,
+        effectUuid: ItemUUID,
+        data: SocketTypes.Effect.AddEffectData
+    ): Promise<Maybe<ItemUUID>> {
+        const effect = await fromUuid<ItemPF2e>(effectUuid);
+        if (!effect?.isOfType("effect")) return undefined;
+
+        const item = data.item?.uuid ?? null;
+        const spellcasting =
+            data.item?.isOfType("spell") && data.item.spellcasting
+                ? {
+                      attribute: {
+                          type: data.item.attribute,
+                          mod: data.item.spellcasting.statistic?.attributeModifier?.value ?? 0
+                      },
+                      tradition: data.item.spellcasting.tradition
+                  }
+                : null;
+        const rollOptions = [
+            data.origin.actor.getSelfRollOptions("origin"),
+            data.item?.getRollOptions("origin:item")
+        ]
+            .flat()
+            .filter(Utils.Remeda.isTruthy);
+
+        const origin = {
+            actor: data.origin.actor.uuid,
+            token: data.origin.token.uuid,
+            item,
+            spellcasting,
+            rollOptions
+        };
+        const target = data.target
+            ? { actor: data.target.actor.uuid, token: data.target.token.uuid }
+            : null;
+        const roll = data.roll
+            ? { total: data.roll.total, degreeOfSuccess: data.roll.degreeOfSuccess }
+            : null;
+
+        let effectSource = effect.toObject();
+        effectSource.system.context = {
+            origin,
+            target,
+            roll
+        };
+
+        if (data.duration) {
+            effectSource.system.duration = data.duration;
+        }
+
+        if (data.tokenMark) {
+            const tokenMark = effectSource.system.rules
+                .filter(Utils.Rules.isMarkToken)
+                .find((rule) => rule.slug === data.tokenMark?.slug);
+
+            if (tokenMark) {
+                tokenMark.uuid = data.tokenMark.token.uuid;
+            }
+        }
+
+        if (data.item?.isOfType("spell")) effectSource.system.level.value = data.item.rank;
+
+        return await this.createEmbeddedItem(actor, effectSource);
+    }
+
+    async addEmbeddedItem(
+        actor: ActorPF2e,
+        itemUuid: ItemUUID,
+        data?: PreCreate<ItemSourcePF2e>
+    ): Promise<Maybe<ItemUUID>> {
         if (!actor.canUserModify(game.user, "update")) {
             return await this.#executeAsActor(actor, "addEmbeddedItem", actor.uuid, itemUuid, data);
         }
@@ -55,7 +131,9 @@ export class Socket {
         const item = await fromUuid<ItemPF2e>(itemUuid);
 
         if (item) {
-            const itemSource = !data ? item.toObject() : foundry.utils.mergeObject(item.toObject(), data);
+            const itemSource = !data
+                ? item.toObject()
+                : foundry.utils.mergeObject(item.toObject(), data);
             const createdItem = await actor.createEmbeddedDocuments("Item", [itemSource]);
             if (createdItem.length !== 0) return createdItem[0].uuid;
         }
@@ -63,14 +141,18 @@ export class Socket {
         return undefined;
     }
 
-    async #addEmbeddedItem(actorUuid: ActorUUID, itemUuid: ItemUUID, data?: PreCreate<ItemSourcePF2e>): Promise<Maybe<ItemUUID>> {
+    async #addEmbeddedItem(
+        actorUuid: ActorUUID,
+        itemUuid: ItemUUID,
+        data?: PreCreate<ItemSourcePF2e>
+    ): Promise<Maybe<ItemUUID>> {
         let actor = await fromUuid<ActorPF2e>(actorUuid);
         if (!actor) return undefined;
 
         return await game.assistant.socket.addEmbeddedItem(actor, itemUuid, data);
     }
 
-    async createEmbeddedItem(actor: ActorPF2e, data: PreCreate<ItemSourcePF2e>): Promise<Maybe<ItemUUID>> {
+    async createEmbeddedItem(actor: ActorPF2e, data: ItemSourcePF2e): Promise<Maybe<ItemUUID>> {
         if (!actor.canUserModify(game.user, "update")) {
             return await this.#executeAsActor(actor, "createEmbeddedItem", actor.uuid, data);
         }
@@ -81,7 +163,10 @@ export class Socket {
         return undefined;
     }
 
-    async #createEmbeddedItem(actorUuid: ActorUUID, data: PreCreate<ItemSourcePF2e>): Promise<Maybe<ItemUUID>> {
+    async #createEmbeddedItem(
+        actorUuid: ActorUUID,
+        data: ItemSourcePF2e
+    ): Promise<Maybe<ItemUUID>> {
         let actor = await fromUuid<ActorPF2e>(actorUuid);
         if (!actor) return undefined;
 
@@ -124,16 +209,30 @@ export class Socket {
         await game.assistant.socket.updateEmbeddedItem(item, data);
     }
 
-    async decreaseCondition(actor: ActorPF2e, conditionSlug: ConditionSlug, options?: { forceRemove: boolean }) {
+    async decreaseCondition(
+        actor: ActorPF2e,
+        conditionSlug: ConditionSlug,
+        options?: { forceRemove: boolean }
+    ) {
         if (!actor.canUserModify(game.user, "update")) {
-            await this.#executeAsActor(actor, "decreaseCondition", actor.uuid, conditionSlug, options);
+            await this.#executeAsActor(
+                actor,
+                "decreaseCondition",
+                actor.uuid,
+                conditionSlug,
+                options
+            );
             return;
         }
 
         await actor.decreaseCondition(conditionSlug, options);
     }
 
-    async #decreaseCondition(actorUuid: ActorUUID, conditionSlug: ConditionSlug, options?: { forceRemove: boolean }) {
+    async #decreaseCondition(
+        actorUuid: ActorUUID,
+        conditionSlug: ConditionSlug,
+        options?: { forceRemove: boolean }
+    ) {
         let actor = await fromUuid<ActorPF2e>(actorUuid);
         if (!actor) return;
 
@@ -143,10 +242,16 @@ export class Socket {
     async increaseCondition(
         actor: ActorPF2e,
         conditionSlug: ConditionSlug,
-        options?: { max?: number; value?: number | null },
+        options?: { max?: number; value?: number | null }
     ) {
         if (!actor.canUserModify(game.user, "update")) {
-            await this.#executeAsActor(actor, "increaseCondition", actor.uuid, conditionSlug, options);
+            await this.#executeAsActor(
+                actor,
+                "increaseCondition",
+                actor.uuid,
+                conditionSlug,
+                options
+            );
             return;
         }
 
@@ -156,7 +261,7 @@ export class Socket {
     async #increaseCondition(
         actorUuid: ActorUUID,
         conditionSlug: ConditionSlug,
-        options?: { max?: number; value?: number | null },
+        options?: { max?: number; value?: number | null }
     ) {
         let actor = await fromUuid<ActorPF2e>(actorUuid);
         if (!actor) return;
@@ -164,25 +269,49 @@ export class Socket {
         await game.assistant.socket.increaseCondition(actor, conditionSlug, options);
     }
 
-    async toggleCondition(actor: ActorPF2e, conditionSlug: ConditionSlug, options?: { active?: boolean }) {
+    async toggleCondition(
+        actor: ActorPF2e,
+        conditionSlug: ConditionSlug,
+        options?: { active?: boolean }
+    ) {
         if (!actor.canUserModify(game.user, "update")) {
-            await this.#executeAsActor(actor, "toggleCondition", actor.uuid, conditionSlug, options);
+            await this.#executeAsActor(
+                actor,
+                "toggleCondition",
+                actor.uuid,
+                conditionSlug,
+                options
+            );
             return;
         }
 
         await actor.toggleCondition(conditionSlug, options);
     }
 
-    async #toggleCondition(actorUuid: ActorUUID, conditionSlug: ConditionSlug, options?: { active?: boolean }) {
+    async #toggleCondition(
+        actorUuid: ActorUUID,
+        conditionSlug: ConditionSlug,
+        options?: { active?: boolean }
+    ) {
         let actor = await fromUuid<ActorPF2e>(actorUuid);
         if (!actor) return;
 
         await game.assistant.socket.toggleCondition(actor, conditionSlug, options);
     }
 
-    async setCondition(actor: ActorPF2e, conditionSlug: ConditionSlug, value: number): Promise<Maybe<number>> {
+    async setCondition(
+        actor: ActorPF2e,
+        conditionSlug: ConditionSlug,
+        value: number
+    ): Promise<Maybe<number>> {
         if (!actor.canUserModify(game.user, "update")) {
-            return await this.#executeAsActor(actor, "setCondition", actor.uuid, conditionSlug, value);
+            return await this.#executeAsActor(
+                actor,
+                "setCondition",
+                actor.uuid,
+                conditionSlug,
+                value
+            );
         }
 
         if (conditionSlug === "persistent-damage") return;
@@ -196,7 +325,11 @@ export class Socket {
         return conditionValue;
     }
 
-    async #setCondition(actorUuid: ActorUUID, conditionSlug: ConditionSlug, value: number): Promise<Maybe<number>> {
+    async #setCondition(
+        actorUuid: ActorUUID,
+        conditionSlug: ConditionSlug,
+        value: number
+    ): Promise<Maybe<number>> {
         let actor = await fromUuid<ActorPF2e>(actorUuid);
         if (!actor) return;
 
@@ -208,7 +341,7 @@ export class Socket {
             await this.#executeAsActor(actor, "rollSave", actor.uuid, save, {
                 origin: args.origin?.uuid,
                 dc: args.dc,
-                extraRollOptions: args.extraRollOptions,
+                extraRollOptions: args.extraRollOptions
             });
             return;
         }
@@ -216,14 +349,18 @@ export class Socket {
         await actor.saves?.[save]?.roll(args);
     }
 
-    async #rollSave(actorUuid: ActorUUID, save: SaveType, args: SocketTypes.Save.SerializedRollParameters) {
+    async #rollSave(
+        actorUuid: ActorUUID,
+        save: SaveType,
+        args: SocketTypes.Save.SerializedRollParameters
+    ) {
         let actor = await fromUuid<ActorPF2e>(actorUuid);
         if (!actor) return;
 
         await game.assistant.socket.rollSave(actor, save, {
             origin: args.origin ? await fromUuid<ActorPF2e>(args.origin) : undefined,
             dc: args.dc,
-            extraRollOptions: args.extraRollOptions,
+            extraRollOptions: args.extraRollOptions
         });
     }
 
@@ -245,68 +382,78 @@ export class Socket {
 
     async promptChoice(
         actor: ActorPF2e,
-        param: SocketTypes.Prompt.ChoiceParameters,
+        param: SocketTypes.Prompt.ChoiceParameters
     ): Promise<Maybe<ChatMessageUUID>> {
         if (!actor.canUserModify(game.user, "update")) {
             return await this.#executeAsActor(actor, "promptChoice", actor.uuid, {
                 speaker: { actor: param.speaker.actor.uuid, token: param.speaker.token.uuid },
                 item: param.item ? param.item.uuid : undefined,
-                target: param.target ? { actor: param.target.actor.uuid, token: param.target.token.uuid } : undefined,
-                data: param.data,
+                target: param.target
+                    ? { actor: param.target.actor.uuid, token: param.target.token.uuid }
+                    : undefined,
+                data: param.data
             });
         }
 
         const flags: DeepPartial<ChatMessageFlagsPF2e> = {
             core: {
-                canPopout: false,
+                canPopout: false
             },
             pf2e: {
                 context: {
                     target: param.target
                         ? { actor: param.target.actor.uuid, token: param.target.token.uuid }
-                        : undefined,
+                        : undefined
                 },
                 origin: param.item ? param.item.getOriginData() : undefined,
                 casting:
                     param.item?.isOfType("spell") && param.item.spellcasting?.statistic
                         ? {
-                            id: param.item.spellcasting.id,
-                            tradition: param.item.spellcasting.tradition ?? param.item.traditions.first() ?? "arcane",
-                            embeddedSpell: param.item.parentItem ? param.item.toObject() : undefined,
-                        }
-                        : undefined,
+                              id: param.item.spellcasting.id,
+                              tradition:
+                                  param.item.spellcasting.tradition ??
+                                  param.item.traditions.first() ??
+                                  "arcane",
+                              embeddedSpell: param.item.parentItem
+                                  ? param.item.toObject()
+                                  : undefined
+                          }
+                        : undefined
             },
             "pf2e-assistant": {
-                process: false,
-            },
+                process: false
+            }
         };
 
         let chatMessage = await ChatMessage.create({
-            content: await renderTemplate("modules/pf2e-assistant/templates/chat/prompt-choice.hbs", param.data),
+            content: await renderTemplate(
+                "modules/pf2e-assistant/templates/chat/prompt-choice.hbs",
+                param.data
+            ),
             flags,
             speaker: ChatMessage.getSpeaker(param.speaker),
-            whisper: game.users.filter((user) => param.speaker.actor.canUserModify(user, "update")),
+            whisper: game.users.filter((user) => param.speaker.actor.canUserModify(user, "update"))
         });
         return chatMessage?.uuid;
     }
 
     async #promptChoice(
         actorUuid: ActorUUID,
-        param: SocketTypes.Prompt.SerializedChoiceParameters,
+        param: SocketTypes.Prompt.SerializedChoiceParameters
     ): Promise<Maybe<ChatMessageUUID>> {
         let actor = await fromUuid<ActorPF2e>(actorUuid);
         if (!actor) return undefined;
 
         const speaker = {
             actor: await fromUuid<ActorPF2e>(param.speaker.actor),
-            token: await fromUuid<TokenDocumentPF2e<ScenePF2e>>(param.speaker.token),
+            token: await fromUuid<TokenDocumentPF2e<ScenePF2e>>(param.speaker.token)
         };
         const item = param.item ? await fromUuid<ItemPF2e>(param.item) : undefined;
         const target = param.target
             ? {
-                actor: await fromUuid<ActorPF2e>(param.target.actor),
-                token: await fromUuid<TokenDocumentPF2e<ScenePF2e>>(param.target.token),
-            }
+                  actor: await fromUuid<ActorPF2e>(param.target.actor),
+                  token: await fromUuid<TokenDocumentPF2e<ScenePF2e>>(param.target.token)
+              }
             : undefined;
         const data = param.data;
 
@@ -315,7 +462,7 @@ export class Socket {
                 speaker,
                 item: item ? item : undefined,
                 target: target && Utils.Actor.isActorToken(target) ? target : undefined,
-                data,
+                data
             });
         }
         return undefined;
@@ -323,6 +470,17 @@ export class Socket {
 }
 
 namespace SocketTypes {
+    export namespace Effect {
+        export interface AddEffectData {
+            origin: { actor: ActorPF2e; token: TokenDocumentPF2e<ScenePF2e> };
+            item?: ItemPF2e;
+            target?: { actor: ActorPF2e; token: TokenDocumentPF2e<ScenePF2e> };
+            roll?: CheckRoll;
+            duration?: EffectSystemData["duration"];
+            tokenMark?: { slug: string; token: TokenDocumentPF2e<ScenePF2e> };
+        }
+    }
+
     export namespace Prompt {
         export interface SerializedChoiceParameters {
             speaker: { actor: ActorUUID; token: TokenDocumentUUID };

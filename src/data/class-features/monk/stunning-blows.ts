@@ -14,9 +14,9 @@ export const actions: Assistant.Action[] = [
             game.assistant.socket.rollSave(data.target.actor, "fortitude", {
                 origin: data.speaker.actor,
                 dc: Utils.Actor.getClassDC(data.speaker.actor),
-                extraRollOptions: ["stunning-blows"],
+                extraRollOptions: ["stunning-blows"]
             });
-        },
+        }
     },
     {
         trigger: "saving-throw",
@@ -26,11 +26,20 @@ export const actions: Assistant.Action[] = [
             if (!data.origin) return;
             const reroll = Assistant.createReroll();
 
-            const conditionValue = await game.assistant.socket.setCondition(data.speaker.actor, "stunned", 1);
-            if (conditionValue) reroll.setCondition.push({ actor: data.speaker.actor.uuid, condition: "stunned", value: conditionValue });
+            const conditionValue = await game.assistant.socket.setCondition(
+                data.speaker.actor,
+                "stunned",
+                1
+            );
+            if (conditionValue)
+                reroll.setCondition.push({
+                    actor: data.speaker.actor.uuid,
+                    condition: "stunned",
+                    value: conditionValue
+                });
 
             return reroll;
-        },
+        }
     },
     {
         trigger: "saving-throw",
@@ -40,10 +49,19 @@ export const actions: Assistant.Action[] = [
             if (!data.origin) return;
             const reroll = Assistant.createReroll();
 
-            const conditionValue = await game.assistant.socket.setCondition(data.speaker.actor, "stunned", 3);
-            if (conditionValue) reroll.setCondition.push({ actor: data.speaker.actor.uuid, condition: "stunned", value: conditionValue });
+            const conditionValue = await game.assistant.socket.setCondition(
+                data.speaker.actor,
+                "stunned",
+                3
+            );
+            if (conditionValue)
+                reroll.setCondition.push({
+                    actor: data.speaker.actor.uuid,
+                    condition: "stunned",
+                    value: conditionValue
+                });
 
             return reroll;
-        },
-    },
+        }
+    }
 ];

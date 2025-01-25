@@ -24,7 +24,10 @@ export const actions: Assistant.Action[] = [
                     : null;
 
             if (effect) {
-                const traits = data.item.system.traits.value?.filter((t) => t in effect.constructor.validTraits) ?? [];
+                const traits =
+                    data.item.system.traits.value?.filter(
+                        (t) => t in effect.constructor.validTraits
+                    ) ?? [];
                 const effectSource: EffectSource = foundry.utils.mergeObject(effect.toObject(), {
                     _id: null,
                     system: {
@@ -34,16 +37,16 @@ export const actions: Assistant.Action[] = [
                                 token: data.speaker.token.uuid,
                                 item: data.item.uuid,
                                 spellcasting: null,
-                                rollOptions: data.item.getOriginData().rollOptions,
+                                rollOptions: data.item.getOriginData().rollOptions
                             },
                             target: {
                                 actor: data.speaker.actor.uuid,
-                                token: data.speaker.token.uuid,
+                                token: data.speaker.token.uuid
                             },
-                            roll: null,
+                            roll: null
                         },
-                        traits: { value: traits },
-                    },
+                        traits: { value: traits }
+                    }
                 });
                 await game.assistant.socket.createEmbeddedItem(data.speaker.actor, effectSource);
                 const parsedMessageContent = ((): HTMLElement => {
@@ -54,15 +57,19 @@ export const actions: Assistant.Action[] = [
 
                 const buttons = Utils.DOM.htmlQuery(parsedMessageContent, ".message-buttons");
                 if (buttons) {
-                    const span = Utils.DOM.createHTMLElement("span", { classes: ["effect-applied"] });
+                    const span = Utils.DOM.createHTMLElement("span", {
+                        classes: ["effect-applied"]
+                    });
                     const anchor = effect.toAnchor({ attrs: { draggable: "true" } });
                     const locKey = "PF2E.Item.Ability.SelfAppliedEffect.Applied";
                     const statement = game.i18n.format(locKey, { effect: anchor.outerHTML });
                     span.innerHTML = statement;
-                    Utils.DOM.htmlQuery(buttons, "button[data-action=apply-effect]")?.replaceWith(span);
+                    Utils.DOM.htmlQuery(buttons, "button[data-action=apply-effect]")?.replaceWith(
+                        span
+                    );
                     await data.chatMessage.update({ content: parsedMessageContent.innerHTML });
                 }
             }
-        },
-    },
+        }
+    }
 ];

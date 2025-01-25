@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { EffectSource } from "foundry-pf2e";
 
 export const path = ["Spells", "5th Rank", "Aberrant Form"];
 
@@ -19,24 +18,24 @@ export const actions: Assistant.Action[] = [
                     choices: [
                         {
                             label: "Chuul",
-                            value: "aberrant-form-chuul",
+                            value: "aberrant-form-chuul"
                         },
                         {
                             label: "Gogiteth",
-                            value: "aberrant-form-gogiteth",
+                            value: "aberrant-form-gogiteth"
                         },
                         {
                             label: "Gug",
-                            value: "aberrant-form-gug",
+                            value: "aberrant-form-gug"
                         },
                         {
                             label: "Otyugh",
-                            value: "aberrant-form-otyugh",
-                        },
-                    ],
-                },
+                            value: "aberrant-form-otyugh"
+                        }
+                    ]
+                }
             });
-        },
+        }
     },
     {
         trigger: "choice",
@@ -45,34 +44,12 @@ export const actions: Assistant.Action[] = [
             if (!data.speaker) return;
             if (!data.item?.isOfType("spell")) return;
 
-            game.assistant.socket.addEmbeddedItem(
+            await game.assistant.socket.addEffect(
                 data.speaker.actor,
-                "Compendium.pf2e.spell-effects.Item.xsy1yaCj0SVsn502",
-                {
-                    _id: null,
-                    system: {
-                        context: {
-                            origin: {
-                                actor: data.speaker.actor.uuid,
-                                token: data.speaker.token.uuid,
-                                item: data.item.uuid,
-                                spellcasting: {
-                                    attribute: {
-                                        type: data.item.attribute,
-                                        mod: data.item.spellcasting?.statistic?.attributeModifier?.value ?? 0,
-                                    },
-                                    tradition: data.item.spellcasting?.tradition,
-                                },
-                                rollOptions: data.chatMessage?.flags.pf2e.origin?.rollOptions,
-                            },
-                        },
-                        level: {
-                            value: data.item.rank,
-                        },
-                    },
-                } as EffectSource,
+                PF2E_SPELL_EFFECTS["spell-effect-aberrant-form-chuul"],
+                { origin: data.speaker, item: data.item, target: data.speaker }
             );
-        },
+        }
     },
     {
         trigger: "choice",
@@ -81,34 +58,12 @@ export const actions: Assistant.Action[] = [
             if (!data.speaker) return;
             if (!data.item?.isOfType("spell")) return;
 
-            game.assistant.socket.addEmbeddedItem(
+            await game.assistant.socket.addEffect(
                 data.speaker.actor,
-                "Compendium.pf2e.spell-effects.Item.gKGErrsS1WoAyWub",
-                {
-                    _id: null,
-                    system: {
-                        context: {
-                            origin: {
-                                actor: data.speaker.actor.uuid,
-                                token: data.speaker.token.uuid,
-                                item: data.item.uuid,
-                                spellcasting: {
-                                    attribute: {
-                                        type: data.item.attribute,
-                                        mod: data.item.spellcasting?.statistic?.attributeModifier?.value ?? 0,
-                                    },
-                                    tradition: data.item.spellcasting?.tradition,
-                                },
-                                rollOptions: data.chatMessage?.flags.pf2e.origin?.rollOptions,
-                            },
-                        },
-                        level: {
-                            value: data.item.rank,
-                        },
-                    },
-                } as EffectSource,
+                PF2E_SPELL_EFFECTS["spell-effect-aberrant-form-gogiteth"],
+                { origin: data.speaker, item: data.item, target: data.speaker }
             );
-        },
+        }
     },
     {
         trigger: "choice",
@@ -117,34 +72,12 @@ export const actions: Assistant.Action[] = [
             if (!data.speaker) return;
             if (!data.item?.isOfType("spell")) return;
 
-            game.assistant.socket.addEmbeddedItem(
+            await game.assistant.socket.addEffect(
                 data.speaker.actor,
-                "Compendium.pf2e.spell-effects.Item.sfJyQKmoxSRo6FyP",
-                {
-                    _id: null,
-                    system: {
-                        context: {
-                            origin: {
-                                actor: data.speaker.actor.uuid,
-                                token: data.speaker.token.uuid,
-                                item: data.item.uuid,
-                                spellcasting: {
-                                    attribute: {
-                                        type: data.item.attribute,
-                                        mod: data.item.spellcasting?.statistic?.attributeModifier?.value ?? 0,
-                                    },
-                                    tradition: data.item.spellcasting?.tradition,
-                                },
-                                rollOptions: data.chatMessage?.flags.pf2e.origin?.rollOptions,
-                            },
-                        },
-                        level: {
-                            value: data.item.rank,
-                        },
-                    },
-                } as EffectSource,
+                PF2E_SPELL_EFFECTS["spell-effect-aberrant-form-gug"],
+                { origin: data.speaker, item: data.item, target: data.speaker }
             );
-        },
+        }
     },
     {
         trigger: "choice",
@@ -153,33 +86,11 @@ export const actions: Assistant.Action[] = [
             if (!data.speaker) return;
             if (!data.item?.isOfType("spell")) return;
 
-            game.assistant.socket.addEmbeddedItem(
+            await game.assistant.socket.addEffect(
                 data.speaker.actor,
-                "Compendium.pf2e.spell-effects.Item.SjfDoeymtnYKoGUD",
-                {
-                    _id: null,
-                    system: {
-                        context: {
-                            origin: {
-                                actor: data.speaker.actor.uuid,
-                                token: data.speaker.token.uuid,
-                                item: data.item.uuid,
-                                spellcasting: {
-                                    attribute: {
-                                        type: data.item.attribute,
-                                        mod: data.item.spellcasting?.statistic?.attributeModifier?.value ?? 0,
-                                    },
-                                    tradition: data.item.spellcasting?.tradition,
-                                },
-                                rollOptions: data.chatMessage?.flags.pf2e.origin?.rollOptions,
-                            },
-                        },
-                        level: {
-                            value: data.item.rank,
-                        },
-                    },
-                } as EffectSource,
+                PF2E_SPELL_EFFECTS["spell-effect-aberrant-form-otyugh"],
+                { origin: data.speaker, item: data.item, target: data.speaker }
             );
-        },
-    },
+        }
+    }
 ];

@@ -1,142 +1,58 @@
 import { Assistant } from "assistant.ts";
-import { EffectSource } from "foundry-pf2e";
 
 export const path = ["Spells", "2nd Rank", "Darkvision"];
 
 export const actions: Assistant.Action[] = [
     {
         trigger: "action",
-        predicate: [
-            "item:slug:darkvision",
-            { "lt": ["item:rank", 3] }
-        ],
+        predicate: ["item:slug:darkvision", { lt: ["item:rank", 3] }],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             if (!data.item?.isOfType("spell")) return;
 
-            game.assistant.socket.addEmbeddedItem(
+            await game.assistant.socket.addEffect(
                 data.speaker.actor,
-                "Compendium.pf2e.spell-effects.Item.IXS15IQXYCZ8vsmX",
-                {
-                    _id: null,
-                    system: {
-                        context: {
-                            origin: {
-                                actor: data.speaker.actor.uuid,
-                                token: data.speaker.token.uuid,
-                                item: data.item.uuid,
-                                spellcasting: {
-                                    attribute: {
-                                        type: data.item.attribute,
-                                        mod: data.item.spellcasting?.statistic?.attributeModifier?.value ?? 0,
-                                    },
-                                    tradition: data.item.spellcasting?.tradition,
-                                },
-                                rollOptions: data.chatMessage?.flags.pf2e.origin?.rollOptions,
-                            },
-                            target: {
-                                actor: data.speaker.actor.uuid,
-                                token: data.speaker.token.uuid
-                            },
-                            roll: null,
-                        },
-                        level: {
-                            value: data.item.rank,
-                        },
-                    },
-                } as EffectSource,
+                PF2E_SPELL_EFFECTS["spell-effect-darkvision"],
+                { origin: data.speaker, item: data.item, target: data.speaker }
             );
-        },
+        }
     },
     {
         trigger: "action",
-        predicate: [
-            "item:slug:darkvision",
-            { "gte": ["item:rank", 3] },
-            { "lt": ["item:rank", 5] },
-        ],
+        predicate: ["item:slug:darkvision", { gte: ["item:rank", 3] }, { lt: ["item:rank", 5] }],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
-            if (!data.target) return;
             if (!data.item?.isOfType("spell")) return;
+            const target = data.target ?? data.speaker;
 
-            game.assistant.socket.addEmbeddedItem(
-                data.target.actor,
-                "Compendium.pf2e.spell-effects.Item.IXS15IQXYCZ8vsmX",
+            await game.assistant.socket.addEffect(
+                target.actor,
+                PF2E_SPELL_EFFECTS["spell-effect-darkvision"],
                 {
-                    _id: null,
-                    system: {
-                        context: {
-                            origin: {
-                                actor: data.speaker.actor.uuid,
-                                token: data.speaker.token.uuid,
-                                item: data.item.uuid,
-                                spellcasting: {
-                                    attribute: {
-                                        type: data.item.attribute,
-                                        mod: data.item.spellcasting?.statistic?.attributeModifier?.value ?? 0,
-                                    },
-                                    tradition: data.item.spellcasting?.tradition,
-                                },
-                                rollOptions: data.chatMessage?.flags.pf2e.origin?.rollOptions,
-                            },
-                            target: {
-                                actor: data.target.actor.uuid,
-                                token: data.target.token.uuid
-                            },
-                            roll: null,
-                        },
-                        level: {
-                            value: data.item.rank,
-                        },
-                    },
-                } as EffectSource,
+                    origin: data.speaker,
+                    item: data.item,
+                    target: target
+                }
             );
-        },
+        }
     },
     {
         trigger: "action",
-        predicate: [
-            "item:slug:darkvision",
-            { "gte": ["item:rank", 5] },
-        ],
+        predicate: ["item:slug:darkvision", { gte: ["item:rank", 5] }],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
-            if (!data.target) return;
             if (!data.item?.isOfType("spell")) return;
+            const target = data.target ?? data.speaker;
 
-            game.assistant.socket.addEmbeddedItem(
-                data.target.actor,
-                "Compendium.pf2e.spell-effects.Item.inNfTmtWpsxeGBI9",
+            await game.assistant.socket.addEffect(
+                target.actor,
+                PF2E_SPELL_EFFECTS["spell-effect-darkvision-24-hours"],
                 {
-                    _id: null,
-                    system: {
-                        context: {
-                            origin: {
-                                actor: data.speaker.actor.uuid,
-                                token: data.speaker.token.uuid,
-                                item: data.item.uuid,
-                                spellcasting: {
-                                    attribute: {
-                                        type: data.item.attribute,
-                                        mod: data.item.spellcasting?.statistic?.attributeModifier?.value ?? 0,
-                                    },
-                                    tradition: data.item.spellcasting?.tradition,
-                                },
-                                rollOptions: data.chatMessage?.flags.pf2e.origin?.rollOptions,
-                            },
-                            target: {
-                                actor: data.target.actor.uuid,
-                                token: data.target.token.uuid
-                            },
-                            roll: null,
-                        },
-                        level: {
-                            value: data.item.rank,
-                        },
-                    },
-                } as EffectSource,
+                    origin: data.speaker,
+                    item: data.item,
+                    target: target
+                }
             );
-        },
-    },
+        }
+    }
 ];

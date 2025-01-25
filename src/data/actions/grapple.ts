@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { EffectSource } from "foundry-pf2e";
 import { Utils } from "utils.ts";
 
 export const path = ["Actions", "Grapple"];
@@ -14,35 +13,20 @@ export const actions: Assistant.Action[] = [
             if (!Utils.Roll.isCheckRoll(data.roll)) return;
             const reroll = Assistant.createReroll();
 
-            const embeddedItem = await game.assistant.socket.addEmbeddedItem(
+            const grapple = await game.assistant.socket.addEffect(
                 data.target.actor,
-                "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.d9zE07hIacDCHuPw",
+                PF2E_ASSISTANT_EFFECTS["effect-grapple-critical-success"],
                 {
-                    _id: null,
-                    system: {
-                        context: {
-                            origin: {
-                                actor: data.speaker.actor.uuid,
-                                token: data.speaker.token.uuid,
-                                item: null,
-                                spellcasting: null,
-                            },
-                            target: {
-                                actor: data.target.actor.uuid,
-                                token: data.target.token.uuid,
-                            },
-                            roll: {
-                                degreeOfSuccess: data.roll?.degreeOfSuccess,
-                                total: data.roll?.total ?? null,
-                            },
-                        },
-                    },
-                } as EffectSource,
+                    origin: data.speaker,
+                    target: data.target,
+                    roll: data.roll
+                }
             );
 
-            if (embeddedItem) reroll.removeItem.push({ actor: data.target.actor.uuid, item: embeddedItem });
+            if (grapple) reroll.removeItem.push({ actor: data.target.actor.uuid, item: grapple });
+
             return reroll;
-        },
+        }
     },
     {
         trigger: "skill-check",
@@ -53,35 +37,20 @@ export const actions: Assistant.Action[] = [
             if (!Utils.Roll.isCheckRoll(data.roll)) return;
             const reroll = Assistant.createReroll();
 
-            const embeddedItem = await game.assistant.socket.addEmbeddedItem(
+            const grapple = await game.assistant.socket.addEffect(
                 data.target.actor,
-                "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.ptAsHbG8GbO1o8Wx",
+                PF2E_ASSISTANT_EFFECTS["effect-grapple-success"],
                 {
-                    _id: null,
-                    system: {
-                        context: {
-                            origin: {
-                                actor: data.speaker.actor.uuid,
-                                token: data.speaker.token.uuid,
-                                item: null,
-                                spellcasting: null,
-                            },
-                            target: {
-                                actor: data.target.actor.uuid,
-                                token: data.target.token.uuid,
-                            },
-                            roll: {
-                                degreeOfSuccess: data.roll?.degreeOfSuccess,
-                                total: data.roll?.total ?? null,
-                            },
-                        },
-                    },
-                } as EffectSource,
+                    origin: data.speaker,
+                    target: data.target,
+                    roll: data.roll
+                }
             );
 
-            if (embeddedItem) reroll.removeItem.push({ actor: data.target.actor.uuid, item: embeddedItem });
+            if (grapple) reroll.removeItem.push({ actor: data.target.actor.uuid, item: grapple });
+
             return reroll;
-        },
+        }
     },
     {
         trigger: "skill-check",
@@ -92,17 +61,24 @@ export const actions: Assistant.Action[] = [
             if (!Utils.Roll.isCheckRoll(data.roll)) return;
             const reroll = Assistant.createReroll();
 
-            const effects = Utils.Actor.getEffects(data.target.actor, {
-                slugs: ["effect-grapple-critical-success", "effect-grapple-success"],
-                origin: data.speaker.actor.uuid,
-                target: data.target.actor.uuid,
-            });
+            const effects = Utils.Actor.getEffects(
+                data.target.actor,
+                ["effect-grapple-critical-success", "effect-grapple-success"],
+                {
+                    origin: data.speaker.actor,
+                    target: data.target.actor
+                }
+            );
 
-            effects.forEach((effect) => reroll.addItem.push({ actor: effect.parent.uuid, item: effect.toObject() }));
-            effects.forEach(async (effect) => await game.assistant.socket.deleteEmbeddedItem(effect));
+            effects.forEach((effect) =>
+                reroll.addItem.push({ actor: effect.parent.uuid, item: effect.toObject() })
+            );
+            effects.forEach(
+                async (effect) => await game.assistant.socket.deleteEmbeddedItem(effect)
+            );
 
             return reroll;
-        },
+        }
     },
     {
         trigger: "skill-check",
@@ -113,14 +89,21 @@ export const actions: Assistant.Action[] = [
             if (!Utils.Roll.isCheckRoll(data.roll)) return;
             const reroll = Assistant.createReroll();
 
-            const effects = Utils.Actor.getEffects(data.target.actor, {
-                slugs: ["effect-grapple-critical-success", "effect-grapple-success"],
-                origin: data.speaker.actor.uuid,
-                target: data.target.actor.uuid,
-            });
+            const effects = Utils.Actor.getEffects(
+                data.target.actor,
+                ["effect-grapple-critical-success", "effect-grapple-success"],
+                {
+                    origin: data.speaker.actor,
+                    target: data.target.actor
+                }
+            );
 
-            effects.forEach((effect) => reroll.addItem.push({ actor: effect.parent.uuid, item: effect.toObject() }));
-            effects.forEach(async (effect) => await game.assistant.socket.deleteEmbeddedItem(effect));
+            effects.forEach((effect) =>
+                reroll.addItem.push({ actor: effect.parent.uuid, item: effect.toObject() })
+            );
+            effects.forEach(
+                async (effect) => await game.assistant.socket.deleteEmbeddedItem(effect)
+            );
 
             const createdPrompt = await game.assistant.socket.promptChoice(data.target.actor, {
                 speaker: { actor: data.target.actor, token: data.target.token },
@@ -130,19 +113,19 @@ export const actions: Assistant.Action[] = [
                     choices: [
                         {
                             label: "Grab Foe",
-                            value: "grapple-foe",
+                            value: "grapple-foe"
                         },
                         {
                             label: "Force Foe Prone",
-                            value: "prone-foe",
-                        },
-                    ],
-                },
+                            value: "prone-foe"
+                        }
+                    ]
+                }
             });
             if (createdPrompt) reroll.deleteChatMessage.push(createdPrompt);
 
             return reroll;
-        },
+        }
     },
     {
         trigger: "choice",
@@ -151,31 +134,15 @@ export const actions: Assistant.Action[] = [
             if (!data.speaker) return;
             if (!data.target) return;
 
-            game.assistant.socket.addEmbeddedItem(
+            await game.assistant.socket.addEffect(
                 data.target.actor,
-                "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.ptAsHbG8GbO1o8Wx",
+                PF2E_ASSISTANT_EFFECTS["effect-grapple-success"],
                 {
-                    _id: null,
-                    system: {
-                        context: {
-                            origin: {
-                                actor: data.speaker.actor.uuid,
-                                token: data.speaker.token.uuid,
-                                item: null,
-                                spellcasting: null,
-                            },
-                            target: {
-                                actor: data.target.actor.uuid,
-                                token: data.target.token.uuid,
-                            },
-                            roll: {
-                                degreeOfSuccess: 2,
-                            },
-                        },
-                    },
-                } as EffectSource,
+                    origin: data.speaker,
+                    target: data.target
+                }
             );
-        },
+        }
     },
     {
         trigger: "choice",
@@ -184,7 +151,9 @@ export const actions: Assistant.Action[] = [
             if (!data.speaker) return;
             if (!data.target) return;
 
-            game.assistant.socket.toggleCondition(data.target.actor, "prone", { active: true });
-        },
-    },
+            await game.assistant.socket.toggleCondition(data.target.actor, "prone", {
+                active: true
+            });
+        }
+    }
 ];

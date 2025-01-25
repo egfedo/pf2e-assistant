@@ -1,0 +1,24 @@
+name: General Feature Request
+description: File a feature request not linked to a specific action/feat/feature/spell/etc.
+title: "[Feature Request]: <Title>"
+labels: ["enhancement"]
+assignees:
+  - 7H3LaughingMan
+body:
+  - type: textarea
+    attributes:
+      label: Description
+      description: Please provide a detailed description of what you are requesting.
+    validations:
+      required: true
+  - type: checkboxes
+    attributes:
+      label: Confirmation
+      description: Please confirm the following.
+      options:
+        - label: I have confirmed that this is not related to a specific in-game action.
+          required: true
+        - label: I have confirmed that there is not an open feature request for this.
+          required: true
+        - label: I am not an idiot.
+          required: true

@@ -1,0 +1,1586 @@
+[
+    {
+        "slug": "effect-swarming-bites",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.0aRm0b55015XPj7Y"
+    },
+    {
+        "slug": "effect-consume-memories",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.0jAT2TJoqC1z6NCf"
+    },
+    {
+        "slug": "effect-oceanic-armor",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.0jo8CUzw5lWehNg3"
+    },
+    {
+        "slug": "effect-natures-infusion",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.0vJlwvjFghLdfvn5"
+    },
+    {
+        "slug": "effect-despair",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.1bOSJ2LbEC28aI9f"
+    },
+    {
+        "slug": "effect-resonance",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.1dwMVgBHfT4qO4OS"
+    },
+    {
+        "slug": "effect-absorb-memories",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.1jrrnMwsfO97LXi4"
+    },
+    {
+        "slug": "effect-darivans-bloodline-magic",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.1toVzNVJZx0RwG1v"
+    },
+    {
+        "slug": "effect-sacrifice-armor",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.1wCgwFLJByW8YKyM"
+    },
+    {
+        "slug": "effect-aspers-elemental-aura",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.1zvAMG6E9xTsY2Au"
+    },
+    {
+        "slug": "effect-manipulate-luck-good",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.2DlOfFoYLGSlfugH"
+    },
+    {
+        "slug": "effect-technology-control",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.2ccLQxmTlTPySnOR"
+    },
+    {
+        "slug": "effect-skin-net",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.2tOVDTjCZVx4uEjP"
+    },
+    {
+        "slug": "effect-harmonizing-aura-allies",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.31nnjHZqiaqaWBUi"
+    },
+    {
+        "slug": "effect-adaptive-strike",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.361dIAAhiZE0wg8v"
+    },
+    {
+        "slug": "effect-lantern-of-hope",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.37wbBpPBi5eBtNqM"
+    },
+    {
+        "slug": "effect-near-death-experience",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.3HaT8gBo8krdVniF"
+    },
+    {
+        "slug": "effect-aura-of-corruption",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.3MIZf42EhhKbIwLQ"
+    },
+    {
+        "slug": "effect-demon-touched-weapon",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.3PiE6Wka0ylO5V1x"
+    },
+    {
+        "slug": "effect-fanatical-frenzy",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.3Wtzyb0ZgkaC7vHY"
+    },
+    {
+        "slug": "effect-claim-corpse-skeletal",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.3np7EyJ8pyrVlpie"
+    },
+    {
+        "slug": "effect-aura-of-disquietude",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.3oF2DVXCmJ7VloBb"
+    },
+    {
+        "slug": "effect-primal-sink",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.45iy8x9ObfnkM97c"
+    },
+    {
+        "slug": "effect-feel-no-pain",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.4EeKKdeKIO8Wc4jf"
+    },
+    {
+        "slug": "effect-fed-by-wood",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.4FMFRlEC923CnLI7"
+    },
+    {
+        "slug": "effect-bittersweet-dreams",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.4FginnDcOt4wfedf"
+    },
+    {
+        "slug": "effect-blood-magic",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.4GAJHkurmZ1ttKDv"
+    },
+    {
+        "slug": "effect-undead-mastery",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.4M2K16mH4gndHAKa"
+    },
+    {
+        "slug": "effect-vomit-tar",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.4X4wCxkxr9rJdoT1"
+    },
+    {
+        "slug": "effect-bond-in-light",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.4bR1i7qzmSJ5No6O"
+    },
+    {
+        "slug": "effect-pry",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.4q8Of8NM9DC8kWyK"
+    },
+    {
+        "slug": "effect-bastion-aura",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.4tGVIEqwH4TQoF0O"
+    },
+    {
+        "slug": "effect-fold-form",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.513Y2ZSzvm8rijkp"
+    },
+    {
+        "slug": "effect-invoke-rune",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.5Gol6tr9MtL9eR1u"
+    },
+    {
+        "slug": "effect-caustic-drool",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.5M3RGpOuxizPM5Iy"
+    },
+    {
+        "slug": "effect-commanders-aura",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.5NSWRxAsJuvwyl0E"
+    },
+    {
+        "slug": "effect-mist-cloud",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.5SLAqVPYa0kliRDt"
+    },
+    {
+        "slug": "effect-conductive-downpour",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.5Todv39Zj63IyQCZ"
+    },
+    {
+        "slug": "effect-dirty-bomb",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.5ZK22sNW7o26aST0"
+    },
+    {
+        "slug": "effect-mangling-rend",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.5roCV7EbPx1G5xOd"
+    },
+    {
+        "slug": "effect-invigorating-passion",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.5syHrFGAE6lo0FUr"
+    },
+    {
+        "slug": "effect-death-gasp-etioling",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.5x0XpNftvx9uGbXt"
+    },
+    {
+        "slug": "effect-war-leader",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.64wrP9IbfHbj1mrA"
+    },
+    {
+        "slug": "effect-breach-the-abyss",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.68oispwYGLUUxjzt"
+    },
+    {
+        "slug": "effect-lurkers-glow-critical-failure",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.6E8bOkwFzFuQ3ZAw"
+    },
+    {
+        "slug": "effect-sting-of-the-lash",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.6GC248hHu3LdOAtS"
+    },
+    {
+        "slug": "effect-beacon-of-the-rowan-guard",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.6KebCyP5O7Gl9baR"
+    },
+    {
+        "slug": "effect-powder-burst",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.6OpwHz0f55wPawHI"
+    },
+    {
+        "slug": "effect-distracting-giggle",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.6TKI9EZKvusrPLHU"
+    },
+    {
+        "slug": "effect-destructive-vengeance",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.6pLYKcDawL5JUBkK"
+    },
+    {
+        "slug": "effect-graveknights-curse",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.6rnB7nK6J6zF4vea"
+    },
+    {
+        "slug": "effect-spray-toxic-oil",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.75B7z49jfQbWcSy9"
+    },
+    {
+        "slug": "effect-drain-life",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.7EBdAHY7y06Bk4un"
+    },
+    {
+        "slug": "effect-crush-chitin",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.7OJrBAEah6YFLzcK"
+    },
+    {
+        "slug": "effect-harrowing-misfortune",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.7PYhxmQxCD5kzMlw"
+    },
+    {
+        "slug": "effect-interpose",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.7PjBr9LsVB0Jjzyu"
+    },
+    {
+        "slug": "effect-volcanic-purge",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.7qoZauizAKfPIXeu"
+    },
+    {
+        "slug": "effect-viscous-breath",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.7txhqKeWFyTJhrEE"
+    },
+    {
+        "slug": "effect-focused-assault",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.7wDH2q0UcFdu2w58"
+    },
+    {
+        "slug": "effect-brutal-rally",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.7x0O2GqWBJiAk5PF"
+    },
+    {
+        "slug": "effect-countered-by-water",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.81XYZZ3H0GL8thdQ"
+    },
+    {
+        "slug": "effect-splintered-ground",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.86uYNsVXzYWxqLTV"
+    },
+    {
+        "slug": "effect-funereal-dirge",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.8ecPVgMeWDxc4jI4"
+    },
+    {
+        "slug": "effect-aura-of-smoke",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.8sXm5FX6qsMDYcba"
+    },
+    {
+        "slug": "effect-read-the-cards",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.8tCNgEE9OsQE9Xnh"
+    },
+    {
+        "slug": "effect-black-cat-curse",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.8z4Q84UlS8cMYVWu"
+    },
+    {
+        "slug": "effect-sinful-bite",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.9Qyu0HN5j6DO8Izc"
+    },
+    {
+        "slug": "effect-surgical-rend",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.9iL6CeZlmtIuAZOJ"
+    },
+    {
+        "slug": "effect-serpent-mode",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.9lQFQoORorhPMvmE"
+    },
+    {
+        "slug": "effect-noxious-smog",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.AL14FXSxpKyyfnOn"
+    },
+    {
+        "slug": "effect-guardians-aegis",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.AL7E03DYahfDhbcR"
+    },
+    {
+        "slug": "effect-susceptible-to-mockery-critical-failure",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.APJJCYdq4gNe0PF4"
+    },
+    {
+        "slug": "effect-song-of-freedom",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.ATeiWcHcjoTvIbkk"
+    },
+    {
+        "slug": "effect-disturbing-vision",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.AThOnEYzPO9ssYTB"
+    },
+    {
+        "slug": "effect-winters-bite",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.AxdLeZcz2VVdfvRo"
+    },
+    {
+        "slug": "effect-bravado-aversion",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.B7SJSaYOT1Uq4WLo"
+    },
+    {
+        "slug": "effect-bloom-regeneration",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.BKZS6xpUndRSnxK1"
+    },
+    {
+        "slug": "effect-uncanny-tinker",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.BTSstQAn4Xlm1PWV"
+    },
+    {
+        "slug": "effect-divine-weapon-chelaxian-cleric",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.BWmrfNcFfjvWh8SV"
+    },
+    {
+        "slug": "effect-brand-of-the-impenitent",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.BmAw66zEkifSvOtg"
+    },
+    {
+        "slug": "effect-defensive-slam",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.BsuYuFxE20mnRxbs"
+    },
+    {
+        "slug": "effect-crystalline-dust-form",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.C9nb9XbnQgbnXpTq"
+    },
+    {
+        "slug": "effect-pest-haven",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.CM14G9kLI97aIC5h"
+    },
+    {
+        "slug": "effect-curse-of-boiling-blood",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.CUgmb7g65vYNT2hn"
+    },
+    {
+        "slug": "effect-dire-warning",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.Cc5WsKkbOPOzopCY"
+    },
+    {
+        "slug": "effect-inspirational-presence",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.CiCG3r7SHYMJeUxz"
+    },
+    {
+        "slug": "effect-gleaming-armor",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.CoPPOCyfADvybcxV"
+    },
+    {
+        "slug": "effect-enraging-whistle",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.DPN3d9EZM9XqktWT"
+    },
+    {
+        "slug": "effect-mammoth-land-star-limbs",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.Dby3ecpqPheBrgnT"
+    },
+    {
+        "slug": "effect-leaders-command",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.Df5CnXnVHC1mVINK"
+    },
+    {
+        "slug": "effect-capture-magic",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.E0fYyli4aCVmevgJ"
+    },
+    {
+        "slug": "effect-distracting-frolic",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.E10qJgInN8Fx3yhW"
+    },
+    {
+        "slug": "effect-inspired-feast",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.EM0VP31B8CyjFD15"
+    },
+    {
+        "slug": "effect-field-of-slaughter-bleed",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.EhEXb0arrl2tc1HB"
+    },
+    {
+        "slug": "effect-bloodline-magic-stirvyn-banyan",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.EqdXFH2l0TyeOTQz"
+    },
+    {
+        "slug": "effect-defensive-slice",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.EwhWYPCNM8bIIYEI"
+    },
+    {
+        "slug": "effect-commanding-shout",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.F1JHRa75KBAjHOs1"
+    },
+    {
+        "slug": "effect-timely-advice",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.FISKjI7bal26AnyL"
+    },
+    {
+        "slug": "effect-fettering-fedora",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.FQrNDisx6noJnFaQ"
+    },
+    {
+        "slug": "effect-artificers-command",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.FjcvJWPFwkyy5vEk"
+    },
+    {
+        "slug": "effect-noxious-exhalation",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.G1pvduwOVRz4YFUF"
+    },
+    {
+        "slug": "effect-sea-chantey",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.GAuA1XLLO4vkF3OJ"
+    },
+    {
+        "slug": "effect-pulse-of-rage",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.GC5441z8i7N8swk1"
+    },
+    {
+        "slug": "effect-biggest-fan",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.GGxPoUu7tcASRY0G"
+    },
+    {
+        "slug": "effect-hallucinogenic-pollen-failure",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.GstmxSP75eKmHtCQ"
+    },
+    {
+        "slug": "effect-fiery-form",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.H99PJXU5cvJ4Oycm"
+    },
+    {
+        "slug": "effect-swig",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.HArljmKc2IR7rtfc"
+    },
+    {
+        "slug": "effect-prepare-fangs",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.HF2kOaqrjCkaZnK9"
+    },
+    {
+        "slug": "effect-hurtful-critique",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.HKyMZobjOsd6WFuo"
+    },
+    {
+        "slug": "effect-barbed-net",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.HafP5vrdGdoqoFMo"
+    },
+    {
+        "slug": "effect-foxs-wager",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.Hc0BhuLHaldO3vqG"
+    },
+    {
+        "slug": "effect-sepulchral-drain",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.HiLwUXS35dNZgnfC"
+    },
+    {
+        "slug": "effect-brimstone-blessing",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.Hmj1N4JkqQHIxb7i"
+    },
+    {
+        "slug": "effect-vent-energy",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.HpX3bGlOkSp1PeWg"
+    },
+    {
+        "slug": "effect-bark-orders",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.Hv4NO0HADyAAdS4F"
+    },
+    {
+        "slug": "effect-grasp-of-the-deep",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.HzPg4iUmO3F6tbK6"
+    },
+    {
+        "slug": "effect-conduct",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.I4C55X7AzchlF9FM"
+    },
+    {
+        "slug": "effect-aura-of-righteousness-planetar",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.I5Fd4TkIKRJT6WXf"
+    },
+    {
+        "slug": "effect-create-opening",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.IPfr5O7bTwJhRB5v"
+    },
+    {
+        "slug": "effect-bodyguards-defense",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.IfUod2VxNmZMGGPq"
+    },
+    {
+        "slug": "effect-pinpoint-weakness",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.Il7YN8zlu3dfw3IE"
+    },
+    {
+        "slug": "effect-reminder-of-doom",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.IrXb05caCTkP792e"
+    },
+    {
+        "slug": "effect-roast",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.IySCRGYxxLFDlIZI"
+    },
+    {
+        "slug": "effect-stoke-the-fervent-high-tormentor",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.J6EwMsXtXg30eaiB"
+    },
+    {
+        "slug": "effect-soul-lock-healing",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.JgJ4Iw8BvJ4tWkah"
+    },
+    {
+        "slug": "effect-swell",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.JlaO7fgm53Om1DxB"
+    },
+    {
+        "slug": "effect-divine-weapon",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.K1brBNe37GzceN0N"
+    },
+    {
+        "slug": "effect-stick-a-fork-in-it",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.K3r1lfbtCTf3dFhV"
+    },
+    {
+        "slug": "effect-circle-of-horns",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.KOLOAj7EYHkoNmlY"
+    },
+    {
+        "slug": "effect-cite-precedent",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.KdV8UtN8Af5oCerj"
+    },
+    {
+        "slug": "effect-phalanx-fighter",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.KjWPSJonzrZ8jv7X"
+    },
+    {
+        "slug": "effect-furious-possession",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.KpRRcLsAiIhJFE03"
+    },
+    {
+        "slug": "effect-challenge-foe",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.KuCh1JGrAidkKBav"
+    },
+    {
+        "slug": "effect-witchflame-failure",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.L7SiTshdimUPWfnB"
+    },
+    {
+        "slug": "effect-field-of-slaughter-keen",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.LFJppLCe4JAWrzPs"
+    },
+    {
+        "slug": "effect-blood-fury",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.LOLoQpaAp5cC0hbm"
+    },
+    {
+        "slug": "effect-absorb-shock",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.LWXdHlZQ2mttrp6R"
+    },
+    {
+        "slug": "effect-mutilating-bite",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.LgZx5xotO08JzhVc"
+    },
+    {
+        "slug": "effect-raise-guard",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.LohrnRXCQ0yVt8MK"
+    },
+    {
+        "slug": "effect-static-field",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.MGlENdqYCAwBkyXt"
+    },
+    {
+        "slug": "effect-inspire-defense-love-siktempora",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.MKC2ne315YiCUiWd"
+    },
+    {
+        "slug": "effect-inspired-recitation",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.MT5gxuuxBaN2RdYf"
+    },
+    {
+        "slug": "effect-witchflame-critical-failure",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.McawF8weCe7O81um"
+    },
+    {
+        "slug": "effect-gloom-aura",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.Me16QQGxpivWE2WW"
+    },
+    {
+        "slug": "effect-icy-protection",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.MwKc08dMPAFlAwrw"
+    },
+    {
+        "slug": "effect-unsettling-attention",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.MxArXuo8JRCm1hus"
+    },
+    {
+        "slug": "effect-lightning-powered",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.MxFFGo4WJpHh1e70"
+    },
+    {
+        "slug": "effect-musk",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.Mz1ihIHaHngdFhsA"
+    },
+    {
+        "slug": "effect-witchflame-success",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.NHwmrSyF0e8HUE3m"
+    },
+    {
+        "slug": "effect-remove-face",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.NLjzI7gt6djXSoXc"
+    },
+    {
+        "slug": "effect-deceptive-heads",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.NZ3MrmXkmfQuJp7S"
+    },
+    {
+        "slug": "effect-energy-ward",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.No817gKxdliCVQ9K"
+    },
+    {
+        "slug": "effect-fed-by-metal",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.OMJnZspk5YHai8yn"
+    },
+    {
+        "slug": "effect-aura-of-command",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.OxOMYmlPtjsEkRtY"
+    },
+    {
+        "slug": "effect-runic-resistance",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.P4bNtDVyknQwjTPo"
+    },
+    {
+        "slug": "effect-vicious-bluster",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.P8LdA05tK20u98MF"
+    },
+    {
+        "slug": "effect-ganzi-resistance",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.PFeGCDFOo2AjI6ib"
+    },
+    {
+        "slug": "effect-choose-weakness",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.PJxUFFeAvQJ4l52f"
+    },
+    {
+        "slug": "effect-aura-of-growth",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.PR0YzItS9R60X3Zc"
+    },
+    {
+        "slug": "effect-phytohydra-heads",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.PSRUF9Elf05KtgvF"
+    },
+    {
+        "slug": "effect-bark-orders-hold-sergeant",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.PvOaRjOnUrPkfbxe"
+    },
+    {
+        "slug": "effect-towering-stance-disbelieved",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.PxLWRiCbgpqOTLO9"
+    },
+    {
+        "slug": "effect-bogwid-fever",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.Q5pWxWsb4MIgfwxd"
+    },
+    {
+        "slug": "effect-sylvan-wine",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.QDs8t1U1IepzYlyi"
+    },
+    {
+        "slug": "effect-ectoplasmic-form-physical",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.QMcmhifNQOPguv2t"
+    },
+    {
+        "slug": "effect-wrath-of-fate",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.QSy3KaLI1AYTR7rP"
+    },
+    {
+        "slug": "effect-consume-organ",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.Qa0HP5uCuqh4vxBh"
+    },
+    {
+        "slug": "effect-curl-up",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.QjgLHIgRXIk3KAOY"
+    },
+    {
+        "slug": "effect-partial-armor",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.QlgqJXCQkpCzpJZG"
+    },
+    {
+        "slug": "effect-filth-wave",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.Qomp2EujVCbzJb4X"
+    },
+    {
+        "slug": "effect-aura-of-misfortune",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.QoneHsjZKtGHWlam"
+    },
+    {
+        "slug": "effect-devour-soul",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.QpG9AaYpXJzDEjZA"
+    },
+    {
+        "slug": "effect-tail-lash",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.QqC9xymSXSVunDgl"
+    },
+    {
+        "slug": "effect-riding-zogototaru",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.QzJv3TybABeCjwQc"
+    },
+    {
+        "slug": "effect-crush-of-hundreds",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.R8clbf7gtIlU3fIj"
+    },
+    {
+        "slug": "effect-hallucinogenic-pollen-critical-failure",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.RAKgTTFKc2YEbvrc"
+    },
+    {
+        "slug": "effect-rapid-evolution-energy-gland",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.RBfd5qwFkuKxNb57"
+    },
+    {
+        "slug": "effect-warning-hoot",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.RbyXD99lybxPK6yS"
+    },
+    {
+        "slug": "effect-aura-of-vitality",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.RjrsiEloXs7ze1TZ"
+    },
+    {
+        "slug": "effect-regression",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.Rn1aE4uvq30iiH0Y"
+    },
+    {
+        "slug": "effect-all-are-one",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.Rs64h4dLbYVWvFJe"
+    },
+    {
+        "slug": "effect-devour-soul-victim-level-15-or-higher",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.S38CM3hyr7DnsmRR"
+    },
+    {
+        "slug": "effect-revert-form",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.SA5f54t1dVah5fJm"
+    },
+    {
+        "slug": "effect-forgiven-defaced-naiad-queens-thanks",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.SLVQVIE1AjOc73jU"
+    },
+    {
+        "slug": "effect-curse-trespassers",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.SN2UAhPQROyvuj6c"
+    },
+    {
+        "slug": "effect-lunar-blaze",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.SWngTPtwUi0aOHcH"
+    },
+    {
+        "slug": "effect-blood-frenzy",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.ScZ8tlV5zS0Jwnqn"
+    },
+    {
+        "slug": "effect-soul-siphon",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.SjrM6XVTLySToS12"
+    },
+    {
+        "slug": "effect-kharnas-blessing",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.St2QzqQvKN0IaXxG"
+    },
+    {
+        "slug": "effect-overdrive-engine",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.SyLqg8SffVlA7fi7"
+    },
+    {
+        "slug": "effect-infectious-aura",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.T2tfacwoOozQfsIz"
+    },
+    {
+        "slug": "effect-under-command",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.T9wQ1LvsvPWTefQR"
+    },
+    {
+        "slug": "effect-instinctual-tinker-critical-success",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.TEzLEXBZzNCp6flg"
+    },
+    {
+        "slug": "effect-shadow-rapier",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.TSdrv1FmLHJnk9AD"
+    },
+    {
+        "slug": "effect-caustic-mucus",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.TbmkcfpKIs558skY"
+    },
+    {
+        "slug": "effect-stink-sap",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.TcgvhgpUkJFjVqBx"
+    },
+    {
+        "slug": "effect-no-quarter",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.TjRZbd52qWPjTbNT"
+    },
+    {
+        "slug": "effect-curse-of-the-baneful-venom",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.Tkf33YglEZcZ6gOT"
+    },
+    {
+        "slug": "effect-vicious-bluster-critical-success",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.Ty2YFxv2EDBOSjxl"
+    },
+    {
+        "slug": "effect-crushing-spirits",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.U05L8bPBcRHTtTB3"
+    },
+    {
+        "slug": "effect-electric-surge",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.ULyqs7fSvFG5mdK0"
+    },
+    {
+        "slug": "effect-crocodile-form",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.USMuxi8ACBJRUrdS"
+    },
+    {
+        "slug": "effect-curse-of-stone",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.UgoM6FBiZfc7KqCV"
+    },
+    {
+        "slug": "effect-guides-warning",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.UiISDbCjK6AUDsll"
+    },
+    {
+        "slug": "effect-totems-of-the-past",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.UuEUZU1fSUb23yOk"
+    },
+    {
+        "slug": "effect-waterlogged",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.UxNq9uo1GpDYTi5Z"
+    },
+    {
+        "slug": "effect-inspiring-presence",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.UxeoSRmPbD5hjiEi"
+    },
+    {
+        "slug": "effect-vulnerable-to-curved-space",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.V60TWjo1G1r5ZtPM"
+    },
+    {
+        "slug": "effect-curse-of-fire",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.VFIVdYmS3XTdd3hj"
+    },
+    {
+        "slug": "effect-gird-in-prayer",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.VLOvyQiZKeXppS2L"
+    },
+    {
+        "slug": "effect-bolster-torags-chosen",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.VOorielY4wCSfqOr"
+    },
+    {
+        "slug": "effect-heart-break",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.VdT6ALv7LnCNOjUq"
+    },
+    {
+        "slug": "effect-manipulate-luck-drusilla-good",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.WKQNGK6hd5O7uLC1"
+    },
+    {
+        "slug": "effect-aggravating-aura",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.WQsMv2KlURI9OKQQ"
+    },
+    {
+        "slug": "effect-jury-rig",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.WYJdjmvfm8J6sG6g"
+    },
+    {
+        "slug": "effect-bosuns-command",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.WfiaKdXNSxC3POcs"
+    },
+    {
+        "slug": "effect-ravenous-young",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.WzvOyycUlTsCXt3M"
+    },
+    {
+        "slug": "effect-howl-of-vengeful-fury",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.X1Q1uBiylZoJg3Co"
+    },
+    {
+        "slug": "effect-replenishment-of-war-endlo",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.XE2YhBMl7wc6nQAZ"
+    },
+    {
+        "slug": "effect-motivating-assault",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.XH49blfNDjkqnH5N"
+    },
+    {
+        "slug": "effect-slime-trap",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.XSAmMuMgMvdjdpHc"
+    },
+    {
+        "slug": "effect-air-of-sickness",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.XSXMGb5h4Um6YXiT"
+    },
+    {
+        "slug": "effect-haywire",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.XaYM6Td0yhx2POau"
+    },
+    {
+        "slug": "effect-living-shield",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.Xu7QxeF9S8ysJpuI"
+    },
+    {
+        "slug": "effect-rockfall-critical-failure",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.XyhPcnlkg3mGqEwT"
+    },
+    {
+        "slug": "effect-inspire-envoy",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.YDJnC3Bdc2GI6hX5"
+    },
+    {
+        "slug": "effect-snake-form",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.YIXeQFdrt0vPvmsW"
+    },
+    {
+        "slug": "effect-silent-aura",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.YKCsmlMgI0aS7joO"
+    },
+    {
+        "slug": "effect-consume-soul",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.YOH7YsdlsLzlMu69"
+    },
+    {
+        "slug": "effect-compelled-performance",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.Yb5rg3MEojIHQX8H"
+    },
+    {
+        "slug": "effect-battle-cry",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.Yqq4AkZ9lrm4CcID"
+    },
+    {
+        "slug": "effect-incendiary-dollop",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.Z6cOCgyVwTr5t3yQ"
+    },
+    {
+        "slug": "effect-bob",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.ZUwlipd2iB75RVbh"
+    },
+    {
+        "slug": "effect-bullys-rage",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.a0nJK2mKHwWYzpdG"
+    },
+    {
+        "slug": "effect-countered-by-fire",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.a4bZrBNL17zPjDiH"
+    },
+    {
+        "slug": "effect-blade-barrage",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.aMQxiTCdTxVcradv"
+    },
+    {
+        "slug": "effect-surge-forward",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.aMmQY3YvufchsXGT"
+    },
+    {
+        "slug": "effect-unsettled-aura",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.aOpSI5tApXF5xHCM"
+    },
+    {
+        "slug": "effect-claim-corpse-fleshy",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.auJ02rr1Jr88oD3Z"
+    },
+    {
+        "slug": "effect-lawbringer",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.bRYIsyDIsZNaLUEe"
+    },
+    {
+        "slug": "effect-grab-debris",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.bhSG1uP41ilmyzPu"
+    },
+    {
+        "slug": "effect-protean-anatomy",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.c6SiBB3mzV8lZUQr"
+    },
+    {
+        "slug": "spell-effect-courageous-anthem-kanya",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.cdrLQ9FvILde7pku"
+    },
+    {
+        "slug": "effect-blood-siphon-critical-failure",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.ceOkHxhJNTcvZkCy"
+    },
+    {
+        "slug": "effect-goblin-song",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.ckL8iL7BKBPteEVL"
+    },
+    {
+        "slug": "effect-droning-wings",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.cm31PGuq09sAzf3Y"
+    },
+    {
+        "slug": "effect-warded-casting",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.dLqBmcqrLnw0lPHK"
+    },
+    {
+        "slug": "effect-entangling-train",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.dNs30jfFOJqhjFW7"
+    },
+    {
+        "slug": "effect-moon-frenzy",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.dRe8n1nBWMIXd8jh"
+    },
+    {
+        "slug": "effect-guildmasters-lead",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.dVVc5MYx4G3QPHoa"
+    },
+    {
+        "slug": "effect-gift-of-hospitality",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.dVxUCuu1ZjfWkKtx"
+    },
+    {
+        "slug": "effect-song-of-the-skies",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.dZDpfgU63rXbBHpe"
+    },
+    {
+        "slug": "effect-grasping-tendrils",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.ddfrT7Q9Qe2IzKRB"
+    },
+    {
+        "slug": "effect-zinba-restoration",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.dslTaCkliOH5lZ6k"
+    },
+    {
+        "slug": "effect-divine-aegis",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.e4HoYakV7SvwvcrH"
+    },
+    {
+        "slug": "effect-stoke-the-fervent",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.eE3FEpjk2HdZDzSA"
+    },
+    {
+        "slug": "effect-glowing-spores",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.eZL4B1P4H8hr1CAn"
+    },
+    {
+        "slug": "effect-near-death-experience-healing",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.ejnUAEdbvj6uPuNJ"
+    },
+    {
+        "slug": "effect-tenacious-flames",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.ekpt4mFw1kJkZ2pK"
+    },
+    {
+        "slug": "effect-harrow-burst",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.eqzDPseLIfWJMxAR"
+    },
+    {
+        "slug": "effect-elemental-field",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.f8HuM5Ar6SSHNHBx"
+    },
+    {
+        "slug": "effect-sandstorm",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.f8rncEs06bqcn3LZ"
+    },
+    {
+        "slug": "effect-drain-luck",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.fGI77mVeCQKBAP0f"
+    },
+    {
+        "slug": "effect-bloodletting",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.fLaHBJFV02m25j4c"
+    },
+    {
+        "slug": "effect-ensnare",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.fPhbDSTPuT01f0Kn"
+    },
+    {
+        "slug": "effect-sticky-spores",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.g4CRjb2zS1pkVDbk"
+    },
+    {
+        "slug": "effect-profane-gift",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.g5Yen1FhEMCzCJkv"
+    },
+    {
+        "slug": "effect-emotion-vulnerability",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.gFsYqrYJk7ZPvygY"
+    },
+    {
+        "slug": "effect-bully-the-departed",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.gHczZWA34WQx4px0"
+    },
+    {
+        "slug": "effect-pollution-infusion",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.gORyINQLvplfthlm"
+    },
+    {
+        "slug": "effect-impaling-chain",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.gjo8LR6uOhDM5W7L"
+    },
+    {
+        "slug": "effect-ancestral-response",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.gxBjyPaYDdhjAImf"
+    },
+    {
+        "slug": "effect-putrid-blast",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.hQsqr2sRPp9rNm4U"
+    },
+    {
+        "slug": "effect-splintered-ground-critical-failure",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.hc7kR6quUE9ryRyj"
+    },
+    {
+        "slug": "effect-lantern-of-hope-gestalt",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.hdsl0XexqEL2emE3"
+    },
+    {
+        "slug": "effect-wrath-of-spurned-hospitality",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.he0QiJSgJWNeIoxt"
+    },
+    {
+        "slug": "effect-light-of-truth",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.hekJBWsLxkt8zd7x"
+    },
+    {
+        "slug": "effect-song-of-the-swamp",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.hftFxE8JGJGzXAtU"
+    },
+    {
+        "slug": "effect-void-shroud",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.i3942RucZD9OHbAE"
+    },
+    {
+        "slug": "effect-feed",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.i4S6h5c1KK4FLq6w"
+    },
+    {
+        "slug": "effect-commanding-aura-quara",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.iDLu83vhWoNIE7xt"
+    },
+    {
+        "slug": "effect-pray-to-the-rotting-god",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.iPk9Pphkq4Zuzvuj"
+    },
+    {
+        "slug": "effect-nymph-queens-inspiration",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.iSyyR4QVOaY6mxtg"
+    },
+    {
+        "slug": "effect-viscous-trap",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.iWLAcND0iyW4NUZm"
+    },
+    {
+        "slug": "effect-share-pain",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.iXVsVqttUGlfdIHS"
+    },
+    {
+        "slug": "effect-infernal-wound",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.inLBsuLRE5xmVHdn"
+    },
+    {
+        "slug": "effect-flammable",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.insc09aslLptd0dN"
+    },
+    {
+        "slug": "effect-spotlight",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.irSKPLF5oLfnqUNW"
+    },
+    {
+        "slug": "effect-exalt-the-little-ones",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.iscmAwLoNKLQ2vnU"
+    },
+    {
+        "slug": "effect-parry-dance",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.itVZwwvaXYN2zOR8"
+    },
+    {
+        "slug": "effect-despoiler",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.itdoXvcDo8wwmTME"
+    },
+    {
+        "slug": "effect-rapid-evolution-husk",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.iuy6AA6sQZUZkN9X"
+    },
+    {
+        "slug": "effect-entangling-slime",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.jQmfZcPD6xVYx5nb"
+    },
+    {
+        "slug": "effect-chaotic-spawning",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.jhPkOUdLPSQ46vkU"
+    },
+    {
+        "slug": "effect-feast-on-illness",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.jjSMbM3FCI3gLXCz"
+    },
+    {
+        "slug": "effect-shackling-cold",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.josVmrDMWcTinHFK"
+    },
+    {
+        "slug": "effect-blasphemous-utterances",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.jrfuplUEq3PIo6j1"
+    },
+    {
+        "slug": "effect-transfer-protection",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.kHRbOHKEedKaBFH5"
+    },
+    {
+        "slug": "effect-metallify",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.kL6L3eXJfnUaLpVx"
+    },
+    {
+        "slug": "effect-spiritual-warden",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.kOGRUuyK04MjLc3m"
+    },
+    {
+        "slug": "effect-call-to-action",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.kdZEZ6iBYQPVGzYD"
+    },
+    {
+        "slug": "effect-devils-cursed-breath",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.khL2A1slsnufpJp4"
+    },
+    {
+        "slug": "effect-necrotic-field",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.kjP0J97hhoIhbF3M"
+    },
+    {
+        "slug": "effect-impersonated-ability",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.kkP0tagXmAYuSH3u"
+    },
+    {
+        "slug": "effect-form-a-phalanx",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.l62iAFL3EO7wSsLL"
+    },
+    {
+        "slug": "effect-consumed-by-bloodlust",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.l9sm9MVVzWlx010m"
+    },
+    {
+        "slug": "effect-wild-shape-oaksteward",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.lBpprC8VD4GRzTtg"
+    },
+    {
+        "slug": "effect-fetid-screech-critical-failure",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.lIEc8Lx3ROm17Dqa"
+    },
+    {
+        "slug": "effect-draconic-breath-weapon-aura",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.lJGAJF9QiXCOPd2I"
+    },
+    {
+        "slug": "effect-dust-eternal",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.lR49i3wO6TxJAK9o"
+    },
+    {
+        "slug": "effect-dueling-dance",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.lWciVCnKhwp8cF6E"
+    },
+    {
+        "slug": "effect-hope-vulnerability",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.loZq6FcqwFXedI6W"
+    },
+    {
+        "slug": "effect-lost-plates",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.lt2t24E4hiByHhi3"
+    },
+    {
+        "slug": "effect-death-gasp",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.lyeRL7khixdlJsaf"
+    },
+    {
+        "slug": "effect-fetid-fumes",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.mD44D9I05NQaXiED"
+    },
+    {
+        "slug": "effect-hunted-fear",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.mFnSXW6HTwS7Iu1k"
+    },
+    {
+        "slug": "effect-discerning-aura",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.mo4IRyv7GGRBJihU"
+    },
+    {
+        "slug": "effect-smash-kneecaps",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.n96DB8vpPr1Fu6GZ"
+    },
+    {
+        "slug": "effect-ironblood-stance",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.nAHRwy8agswzdgFh"
+    },
+    {
+        "slug": "effect-sanguine-rain",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.nP1KEogCiRdVq0UB"
+    },
+    {
+        "slug": "effect-paired-spikes",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.nW9GbEP1NqFodqE0"
+    },
+    {
+        "slug": "effect-rope-snare",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.o0zqsH5kYopRanav"
+    },
+    {
+        "slug": "effect-wolf-shape",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.o6ZI01zZBQDASuaw"
+    },
+    {
+        "slug": "effect-soul-crush-healing",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.oKNFSWJW2jat8Dli"
+    },
+    {
+        "slug": "effect-blood-wake",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.oORIapm28xioxPDp"
+    },
+    {
+        "slug": "effect-utter-despair",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.ob00D61F0c4PIvj1"
+    },
+    {
+        "slug": "effect-hamstring",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.otUESSH8BDdPKHtb"
+    },
+    {
+        "slug": "effect-defensive-assault",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.pMPe01GWvfwcYwUR"
+    },
+    {
+        "slug": "effect-calming-bioluminescence",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.pfG1S7yShwkHT9e0"
+    },
+    {
+        "slug": "effect-call-to-halt-success",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.pvA97TXnq7wCbXp6"
+    },
+    {
+        "slug": "effect-hurl-net",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.q2D1QBalqBQfKzTc"
+    },
+    {
+        "slug": "effect-hypnotic-stare",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.qFDiWpzk8cuwQGyH"
+    },
+    {
+        "slug": "effect-praise-adachros",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.qddahkHks1iLZ4sM"
+    },
+    {
+        "slug": "effect-toxic-effluvium",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.qecXxM3ERv8MvTPh"
+    },
+    {
+        "slug": "effect-nanite-surge-glow",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.rRgVlTHiNEJ86T7N"
+    },
+    {
+        "slug": "effect-read-the-stars-critical-success",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.rbgXQqXbpaQCcNNx"
+    },
+    {
+        "slug": "effect-whirlwind-form",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.rpxdrOlzY2SOtMWB"
+    },
+    {
+        "slug": "effect-dirty-bomb-critical-failure",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.ryY6fdqpC5Ztnagd"
+    },
+    {
+        "slug": "effect-aura-of-protection-solar",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.s16XQpDz2HNzR9BB"
+    },
+    {
+        "slug": "effect-chemical-fertilizer",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.s4XFUgK8UgKnpKrX"
+    },
+    {
+        "slug": "effect-lost-red-cap",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.s5mS7CyE0oOYlecv"
+    },
+    {
+        "slug": "effect-electricity-absorption",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.s6qaLMRWaByX6t5T"
+    },
+    {
+        "slug": "effect-curse-of-frost",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.sI73mEP9wZRvMpWw"
+    },
+    {
+        "slug": "effect-fan-bolt",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.seWuw1GMSm3kzCWV"
+    },
+    {
+        "slug": "effect-inspiring-display",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.smk2cD6M3dsEPBCY"
+    },
+    {
+        "slug": "effect-assimilate-lava",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.t8Yxrx3XgjS78Hxt"
+    },
+    {
+        "slug": "effect-pain-frenzy",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.tJx9B2e3AET6PbJD"
+    },
+    {
+        "slug": "effect-harmonizing-aura-enemies",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.tSF9z5VTeevxoww3"
+    },
+    {
+        "slug": "effect-inspiring-presence-empyreal-dragon",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.tgF8r8uXyw3IFWBp"
+    },
+    {
+        "slug": "effect-my-turn",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.tvVFra3BqfyATahM"
+    },
+    {
+        "slug": "effect-bloodline-magic",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.tvybMInVm415jA3p"
+    },
+    {
+        "slug": "effect-take-them-down",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.u1Z7i2RyL6Sd9OVU"
+    },
+    {
+        "slug": "effect-poison-frenzy",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.u2z1BgpZsxl7Zc2z"
+    },
+    {
+        "slug": "effect-xulgath-stench",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.uB3CVn3momZO9h0L"
+    },
+    {
+        "slug": "effect-inspire-courage-love-siktempora",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.uFi8GhPkYY3ti40N"
+    },
+    {
+        "slug": "effect-hydra-heads",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.uZJOdounIHaFDC1t"
+    },
+    {
+        "slug": "effect-alchemical-crossbow",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.ucAwSIZsGrpBLg6G"
+    },
+    {
+        "slug": "effect-guiding-words",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.uqjx1bwYduHwwC7d"
+    },
+    {
+        "slug": "effect-sylvan-wine-horned-hunter",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.us3KiMrcGM8e6ri3"
+    },
+    {
+        "slug": "effect-call-to-blood",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.v54mj5jknAynlCM9"
+    },
+    {
+        "slug": "effect-mortal-reflection",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.vUFIbQ74jz22rOXw"
+    },
+    {
+        "slug": "effect-deceitful-feast-failure",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.vc3AOrJpacJ7T1hO"
+    },
+    {
+        "slug": "effect-dero-medicine",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.vqKBIflXiAmCx5QQ"
+    },
+    {
+        "slug": "effect-rockfall-failure",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.vuaungtl9VCBoHDK"
+    },
+    {
+        "slug": "effect-active-mutagen",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.wE4S9lwOhtaRAm9n"
+    },
+    {
+        "slug": "effect-psychic-daze",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.wEFRo8enunRLFsVE"
+    },
+    {
+        "slug": "effect-ancestral-journey",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.wHQZO70bSECtSUZn"
+    },
+    {
+        "slug": "effect-fiddle",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.wJsOZsYI2ZUVcGxc"
+    },
+    {
+        "slug": "effect-drink-emotions",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.wL4QI1h4YvdHoOuG"
+    },
+    {
+        "slug": "effect-blood-soak",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.wPIGBcpCqCWgrCiq"
+    },
+    {
+        "slug": "effect-ghonhatine-feed",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.wPW6kVscJgBLPVKZ"
+    },
+    {
+        "slug": "effect-stench",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.wX9L6fbqVMLP05hn"
+    },
+    {
+        "slug": "effect-scraping-clamor",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.wcNGbhwn3AuamtsX"
+    },
+    {
+        "slug": "effect-gluttons-feast",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.ww0Wu8majCej2tVF"
+    },
+    {
+        "slug": "effect-field-of-undeath",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.x8e0MXrPgdRYQqBm"
+    },
+    {
+        "slug": "effect-wallow",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.x95cRqu4JjgCO0xQ"
+    },
+    {
+        "slug": "effect-aura-of-good-cheer",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.xOD3ufpzA8H7W4sP"
+    },
+    {
+        "slug": "effect-rotting-stench",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.xXfzzNaBOqDUbYBD"
+    },
+    {
+        "slug": "effect-overtake-soul",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.xiOi7btey4AS6jhe"
+    },
+    {
+        "slug": "effect-putrid-stench",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.xmES7HVxM7L3j1EN"
+    },
+    {
+        "slug": "effect-field-of-past-regrets",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.y6fibVDs9QF2vbwu"
+    },
+    {
+        "slug": "effect-pfs-level-bump-npc",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.yDut6pczQVRJqt2L"
+    },
+    {
+        "slug": "effect-fortunes-favor",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.yQd2Yoht8libCMCv"
+    },
+    {
+        "slug": "effect-activate-defenses",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.ya8r3IdzQ7QGNH8N"
+    },
+    {
+        "slug": "effect-alchemical-strike",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.yrenENpzVgBKsnNi"
+    },
+    {
+        "slug": "effect-unluck-aura",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.yxgHWK2rTZKKAzDN"
+    },
+    {
+        "slug": "effect-chug",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.zBbmuudbWY8FaOwZ"
+    },
+    {
+        "slug": "effect-phantasmagoric-fog",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.zGWc4q0rXW9eMoYT"
+    },
+    {
+        "slug": "effect-vengeful-fibers",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.zNOomUXHZHcc1PWD"
+    },
+    {
+        "slug": "effect-cat-siths-mark",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.zTrZozbWDd1A5L5S"
+    },
+    {
+        "slug": "effect-sixfold-flurry",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.zXIpCkTtFRkhwI4x"
+    },
+    {
+        "slug": "effect-ill-omen",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.zXzXDlh0HkyPJu8f"
+    },
+    {
+        "slug": "effect-downcast",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.zjVBG6uDd4WKWeKU"
+    },
+    {
+        "slug": "effect-share-defenses",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.zqgntQXIEbulBgZX"
+    },
+    {
+        "slug": "effect-pilgrims-ward",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.zy4PDhXnaZh6e6iT"
+    },
+    {
+        "slug": "effect-manipulate-luck-bad",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.zzdOof9hHUf9s13H"
+    }
+]

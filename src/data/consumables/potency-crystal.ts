@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { EffectSource } from "foundry-pf2e";
 
 export const path = ["Consumables", "Potency Crystal"];
 
@@ -10,82 +9,49 @@ export const actions: Assistant.Action[] = [
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
 
-            game.assistant.socket.addEmbeddedItem(
+            await game.assistant.socket.addEffect(
                 data.speaker.actor,
-                "Compendium.pf2e.equipment-effects.Item.R5ugeFK3MPwkbv0s",
+                PF2E_EQUIPMENT_EFFECTS["effect-potency-crystal"],
                 {
-                    _id: null,
-                    system: {
-                        context: {
-                            origin: {
-                                actor: data.speaker.actor.uuid,
-                                token: data.speaker.token.uuid,
-                                item: data.item?.uuid ?? null,
-                                spellcasting: null,
-                                rollOptions: data.item?.getOriginData().rollOptions ?? [],
-                            },
-                            target: null,
-                            roll: null,
-                        },
-                    },
-                } as EffectSource,
+                    origin: data.speaker,
+                    item: data.item,
+                    target: data.speaker
+                }
             );
-        },
+        }
     },
     {
         trigger: "consume",
-        predicate: ["item:slug:insight-coffee-greater"],
+        predicate: ["item:slug:potency-crystal-greater"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
 
-            game.assistant.socket.addEmbeddedItem(
+            await game.assistant.socket.addEffect(
                 data.speaker.actor,
-                "Compendium.pf2e.equipment-effects.Item.Acox3S5hpJAqq1jc",
+                PF2E_EQUIPMENT_EFFECTS["effect-potency-crystal-greater"],
                 {
-                    _id: null,
-                    system: {
-                        context: {
-                            origin: {
-                                actor: data.speaker.actor.uuid,
-                                token: data.speaker.token.uuid,
-                                item: data.item?.uuid ?? null,
-                                spellcasting: null,
-                                rollOptions: data.item?.getOriginData().rollOptions ?? [],
-                            },
-                            target: null,
-                            roll: null,
-                        },
-                    },
-                } as EffectSource,
+                    origin: data.speaker,
+                    item: data.item,
+                    target: data.speaker
+                }
             );
-        },
+        }
     },
     {
         trigger: "consume",
-        predicate: ["item:slug:insight-coffee-major"],
+        predicate: ["item:slug:potency-crystal-major"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
 
-            game.assistant.socket.addEmbeddedItem(
+            await game.assistant.socket.addEffect(
                 data.speaker.actor,
-                "Compendium.pf2e.equipment-effects.Item.VMVrJA4SkyOfklmj",
+                PF2E_EQUIPMENT_EFFECTS["effect-potency-crystal-major"],
                 {
-                    _id: null,
-                    system: {
-                        context: {
-                            origin: {
-                                actor: data.speaker.actor.uuid,
-                                token: data.speaker.token.uuid,
-                                item: data.item?.uuid ?? null,
-                                spellcasting: null,
-                                rollOptions: data.item?.getOriginData().rollOptions ?? [],
-                            },
-                            target: null,
-                            roll: null,
-                        },
-                    },
-                } as EffectSource,
+                    origin: data.speaker,
+                    item: data.item,
+                    target: data.speaker
+                }
             );
-        },
-    },
+        }
+    }
 ];

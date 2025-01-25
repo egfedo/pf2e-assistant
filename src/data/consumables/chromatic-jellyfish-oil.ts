@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { EffectSource } from "foundry-pf2e";
 
 export const path = ["Consumables", "Chromatic Jellyfish Oil"];
 
@@ -11,30 +10,23 @@ export const actions: Assistant.Action[] = [
                 or: [
                     "item:slug:chromatic-jellyfish-oil-lesser",
                     "item:slug:chromatic-jellyfish-oil-moderate",
-                    "item:slug:chromatic-jellyfish-oil-greater",
-                ],
-            },
+                    "item:slug:chromatic-jellyfish-oil-greater"
+                ]
+            }
         ],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
-            const target = data.target?.actor ?? data.speaker.actor;
+            const target = data.target ?? data.speaker;
 
-            game.assistant.socket.addEmbeddedItem(target, "Compendium.pf2e.equipment-effects.Item.YUj20zJ4bNAoc0nJ", {
-                _id: null,
-                system: {
-                    context: {
-                        origin: {
-                            actor: data.speaker.actor.uuid,
-                            token: data.speaker.token.uuid,
-                            item: data.item?.uuid ?? null,
-                            spellcasting: null,
-                            rollOptions: data.item?.getOriginData().rollOptions ?? [],
-                        },
-                        target: null,
-                        roll: null,
-                    },
-                },
-            } as EffectSource);
-        },
-    },
+            await game.assistant.socket.addEffect(
+                target.actor,
+                PF2E_EQUIPMENT_EFFECTS["effect-chromatic-jellyfish-oil"],
+                {
+                    origin: data.speaker,
+                    item: data.item,
+                    target: target
+                }
+            );
+        }
+    }
 ];
