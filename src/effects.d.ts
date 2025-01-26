@@ -2,24 +2,25 @@ export {};
 
 declare global {
     export enum PF2E_ASSISTANT_EFFECTS {
-        "effect-demoralize-immunity" = "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.1Yt5WmhS76y4hibk",
-        "effect-mistform-elixir-greater" = "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.2bApaOOOWXqQAgy2",
-        "effect-scoundrel-feint-success" = "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.9YHTscLqlt0zlTIk",
-        "effect-feint-critical-failure" = "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.9f4YzsgcAs3A5Xra",
-        "effect-critical-specialization-bow" = "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.Cs5YffU6KGMK1Ikw",
-        "effect-mistform-elixir-lesser" = "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.SZfUd4SIABrmaZ4T",
-        "effect-feint-critical-success" = "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.TJzFIRf9S5P91qgf",
-        "effect-scoundrel-feint-critical-success" = "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.W2ebaKgpulsOWfNs",
-        "effect-tumble-behind" = "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.aUzN2fOd33tZXa5s",
-        "effect-feint-success" = "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.csAEJ72jCsHuHlLO",
-        "effect-grapple-critical-success" = "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.d9zE07hIacDCHuPw",
-        "effect-disarm-critical-failure" = "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.ec8ymUmUO58KmDLg",
-        "effect-critical-specialization-brawling" = "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.iSaDovIXZCJNPOOj",
-        "effect-critical-specialization-sword" = "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.pnrI5GLh87DikArY",
-        "effect-grapple-success" = "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.ptAsHbG8GbO1o8Wx",
-        "effect-mistform-elixir-moderate" = "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.qakQkye2t3b8ELPq",
-        "effect-scoundrel-off-guard" = "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.rnIPEOcpNuDrWgxS",
-        "effect-critical-specialization-spear" = "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.s8oIiJnrJuWvDIeM"
+        "effect-demoralize-immunity" = "Compendium.pf2e-assistant.effects.Item.1Yt5WmhS76y4hibk",
+        "effect-mistform-elixir-greater" = "Compendium.pf2e-assistant.effects.Item.2bApaOOOWXqQAgy2",
+        "effect-scoundrel-feint-success" = "Compendium.pf2e-assistant.effects.Item.9YHTscLqlt0zlTIk",
+        "effect-feint-critical-failure" = "Compendium.pf2e-assistant.effects.Item.9f4YzsgcAs3A5Xra",
+        "effect-critical-specialization-bow" = "Compendium.pf2e-assistant.effects.Item.Cs5YffU6KGMK1Ikw",
+        "effect-mistform-elixir-lesser" = "Compendium.pf2e-assistant.effects.Item.SZfUd4SIABrmaZ4T",
+        "effect-feint-critical-success" = "Compendium.pf2e-assistant.effects.Item.TJzFIRf9S5P91qgf",
+        "effect-scoundrel-feint-critical-success" = "Compendium.pf2e-assistant.effects.Item.W2ebaKgpulsOWfNs",
+        "effect-tumble-behind" = "Compendium.pf2e-assistant.effects.Item.aUzN2fOd33tZXa5s",
+        "effect-feint-success" = "Compendium.pf2e-assistant.effects.Item.csAEJ72jCsHuHlLO",
+        "effect-grapple-critical-success" = "Compendium.pf2e-assistant.effects.Item.d9zE07hIacDCHuPw",
+        "effect-disarm-critical-failure" = "Compendium.pf2e-assistant.effects.Item.ec8ymUmUO58KmDLg",
+        "effect-bottled-lightning" = "Compendium.pf2e-assistant.effects.Item.hAYjaIzH8onPVYfz",
+        "effect-critical-specialization-brawling" = "Compendium.pf2e-assistant.effects.Item.iSaDovIXZCJNPOOj",
+        "effect-critical-specialization-sword" = "Compendium.pf2e-assistant.effects.Item.pnrI5GLh87DikArY",
+        "effect-grapple-success" = "Compendium.pf2e-assistant.effects.Item.ptAsHbG8GbO1o8Wx",
+        "effect-mistform-elixir-moderate" = "Compendium.pf2e-assistant.effects.Item.qakQkye2t3b8ELPq",
+        "effect-scoundrel-off-guard" = "Compendium.pf2e-assistant.effects.Item.rnIPEOcpNuDrWgxS",
+        "effect-critical-specialization-spear" = "Compendium.pf2e-assistant.effects.Item.s8oIiJnrJuWvDIeM"
     }
 
     export enum PF2E_BESTIARY_EFFECTS {

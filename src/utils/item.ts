@@ -1,4 +1,4 @@
-import { ActorPF2e, ItemPF2e } from "foundry-pf2e";
+import { ActorPF2e, EffectTrait, ItemPF2e, ItemTrait } from "foundry-pf2e";
 
 export async function getItem(itemUuid: ItemUUID): Promise<ItemPF2e | null> {
     let item: Maybe<ItemPF2e> = await fromUuid<ItemPF2e>(itemUuid);
@@ -11,4 +11,8 @@ export async function getItem(itemUuid: ItemUUID): Promise<ItemPF2e | null> {
     }
 
     return item ?? null;
+}
+
+export function isEffectTrait(trait: ItemTrait): trait is EffectTrait {
+    return trait in CONFIG.PF2E.effectTraits;
 }

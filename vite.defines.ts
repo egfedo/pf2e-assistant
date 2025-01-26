@@ -1,57 +1,60 @@
 const define = {
     'PF2E_ASSISTANT_EFFECTS["effect-demoralize-immunity"]': JSON.stringify(
-        "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.1Yt5WmhS76y4hibk"
+        "Compendium.pf2e-assistant.effects.Item.1Yt5WmhS76y4hibk"
     ),
     'PF2E_ASSISTANT_EFFECTS["effect-mistform-elixir-greater"]': JSON.stringify(
-        "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.2bApaOOOWXqQAgy2"
+        "Compendium.pf2e-assistant.effects.Item.2bApaOOOWXqQAgy2"
     ),
     'PF2E_ASSISTANT_EFFECTS["effect-scoundrel-feint-success"]': JSON.stringify(
-        "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.9YHTscLqlt0zlTIk"
+        "Compendium.pf2e-assistant.effects.Item.9YHTscLqlt0zlTIk"
     ),
     'PF2E_ASSISTANT_EFFECTS["effect-feint-critical-failure"]': JSON.stringify(
-        "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.9f4YzsgcAs3A5Xra"
+        "Compendium.pf2e-assistant.effects.Item.9f4YzsgcAs3A5Xra"
     ),
     'PF2E_ASSISTANT_EFFECTS["effect-critical-specialization-bow"]': JSON.stringify(
-        "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.Cs5YffU6KGMK1Ikw"
+        "Compendium.pf2e-assistant.effects.Item.Cs5YffU6KGMK1Ikw"
     ),
     'PF2E_ASSISTANT_EFFECTS["effect-mistform-elixir-lesser"]': JSON.stringify(
-        "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.SZfUd4SIABrmaZ4T"
+        "Compendium.pf2e-assistant.effects.Item.SZfUd4SIABrmaZ4T"
     ),
     'PF2E_ASSISTANT_EFFECTS["effect-feint-critical-success"]': JSON.stringify(
-        "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.TJzFIRf9S5P91qgf"
+        "Compendium.pf2e-assistant.effects.Item.TJzFIRf9S5P91qgf"
     ),
     'PF2E_ASSISTANT_EFFECTS["effect-scoundrel-feint-critical-success"]': JSON.stringify(
-        "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.W2ebaKgpulsOWfNs"
+        "Compendium.pf2e-assistant.effects.Item.W2ebaKgpulsOWfNs"
     ),
     'PF2E_ASSISTANT_EFFECTS["effect-tumble-behind"]': JSON.stringify(
-        "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.aUzN2fOd33tZXa5s"
+        "Compendium.pf2e-assistant.effects.Item.aUzN2fOd33tZXa5s"
     ),
     'PF2E_ASSISTANT_EFFECTS["effect-feint-success"]': JSON.stringify(
-        "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.csAEJ72jCsHuHlLO"
+        "Compendium.pf2e-assistant.effects.Item.csAEJ72jCsHuHlLO"
     ),
     'PF2E_ASSISTANT_EFFECTS["effect-grapple-critical-success"]': JSON.stringify(
-        "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.d9zE07hIacDCHuPw"
+        "Compendium.pf2e-assistant.effects.Item.d9zE07hIacDCHuPw"
     ),
     'PF2E_ASSISTANT_EFFECTS["effect-disarm-critical-failure"]': JSON.stringify(
-        "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.ec8ymUmUO58KmDLg"
+        "Compendium.pf2e-assistant.effects.Item.ec8ymUmUO58KmDLg"
+    ),
+    'PF2E_ASSISTANT_EFFECTS["effect-bottled-lightning"]': JSON.stringify(
+        "Compendium.pf2e-assistant.effects.Item.hAYjaIzH8onPVYfz"
     ),
     'PF2E_ASSISTANT_EFFECTS["effect-critical-specialization-brawling"]': JSON.stringify(
-        "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.iSaDovIXZCJNPOOj"
+        "Compendium.pf2e-assistant.effects.Item.iSaDovIXZCJNPOOj"
     ),
     'PF2E_ASSISTANT_EFFECTS["effect-critical-specialization-sword"]': JSON.stringify(
-        "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.pnrI5GLh87DikArY"
+        "Compendium.pf2e-assistant.effects.Item.pnrI5GLh87DikArY"
     ),
     'PF2E_ASSISTANT_EFFECTS["effect-grapple-success"]': JSON.stringify(
-        "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.ptAsHbG8GbO1o8Wx"
+        "Compendium.pf2e-assistant.effects.Item.ptAsHbG8GbO1o8Wx"
     ),
     'PF2E_ASSISTANT_EFFECTS["effect-mistform-elixir-moderate"]': JSON.stringify(
-        "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.qakQkye2t3b8ELPq"
+        "Compendium.pf2e-assistant.effects.Item.qakQkye2t3b8ELPq"
     ),
     'PF2E_ASSISTANT_EFFECTS["effect-scoundrel-off-guard"]': JSON.stringify(
-        "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.rnIPEOcpNuDrWgxS"
+        "Compendium.pf2e-assistant.effects.Item.rnIPEOcpNuDrWgxS"
     ),
     'PF2E_ASSISTANT_EFFECTS["effect-critical-specialization-spear"]': JSON.stringify(
-        "Compendium.pf2e-assistant.pf2e-assistant-effects.Item.s8oIiJnrJuWvDIeM"
+        "Compendium.pf2e-assistant.effects.Item.s8oIiJnrJuWvDIeM"
     ),
     'PF2E_BESTIARY_EFFECTS["effect-swarming-bites"]': JSON.stringify(
         "Compendium.pf2e.bestiary-effects.Item.0aRm0b55015XPj7Y"

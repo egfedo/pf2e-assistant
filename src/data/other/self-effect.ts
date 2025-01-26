@@ -28,6 +28,7 @@ export const actions: Assistant.Action[] = [
                     data.item.system.traits.value?.filter(
                         (t) => t in effect.constructor.validTraits
                     ) ?? [];
+
                 const effectSource: EffectSource = foundry.utils.mergeObject(effect.toObject(), {
                     _id: null,
                     system: {
@@ -48,7 +49,9 @@ export const actions: Assistant.Action[] = [
                         traits: { value: traits }
                     }
                 });
+
                 await game.assistant.socket.createEmbeddedItem(data.speaker.actor, effectSource);
+
                 const parsedMessageContent = ((): HTMLElement => {
                     const container = document.createElement("div");
                     container.innerHTML = data.chatMessage.content;
@@ -67,7 +70,10 @@ export const actions: Assistant.Action[] = [
                     Utils.DOM.htmlQuery(buttons, "button[data-action=apply-effect]")?.replaceWith(
                         span
                     );
-                    await data.chatMessage.update({ content: parsedMessageContent.innerHTML });
+                    await data.chatMessage.update({
+                        flags: { "pf2e-assistant": { process: false } },
+                        content: parsedMessageContent.innerHTML
+                    });
                 }
             }
         }

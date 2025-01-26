@@ -17,4 +17,12 @@ Hooks.once("init", () => {
         type: Array,
         default: []
     });
+
+    game.settings.register("pf2e-assistant", "initialized", {
+        name: "Initialized",
+        scope: "world",
+        config: false,
+        type: Boolean,
+        default: false
+    });
 });

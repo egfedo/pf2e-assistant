@@ -172,3 +172,12 @@ export function getEffects(
 
     return effects;
 }
+
+export function getRollOptions(actor: ActorPF2e, prefix: "self" | "target" | "origin") {
+    if (prefix === "self") return actor.getRollOptions();
+
+    return actor.getRollOptions().map((value) => {
+        if (value.startsWith("self")) return `${prefix}${value.substring(4)}`;
+        return `${prefix}:${value}`;
+    });
+}

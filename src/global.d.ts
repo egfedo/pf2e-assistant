@@ -22,5 +22,8 @@ declare global {
     interface ClientSettings {
         get(module: "pf2e-assistant", setting: "disabledFiles"): string[];
         set(module: "pf2e-assistant", setting: "disabledFiles", value: string[]): Promise<string[]>;
+
+        get(module: "pf2e-assistant", setting: "initialized"): boolean;
+        set(module: "pf2e-assistant", setting: "initialized", value: boolean): Promise<boolean>;
     }
 }

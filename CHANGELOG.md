@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [6.4.3] - 2025-01-26
+
+### Added
+
+- Bottled Lightning
+- Eat Fire
+- Figment
+- Forbidding Ward
+- Frostbite
+
+### Changed
+
+- Process Chat Messages on Render
+
 ## [6.4.2] - 2025-01-25
 
 ### Added
@@ -248,7 +262,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Auto Self-Applied Effects (This is disabled if PF2e Toolbelt is doing this as well)
 - Swashbuckler Panache
 
-[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.4.2...HEAD
+[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.4.3...HEAD
+[6.4.3]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.4.2...v6.4.3
 [6.4.2]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.4.1...v6.4.2
 [6.4.1]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.4.0...v6.4.1
 [6.4.0]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.3.1...v6.4.0

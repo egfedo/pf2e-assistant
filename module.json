@@ -41,15 +41,28 @@
     },
     "packs": [
         {
-            "name": "pf2e-assistant-effects",
+            "name": "effects",
             "label": "PF2e Assistant Effects",
-            "path": "packs/pf2e-assistant-effects",
+            "path": "packs/effects",
             "type": "Item",
+            "banner": "systems/pf2e/assets/compendium-banner/blue.webp",
+            "system": "pf2e",
             "ownership": {
                 "PLAYER": "OBSERVER",
                 "ASSISTANT": "OWNER"
-            },
-            "system": "pf2e"
+            }
+        },
+        {
+            "name": "macros",
+            "label": "PF2e Assistant Macros",
+            "path": "packs/macros",
+            "type": "Macro",
+            "banner": "systems/pf2e/assets/compendium-banner/orange.webp",
+            "system": "pf2e",
+            "ownership": {
+                "PLAYER": "OBSERVER",
+                "ASSISTANT": "OWNER"
+            }
         }
     ],
     "url": "https://github.com/7H3LaughingMan/pf2e-assistant",

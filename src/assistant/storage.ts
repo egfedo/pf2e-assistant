@@ -101,7 +101,7 @@ export class Storage {
             }
         }
 
-        if (data.chatMessage) {
+        if (data.chatMessage && Object.values(reroll).some((value) => value.length !== 0)) {
             await data.chatMessage.setFlag("pf2e-assistant", "reroll", reroll);
         }
     }

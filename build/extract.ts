@@ -9,7 +9,7 @@ async function transformEntry(entry: any) {
 
     if (entry["ownership"]) {
         entry["ownership"] = {
-            default: 0,
+            default: 0
         };
     }
 
@@ -18,4 +18,5 @@ async function transformEntry(entry: any) {
     }
 }
 
-await extractPack("packs/pf2e-assistant-effects", "src/packs/pf2e-assistant-effects", { clean: true, transformEntry });
+await extractPack("packs/effects", "src/packs/effects", { clean: true, transformEntry });
+await extractPack("packs/macros", "src/packs/macros", { clean: true, transformEntry });

@@ -2,22 +2,23 @@ import { Assistant } from "assistant.ts";
 import { ActorPF2e, ChatMessagePF2e, ScenePF2e, TokenDocumentPF2e } from "foundry-pf2e";
 import { Utils } from "utils.ts";
 
-Hooks.on(
-    "createChatMessage",
-    async function (
-        chatMessage: ChatMessagePF2e,
-        _options: DatabaseCreateOperation<ChatMessagePF2e>,
-        userId: string
-    ) {
-        if (game.userId !== userId) return;
-        if (chatMessage.flags["pf2e-assistant"]?.process === false) return;
-        if (chatMessage.flags["pf2e-assistant"]?.reroll)
-            await chatMessage.unsetFlag("pf2e-assistant", "reroll");
+let messageQueue = new Set<string>();
 
-        const data = processChatMessage(chatMessage);
-        game.assistant.storage.process(data);
-    }
-);
+Hooks.on("createChatMessage", function (chatMessage: ChatMessagePF2e) {
+    if (!chatMessage.isAuthor) return;
+    if (chatMessage.flags["pf2e-assistant"]?.process === false) return;
+    messageQueue.add(chatMessage.id);
+});
+
+Hooks.on("renderChatMessage", function name(chatMessage: ChatMessagePF2e) {
+    if (!chatMessage.isAuthor) return;
+    if (!messageQueue.has(chatMessage.id)) return;
+
+    const data = processChatMessage(chatMessage);
+    game.assistant.storage.process(data);
+
+    messageQueue.delete(chatMessage.id);
+});
 
 function processChatMessage(chatMessage: ChatMessagePF2e): Assistant.Data {
     let data: Assistant.Data = {
@@ -112,9 +113,12 @@ function processChatMessage(chatMessage: ChatMessagePF2e): Assistant.Data {
     }
 
     if (data.item) data.rollOptions.push(...data.item.getRollOptions("item"));
-    if (data.speaker) data.rollOptions.push(...data.speaker.actor.getRollOptions());
-    if (data.target) data.rollOptions.push(...data.target.actor.getSelfRollOptions("target"));
-    if (data.origin) data.rollOptions.push(...data.origin.actor.getSelfRollOptions("origin"));
+    if (data.speaker)
+        data.rollOptions.push(...Utils.Actor.getRollOptions(data.speaker.actor, "self"));
+    if (data.target)
+        data.rollOptions.push(...Utils.Actor.getRollOptions(data.target.actor, "target"));
+    if (data.origin)
+        data.rollOptions.push(...Utils.Actor.getRollOptions(data.origin.actor, "origin"));
 
     data.rollOptions = Array.from(new Set(data.rollOptions)).sort();
     return data;
