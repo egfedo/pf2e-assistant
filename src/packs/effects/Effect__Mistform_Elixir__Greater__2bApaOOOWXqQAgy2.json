@@ -11,6 +11,9 @@
     "rules": [
       {
         "key": "GrantItem",
+        "onDeleteActions": {
+          "grantee": "restrict"
+        },
         "uuid": "Compendium.pf2e.conditionitems.Item.DmAIPqOBomZ7H95W"
       }
     ],
