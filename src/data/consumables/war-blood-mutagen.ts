@@ -5,7 +5,7 @@ export const path = ["Consumables", "War Blood Mutagen"];
 export const actions: Assistant.Action[] = [
     {
         trigger: "consume",
-        predicate: ["item:slug:war-blood-mutagen-lesser"],
+        predicate: ["item:war-blood-mutagen-lesser"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target ?? data.speaker;
@@ -23,7 +23,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "consume",
-        predicate: ["item:slug:war-blood-mutagen-moderate"],
+        predicate: ["item:war-blood-mutagen-moderate"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target ?? data.speaker;
@@ -41,7 +41,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "consume",
-        predicate: ["item:slug:war-blood-mutagen-greater"],
+        predicate: ["item:war-blood-mutagen-greater"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target ?? data.speaker;
@@ -59,7 +59,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "consume",
-        predicate: ["item:slug:war-blood-mutagen-major"],
+        predicate: ["item:war-blood-mutagen-major"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target ?? data.speaker;

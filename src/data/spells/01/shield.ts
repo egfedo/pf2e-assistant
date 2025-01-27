@@ -7,7 +7,7 @@ export const path = ["Spells", "1st Rank", "Shield"];
 export const actions: Assistant.Action[] = [
     {
         trigger: "action",
-        predicate: ["item:slug:shield", { not: "item:tag:psi-cantrip" }],
+        predicate: ["item:shield", { not: "item:tag:psi-cantrip" }],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             if (!data.item?.isOfType("spell")) return;
@@ -32,7 +32,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "action",
-        predicate: ["item:slug:shield", "item:tag:psi-cantrip", { not: "item:tag:amped" }],
+        predicate: ["item:shield", "item:tag:psi-cantrip", { not: "item:tag:amped" }],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             if (!data.item?.isOfType("spell")) return;
@@ -58,7 +58,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "action",
-        predicate: ["item:slug:shield", "item:tag:psi-cantrip", "item:tag:amped"],
+        predicate: ["item:shield", "item:tag:psi-cantrip", "item:tag:amped"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             if (!data.item?.isOfType("spell")) return;

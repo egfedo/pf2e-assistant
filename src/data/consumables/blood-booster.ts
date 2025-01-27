@@ -8,9 +8,9 @@ export const actions: Assistant.Action[] = [
         predicate: [
             {
                 or: [
-                    "item:slug:blood-booster-lesser",
-                    "item:slug:blood-booster-moderate",
-                    "item:slug:blood-booster-greater"
+                    "item:blood-booster-lesser",
+                    "item:blood-booster-moderate",
+                    "item:blood-booster-greater"
                 ]
             }
         ],

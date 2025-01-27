@@ -10,10 +10,10 @@ export const actions: Assistant.Action[] = [
             { or: ["check:outcome:success", "check:outcome:critical-success"] },
             {
                 or: [
-                    "item:slug:bottled-lightning-lesser",
-                    "item:slug:bottled-lightning-moderate",
-                    "item:slug:bottled-lightning-greater",
-                    "item:slug:bottled-lightning-major"
+                    "item:bottled-lightning-lesser",
+                    "item:bottled-lightning-moderate",
+                    "item:bottled-lightning-greater",
+                    "item:bottled-lightning-major"
                 ]
             }
         ],

@@ -5,7 +5,7 @@ export const path = ["Spells", "2nd Rank", "Darkvision"];
 export const actions: Assistant.Action[] = [
     {
         trigger: "action",
-        predicate: ["item:slug:darkvision", { lt: ["item:rank", 3] }],
+        predicate: ["item:darkvision", { lt: ["item:rank", 3] }],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             if (!data.item?.isOfType("spell")) return;
@@ -19,7 +19,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "action",
-        predicate: ["item:slug:darkvision", { gte: ["item:rank", 3] }, { lt: ["item:rank", 5] }],
+        predicate: ["item:darkvision", { gte: ["item:rank", 3] }, { lt: ["item:rank", 5] }],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             if (!data.item?.isOfType("spell")) return;
@@ -38,7 +38,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "action",
-        predicate: ["item:slug:darkvision", { gte: ["item:rank", 5] }],
+        predicate: ["item:darkvision", { gte: ["item:rank", 5] }],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             if (!data.item?.isOfType("spell")) return;

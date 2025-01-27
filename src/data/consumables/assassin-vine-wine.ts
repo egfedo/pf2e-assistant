@@ -7,7 +7,7 @@ export const actions: Assistant.Action[] = [
         trigger: "consume",
         predicate: [
             {
-                or: ["item:slug:assassin-vine-wine", "item:slug:aged-assassin-vine-wine"]
+                or: ["item:assassin-vine-wine", "item:aged-assassin-vine-wine"]
             }
         ],
         process: async (data: Assistant.Data) => {

@@ -5,7 +5,7 @@ export const path = ["Consumables", "Gecko Potion"];
 export const actions: Assistant.Action[] = [
     {
         trigger: "consume",
-        predicate: ["item:slug:gecko-potion"],
+        predicate: ["item:gecko-potion"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target ?? data.speaker;

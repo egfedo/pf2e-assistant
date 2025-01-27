@@ -5,7 +5,7 @@ export const path = ["Spells", "4th Rank", "Traveler's Transit"];
 export const actions: Assistant.Action[] = [
     {
         trigger: "action",
-        predicate: ["item:slug:travelers-transit"],
+        predicate: ["item:travelers-transit"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             if (!data.item?.isOfType("spell")) return;

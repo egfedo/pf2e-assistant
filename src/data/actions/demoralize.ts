@@ -14,8 +14,9 @@ export const actions: Assistant.Action[] = [
             const reroll = Assistant.createReroll();
 
             if (
-                (Utils.Actor.hasEffect(data.target.actor, "effect-demoralize-immunity"),
-                { origin: data.speaker.actor, target: data.target.actor })
+                Utils.Actor.hasEffect(data.target.actor, "effect-demoralize-immunity", {
+                    origin: data.speaker.actor
+                })
             ) {
                 ui.notifications.warn(
                     `The target is temporarily immune to further attempts to Demoralize from ${data.speaker.actor.name}.`
@@ -67,8 +68,9 @@ export const actions: Assistant.Action[] = [
             const reroll = Assistant.createReroll();
 
             if (
-                (Utils.Actor.hasEffect(data.target.actor, "effect-demoralize-immunity"),
-                { origin: data.speaker.actor, target: data.target.actor })
+                Utils.Actor.hasEffect(data.target.actor, "effect-demoralize-immunity", {
+                    origin: data.speaker.actor
+                })
             ) {
                 ui.notifications.warn(
                     `The target is temporarily immune to further attempts to Demoralize from ${data.speaker.actor.name}.`

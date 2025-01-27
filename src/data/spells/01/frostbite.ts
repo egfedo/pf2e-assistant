@@ -6,7 +6,7 @@ export const path = ["Spells", "1st Rank", "Frostbite"];
 export const actions: Assistant.Action[] = [
     {
         trigger: "saving-throw",
-        predicate: ["item:type:spell", "item:slug:frostbite", "check:outcome:critical-failure"],
+        predicate: ["item:type:spell", "item:frostbite", "check:outcome:critical-failure"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             if (!data.origin) return;

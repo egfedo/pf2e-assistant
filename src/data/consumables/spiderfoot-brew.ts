@@ -5,7 +5,7 @@ export const path = ["Consumables", "Spiderfoot Brew"];
 export const actions: Assistant.Action[] = [
     {
         trigger: "consume",
-        predicate: ["item:slug:spiderfoot-brew-lesser"],
+        predicate: ["item:spiderfoot-brew-lesser"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target ?? data.speaker;
@@ -23,7 +23,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "consume",
-        predicate: ["item:slug:spiderfoot-brew-moderate"],
+        predicate: ["item:spiderfoot-brew-moderate"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target ?? data.speaker;
@@ -41,7 +41,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "consume",
-        predicate: ["item:slug:spiderfoot-brew-greater"],
+        predicate: ["item:spiderfoot-brew-greater"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target ?? data.speaker;

@@ -5,7 +5,7 @@ export const path = ["Consumables", "Soothing Tonic"];
 export const actions: Assistant.Action[] = [
     {
         trigger: "consume",
-        predicate: ["item:slug:soothing-tonic-lesser"],
+        predicate: ["item:soothing-tonic-lesser"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target ?? data.speaker;
@@ -23,7 +23,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "consume",
-        predicate: ["item:slug:soothing-tonic-moderate"],
+        predicate: ["item:soothing-tonic-moderate"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target ?? data.speaker;
@@ -41,7 +41,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "consume",
-        predicate: ["item:slug:soothing-tonic-greater"],
+        predicate: ["item:soothing-tonic-greater"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target ?? data.speaker;
@@ -59,7 +59,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "consume",
-        predicate: ["item:slug:soothing-tonic-major"],
+        predicate: ["item:soothing-tonic-major"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target ?? data.speaker;

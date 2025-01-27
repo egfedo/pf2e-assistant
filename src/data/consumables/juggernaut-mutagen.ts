@@ -5,7 +5,7 @@ export const path = ["Consumables", "Juggernaut Mutagen"];
 export const actions: Assistant.Action[] = [
     {
         trigger: "consume",
-        predicate: ["item:slug:juggernaut-mutagen-lesser"],
+        predicate: ["item:juggernaut-mutagen-lesser"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target ?? data.speaker;
@@ -23,7 +23,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "consume",
-        predicate: ["item:slug:juggernaut-mutagen-moderate"],
+        predicate: ["item:juggernaut-mutagen-moderate"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target ?? data.speaker;
@@ -41,7 +41,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "consume",
-        predicate: ["item:slug:juggernaut-mutagen-greater"],
+        predicate: ["item:juggernaut-mutagen-greater"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target ?? data.speaker;
@@ -59,7 +59,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "consume",
-        predicate: ["item:slug:juggernaut-mutagen-major"],
+        predicate: ["item:juggernaut-mutagen-major"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target ?? data.speaker;

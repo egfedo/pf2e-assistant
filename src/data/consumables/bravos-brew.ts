@@ -8,9 +8,9 @@ export const actions: Assistant.Action[] = [
         predicate: [
             {
                 or: [
-                    "item:slug:bravos-brew-lesser",
-                    "item:slug:bravos-brew-moderate",
-                    "item:slug:bravos-brew-greater"
+                    "item:bravos-brew-lesser",
+                    "item:bravos-brew-moderate",
+                    "item:bravos-brew-greater"
                 ]
             }
         ],

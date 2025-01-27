@@ -4,7 +4,6 @@ import {
     ChatMessagePF2e,
     CheckDC,
     CheckDCReference,
-    CheckRoll,
     ConditionSlug,
     EffectSystemData,
     ItemPF2e,
@@ -31,6 +30,7 @@ export class Socket {
         this.#socket.register("increaseCondition", this.#increaseCondition);
         this.#socket.register("toggleCondition", this.#toggleCondition);
         this.#socket.register("setCondition", this.#setCondition);
+        this.#socket.register("updateConditionValue", this.#updateConditionValue);
 
         this.#socket.register("rollSave", this.#rollSave);
 
@@ -90,7 +90,12 @@ export class Socket {
             ? { actor: data.target.actor.uuid, token: data.target.token.uuid }
             : null;
         const roll = data.roll
-            ? { total: data.roll.total, degreeOfSuccess: data.roll.degreeOfSuccess }
+            ? {
+                  total: data.roll.total,
+                  degreeOfSuccess: Utils.Roll.isCheckRoll(data.roll)
+                      ? data.roll.degreeOfSuccess
+                      : null
+              }
             : null;
 
         let effectSource = effect.toObject();
@@ -316,13 +321,26 @@ export class Socket {
 
         if (conditionSlug === "persistent-damage") return;
 
-        const condition = actor.getCondition(conditionSlug);
-        const conditionValue = condition?.value ?? 0;
-        if (conditionValue < value) {
-            await actor.increaseCondition(conditionSlug, { value, max: value });
+        const conditions = actor.itemTypes.condition
+            .filter((item) => item.active && !item.isLocked && item.slug === conditionSlug)
+            .sort((a, b) => {
+                const [valueA, valueB] = [a.value ?? 0, b.value ?? 0];
+                return valueA > valueB ? -1 : valueA < valueB ? 1 : 0;
+            });
+        const condition = conditions.at(0);
+
+        if (condition) {
+            const currentValue = condition.value ?? 0;
+            await game.pf2e.ConditionManager.updateConditionValue(condition.id, actor, value);
+            return currentValue;
+        } else if (value > 0) {
+            const conditionSource =
+                game.pf2e.ConditionManager.getCondition(conditionSlug).toObject();
+            conditionSource.system.value.value = value;
+            await actor.createEmbeddedDocuments("Item", [conditionSource]);
         }
 
-        return conditionValue;
+        return 0;
     }
 
     async #setCondition(
@@ -334,6 +352,22 @@ export class Socket {
         if (!actor) return;
 
         return await game.assistant.socket.setCondition(actor, conditionSlug, value);
+    }
+
+    async updateConditionValue(actor: ActorPF2e, itemId: string, value: number) {
+        if (!actor.canUserModify(game.user, "update")) {
+            await this.#executeAsActor(actor, "updateConditionValue", actor.uuid, itemId, value);
+            return;
+        }
+
+        await game.pf2e.ConditionManager.updateConditionValue(itemId, actor, value);
+    }
+
+    async #updateConditionValue(actorUuid: ActorUUID, itemId: string, value: number) {
+        let actor = await fromUuid<ActorPF2e>(actorUuid);
+        if (!actor) return;
+
+        await game.assistant.socket.updateConditionValue(actor, itemId, value);
     }
 
     async rollSave(actor: ActorPF2e, save: SaveType, args: SocketTypes.Save.RollParameters) {
@@ -475,7 +509,7 @@ namespace SocketTypes {
             origin: { actor: ActorPF2e; token: TokenDocumentPF2e<ScenePF2e> };
             item?: ItemPF2e;
             target?: { actor: ActorPF2e; token: TokenDocumentPF2e<ScenePF2e> };
-            roll?: CheckRoll;
+            roll?: Roll;
             duration?: EffectSystemData["duration"];
             tokenMark?: { slug: string; token: TokenDocumentPF2e<ScenePF2e> };
         }

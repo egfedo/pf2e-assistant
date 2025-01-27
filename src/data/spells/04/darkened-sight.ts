@@ -5,7 +5,7 @@ export const path = ["Spells", "4th Rank", "Darkened Sight"];
 export const actions: Assistant.Action[] = [
     {
         trigger: "action",
-        predicate: ["item:slug:darkened-sight"],
+        predicate: ["item:darkened-sight"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             if (!data.target) return;

@@ -8,4 +8,5 @@ export * as Item from "./item.ts";
 export * as JSON from "./json.ts";
 export * as Roll from "./roll.ts";
 export * as Rules from "./rules.ts";
+export * as Token from "./token.ts";
 export * as User from "./user.ts";

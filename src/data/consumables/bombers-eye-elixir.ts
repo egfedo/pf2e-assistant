@@ -7,7 +7,7 @@ export const actions: Assistant.Action[] = [
         trigger: "consume",
         predicate: [
             {
-                or: ["item:slug:bombers-eye-elixir-lesser", "item:slug:bombers-eye-elixir-greater"]
+                or: ["item:bombers-eye-elixir-lesser", "item:bombers-eye-elixir-greater"]
             }
         ],
         process: async (data: Assistant.Data) => {

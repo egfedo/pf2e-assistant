@@ -1,0 +1,64 @@
+{
+  "folder": "2l8PF7Or6lzfonMy",
+  "name": "Spell Effect: Vision of Death",
+  "type": "effect",
+  "effects": [],
+  "system": {
+    "description": {
+      "gm": "",
+      "value": ""
+    },
+    "rules": [
+      {
+        "inMemoryOnly": true,
+        "key": "GrantItem",
+        "onDeleteActions": {
+          "grantee": "restrict"
+        },
+        "uuid": "Compendium.pf2e.conditionitems.Item.sDPxOjQ9kx2RZE8D",
+        "reevaluateOnUpdate": true,
+        "predicate": [
+          "self:condition:frightened"
+        ]
+      }
+    ],
+    "slug": "spell-effect-vision-of-death",
+    "traits": {
+      "otherTags": [],
+      "value": []
+    },
+    "publication": {
+      "title": "",
+      "authors": "",
+      "license": "OGL",
+      "remaster": false
+    },
+    "level": {
+      "value": 1
+    },
+    "duration": {
+      "value": -1,
+      "unit": "unlimited",
+      "expiry": null,
+      "sustained": false
+    },
+    "start": {
+      "value": 0,
+      "initiative": null
+    },
+    "tokenIcon": {
+      "show": true
+    },
+    "badge": null,
+    "context": null,
+    "unidentified": false
+  },
+  "_id": "6pLuAI6XYfw3ROV6",
+  "img": "systems/pf2e/icons/spells/phantasmal-killer.webp",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_key": "!items!6pLuAI6XYfw3ROV6"
+}

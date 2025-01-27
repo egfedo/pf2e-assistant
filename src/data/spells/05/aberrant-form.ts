@@ -5,7 +5,7 @@ export const path = ["Spells", "5th Rank", "Aberrant Form"];
 export const actions: Assistant.Action[] = [
     {
         trigger: "action",
-        predicate: ["item:slug:aberrant-form"],
+        predicate: ["item:aberrant-form"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             if (!data.item?.isOfType("spell")) return;
@@ -39,7 +39,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "choice",
-        predicate: ["item:slug:aberrant-form", "choice:aberrant-form-chuul"],
+        predicate: ["item:aberrant-form", "choice:aberrant-form-chuul"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             if (!data.item?.isOfType("spell")) return;
@@ -53,7 +53,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "choice",
-        predicate: ["item:slug:aberrant-form", "choice:aberrant-form-gogiteth"],
+        predicate: ["item:aberrant-form", "choice:aberrant-form-gogiteth"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             if (!data.item?.isOfType("spell")) return;
@@ -67,7 +67,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "choice",
-        predicate: ["item:slug:aberrant-form", "choice:aberrant-form-gug"],
+        predicate: ["item:aberrant-form", "choice:aberrant-form-gug"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             if (!data.item?.isOfType("spell")) return;
@@ -81,7 +81,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "choice",
-        predicate: ["item:slug:aberrant-form", "choice:aberrant-form-otyugh"],
+        predicate: ["item:aberrant-form", "choice:aberrant-form-otyugh"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             if (!data.item?.isOfType("spell")) return;

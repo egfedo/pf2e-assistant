@@ -5,7 +5,7 @@ export const path = ["Consumables", "Potency Crystal"];
 export const actions: Assistant.Action[] = [
     {
         trigger: "consume",
-        predicate: ["item:slug:potency-crystal"],
+        predicate: ["item:potency-crystal"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
 
@@ -22,7 +22,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "consume",
-        predicate: ["item:slug:potency-crystal-greater"],
+        predicate: ["item:potency-crystal-greater"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
 
@@ -39,7 +39,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "consume",
-        predicate: ["item:slug:potency-crystal-major"],
+        predicate: ["item:potency-crystal-major"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
 

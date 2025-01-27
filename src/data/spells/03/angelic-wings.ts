@@ -5,7 +5,7 @@ export const path = ["Spells", "3rd Rank", "Angelic Wings"];
 export const actions: Assistant.Action[] = [
     {
         trigger: "action",
-        predicate: ["item:slug:angelic-wings", { lt: ["item:rank", 5] }],
+        predicate: ["item:angelic-wings", { lt: ["item:rank", 5] }],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             if (!data.item?.isOfType("spell")) return;
@@ -19,7 +19,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "action",
-        predicate: ["item:slug:angelic-wings", { gte: ["item:rank", 5] }],
+        predicate: ["item:angelic-wings", { gte: ["item:rank", 5] }],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             if (!data.item?.isOfType("spell")) return;

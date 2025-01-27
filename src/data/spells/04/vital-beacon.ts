@@ -6,7 +6,7 @@ export const path = ["Spells", "4th Rank", "Vital Beacon"];
 export const actions: Assistant.Action[] = [
     {
         trigger: "action",
-        predicate: ["item:slug:vital-beacon"],
+        predicate: ["item:vital-beacon"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             if (!data.item?.isOfType("spell")) return;
@@ -20,7 +20,7 @@ export const actions: Assistant.Action[] = [
     },
     {
         trigger: "damage-roll",
-        predicate: ["item:slug:spell-effect-vital-beacon"],
+        predicate: ["item:spell-effect-vital-beacon"],
         selectors: ["spell-effect-vital-beacon-inline-healing"],
         process: async (data: Assistant.Data) => {
             if (!data.item?.isOfType("effect")) return;

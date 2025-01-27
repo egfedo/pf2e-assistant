@@ -8,10 +8,10 @@ export const actions: Assistant.Action[] = [
         predicate: [
             {
                 or: [
-                    "item:slug:antidote-lesser",
-                    "item:slug:antidote-moderate",
-                    "item:slug:antidote-greater",
-                    "item:slug:antidote-major"
+                    "item:antidote-lesser",
+                    "item:antidote-moderate",
+                    "item:antidote-greater",
+                    "item:antidote-major"
                 ]
             }
         ],

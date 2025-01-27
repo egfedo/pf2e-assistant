@@ -5,7 +5,7 @@ export const path = ["Spells", "1st Rank", "Lay on Hands"];
 export const actions: Assistant.Action[] = [
     {
         trigger: "action",
-        predicate: ["item:slug:lay-on-hands", { not: "target:mode:undead" }],
+        predicate: ["item:lay-on-hands", { not: "target:mode:undead" }],
         process: async (data: Assistant.Data) => {
             if (!data.item?.isOfType("spell")) return;
             if (!data.speaker) return;

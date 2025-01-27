@@ -8,12 +8,12 @@ export const actions: Assistant.Action[] = [
         predicate: [
             {
                 or: [
-                    "item:slug:numbing-tonic-minor",
-                    "item:slug:numbing-tonic-lesser",
-                    "item:slug:numbing-tonic-moderate",
-                    "item:slug:numbing-tonic-greater",
-                    "item:slug:numbing-tonic-major",
-                    "item:slug:numbing-tonic-true"
+                    "item:numbing-tonic-minor",
+                    "item:numbing-tonic-lesser",
+                    "item:numbing-tonic-moderate",
+                    "item:numbing-tonic-greater",
+                    "item:numbing-tonic-major",
+                    "item:numbing-tonic-true"
                 ]
             }
         ],

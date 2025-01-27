@@ -8,12 +8,12 @@ export const actions: Assistant.Action[] = [
         predicate: [
             {
                 or: [
-                    "item:slug:elixir-of-life-minor",
-                    "item:slug:elixir-of-life-lesser",
-                    "item:slug:elixir-of-life-moderate",
-                    "item:slug:elixir-of-life-greater",
-                    "item:slug:elixir-of-life-major",
-                    "item:slug:elixir-of-life-true"
+                    "item:elixir-of-life-minor",
+                    "item:elixir-of-life-lesser",
+                    "item:elixir-of-life-moderate",
+                    "item:elixir-of-life-greater",
+                    "item:elixir-of-life-major",
+                    "item:elixir-of-life-true"
                 ]
             }
         ],

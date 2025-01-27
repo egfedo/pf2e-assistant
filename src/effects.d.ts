@@ -4,6 +4,7 @@ declare global {
     export enum PF2E_ASSISTANT_EFFECTS {
         "effect-demoralize-immunity" = "Compendium.pf2e-assistant.effects.Item.1Yt5WmhS76y4hibk",
         "effect-mistform-elixir-greater" = "Compendium.pf2e-assistant.effects.Item.2bApaOOOWXqQAgy2",
+        "spell-effect-vision-of-death" = "Compendium.pf2e-assistant.effects.Item.6pLuAI6XYfw3ROV6",
         "effect-scoundrel-feint-success" = "Compendium.pf2e-assistant.effects.Item.9YHTscLqlt0zlTIk",
         "effect-feint-critical-failure" = "Compendium.pf2e-assistant.effects.Item.9f4YzsgcAs3A5Xra",
         "effect-critical-specialization-bow" = "Compendium.pf2e-assistant.effects.Item.Cs5YffU6KGMK1Ikw",
@@ -20,7 +21,7 @@ declare global {
         "effect-grapple-success" = "Compendium.pf2e-assistant.effects.Item.ptAsHbG8GbO1o8Wx",
         "effect-mistform-elixir-moderate" = "Compendium.pf2e-assistant.effects.Item.qakQkye2t3b8ELPq",
         "effect-scoundrel-off-guard" = "Compendium.pf2e-assistant.effects.Item.rnIPEOcpNuDrWgxS",
-        "effect-critical-specialization-spear" = "Compendium.pf2e-assistant.effects.Item.s8oIiJnrJuWvDIeM"
+        "effect-critical-specialization-spear" = "Compendium.pf2e-assistant.effects.Item.s8oIiJnrJuWvDIeM",
     }
 
     export enum PF2E_BESTIARY_EFFECTS {
@@ -419,7 +420,7 @@ declare global {
         "effect-downcast" = "Compendium.pf2e.bestiary-effects.Item.zjVBG6uDd4WKWeKU",
         "effect-share-defenses" = "Compendium.pf2e.bestiary-effects.Item.zqgntQXIEbulBgZX",
         "effect-pilgrims-ward" = "Compendium.pf2e.bestiary-effects.Item.zy4PDhXnaZh6e6iT",
-        "effect-manipulate-luck-bad" = "Compendium.pf2e.bestiary-effects.Item.zzdOof9hHUf9s13H"
+        "effect-manipulate-luck-bad" = "Compendium.pf2e.bestiary-effects.Item.zzdOof9hHUf9s13H",
     }
 
     export enum PF2E_CONDITIONS {
@@ -465,7 +466,7 @@ declare global {
         "dying" = "Compendium.pf2e.conditionitems.Item.yZRUzMqrMmfLu0V1",
         "confused" = "Compendium.pf2e.conditionitems.Item.yblD8fOR1J8rDwEQ",
         "invisible" = "Compendium.pf2e.conditionitems.Item.zJxUflt9np0q4yML",
-        "cursebound" = "Compendium.pf2e.conditionitems.Item.zXZjC8HLaRoLR17U"
+        "cursebound" = "Compendium.pf2e.conditionitems.Item.zXZjC8HLaRoLR17U",
     }
 
     export enum PF2E_CAMPAIGN_EFFECTS {
@@ -527,7 +528,7 @@ declare global {
         "effect-chthonic-mucus" = "Compendium.pf2e.campaign-effects.Item.uZ2mAwpVz1bkw5GK",
         "effect-keen-insight" = "Compendium.pf2e.campaign-effects.Item.yJWWTfZkAF4raa4R",
         "effect-righteous-call" = "Compendium.pf2e.campaign-effects.Item.ywrtR63bJqpN0FsK",
-        "effect-tarnbreaker-champions" = "Compendium.pf2e.campaign-effects.Item.zcGenQGOjZgFuqzs"
+        "effect-tarnbreaker-champions" = "Compendium.pf2e.campaign-effects.Item.zcGenQGOjZgFuqzs",
     }
 
     export enum PF2E_EQUIPMENT_EFFECTS {
@@ -1179,7 +1180,7 @@ declare global {
         "effect-skinstitch-salve" = "Compendium.pf2e.equipment-effects.Item.zlSNbMDIlTOpcO8R",
         "effect-moon-blossom-tea" = "Compendium.pf2e.equipment-effects.Item.zoMGcJxA4kH20Zzw",
         "effect-spellguard-blade" = "Compendium.pf2e.equipment-effects.Item.zqKzWGLODgIvtiKf",
-        "effect-cognitive-mutagen-moderate" = "Compendium.pf2e.equipment-effects.Item.ztxW3lBPRcesF7wK"
+        "effect-cognitive-mutagen-moderate" = "Compendium.pf2e.equipment-effects.Item.ztxW3lBPRcesF7wK",
     }
 
     export enum PF2E_OTHER_EFFECTS {
@@ -1233,7 +1234,7 @@ declare global {
         "effect-adverse-subsist-situation" = "Compendium.pf2e.other-effects.Item.wHWWHkjDXmJl4Ia6",
         "effect-2-circumstance-penalty-to-ranged-attacks" = "Compendium.pf2e.other-effects.Item.wVGSlZEGxsg1s8AZ",
         "effect-off-guard-until-end-of-your-next-turn" = "Compendium.pf2e.other-effects.Item.y1GwyXv7iOf8DhBg",
-        "effect-10-foot-status-penalty-to-your-land-speed" = "Compendium.pf2e.other-effects.Item.zDV1wo2ytNTbyTB0"
+        "effect-10-foot-status-penalty-to-your-land-speed" = "Compendium.pf2e.other-effects.Item.zDV1wo2ytNTbyTB0",
     }
 
     export enum PF2E_FEAT_EFFECTS {
@@ -1894,7 +1895,7 @@ declare global {
         "effect-storied-companion" = "Compendium.pf2e.feat-effects.Item.zmow6d0PswEqLcrM",
         "effect-energy-shot" = "Compendium.pf2e.feat-effects.Item.zocU4IYIlWwRKUuE",
         "effect-rebirth-in-living-stone" = "Compendium.pf2e.feat-effects.Item.zqgOjMU9TGoGwJWc",
-        "stance-impassable-wall-stance" = "Compendium.pf2e.feat-effects.Item.zzC2qZwEKf4Ja3xD"
+        "stance-impassable-wall-stance" = "Compendium.pf2e.feat-effects.Item.zzC2qZwEKf4Ja3xD",
     }
 
     export enum PF2E_SPELL_EFFECTS {
@@ -2383,6 +2384,6 @@ declare global {
         "spell-effect-nymphs-token" = "Compendium.pf2e.spell-effects.Item.zjFN1cJEl3AMKiVs",
         "spell-effect-darkened-sight" = "Compendium.pf2e.spell-effects.Item.znWiM5RYLvf8STmR",
         "spell-effect-entropic-wheel" = "Compendium.pf2e.spell-effects.Item.znwjWUvGOFQ6VYaE",
-        "spell-effect-magics-vessel" = "Compendium.pf2e.spell-effects.Item.zpxIwEjnLUSO1B4z"
+        "spell-effect-magics-vessel" = "Compendium.pf2e.spell-effects.Item.zpxIwEjnLUSO1B4z",
     }
 }

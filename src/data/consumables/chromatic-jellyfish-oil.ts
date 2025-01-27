@@ -8,9 +8,9 @@ export const actions: Assistant.Action[] = [
         predicate: [
             {
                 or: [
-                    "item:slug:chromatic-jellyfish-oil-lesser",
-                    "item:slug:chromatic-jellyfish-oil-moderate",
-                    "item:slug:chromatic-jellyfish-oil-greater"
+                    "item:chromatic-jellyfish-oil-lesser",
+                    "item:chromatic-jellyfish-oil-moderate",
+                    "item:chromatic-jellyfish-oil-greater"
                 ]
             }
         ],
