@@ -5,6 +5,7 @@ const define = {
     'PF2E_ASSISTANT_EFFECTS["effect-scoundrel-feint-success"]': JSON.stringify("Compendium.pf2e-assistant.effects.Item.9YHTscLqlt0zlTIk"),
     'PF2E_ASSISTANT_EFFECTS["effect-feint-critical-failure"]': JSON.stringify("Compendium.pf2e-assistant.effects.Item.9f4YzsgcAs3A5Xra"),
     'PF2E_ASSISTANT_EFFECTS["effect-critical-specialization-bow"]': JSON.stringify("Compendium.pf2e-assistant.effects.Item.Cs5YffU6KGMK1Ikw"),
+    'PF2E_ASSISTANT_EFFECTS["spell-effect-painful-vibrations"]': JSON.stringify("Compendium.pf2e-assistant.effects.Item.MvOeY5eoQxVCbYwA"),
     'PF2E_ASSISTANT_EFFECTS["effect-mistform-elixir-lesser"]': JSON.stringify("Compendium.pf2e-assistant.effects.Item.SZfUd4SIABrmaZ4T"),
     'PF2E_ASSISTANT_EFFECTS["effect-feint-critical-success"]': JSON.stringify("Compendium.pf2e-assistant.effects.Item.TJzFIRf9S5P91qgf"),
     'PF2E_ASSISTANT_EFFECTS["effect-scoundrel-feint-critical-success"]': JSON.stringify("Compendium.pf2e-assistant.effects.Item.W2ebaKgpulsOWfNs"),

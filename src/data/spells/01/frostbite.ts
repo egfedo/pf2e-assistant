@@ -14,18 +14,18 @@ export const actions: Assistant.Action[] = [
             if (!Utils.Roll.isCheckRoll(data.roll)) return;
             const reroll = Assistant.createReroll();
 
-            const effect = await game.assistant.socket.addEffect(
-                data.speaker.actor,
-                PF2E_SPELL_EFFECTS["spell-effect-frostbite"],
-                {
-                    origin: data.origin,
-                    item: data.item,
-                    target: data.speaker,
-                    roll: data.roll
-                }
+            reroll.removeItem.push(
+                ...(await game.assistant.socket.addEffect(
+                    data.speaker.actor,
+                    PF2E_SPELL_EFFECTS["spell-effect-frostbite"],
+                    {
+                        origin: data.origin,
+                        item: data.item,
+                        target: data.speaker,
+                        roll: data.roll
+                    }
+                ))
             );
-
-            if (effect) reroll.removeItem.push({ actor: data.speaker.actor.uuid, item: effect });
 
             return reroll;
         }

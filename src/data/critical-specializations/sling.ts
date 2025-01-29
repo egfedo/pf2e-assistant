@@ -6,11 +6,7 @@ export const path = ["Critical Specializations", "Sling"];
 export const actions: Assistant.Action[] = [
     {
         trigger: "damage-roll",
-        predicate: [
-            "check:outcome:critical-success",
-            "critical-specialization",
-            "item:group:sling"
-        ],
+        predicate: ["check:outcome:critical-success", "critical-specialization", "item:group:sling"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             if (!data.target) return;
@@ -34,17 +30,9 @@ export const actions: Assistant.Action[] = [
             if (!data.origin) return;
             const reroll = Assistant.createReroll();
 
-            const conditionValue = await game.assistant.socket.setCondition(
-                data.speaker.actor,
-                "stunned",
-                1
+            reroll.updateCondition.push(
+                ...((await game.assistant.socket.addCondition(data.speaker.actor, "stunned", { value: 1 })) ?? [])
             );
-            if (conditionValue)
-                reroll.setCondition.push({
-                    actor: data.speaker.actor.uuid,
-                    condition: "stunned",
-                    value: conditionValue
-                });
 
             return reroll;
         }

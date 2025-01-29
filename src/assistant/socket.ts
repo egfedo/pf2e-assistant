@@ -4,16 +4,19 @@ import {
     ChatMessagePF2e,
     CheckDC,
     CheckDCReference,
+    ConditionPF2e,
     ConditionSlug,
     EffectSystemData,
     ItemPF2e,
     ItemSourcePF2e,
+    PersistentSourceData,
     SaveType,
     ScenePF2e,
     TokenDocumentPF2e
 } from "foundry-pf2e";
 import { Utils } from "utils.ts";
 import module from "../../module.json" with { type: "json" };
+import { AddItem, RemoveItem, UpdateCondition } from "./reroll.ts";
 
 export class Socket {
     #socket: SocketlibSocket;
@@ -29,8 +32,7 @@ export class Socket {
         this.#socket.register("decreaseCondition", this.#decreaseCondition);
         this.#socket.register("increaseCondition", this.#increaseCondition);
         this.#socket.register("toggleCondition", this.#toggleCondition);
-        this.#socket.register("setCondition", this.#setCondition);
-        this.#socket.register("updateConditionValue", this.#updateConditionValue);
+        this.#socket.register("addCondition", this.#addCondition);
 
         this.#socket.register("rollSave", this.#rollSave);
 
@@ -39,15 +41,11 @@ export class Socket {
         this.#socket.register("promptChoice", this.#promptChoice);
     }
 
-    async #executeAsActor<T>(
-        actor: ActorPF2e,
-        handler: string | Function,
-        ...args: any[]
-    ): Promise<Maybe<T>> {
+    async #executeAsActor<T>(actor: ActorPF2e, handler: string | Function, ...args: any[]): Promise<Maybe<T>> {
         const primaryUser = Utils.Actor.getPrimaryUser(actor);
 
         if (primaryUser) {
-            return this.#socket.executeAsUser<Maybe<T>>(handler, primaryUser.id, ...args);
+            return this.#socket.executeAsUser<T>(handler, primaryUser.id, ...args);
         }
 
         return undefined;
@@ -57,9 +55,9 @@ export class Socket {
         actor: ActorPF2e,
         effectUuid: ItemUUID,
         data: SocketTypes.Effect.AddEffectData
-    ): Promise<Maybe<ItemUUID>> {
+    ): Promise<RemoveItem[]> {
         const effect = await fromUuid<ItemPF2e>(effectUuid);
-        if (!effect?.isOfType("effect")) return undefined;
+        if (!effect?.isOfType("effect")) return [];
 
         const item = data.item?.uuid ?? null;
         const spellcasting =
@@ -72,10 +70,7 @@ export class Socket {
                       tradition: data.item.spellcasting.tradition
                   }
                 : null;
-        const rollOptions = [
-            data.origin.actor.getSelfRollOptions("origin"),
-            data.item?.getRollOptions("origin:item")
-        ]
+        const rollOptions = [data.origin.actor.getSelfRollOptions("origin"), data.item?.getRollOptions("origin:item")]
             .flat()
             .filter(Utils.Remeda.isTruthy);
 
@@ -86,15 +81,11 @@ export class Socket {
             spellcasting,
             rollOptions
         };
-        const target = data.target
-            ? { actor: data.target.actor.uuid, token: data.target.token.uuid }
-            : null;
+        const target = data.target ? { actor: data.target.actor.uuid, token: data.target.token.uuid } : null;
         const roll = data.roll
             ? {
                   total: data.roll.total,
-                  degreeOfSuccess: Utils.Roll.isCheckRoll(data.roll)
-                      ? data.roll.degreeOfSuccess
-                      : null
+                  degreeOfSuccess: Utils.Roll.isCheckRoll(data.roll) ? data.roll.degreeOfSuccess : null
               }
             : null;
 
@@ -128,72 +119,76 @@ export class Socket {
         actor: ActorPF2e,
         itemUuid: ItemUUID,
         data?: PreCreate<ItemSourcePF2e>
-    ): Promise<Maybe<ItemUUID>> {
+    ): Promise<RemoveItem[]> {
         if (!actor.canUserModify(game.user, "update")) {
-            return await this.#executeAsActor(actor, "addEmbeddedItem", actor.uuid, itemUuid, data);
+            return (await this.#executeAsActor(actor, "addEmbeddedItem", actor.uuid, itemUuid, data)) ?? [];
         }
 
         const item = await fromUuid<ItemPF2e>(itemUuid);
 
         if (item) {
-            const itemSource = !data
-                ? item.toObject()
-                : foundry.utils.mergeObject(item.toObject(), data);
+            const itemSource = !data ? item.toObject() : foundry.utils.mergeObject(item.toObject(), data);
             const createdItem = await actor.createEmbeddedDocuments("Item", [itemSource]);
-            if (createdItem.length !== 0) return createdItem[0].uuid;
+            return createdItem.map((i) => ({ actor: actor.uuid, item: i.uuid }));
         }
 
-        return undefined;
+        return [];
     }
 
     async #addEmbeddedItem(
         actorUuid: ActorUUID,
         itemUuid: ItemUUID,
         data?: PreCreate<ItemSourcePF2e>
-    ): Promise<Maybe<ItemUUID>> {
+    ): Promise<RemoveItem[]> {
         let actor = await fromUuid<ActorPF2e>(actorUuid);
-        if (!actor) return undefined;
+        if (!actor) return [];
 
         return await game.assistant.socket.addEmbeddedItem(actor, itemUuid, data);
     }
 
-    async createEmbeddedItem(actor: ActorPF2e, data: ItemSourcePF2e): Promise<Maybe<ItemUUID>> {
+    async createEmbeddedItem(actor: ActorPF2e, data: ItemSourcePF2e): Promise<RemoveItem[]> {
         if (!actor.canUserModify(game.user, "update")) {
-            return await this.#executeAsActor(actor, "createEmbeddedItem", actor.uuid, data);
+            return (await this.#executeAsActor(actor, "createEmbeddedItem", actor.uuid, data)) ?? [];
         }
 
         const createdItem = await actor.createEmbeddedDocuments("Item", [data]);
-        if (createdItem.length !== 0) return createdItem[0].uuid;
-
-        return undefined;
+        return createdItem.map((i) => ({ actor: actor.uuid, item: i.uuid }));
     }
 
-    async #createEmbeddedItem(
-        actorUuid: ActorUUID,
-        data: ItemSourcePF2e
-    ): Promise<Maybe<ItemUUID>> {
+    async #createEmbeddedItem(actorUuid: ActorUUID, data: ItemSourcePF2e): Promise<RemoveItem[]> {
         let actor = await fromUuid<ActorPF2e>(actorUuid);
-        if (!actor) return undefined;
+        if (!actor) return [];
 
         return await game.assistant.socket.createEmbeddedItem(actor, data);
     }
 
-    async deleteEmbeddedItem(item: ItemPF2e) {
-        if (!item.parent) return;
+    async deleteEmbeddedItems(items: ItemPF2e[]): Promise<AddItem[]> {
+        let returnValue: AddItem[] = [];
 
-        if (!item.parent.canUserModify(game.user, "update")) {
-            await this.#executeAsActor(item.parent, "deleteEmbeddedItem", item.uuid);
-            return;
-        }
+        items.forEach(async (item) => {
+            returnValue.push(...(await game.assistant.socket.deleteEmbeddedItem(item)));
+        });
 
-        await item.delete();
+        return returnValue;
     }
 
-    async #deleteEmbeddedItem(itemUuid: ItemUUID) {
-        let item = await fromUuid<ItemPF2e>(itemUuid);
-        if (!item) return;
+    async deleteEmbeddedItem(item: ItemPF2e): Promise<AddItem[]> {
+        if (!item.parent) return [];
 
-        await game.assistant.socket.deleteEmbeddedItem(item);
+        if (!item.parent.canUserModify(game.user, "update")) {
+            return (await this.#executeAsActor(item.parent, "deleteEmbeddedItem", item.uuid)) ?? [];
+        }
+
+        const returnValue = [{ actor: item.parent.uuid, item: item.toObject() }];
+        await item.delete();
+        return returnValue;
+    }
+
+    async #deleteEmbeddedItem(itemUuid: ItemUUID): Promise<AddItem[]> {
+        let item = await fromUuid<ItemPF2e>(itemUuid);
+        if (!item) return [];
+
+        return await game.assistant.socket.deleteEmbeddedItem(item);
     }
 
     async updateEmbeddedItem(item: ItemPF2e, data: Record<string, unknown>) {
@@ -217,157 +212,175 @@ export class Socket {
     async decreaseCondition(
         actor: ActorPF2e,
         conditionSlug: ConditionSlug,
-        options?: { forceRemove: boolean }
-    ) {
+        { value, forceRemove }: { value?: number; forceRemove?: boolean } = {}
+    ): Promise<UpdateCondition[]> {
         if (!actor.canUserModify(game.user, "update")) {
-            await this.#executeAsActor(
-                actor,
-                "decreaseCondition",
-                actor.uuid,
-                conditionSlug,
-                options
+            return (
+                (await this.#executeAsActor(actor, "decreaseCondition", actor.uuid, conditionSlug, {
+                    value,
+                    forceRemove
+                })) ?? []
             );
-            return;
         }
 
-        await actor.decreaseCondition(conditionSlug, options);
+        const conditions = actor.itemTypes.condition.filter((c) => c.slug === conditionSlug && !c.isLocked);
+        if (conditions.length !== 0) {
+            let returnValue = conditions.map((c) => ({ actor: actor.uuid, id: c.id, data: c.toObject() }));
+
+            for (const condition of conditions) {
+                const currentValue = condition._source.system.value.value;
+                const newValue = Utils.Remeda.isNumber(currentValue) ? Math.max(currentValue - (value ?? 1), 0) : null;
+                if (newValue !== null && !forceRemove) {
+                    await game.pf2e.ConditionManager.updateConditionValue(condition.id, actor, newValue);
+                } else {
+                    await condition.delete();
+                }
+            }
+
+            return returnValue;
+        }
+
+        return [];
     }
 
     async #decreaseCondition(
         actorUuid: ActorUUID,
         conditionSlug: ConditionSlug,
-        options?: { forceRemove: boolean }
-    ) {
+        { value, forceRemove }: { value?: number; forceRemove?: boolean } = {}
+    ): Promise<UpdateCondition[]> {
         let actor = await fromUuid<ActorPF2e>(actorUuid);
-        if (!actor) return;
+        if (!actor) return [];
 
-        await game.assistant.socket.decreaseCondition(actor, conditionSlug, options);
+        return await game.assistant.socket.decreaseCondition(actor, conditionSlug, { value, forceRemove });
     }
 
     async increaseCondition(
         actor: ActorPF2e,
         conditionSlug: ConditionSlug,
-        options?: { max?: number; value?: number | null }
-    ) {
+        { value, max = Number.MAX_SAFE_INTEGER }: { value?: number; max?: number } = {}
+    ): Promise<UpdateCondition[]> {
         if (!actor.canUserModify(game.user, "update")) {
-            await this.#executeAsActor(
-                actor,
-                "increaseCondition",
-                actor.uuid,
-                conditionSlug,
-                options
+            return (
+                (await this.#executeAsActor(actor, "increaseCondition", actor.uuid, conditionSlug, { value, max })) ??
+                []
             );
-            return;
         }
 
-        await actor.increaseCondition(conditionSlug, options);
+        const conditions = actor.itemTypes.condition.filter((c) => c.slug === conditionSlug && !c.isLocked);
+
+        if (conditions.length !== 0) {
+            let returnValue = conditions.map((c) => ({ actor: actor.uuid, id: c.id, data: c.toObject() }));
+
+            for (const condition of conditions) {
+                const newValue = (() => {
+                    const currentValue = condition._source.system.value.value;
+                    if (currentValue === null) return null;
+                    const addend = value ?? 1;
+                    return Math.clamp(currentValue + addend, 1, max);
+                })();
+                if (!newValue) continue;
+                await game.pf2e.ConditionManager.updateConditionValue(condition.id, actor, newValue);
+            }
+
+            return returnValue;
+        } else {
+            const conditionSource = game.pf2e.ConditionManager.getCondition(conditionSlug).toObject();
+            const conditionValue = Utils.Remeda.isNumber(conditionSource.system.value.value)
+                ? Math.clamp(conditionSource.system.value.value, value ?? 1, max)
+                : null;
+            conditionSource.system.value.value = conditionValue;
+            const items = (await actor.createEmbeddedDocuments("Item", [
+                conditionSource
+            ])) as ConditionPF2e<ActorPF2e>[];
+
+            return items.map((c) => ({
+                actor: actor.uuid,
+                id: c.id
+            }));
+        }
     }
 
     async #increaseCondition(
         actorUuid: ActorUUID,
         conditionSlug: ConditionSlug,
-        options?: { max?: number; value?: number | null }
-    ) {
+        { value, max = Number.MAX_SAFE_INTEGER }: { value?: number; max?: number } = {}
+    ): Promise<UpdateCondition[]> {
         let actor = await fromUuid<ActorPF2e>(actorUuid);
-        if (!actor) return;
+        if (!actor) return [];
 
-        await game.assistant.socket.increaseCondition(actor, conditionSlug, options);
+        return await game.assistant.socket.increaseCondition(actor, conditionSlug, { value, max });
     }
 
     async toggleCondition(
         actor: ActorPF2e,
         conditionSlug: ConditionSlug,
-        options?: { active?: boolean }
-    ) {
+        { active }: { active?: boolean } = {}
+    ): Promise<UpdateCondition[]> {
         if (!actor.canUserModify(game.user, "update")) {
-            await this.#executeAsActor(
-                actor,
-                "toggleCondition",
-                actor.uuid,
-                conditionSlug,
-                options
-            );
-            return;
+            return (await this.#executeAsActor(actor, "toggleCondition", actor.uuid, conditionSlug, { active })) ?? [];
         }
 
-        await actor.toggleCondition(conditionSlug, options);
+        const hasCondition = actor.hasCondition(conditionSlug);
+        active ??= !hasCondition;
+
+        if (active && !hasCondition) {
+            return await game.assistant.socket.increaseCondition(actor, conditionSlug);
+        } else if (active) {
+            return [];
+        } else if (!active && hasCondition) {
+            return await game.assistant.socket.decreaseCondition(actor, conditionSlug, { forceRemove: true });
+        }
+
+        return [];
     }
 
     async #toggleCondition(
         actorUuid: ActorUUID,
         conditionSlug: ConditionSlug,
-        options?: { active?: boolean }
-    ) {
+        { active }: { active?: boolean } = {}
+    ): Promise<UpdateCondition[]> {
         let actor = await fromUuid<ActorPF2e>(actorUuid);
-        if (!actor) return;
+        if (!actor) return [];
 
-        await game.assistant.socket.toggleCondition(actor, conditionSlug, options);
+        return await game.assistant.socket.toggleCondition(actor, conditionSlug, { active });
     }
 
-    async setCondition(
+    async addCondition(
         actor: ActorPF2e,
         conditionSlug: ConditionSlug,
-        value: number
-    ): Promise<Maybe<number>> {
+        { value, persistent }: { value?: number; persistent?: PersistentSourceData } = {}
+    ): Promise<UpdateCondition[]> {
         if (!actor.canUserModify(game.user, "update")) {
-            return await this.#executeAsActor(
-                actor,
-                "setCondition",
-                actor.uuid,
-                conditionSlug,
-                value
-            );
+            return (await this.#executeAsActor(actor, "addCondition", actor.uuid, conditionSlug, { value })) ?? [];
         }
 
-        if (conditionSlug === "persistent-damage") return;
+        if (conditionSlug === "persistent-damage" && persistent === undefined) return [];
 
-        const conditions = actor.itemTypes.condition
-            .filter((item) => item.active && !item.isLocked && item.slug === conditionSlug)
-            .sort((a, b) => {
-                const [valueA, valueB] = [a.value ?? 0, b.value ?? 0];
-                return valueA > valueB ? -1 : valueA < valueB ? 1 : 0;
-            });
-        const condition = conditions.at(0);
+        const conditionSource = game.pf2e.ConditionManager.getCondition(conditionSlug).toObject();
+        const conditionValue = Utils.Remeda.isNumber(conditionSource.system.value.value)
+            ? Math.clamp(conditionSource.system.value.value, value ?? 1, Number.MAX_SAFE_INTEGER)
+            : null;
+        conditionSource.system.value.value = conditionValue;
 
-        if (condition) {
-            const currentValue = condition.value ?? 0;
-            await game.pf2e.ConditionManager.updateConditionValue(condition.id, actor, value);
-            return currentValue;
-        } else if (value > 0) {
-            const conditionSource =
-                game.pf2e.ConditionManager.getCondition(conditionSlug).toObject();
-            conditionSource.system.value.value = value;
-            await actor.createEmbeddedDocuments("Item", [conditionSource]);
-        }
+        if (conditionSlug === "persistent-damage") conditionSource.system.persistent = persistent;
 
-        return 0;
+        const items = (await actor.createEmbeddedDocuments("Item", [conditionSource])) as ConditionPF2e<ActorPF2e>[];
+
+        return items.map((c) => ({
+            actor: actor.uuid,
+            id: c.id
+        }));
     }
 
-    async #setCondition(
+    async #addCondition(
         actorUuid: ActorUUID,
         conditionSlug: ConditionSlug,
-        value: number
-    ): Promise<Maybe<number>> {
+        { value, persistent }: { value?: number; persistent?: PersistentSourceData } = {}
+    ): Promise<UpdateCondition[]> {
         let actor = await fromUuid<ActorPF2e>(actorUuid);
-        if (!actor) return;
+        if (!actor) return [];
 
-        return await game.assistant.socket.setCondition(actor, conditionSlug, value);
-    }
-
-    async updateConditionValue(actor: ActorPF2e, itemId: string, value: number) {
-        if (!actor.canUserModify(game.user, "update")) {
-            await this.#executeAsActor(actor, "updateConditionValue", actor.uuid, itemId, value);
-            return;
-        }
-
-        await game.pf2e.ConditionManager.updateConditionValue(itemId, actor, value);
-    }
-
-    async #updateConditionValue(actorUuid: ActorUUID, itemId: string, value: number) {
-        let actor = await fromUuid<ActorPF2e>(actorUuid);
-        if (!actor) return;
-
-        await game.assistant.socket.updateConditionValue(actor, itemId, value);
+        return await game.assistant.socket.addCondition(actor, conditionSlug, { value, persistent });
     }
 
     async rollSave(actor: ActorPF2e, save: SaveType, args: SocketTypes.Save.RollParameters) {
@@ -383,11 +396,7 @@ export class Socket {
         await actor.saves?.[save]?.roll(args);
     }
 
-    async #rollSave(
-        actorUuid: ActorUUID,
-        save: SaveType,
-        args: SocketTypes.Save.SerializedRollParameters
-    ) {
+    async #rollSave(actorUuid: ActorUUID, save: SaveType, args: SocketTypes.Save.SerializedRollParameters) {
         let actor = await fromUuid<ActorPF2e>(actorUuid);
         if (!actor) return;
 
@@ -414,19 +423,18 @@ export class Socket {
         await game.assistant.socket.deleteChatMessage(chatMessage);
     }
 
-    async promptChoice(
-        actor: ActorPF2e,
-        param: SocketTypes.Prompt.ChoiceParameters
-    ): Promise<Maybe<ChatMessageUUID>> {
+    async promptChoice(actor: ActorPF2e, param: SocketTypes.Prompt.ChoiceParameters): Promise<ChatMessageUUID[]> {
         if (!actor.canUserModify(game.user, "update")) {
-            return await this.#executeAsActor(actor, "promptChoice", actor.uuid, {
-                speaker: { actor: param.speaker.actor.uuid, token: param.speaker.token.uuid },
-                item: param.item ? param.item.uuid : undefined,
-                target: param.target
-                    ? { actor: param.target.actor.uuid, token: param.target.token.uuid }
-                    : undefined,
-                data: param.data
-            });
+            return (
+                (await this.#executeAsActor(actor, "promptChoice", actor.uuid, {
+                    speaker: { actor: param.speaker.actor.uuid, token: param.speaker.token.uuid },
+                    item: param.item ? param.item.uuid : undefined,
+                    target: param.target
+                        ? { actor: param.target.actor.uuid, token: param.target.token.uuid }
+                        : undefined,
+                    data: param.data
+                })) ?? []
+            );
         }
 
         const flags: DeepPartial<ChatMessageFlagsPF2e> = {
@@ -444,13 +452,8 @@ export class Socket {
                     param.item?.isOfType("spell") && param.item.spellcasting?.statistic
                         ? {
                               id: param.item.spellcasting.id,
-                              tradition:
-                                  param.item.spellcasting.tradition ??
-                                  param.item.traditions.first() ??
-                                  "arcane",
-                              embeddedSpell: param.item.parentItem
-                                  ? param.item.toObject()
-                                  : undefined
+                              tradition: param.item.spellcasting.tradition ?? param.item.traditions.first() ?? "arcane",
+                              embeddedSpell: param.item.parentItem ? param.item.toObject() : undefined
                           }
                         : undefined
             },
@@ -460,23 +463,21 @@ export class Socket {
         };
 
         let chatMessage = await ChatMessage.create({
-            content: await renderTemplate(
-                "modules/pf2e-assistant/templates/chat/prompt-choice.hbs",
-                param.data
-            ),
+            content: await renderTemplate("modules/pf2e-assistant/templates/chat/prompt-choice.hbs", param.data),
             flags,
             speaker: ChatMessage.getSpeaker(param.speaker),
             whisper: game.users.filter((user) => param.speaker.actor.canUserModify(user, "update"))
         });
-        return chatMessage?.uuid;
+
+        return chatMessage ? [chatMessage.uuid] : [];
     }
 
     async #promptChoice(
         actorUuid: ActorUUID,
         param: SocketTypes.Prompt.SerializedChoiceParameters
-    ): Promise<Maybe<ChatMessageUUID>> {
+    ): Promise<ChatMessageUUID[]> {
         let actor = await fromUuid<ActorPF2e>(actorUuid);
-        if (!actor) return undefined;
+        if (!actor) return [];
 
         const speaker = {
             actor: await fromUuid<ActorPF2e>(param.speaker.actor),
@@ -499,16 +500,27 @@ export class Socket {
                 data
             });
         }
-        return undefined;
+
+        return [];
     }
 }
 
 namespace SocketTypes {
+    export interface ActorToken {
+        actor: ActorPF2e;
+        token: TokenDocumentPF2e<ScenePF2e>;
+    }
+
+    export interface SerializedActorToken {
+        actor: ActorUUID;
+        token: TokenDocumentUUID;
+    }
+
     export namespace Effect {
         export interface AddEffectData {
-            origin: { actor: ActorPF2e; token: TokenDocumentPF2e<ScenePF2e> };
+            origin: ActorToken;
             item?: ItemPF2e;
-            target?: { actor: ActorPF2e; token: TokenDocumentPF2e<ScenePF2e> };
+            target?: ActorToken;
             roll?: Roll;
             duration?: EffectSystemData["duration"];
             tokenMark?: { slug: string; token: TokenDocumentPF2e<ScenePF2e> };

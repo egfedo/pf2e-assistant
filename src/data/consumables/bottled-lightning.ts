@@ -23,18 +23,18 @@ export const actions: Assistant.Action[] = [
             if (!Utils.Roll.isCheckRoll(data.roll)) return;
             const reroll = Assistant.createReroll();
 
-            const effect = await game.assistant.socket.addEffect(
-                data.target.actor,
-                PF2E_ASSISTANT_EFFECTS["effect-bottled-lightning"],
-                {
-                    origin: data.speaker,
-                    item: data.item,
-                    target: data.target,
-                    roll: data.roll
-                }
+            reroll.removeItem.push(
+                ...(await game.assistant.socket.addEffect(
+                    data.target.actor,
+                    PF2E_ASSISTANT_EFFECTS["effect-bottled-lightning"],
+                    {
+                        origin: data.speaker,
+                        item: data.item,
+                        target: data.target,
+                        roll: data.roll
+                    }
+                ))
             );
-
-            if (effect) reroll.removeItem.push({ actor: data.target.actor.uuid, item: effect });
 
             return reroll;
         }

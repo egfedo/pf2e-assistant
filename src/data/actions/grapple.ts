@@ -13,17 +13,17 @@ export const actions: Assistant.Action[] = [
             if (!Utils.Roll.isCheckRoll(data.roll)) return;
             const reroll = Assistant.createReroll();
 
-            const grapple = await game.assistant.socket.addEffect(
-                data.target.actor,
-                PF2E_ASSISTANT_EFFECTS["effect-grapple-critical-success"],
-                {
-                    origin: data.speaker,
-                    target: data.target,
-                    roll: data.roll
-                }
+            reroll.removeItem.push(
+                ...(await game.assistant.socket.addEffect(
+                    data.target.actor,
+                    PF2E_ASSISTANT_EFFECTS["effect-grapple-critical-success"],
+                    {
+                        origin: data.speaker,
+                        target: data.target,
+                        roll: data.roll
+                    }
+                ))
             );
-
-            if (grapple) reroll.removeItem.push({ actor: data.target.actor.uuid, item: grapple });
 
             return reroll;
         }
@@ -37,17 +37,17 @@ export const actions: Assistant.Action[] = [
             if (!Utils.Roll.isCheckRoll(data.roll)) return;
             const reroll = Assistant.createReroll();
 
-            const grapple = await game.assistant.socket.addEffect(
-                data.target.actor,
-                PF2E_ASSISTANT_EFFECTS["effect-grapple-success"],
-                {
-                    origin: data.speaker,
-                    target: data.target,
-                    roll: data.roll
-                }
+            reroll.removeItem.push(
+                ...(await game.assistant.socket.addEffect(
+                    data.target.actor,
+                    PF2E_ASSISTANT_EFFECTS["effect-grapple-success"],
+                    {
+                        origin: data.speaker,
+                        target: data.target,
+                        roll: data.roll
+                    }
+                ))
             );
-
-            if (grapple) reroll.removeItem.push({ actor: data.target.actor.uuid, item: grapple });
 
             return reroll;
         }
@@ -61,20 +61,17 @@ export const actions: Assistant.Action[] = [
             if (!Utils.Roll.isCheckRoll(data.roll)) return;
             const reroll = Assistant.createReroll();
 
-            const effects = Utils.Actor.getEffects(
-                data.target.actor,
-                ["effect-grapple-critical-success", "effect-grapple-success"],
-                {
-                    origin: data.speaker.actor,
-                    target: data.target.actor
-                }
-            );
-
-            effects.forEach((effect) =>
-                reroll.addItem.push({ actor: effect.parent.uuid, item: effect.toObject() })
-            );
-            effects.forEach(
-                async (effect) => await game.assistant.socket.deleteEmbeddedItem(effect)
+            reroll.addItem.push(
+                ...(await game.assistant.socket.deleteEmbeddedItems(
+                    Utils.Actor.getEffects(
+                        data.target.actor,
+                        ["effect-grapple-critical-success", "effect-grapple-success"],
+                        {
+                            origin: data.speaker.actor,
+                            target: data.target.actor
+                        }
+                    )
+                ))
             );
 
             return reroll;
@@ -89,40 +86,38 @@ export const actions: Assistant.Action[] = [
             if (!Utils.Roll.isCheckRoll(data.roll)) return;
             const reroll = Assistant.createReroll();
 
-            const effects = Utils.Actor.getEffects(
-                data.target.actor,
-                ["effect-grapple-critical-success", "effect-grapple-success"],
-                {
-                    origin: data.speaker.actor,
-                    target: data.target.actor
-                }
-            );
-
-            effects.forEach((effect) =>
-                reroll.addItem.push({ actor: effect.parent.uuid, item: effect.toObject() })
-            );
-            effects.forEach(
-                async (effect) => await game.assistant.socket.deleteEmbeddedItem(effect)
-            );
-
-            const createdPrompt = await game.assistant.socket.promptChoice(data.target.actor, {
-                speaker: { actor: data.target.actor, token: data.target.token },
-                target: { actor: data.speaker.actor, token: data.speaker.token },
-                data: {
-                    description: "My foe has critically failed to grapple me, what should I do?",
-                    choices: [
+            reroll.addItem.push(
+                ...(await game.assistant.socket.deleteEmbeddedItems(
+                    Utils.Actor.getEffects(
+                        data.target.actor,
+                        ["effect-grapple-critical-success", "effect-grapple-success"],
                         {
-                            label: "Grab Foe",
-                            value: "grapple-foe"
-                        },
-                        {
-                            label: "Force Foe Prone",
-                            value: "prone-foe"
+                            origin: data.speaker.actor,
+                            target: data.target.actor
                         }
-                    ]
-                }
-            });
-            if (createdPrompt) reroll.deleteChatMessage.push(createdPrompt);
+                    )
+                ))
+            );
+
+            reroll.deleteChatMessage.push(
+                ...(await game.assistant.socket.promptChoice(data.target.actor, {
+                    speaker: { actor: data.target.actor, token: data.target.token },
+                    target: { actor: data.speaker.actor, token: data.speaker.token },
+                    data: {
+                        description: "My foe has critically failed to grapple me, what should I do?",
+                        choices: [
+                            {
+                                label: "Grab Foe",
+                                value: "grapple-foe"
+                            },
+                            {
+                                label: "Force Foe Prone",
+                                value: "prone-foe"
+                            }
+                        ]
+                    }
+                }))
+            );
 
             return reroll;
         }
@@ -134,14 +129,10 @@ export const actions: Assistant.Action[] = [
             if (!data.speaker) return;
             if (!data.target) return;
 
-            await game.assistant.socket.addEffect(
-                data.target.actor,
-                PF2E_ASSISTANT_EFFECTS["effect-grapple-success"],
-                {
-                    origin: data.speaker,
-                    target: data.target
-                }
-            );
+            await game.assistant.socket.addEffect(data.target.actor, PF2E_ASSISTANT_EFFECTS["effect-grapple-success"], {
+                origin: data.speaker,
+                target: data.target
+            });
         }
     },
     {

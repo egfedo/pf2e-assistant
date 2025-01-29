@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { Utils } from "utils.ts";
 
 export const path = ["Feats", "Aura of Courage"];
 
@@ -22,21 +21,7 @@ export const actions: Assistant.Action[] = [
                 for (const ally of inAura) {
                     if (!ally.actor) continue;
 
-                    const conditions = ally.actor.itemTypes.condition.filter(
-                        (item) => item.slug === "frightened" && !item.isLocked
-                    );
-
-                    for (const condition of conditions) {
-                        const currentValue = Utils.Remeda.isNumber(condition.badge?.value)
-                            ? condition.badge.value
-                            : 0;
-                        const newValue = Math.max(0, currentValue - 1);
-                        await game.assistant.socket.updateConditionValue(
-                            ally.actor,
-                            condition.id,
-                            newValue
-                        );
-                    }
+                    await game.assistant.socket.decreaseCondition(ally.actor, "frightened");
                 }
             }
         }

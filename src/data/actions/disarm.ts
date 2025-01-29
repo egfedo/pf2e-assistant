@@ -13,18 +13,17 @@ export const actions: Assistant.Action[] = [
             if (!Utils.Roll.isCheckRoll(data.roll)) return;
             const reroll = Assistant.createReroll();
 
-            const embeddedItem = await game.assistant.socket.addEffect(
-                data.target.actor,
-                PF2E_OTHER_EFFECTS["effect-disarm-success"],
-                {
-                    origin: data.speaker,
-                    target: data.target,
-                    roll: data.roll
-                }
+            reroll.removeItem.push(
+                ...(await game.assistant.socket.addEffect(
+                    data.target.actor,
+                    PF2E_OTHER_EFFECTS["effect-disarm-success"],
+                    {
+                        origin: data.speaker,
+                        target: data.target,
+                        roll: data.roll
+                    }
+                ))
             );
-
-            if (embeddedItem)
-                reroll.removeItem.push({ actor: data.target.actor.uuid, item: embeddedItem });
 
             return reroll;
         }
@@ -38,18 +37,16 @@ export const actions: Assistant.Action[] = [
             if (!Utils.Roll.isCheckRoll(data.roll)) return;
             const reroll = Assistant.createReroll();
 
-            const embeddedItem = await game.assistant.socket.addEffect(
-                data.target.actor,
-                PF2E_ASSISTANT_EFFECTS["effect-disarm-critical-failure"],
-                {
-                    origin: data.speaker,
-                    target: data.target,
-                    roll: data.roll
-                }
+            reroll.removeItem.push(
+                ...(await game.assistant.socket.addEffect(
+                    data.speaker.actor,
+                    PF2E_ASSISTANT_EFFECTS["effect-disarm-critical-failure"],
+                    {
+                        origin: data.speaker,
+                        roll: data.roll
+                    }
+                ))
             );
-
-            if (embeddedItem)
-                reroll.removeItem.push({ actor: data.speaker.actor.uuid, item: embeddedItem });
 
             return reroll;
         }

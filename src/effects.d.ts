@@ -8,6 +8,7 @@ declare global {
         "effect-scoundrel-feint-success" = "Compendium.pf2e-assistant.effects.Item.9YHTscLqlt0zlTIk",
         "effect-feint-critical-failure" = "Compendium.pf2e-assistant.effects.Item.9f4YzsgcAs3A5Xra",
         "effect-critical-specialization-bow" = "Compendium.pf2e-assistant.effects.Item.Cs5YffU6KGMK1Ikw",
+        "spell-effect-painful-vibrations" = "Compendium.pf2e-assistant.effects.Item.MvOeY5eoQxVCbYwA",
         "effect-mistform-elixir-lesser" = "Compendium.pf2e-assistant.effects.Item.SZfUd4SIABrmaZ4T",
         "effect-feint-critical-success" = "Compendium.pf2e-assistant.effects.Item.TJzFIRf9S5P91qgf",
         "effect-scoundrel-feint-critical-success" = "Compendium.pf2e-assistant.effects.Item.W2ebaKgpulsOWfNs",

@@ -16,17 +16,13 @@ export const actions: Assistant.Action[] = [
             if (!Utils.Roll.isCheckRoll(data.roll)) return;
             const reroll = Assistant.createReroll();
 
-            const panache = await game.assistant.socket.addEffect(
-                data.speaker.actor,
-                PF2E_FEAT_EFFECTS["effect-panache"],
-                {
+            reroll.removeItem.push(
+                ...(await game.assistant.socket.addEffect(data.speaker.actor, PF2E_FEAT_EFFECTS["effect-panache"], {
                     origin: data.speaker,
                     target: data.speaker,
                     roll: data.roll
-                }
+                }))
             );
-
-            if (panache) reroll.removeItem.push({ actor: data.speaker.actor.uuid, item: panache });
 
             return reroll;
         }
@@ -39,18 +35,14 @@ export const actions: Assistant.Action[] = [
             if (!Utils.Roll.isCheckRoll(data.roll)) return;
             const reroll = Assistant.createReroll();
 
-            const panache = await game.assistant.socket.addEffect(
-                data.speaker.actor,
-                PF2E_FEAT_EFFECTS["effect-panache"],
-                {
+            reroll.removeItem.push(
+                ...(await game.assistant.socket.addEffect(data.speaker.actor, PF2E_FEAT_EFFECTS["effect-panache"], {
                     origin: data.speaker,
                     target: data.speaker,
                     roll: data.roll,
                     duration: { expiry: "turn-end", sustained: false, unit: "rounds", value: 1 }
-                }
+                }))
             );
-
-            if (panache) reroll.removeItem.push({ actor: data.speaker.actor.uuid, item: panache });
 
             return reroll;
         }

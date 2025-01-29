@@ -36,31 +36,21 @@ async function processReroll(chatMessage: ChatMessagePF2e) {
     if (chatMessage.flags["pf2e-assistant"]?.reroll) {
         const reroll = chatMessage.flags["pf2e-assistant"].reroll;
 
-        for (const data of reroll.addCondition) {
+        for (const data of reroll.updateCondition) {
             const actor = await fromUuid<ActorPF2e>(data.actor);
 
             if (actor) {
-                await game.assistant.socket.toggleCondition(actor, data.condition, {
-                    active: true
-                });
-            }
-        }
+                const condition = actor.itemTypes.condition.find((c) => c.id === data.id);
 
-        for (const data of reroll.removeCondition) {
-            const actor = await fromUuid<ActorPF2e>(data.actor);
-
-            if (actor) {
-                await game.assistant.socket.decreaseCondition(actor, data.condition, {
-                    forceRemove: true
-                });
-            }
-        }
-
-        for (const data of reroll.setCondition) {
-            const actor = await fromUuid<ActorPF2e>(data.actor);
-
-            if (actor) {
-                await game.assistant.socket.setCondition(actor, data.condition, data.value);
+                if (condition) {
+                    if (data.source !== undefined) {
+                        await game.assistant.socket.updateEmbeddedItem(condition, data.source);
+                    } else {
+                        await game.assistant.socket.deleteEmbeddedItem(condition);
+                    }
+                } else if (data.source !== undefined) {
+                    await game.assistant.socket.createEmbeddedItem(actor, data.source);
+                }
             }
         }
 

@@ -10,17 +10,9 @@ export const actions: Assistant.Action[] = [
             if (!data.speaker) return;
             const reroll = Assistant.createReroll();
 
-            const conditionValue = await game.assistant.socket.setCondition(
-                data.speaker.actor,
-                "stunned",
-                1
+            reroll.updateCondition.push(
+                ...((await game.assistant.socket.addCondition(data.speaker.actor, "stunned", { value: 1 })) ?? [])
             );
-            if (conditionValue)
-                reroll.setCondition.push({
-                    actor: data.speaker.actor.uuid,
-                    condition: "stunned",
-                    value: conditionValue
-                });
 
             return reroll;
         }

@@ -92,9 +92,7 @@ export class Storage {
             const returnedData = await action.process(data);
 
             if (returnedData) {
-                reroll.addCondition.push(...returnedData.addCondition);
-                reroll.removeCondition.push(...returnedData.removeCondition);
-                reroll.setCondition.push(...returnedData.setCondition);
+                reroll.updateCondition.push(...returnedData.updateCondition);
                 reroll.addItem.push(...returnedData.addItem);
                 reroll.removeItem.push(...returnedData.removeItem);
                 reroll.deleteChatMessage.push(...returnedData.deleteChatMessage);

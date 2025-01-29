@@ -6,11 +6,7 @@ export const path = ["Critical Specializations", "Brawling"];
 export const actions: Assistant.Action[] = [
     {
         trigger: "damage-roll",
-        predicate: [
-            "check:outcome:critical-success",
-            "critical-specialization",
-            "item:group:brawling"
-        ],
+        predicate: ["check:outcome:critical-success", "critical-specialization", "item:group:brawling"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             if (!data.target) return;
@@ -35,17 +31,17 @@ export const actions: Assistant.Action[] = [
             if (!Utils.Roll.isCheckRoll(data.roll)) return;
             const reroll = Assistant.createReroll();
 
-            const effect = await game.assistant.socket.addEffect(
-                data.speaker.actor,
-                PF2E_ASSISTANT_EFFECTS["effect-critical-specialization-brawling"],
-                {
-                    origin: data.origin,
-                    target: data.speaker,
-                    roll: data.roll
-                }
+            reroll.removeItem.push(
+                ...(await game.assistant.socket.addEffect(
+                    data.speaker.actor,
+                    PF2E_ASSISTANT_EFFECTS["effect-critical-specialization-brawling"],
+                    {
+                        origin: data.origin,
+                        target: data.speaker,
+                        roll: data.roll
+                    }
+                ))
             );
-
-            if (effect) reroll.removeItem.push({ actor: data.speaker.actor.uuid, item: effect });
 
             return reroll;
         }

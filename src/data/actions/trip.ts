@@ -12,20 +12,12 @@ export const actions: Assistant.Action[] = [
             if (!data.target) return;
             const reroll = Assistant.createReroll();
 
-            if (!data.target.actor.hasCondition("prone")) {
-                await game.assistant.socket.toggleCondition(data.target.actor, "prone", {
-                    active: true
-                });
-                reroll.removeCondition.push({ actor: data.target.actor.uuid, condition: "prone" });
-            }
+            reroll.updateCondition.push(
+                ...((await game.assistant.socket.toggleCondition(data.target.actor, "prone", { active: true })) ?? [])
+            );
 
-            const showBreakdown =
-                game.pf2e.settings.metagame.breakdowns || !!data.speaker.actor.hasPlayerOwner;
-            const roll = await Utils.Roll.newDamageRoll(
-                "{1d6[bludgeoning]}",
-                {},
-                { showBreakdown }
-            ).evaluate();
+            const showBreakdown = game.pf2e.settings.metagame.breakdowns || !!data.speaker.actor.hasPlayerOwner;
+            const roll = await Utils.Roll.newDamageRoll("{1d6[bludgeoning]}", {}, { showBreakdown }).evaluate();
             const createdMessage = await roll.toMessage({
                 flags: { "pf2e-assistant": { process: false } },
                 speaker: ChatMessage.getSpeaker({
@@ -46,12 +38,9 @@ export const actions: Assistant.Action[] = [
             if (!data.target) return;
             const reroll = Assistant.createReroll();
 
-            if (!data.target.actor.hasCondition("prone")) {
-                await game.assistant.socket.toggleCondition(data.target.actor, "prone", {
-                    active: true
-                });
-                reroll.removeCondition.push({ actor: data.target.actor.uuid, condition: "prone" });
-            }
+            reroll.updateCondition.push(
+                ...((await game.assistant.socket.toggleCondition(data.target.actor, "prone", { active: true })) ?? [])
+            );
 
             return reroll;
         }
@@ -64,12 +53,9 @@ export const actions: Assistant.Action[] = [
             if (!data.target) return;
             const reroll = Assistant.createReroll();
 
-            if (!data.speaker.actor.hasCondition("prone")) {
-                await game.assistant.socket.toggleCondition(data.speaker.actor, "prone", {
-                    active: true
-                });
-                reroll.removeCondition.push({ actor: data.target.actor.uuid, condition: "prone" });
-            }
+            reroll.updateCondition.push(
+                ...((await game.assistant.socket.toggleCondition(data.speaker.actor, "prone", { active: true })) ?? [])
+            );
 
             return reroll;
         }

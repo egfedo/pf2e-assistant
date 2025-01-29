@@ -13,19 +13,18 @@ export const actions: Assistant.Action[] = [
             if (!Utils.Roll.isCheckRoll(data.roll)) return;
             const reroll = Assistant.createReroll();
 
-            const embeddedItem = await game.assistant.socket.addEffect(
-                data.speaker.actor,
-                PF2E_ASSISTANT_EFFECTS["effect-feint-critical-success"],
-                {
-                    origin: data.speaker,
-                    target: data.target,
-                    roll: data.roll,
-                    tokenMark: { slug: "feint", token: data.target.token }
-                }
+            reroll.removeItem.push(
+                ...(await game.assistant.socket.addEffect(
+                    data.speaker.actor,
+                    PF2E_ASSISTANT_EFFECTS["effect-feint-critical-success"],
+                    {
+                        origin: data.speaker,
+                        target: data.target,
+                        roll: data.roll,
+                        tokenMark: { slug: "feint", token: data.target.token }
+                    }
+                ))
             );
-
-            if (embeddedItem)
-                reroll.removeItem.push({ actor: data.speaker.actor.uuid, item: embeddedItem });
 
             return reroll;
         }
@@ -39,19 +38,18 @@ export const actions: Assistant.Action[] = [
             if (!Utils.Roll.isCheckRoll(data.roll)) return;
             const reroll = Assistant.createReroll();
 
-            const embeddedItem = await game.assistant.socket.addEffect(
-                data.speaker.actor,
-                PF2E_ASSISTANT_EFFECTS["effect-feint-success"],
-                {
-                    origin: data.speaker,
-                    target: data.target,
-                    roll: data.roll,
-                    tokenMark: { slug: "feint", token: data.target.token }
-                }
+            reroll.removeItem.push(
+                ...(await game.assistant.socket.addEffect(
+                    data.speaker.actor,
+                    PF2E_ASSISTANT_EFFECTS["effect-feint-success"],
+                    {
+                        origin: data.speaker,
+                        target: data.target,
+                        roll: data.roll,
+                        tokenMark: { slug: "feint", token: data.target.token }
+                    }
+                ))
             );
-
-            if (embeddedItem)
-                reroll.removeItem.push({ actor: data.speaker.actor.uuid, item: embeddedItem });
 
             return reroll;
         }
@@ -65,19 +63,18 @@ export const actions: Assistant.Action[] = [
             if (!Utils.Roll.isCheckRoll(data.roll)) return;
             const reroll = Assistant.createReroll();
 
-            const embeddedItem = await game.assistant.socket.addEffect(
-                data.target.actor,
-                PF2E_ASSISTANT_EFFECTS["effect-feint-critical-failure"],
-                {
-                    origin: data.speaker,
-                    target: data.speaker,
-                    roll: data.roll,
-                    tokenMark: { slug: "feint", token: data.speaker.token }
-                }
+            reroll.removeItem.push(
+                ...(await game.assistant.socket.addEffect(
+                    data.target.actor,
+                    PF2E_ASSISTANT_EFFECTS["effect-feint-critical-failure"],
+                    {
+                        origin: data.speaker,
+                        target: data.speaker,
+                        roll: data.roll,
+                        tokenMark: { slug: "feint", token: data.speaker.token }
+                    }
+                ))
             );
-
-            if (embeddedItem)
-                reroll.removeItem.push({ actor: data.speaker.actor.uuid, item: embeddedItem });
 
             return reroll;
         }
