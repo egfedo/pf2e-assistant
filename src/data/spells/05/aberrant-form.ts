@@ -4,14 +4,14 @@ export const path = ["Spells", "5th Rank", "Aberrant Form"];
 
 export const actions: Assistant.Action[] = [
     {
-        trigger: "action",
+        trigger: "spell-cast",
         predicate: ["item:aberrant-form"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             if (!data.item?.isOfType("spell")) return;
 
             game.assistant.socket.promptChoice(data.speaker.actor, {
-                speaker: data.speaker,
+                speaker: { actor: data.speaker.actor, token: data.speaker.token },
                 item: data.item,
                 data: {
                     description: "Please choose which form that I should transform into.",
@@ -75,7 +75,11 @@ export const actions: Assistant.Action[] = [
             await game.assistant.socket.addEffect(
                 data.speaker.actor,
                 PF2E_SPELL_EFFECTS["spell-effect-aberrant-form-gug"],
-                { origin: data.speaker, item: data.item, target: data.speaker }
+                {
+                    origin: data.speaker,
+                    item: data.item,
+                    target: data.speaker
+                }
             );
         }
     },

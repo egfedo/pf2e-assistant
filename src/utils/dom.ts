@@ -23,9 +23,7 @@ export function createHTMLElement<K extends keyof HTMLElementTagNameMap>(
     const element = document.createElement(nodeName);
     if (classes.length > 0) element.classList.add(...classes);
 
-    for (const [key, value] of Object.entries(dataset).filter(
-        ([, v]) => R.isNonNullish(v) && v !== false
-    )) {
+    for (const [key, value] of Object.entries(dataset).filter(([, v]) => R.isNonNullish(v) && v !== false)) {
         element.dataset[key] = value === true ? "" : String(value);
     }
 
@@ -68,10 +66,7 @@ export function htmlQuery<K extends keyof HTMLElementTagNameMap>(
     selectors: K
 ): HTMLElementTagNameMap[K] | null;
 export function htmlQuery(parent: MaybeHTML, selectors: string): HTMLElement | null;
-export function htmlQuery<E extends HTMLElement = HTMLElement>(
-    parent: MaybeHTML,
-    selectors: string
-): E | null;
+export function htmlQuery<E extends HTMLElement = HTMLElement>(parent: MaybeHTML, selectors: string): E | null;
 export function htmlQuery(parent: MaybeHTML, selectors: string): HTMLElement | null {
     if (!(parent instanceof Element || parent instanceof Document)) return null;
     return parent.querySelector<HTMLElement>(selectors);
@@ -82,10 +77,7 @@ export function htmlQueryAll<K extends keyof HTMLElementTagNameMap>(
     selectors: K
 ): HTMLElementTagNameMap[K][];
 export function htmlQueryAll(parent: MaybeHTML, selectors: string): HTMLElement[];
-export function htmlQueryAll<E extends HTMLElement = HTMLElement>(
-    parent: MaybeHTML,
-    selectors: string
-): E[];
+export function htmlQueryAll<E extends HTMLElement = HTMLElement>(parent: MaybeHTML, selectors: string): E[];
 export function htmlQueryAll(parent: MaybeHTML, selectors: string): HTMLElement[] {
     if (!(parent instanceof Element || parent instanceof Document)) return [];
     return Array.from(parent.querySelectorAll<HTMLElement>(selectors));
@@ -96,10 +88,7 @@ export function htmlClosest<K extends keyof HTMLElementTagNameMap>(
     selectors: K
 ): HTMLElementTagNameMap[K] | null;
 export function htmlClosest(child: MaybeHTML, selectors: string): HTMLElement | null;
-export function htmlClosest<E extends HTMLElement = HTMLElement>(
-    parent: MaybeHTML,
-    selectors: string
-): E | null;
+export function htmlClosest<E extends HTMLElement = HTMLElement>(parent: MaybeHTML, selectors: string): E | null;
 export function htmlClosest(child: MaybeHTML, selectors: string): HTMLElement | null {
     if (!(child instanceof Element)) return null;
     return child.closest<HTMLElement>(selectors);

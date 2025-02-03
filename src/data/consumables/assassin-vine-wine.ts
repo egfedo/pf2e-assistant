@@ -4,7 +4,7 @@ export const path = ["Consumables", "Assassin Vine Wine"];
 
 export const actions: Assistant.Action[] = [
     {
-        trigger: "consume",
+        trigger: "consumable",
         predicate: [
             {
                 or: ["item:assassin-vine-wine", "item:aged-assassin-vine-wine"]
@@ -14,15 +14,11 @@ export const actions: Assistant.Action[] = [
             if (!data.speaker) return;
             const target = data.target ?? data.speaker;
 
-            await game.assistant.socket.addEffect(
-                target.actor,
-                PF2E_EQUIPMENT_EFFECTS["effect-assassin-vine-wine"],
-                {
-                    origin: data.speaker,
-                    item: data.item,
-                    target: target
-                }
-            );
+            await game.assistant.socket.addEffect(target.actor, PF2E_EQUIPMENT_EFFECTS["effect-assassin-vine-wine"], {
+                origin: data.speaker,
+                item: data.item,
+                target: target
+            });
         }
     }
 ];

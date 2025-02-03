@@ -4,7 +4,7 @@ export const path = ["Consumables", "Mistform Elixir"];
 
 export const actions: Assistant.Action[] = [
     {
-        trigger: "consume",
+        trigger: "consumable",
         predicate: ["item:mistform-elixir-lesser"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
@@ -22,7 +22,7 @@ export const actions: Assistant.Action[] = [
         }
     },
     {
-        trigger: "consume",
+        trigger: "consumable",
         predicate: ["item:mistform-elixir-moderate"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
@@ -40,7 +40,7 @@ export const actions: Assistant.Action[] = [
         }
     },
     {
-        trigger: "consume",
+        trigger: "consumable",
         predicate: ["item:mistform-elixir-greater"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;

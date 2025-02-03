@@ -4,7 +4,7 @@ export const path = ["Consumables", "Chromatic Jellyfish Oil"];
 
 export const actions: Assistant.Action[] = [
     {
-        trigger: "consume",
+        trigger: "consumable",
         predicate: [
             {
                 or: [

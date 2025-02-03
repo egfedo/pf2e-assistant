@@ -1,4 +1,5 @@
-import { ActorPF2e, ChatMessagePF2e, CheckPF2e, ItemPF2e } from "foundry-pf2e";
+import { Assistant } from "assistant.ts";
+import { ChatMessagePF2e, CheckPF2e } from "foundry-pf2e";
 import { Utils } from "utils.ts";
 import module from "../../module.json" with { type: "json" };
 
@@ -26,56 +27,11 @@ Hooks.once("ready", async () => {
 
             if (!Utils.ChatMessage.isCheckContextFlag(message.flags.pf2e.context)) return;
 
-            await processReroll(message);
+            const reroll = message.flags["pf2e-assistant"]?.reroll;
+            if (reroll !== undefined && message.token !== null) {
+                await Assistant.processReroll(reroll[message.token.id]);
+            }
         },
         "LISTENER"
     );
 });
-
-async function processReroll(chatMessage: ChatMessagePF2e) {
-    if (chatMessage.flags["pf2e-assistant"]?.reroll) {
-        const reroll = chatMessage.flags["pf2e-assistant"].reroll;
-
-        for (const data of reroll.updateCondition) {
-            const actor = await fromUuid<ActorPF2e>(data.actor);
-
-            if (actor) {
-                const condition = actor.itemTypes.condition.find((c) => c.id === data.id);
-
-                if (condition) {
-                    if (data.source !== undefined) {
-                        await game.assistant.socket.updateEmbeddedItem(condition, data.source);
-                    } else {
-                        await game.assistant.socket.deleteEmbeddedItem(condition);
-                    }
-                } else if (data.source !== undefined) {
-                    await game.assistant.socket.createEmbeddedItem(actor, data.source);
-                }
-            }
-        }
-
-        for (const data of reroll.removeItem) {
-            const item = await fromUuid<ItemPF2e>(data.item);
-
-            if (item) {
-                await game.assistant.socket.deleteEmbeddedItem(item);
-            }
-        }
-
-        for (const data of reroll.addItem) {
-            const actor = await fromUuid<ActorPF2e>(data.actor);
-
-            if (actor) {
-                await game.assistant.socket.createEmbeddedItem(actor, data.item);
-            }
-        }
-
-        for (const data of reroll.deleteChatMessage) {
-            const chatMessage = await fromUuid<ChatMessagePF2e>(data);
-
-            if (chatMessage) {
-                await game.assistant.socket.deleteChatMessage(chatMessage);
-            }
-        }
-    }
-}

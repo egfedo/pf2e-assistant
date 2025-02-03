@@ -13,7 +13,7 @@ declare module "foundry-pf2e" {
     interface ChatMessageFlagsPF2e {
         "pf2e-assistant"?: {
             process?: boolean;
-            reroll?: Assistant.Reroll;
+            reroll?: Record<string, Assistant.Reroll>;
         };
     }
 }

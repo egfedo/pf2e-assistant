@@ -6,7 +6,7 @@ export const path = ["Spells", "1st Rank", "Shield"];
 
 export const actions: Assistant.Action[] = [
     {
-        trigger: "action",
+        trigger: "spell-cast",
         predicate: ["item:shield", { not: "item:tag:psi-cantrip" }],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
@@ -25,7 +25,7 @@ export const actions: Assistant.Action[] = [
         }
     },
     {
-        trigger: "action",
+        trigger: "spell-cast",
         predicate: ["item:shield", "item:tag:psi-cantrip", { not: "item:tag:amped" }],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
@@ -45,7 +45,7 @@ export const actions: Assistant.Action[] = [
         }
     },
     {
-        trigger: "action",
+        trigger: "spell-cast",
         predicate: ["item:shield", "item:tag:psi-cantrip", "item:tag:amped"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;

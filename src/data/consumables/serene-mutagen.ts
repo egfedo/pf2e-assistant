@@ -4,7 +4,7 @@ export const path = ["Consumables", "Serene Mutagen"];
 
 export const actions: Assistant.Action[] = [
     {
-        trigger: "consume",
+        trigger: "consumable",
         predicate: ["item:serene-mutagen-lesser"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
@@ -22,7 +22,7 @@ export const actions: Assistant.Action[] = [
         }
     },
     {
-        trigger: "consume",
+        trigger: "consumable",
         predicate: ["item:serene-mutagen-moderate"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
@@ -40,7 +40,7 @@ export const actions: Assistant.Action[] = [
         }
     },
     {
-        trigger: "consume",
+        trigger: "consumable",
         predicate: ["item:serene-mutagen-greater"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
@@ -58,21 +58,17 @@ export const actions: Assistant.Action[] = [
         }
     },
     {
-        trigger: "consume",
+        trigger: "consumable",
         predicate: ["item:serene-mutagen-major"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target ?? data.speaker;
 
-            await game.assistant.socket.addEffect(
-                target.actor,
-                PF2E_EQUIPMENT_EFFECTS["effect-serene-mutagen-major"],
-                {
-                    origin: data.speaker,
-                    item: data.item,
-                    target: target
-                }
-            );
+            await game.assistant.socket.addEffect(target.actor, PF2E_EQUIPMENT_EFFECTS["effect-serene-mutagen-major"], {
+                origin: data.speaker,
+                item: data.item,
+                target: target
+            });
         }
     }
 ];

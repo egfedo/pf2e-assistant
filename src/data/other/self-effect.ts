@@ -24,10 +24,7 @@ export const actions: Assistant.Action[] = [
                     : null;
 
             if (effect) {
-                const traits =
-                    data.item.system.traits.value?.filter(
-                        (t) => t in effect.constructor.validTraits
-                    ) ?? [];
+                const traits = data.item.system.traits.value?.filter((t) => t in effect.constructor.validTraits) ?? [];
 
                 const effectSource: EffectSource = foundry.utils.mergeObject(effect.toObject(), {
                     _id: null,
@@ -67,9 +64,7 @@ export const actions: Assistant.Action[] = [
                     const locKey = "PF2E.Item.Ability.SelfAppliedEffect.Applied";
                     const statement = game.i18n.format(locKey, { effect: anchor.outerHTML });
                     span.innerHTML = statement;
-                    Utils.DOM.htmlQuery(buttons, "button[data-action=apply-effect]")?.replaceWith(
-                        span
-                    );
+                    Utils.DOM.htmlQuery(buttons, "button[data-action=apply-effect]")?.replaceWith(span);
                     await data.chatMessage.update({
                         flags: { "pf2e-assistant": { process: false } },
                         content: parsedMessageContent.innerHTML

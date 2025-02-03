@@ -6,10 +6,7 @@ Hooks.on("renderChatLog", function (_application: ChatLog, html: JQuery, _data: 
         const { message } = Utils.ChatLog.getMessage(event);
         if (!message) return;
 
-        const button = Utils.DOM.htmlClosest<HTMLButtonElement>(
-            event.target,
-            "button[data-action]"
-        );
+        const button = Utils.DOM.htmlClosest<HTMLButtonElement>(event.target, "button[data-action]");
         if (!button) return;
 
         if (button.dataset.action === "choice") {
@@ -25,11 +22,8 @@ Hooks.on("renderChatLog", function (_application: ChatLog, html: JQuery, _data: 
                 };
             }
 
-            if (message.target) {
-                data.target = {
-                    actor: message.target.actor,
-                    token: message.target.token
-                };
+            if (message.target?.actor && message.target?.token) {
+                data.target = message.target;
             }
 
             if (message.item) {

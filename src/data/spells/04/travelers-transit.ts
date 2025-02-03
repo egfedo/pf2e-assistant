@@ -4,7 +4,7 @@ export const path = ["Spells", "4th Rank", "Traveler's Transit"];
 
 export const actions: Assistant.Action[] = [
     {
-        trigger: "action",
+        trigger: "spell-cast",
         predicate: ["item:travelers-transit"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
@@ -13,7 +13,11 @@ export const actions: Assistant.Action[] = [
             await game.assistant.socket.addEffect(
                 data.speaker.actor,
                 PF2E_SPELL_EFFECTS["spell-effect-travelers-transit"],
-                { origin: data.speaker, item: data.item, target: data.speaker }
+                {
+                    origin: data.speaker,
+                    item: data.item,
+                    target: data.speaker
+                }
             );
         }
     }

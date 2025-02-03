@@ -13,8 +13,9 @@ export const actions: Assistant.Action[] = [
             if (championsAura) {
                 const allies = data.speaker.token.scene.tokens.filter(
                     (token) =>
-                        (token.actor?.isAllyOf(data.speaker!.actor) ?? false) &&
-                        token.actor?.uuid !== data.speaker!.actor.uuid
+                        token.actor !== null &&
+                        token.actor.isAllyOf(data.speaker!.actor) &&
+                        token.actor.uuid !== data.speaker!.actor.uuid
                 );
                 const inAura = allies.filter((token) => championsAura.containsToken(token));
 

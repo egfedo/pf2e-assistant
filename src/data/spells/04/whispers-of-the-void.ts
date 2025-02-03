@@ -17,6 +17,8 @@ export const actions: Assistant.Action[] = [
                     persistent: { formula: `${Math.floor(data.item.rank / 2)}d8`, damageType: "void", dc: 15 }
                 }))
             );
+
+            return reroll;
         }
     },
     {
@@ -37,6 +39,8 @@ export const actions: Assistant.Action[] = [
             reroll.updateCondition.push(
                 ...(await game.assistant.socket.addCondition(data.speaker.actor, "drained", { value: 1 }))
             );
+
+            return reroll;
         }
     },
     {
@@ -61,6 +65,8 @@ export const actions: Assistant.Action[] = [
             reroll.updateCondition.push(
                 ...(await game.assistant.socket.addCondition(data.speaker.actor, "doomed", { value: 1 }))
             );
+
+            return reroll;
         }
     }
 ];

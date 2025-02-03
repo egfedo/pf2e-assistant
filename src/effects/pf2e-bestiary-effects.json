@@ -252,6 +252,10 @@
         "uuid": "Compendium.pf2e.bestiary-effects.Item.8ecPVgMeWDxc4jI4"
     },
     {
+        "slug": "effect-quicken-the-rot",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.8lQneh5ZjMDqmBys"
+    },
+    {
         "slug": "effect-aura-of-smoke",
         "uuid": "Compendium.pf2e.bestiary-effects.Item.8sXm5FX6qsMDYcba"
     },
@@ -366,6 +370,10 @@
     {
         "slug": "effect-distracting-frolic",
         "uuid": "Compendium.pf2e.bestiary-effects.Item.E10qJgInN8Fx3yhW"
+    },
+    {
+        "slug": "effect-drain-luck-critical-failure",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.E3TwqqTQwbTRQBrn"
     },
     {
         "slug": "effect-inspired-feast",
@@ -964,6 +972,10 @@
         "uuid": "Compendium.pf2e.bestiary-effects.Item.bhSG1uP41ilmyzPu"
     },
     {
+        "slug": "effect-drain-luck-success",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.c00YBD9y6ANnjTdF"
+    },
+    {
         "slug": "effect-protean-anatomy",
         "uuid": "Compendium.pf2e.bestiary-effects.Item.c6SiBB3mzV8lZUQr"
     },
@@ -1138,6 +1150,10 @@
     {
         "slug": "effect-share-pain",
         "uuid": "Compendium.pf2e.bestiary-effects.Item.iXVsVqttUGlfdIHS"
+    },
+    {
+        "slug": "effect-drain-luck-failure",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.iiUIZj9xW79GE3U2"
     },
     {
         "slug": "effect-infernal-wound",

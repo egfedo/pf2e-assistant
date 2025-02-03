@@ -4,7 +4,7 @@ export const path = ["Consumables", "Cognitive Mutagen"];
 
 export const actions: Assistant.Action[] = [
     {
-        trigger: "consume",
+        trigger: "consumable",
         predicate: ["item:cognitive-mutagen-lesser"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
@@ -22,7 +22,7 @@ export const actions: Assistant.Action[] = [
         }
     },
     {
-        trigger: "consume",
+        trigger: "consumable",
         predicate: ["item:cognitive-mutagen-moderate"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
@@ -40,7 +40,7 @@ export const actions: Assistant.Action[] = [
         }
     },
     {
-        trigger: "consume",
+        trigger: "consumable",
         predicate: ["item:cognitive-mutagen-greater"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
@@ -58,7 +58,7 @@ export const actions: Assistant.Action[] = [
         }
     },
     {
-        trigger: "consume",
+        trigger: "consumable",
         predicate: ["item:cognitive-mutagen-major"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;

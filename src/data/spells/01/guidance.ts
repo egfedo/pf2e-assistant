@@ -5,7 +5,7 @@ export const path = ["Spells", "1st Rank", "Guidance"];
 
 export const actions: Assistant.Action[] = [
     {
-        trigger: "action",
+        trigger: "spell-cast",
         predicate: ["item:guidance"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
@@ -17,17 +17,17 @@ export const actions: Assistant.Action[] = [
                 return;
             }
 
-            await game.assistant.socket.addEffect(
-                data.target.actor,
-                PF2E_SPELL_EFFECTS["spell-effect-guidance"],
-                { origin: data.speaker, item: data.item, target: data.target }
-            );
+            await game.assistant.socket.addEffect(data.target.actor, PF2E_SPELL_EFFECTS["spell-effect-guidance"], {
+                origin: data.speaker,
+                item: data.item,
+                target: data.target
+            });
 
-            await game.assistant.socket.addEffect(
-                data.target.actor,
-                PF2E_SPELL_EFFECTS["effect-guidance-immunity"],
-                { origin: data.speaker, item: data.item, target: data.target }
-            );
+            await game.assistant.socket.addEffect(data.target.actor, PF2E_SPELL_EFFECTS["effect-guidance-immunity"], {
+                origin: data.speaker,
+                item: data.item,
+                target: data.target
+            });
         }
     }
 ];

@@ -1,3 +1,4 @@
+import { Assistant } from "assistant.ts";
 import { Utils } from "utils.ts";
 import { Action } from "./action.ts";
 import { Data } from "./data.ts";
@@ -82,9 +83,9 @@ export class Storage {
         return true;
     }
 
-    async process(data: Data) {
-        if (data.trigger == "") return;
+    async process(data: Data): Promise<Assistant.Reroll> {
         const reroll = createReroll();
+        if (data.trigger == "") throw Error;
 
         let actions = this.#actions.filter((action) => Storage.filterActions(action, data));
 
@@ -99,8 +100,6 @@ export class Storage {
             }
         }
 
-        if (data.chatMessage && Object.values(reroll).some((value) => value.length !== 0)) {
-            await data.chatMessage.setFlag("pf2e-assistant", "reroll", reroll);
-        }
+        return reroll;
     }
 }

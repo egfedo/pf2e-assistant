@@ -44,11 +44,7 @@ export class AutomationList extends HandlebarsApplicationMixin(ApplicationV2) {
         };
     }
 
-    static async #onSubmit(
-        _event: SubmitEvent,
-        form: HTMLFormElement,
-        _formData: FormDataExtended
-    ) {
+    static async #onSubmit(_event: SubmitEvent, form: HTMLFormElement, _formData: FormDataExtended) {
         var disabledFiles: string[] = [];
 
         var inputs = form.getElementsByTagName("input");

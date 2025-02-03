@@ -12,9 +12,7 @@ Hooks.once("ready", async function () {
 
     if (!game.settings.get("pf2e-assistant", "initialized") && game.user.isGM) {
         let compendiumConfiguration = game.settings.get("core", "compendiumConfiguration");
-        const packFolders = game.folders.filter(
-            (folder) => folder.type === "Compendium" && folder.depth === 1
-        );
+        const packFolders = game.folders.filter((folder) => folder.type === "Compendium" && folder.depth === 1);
         const effectsFolder = packFolders.find((folder) => folder.name === "Effects");
         const macrosFolder = packFolders.find((folder) => folder.name === "Macros");
 

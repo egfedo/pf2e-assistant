@@ -4,7 +4,7 @@ export const path = ["Consumables", "Eagle Eye Elixir"];
 
 export const actions: Assistant.Action[] = [
     {
-        trigger: "consume",
+        trigger: "consumable",
         predicate: ["item:eagle-eye-elixir-lesser"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
@@ -22,7 +22,7 @@ export const actions: Assistant.Action[] = [
         }
     },
     {
-        trigger: "consume",
+        trigger: "consumable",
         predicate: ["item:eagle-eye-elixir-moderate"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
@@ -40,7 +40,7 @@ export const actions: Assistant.Action[] = [
         }
     },
     {
-        trigger: "consume",
+        trigger: "consumable",
         predicate: ["item:eagle-eye-elixir-greater"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
@@ -58,7 +58,7 @@ export const actions: Assistant.Action[] = [
         }
     },
     {
-        trigger: "consume",
+        trigger: "consumable",
         predicate: ["item:eagle-eye-elixir-major"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;

@@ -2,22 +2,27 @@ import { Assistant } from "assistant.ts";
 import { ActorPF2e, ChatMessagePF2e, ScenePF2e, TokenDocumentPF2e } from "foundry-pf2e";
 import { Utils } from "utils.ts";
 
-let messageQueue = new Set<string>();
+function waitForMessage(id: string, ms = 250, attempts = 120): Promise<void> {
+    return new Promise<void>(function (resolve, reject) {
+        (function wait(count = 0) {
+            if (count > attempts) return reject();
+
+            if (count != 0 && ui.chat.element.find(`.message[data-message-id="${id}"]:visible`).length !== 0)
+                return resolve();
+
+            setTimeout(wait, ms, count + 1);
+        })();
+    });
+}
 
 Hooks.on("createChatMessage", function (chatMessage: ChatMessagePF2e) {
     if (!chatMessage.isAuthor) return;
     if (chatMessage.flags["pf2e-assistant"]?.process === false) return;
-    messageQueue.add(chatMessage.id);
-});
-
-Hooks.on("renderChatMessage", function name(chatMessage: ChatMessagePF2e) {
-    if (!chatMessage.isAuthor) return;
-    if (!messageQueue.has(chatMessage.id)) return;
 
     const data = processChatMessage(chatMessage);
-    game.assistant.storage.process(data);
-
-    messageQueue.delete(chatMessage.id);
+    waitForMessage(chatMessage.id)
+        .then(() => game.assistant.storage.process(data))
+        .then((reroll) => processReroll(data, reroll));
 });
 
 function processChatMessage(chatMessage: ChatMessagePF2e): Assistant.Data {
@@ -31,19 +36,13 @@ function processChatMessage(chatMessage: ChatMessagePF2e): Assistant.Data {
         data.domains = chatMessage.flags.pf2e.context.domains;
     }
 
-    if (["", "spell-cast"].includes(data.trigger)) {
-        if (
-            chatMessage.item?.isOfType("condition") &&
-            chatMessage.item.slug === "persistent-damage"
-        ) {
+    if (data.trigger === "") {
+        if (chatMessage.item?.isOfType("condition") && chatMessage.item.slug === "persistent-damage") {
             data.trigger = "damage-roll";
-        } else if (chatMessage.item?.isOfType("action", "feat", "spell")) {
-            data.trigger = "action";
-        } else if (
-            chatMessage.item?.isOfType("consumable") &&
-            Utils.ChatMessage.isConsume(chatMessage)
-        ) {
-            data.trigger = "consume";
+        } else if (chatMessage.item?.isOfType("spell")) {
+            data.trigger = "spell-cast";
+        } else if (chatMessage.item?.isOfType("consumable") && Utils.ChatMessage.isConsume(chatMessage)) {
+            data.trigger = "consumable";
         } else if (chatMessage.isDamageRoll && Utils.ChatMessage.isFastHealing(chatMessage)) {
             data.trigger = "damage-roll";
             data.rollOptions.push("self:condition:fast-healing");
@@ -113,13 +112,25 @@ function processChatMessage(chatMessage: ChatMessagePF2e): Assistant.Data {
     }
 
     if (data.item) data.rollOptions.push(...data.item.getRollOptions("item"));
-    if (data.speaker)
-        data.rollOptions.push(...Utils.Actor.getRollOptions(data.speaker.actor, "self"));
-    if (data.target)
-        data.rollOptions.push(...Utils.Actor.getRollOptions(data.target.actor, "target"));
-    if (data.origin)
-        data.rollOptions.push(...Utils.Actor.getRollOptions(data.origin.actor, "origin"));
+    if (data.speaker) data.rollOptions.push(...Utils.Actor.getRollOptions(data.speaker.actor, "self"));
+    if (data.target) data.rollOptions.push(...Utils.Actor.getRollOptions(data.target.actor, "target"));
+    if (data.origin) data.rollOptions.push(...Utils.Actor.getRollOptions(data.origin.actor, "origin"));
 
     data.rollOptions = Array.from(new Set(data.rollOptions)).sort();
+
     return data;
+}
+
+function processReroll(data: Assistant.Data, reroll: Assistant.Reroll) {
+    if (data.chatMessage && data.speaker && Object.values(reroll).some((value) => value.length !== 0)) {
+        data.chatMessage.update({
+            flags: {
+                "pf2e-assistant": {
+                    reroll: {
+                        [data.speaker.token.id]: reroll
+                    }
+                }
+            }
+        });
+    }
 }

@@ -5,11 +5,7 @@ export const path = ["Critical Specializations", "Spear"];
 export const actions: Assistant.Action[] = [
     {
         trigger: "damage-roll",
-        predicate: [
-            "check:outcome:critical-success",
-            "critical-specialization",
-            "item:group:spear"
-        ],
+        predicate: ["check:outcome:critical-success", "critical-specialization", "item:group:spear"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             if (!data.target) return;

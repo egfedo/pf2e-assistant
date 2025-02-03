@@ -1,3 +1,4 @@
+import { Assistant } from "assistant.ts";
 import { CombatantPF2e } from "foundry-pf2e";
 import { Utils } from "utils.ts";
 
@@ -11,7 +12,7 @@ Hooks.on("pf2e.endTurn", (combatant: CombatantPF2e) => {
 
 function processTurnChange(trigger: "start-turn" | "end-turn", combatant: CombatantPF2e) {
     if (!combatant.actor) return;
-    if (!combatant.token) return;
+    if (!Assistant.isValidToken(combatant.token)) return;
     if (!Utils.Token.hasScene(combatant.token)) return;
 
     game.assistant.storage.process({

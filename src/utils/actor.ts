@@ -1,12 +1,4 @@
-import {
-    ActorPF2e,
-    CheckDC,
-    EffectPF2e,
-    ScenePF2e,
-    TokenDocumentPF2e,
-    UserPF2e,
-    ZeroToThree
-} from "foundry-pf2e";
+import { ActorPF2e, CheckDC, EffectPF2e, ScenePF2e, TokenDocumentPF2e, UserPF2e, ZeroToThree } from "foundry-pf2e";
 
 export function getClassDC(actor: ActorPF2e): CheckDC | number | undefined {
     if (actor.isOfType("character")) {
@@ -27,9 +19,7 @@ export function getClassDC(actor: ActorPF2e): CheckDC | number | undefined {
 
 export function getPrimaryUser(actor: ActorPF2e): UserPF2e | null {
     const activeUsers = game.users.filter((user) => user.active);
-    const primaryPlayer = actor.isToken
-        ? null
-        : activeUsers.find((user) => user.character?.id === actor.id);
+    const primaryPlayer = actor.isToken ? null : activeUsers.find((user) => user.character?.id === actor.id);
     if (primaryPlayer) return primaryPlayer;
 
     const activeUpdaters = activeUsers.filter((user) => actor.canUserModify(user, "update"));
@@ -43,10 +33,7 @@ export interface ActorToken {
     token: TokenDocumentPF2e<ScenePF2e>;
 }
 
-export function isActorToken(data: {
-    actor: Maybe<ActorPF2e>;
-    token: Maybe<TokenDocumentPF2e>;
-}): data is ActorToken {
+export function isActorToken(data: { actor: Maybe<ActorPF2e>; token: Maybe<TokenDocumentPF2e> }): data is ActorToken {
     if (data.actor && data.token && data.token.parent) {
         return true;
     }
@@ -58,26 +45,18 @@ export function hasEffect(
     slug: string,
     data?: { origin?: ActorPF2e; target?: ActorPF2e; degreeOfSuccess?: ZeroToThree }
 ): boolean {
-    let effects = actor.itemTypes.effect.filter(
-        (effect) => !effect.isExpired && effect.slug === slug
-    );
+    let effects = actor.itemTypes.effect.filter((effect) => !effect.isExpired && effect.slug === slug);
 
     if (data?.origin) {
-        effects = effects.filter(
-            (effect) => effect.system.context?.origin.actor === data.origin!.uuid
-        );
+        effects = effects.filter((effect) => effect.system.context?.origin.actor === data.origin!.uuid);
     }
 
     if (data?.target) {
-        effects = effects.filter(
-            (effect) => effect.system.context?.target?.actor === data.target!.uuid
-        );
+        effects = effects.filter((effect) => effect.system.context?.target?.actor === data.target!.uuid);
     }
 
     if (data?.degreeOfSuccess) {
-        effects = effects.filter(
-            (effect) => effect.system.context?.roll?.degreeOfSuccess === data.degreeOfSuccess
-        );
+        effects = effects.filter((effect) => effect.system.context?.roll?.degreeOfSuccess === data.degreeOfSuccess);
     }
 
     return effects.length !== 0;
@@ -88,26 +67,18 @@ export function hasEffects(
     slugs: string[],
     data?: { origin?: ActorPF2e; target?: ActorPF2e; degreeOfSuccess?: ZeroToThree }
 ): boolean {
-    let effects = actor.itemTypes.effect.filter(
-        (effect) => !effect.isExpired && slugs.includes(effect.slug ?? "")
-    );
+    let effects = actor.itemTypes.effect.filter((effect) => !effect.isExpired && slugs.includes(effect.slug ?? ""));
 
     if (data?.origin) {
-        effects = effects.filter(
-            (effect) => effect.system.context?.origin.actor === data.origin!.uuid
-        );
+        effects = effects.filter((effect) => effect.system.context?.origin.actor === data.origin!.uuid);
     }
 
     if (data?.target) {
-        effects = effects.filter(
-            (effect) => effect.system.context?.target?.actor === data.target!.uuid
-        );
+        effects = effects.filter((effect) => effect.system.context?.target?.actor === data.target!.uuid);
     }
 
     if (data?.degreeOfSuccess) {
-        effects = effects.filter(
-            (effect) => effect.system.context?.roll?.degreeOfSuccess === data.degreeOfSuccess
-        );
+        effects = effects.filter((effect) => effect.system.context?.roll?.degreeOfSuccess === data.degreeOfSuccess);
     }
 
     return effects.length !== 0;
@@ -118,26 +89,18 @@ export function getEffect(
     slug: string,
     data?: { origin?: ActorPF2e; target?: ActorPF2e; degreeOfSuccess?: ZeroToThree }
 ): Maybe<EffectPF2e<ActorPF2e>> {
-    let effects = actor.itemTypes.effect.filter(
-        (effect) => !effect.isExpired && effect.slug === slug
-    );
+    let effects = actor.itemTypes.effect.filter((effect) => !effect.isExpired && effect.slug === slug);
 
     if (data?.origin) {
-        effects = effects.filter(
-            (effect) => effect.system.context?.origin.actor === data.origin!.uuid
-        );
+        effects = effects.filter((effect) => effect.system.context?.origin.actor === data.origin!.uuid);
     }
 
     if (data?.target) {
-        effects = effects.filter(
-            (effect) => effect.system.context?.target?.actor === data.target!.uuid
-        );
+        effects = effects.filter((effect) => effect.system.context?.target?.actor === data.target!.uuid);
     }
 
     if (data?.degreeOfSuccess) {
-        effects = effects.filter(
-            (effect) => effect.system.context?.roll?.degreeOfSuccess === data.degreeOfSuccess
-        );
+        effects = effects.filter((effect) => effect.system.context?.roll?.degreeOfSuccess === data.degreeOfSuccess);
     }
 
     return effects.at(0);
@@ -148,26 +111,18 @@ export function getEffects(
     slugs: string[],
     data?: { origin?: ActorPF2e; target?: ActorPF2e; degreeOfSuccess?: ZeroToThree }
 ): EffectPF2e<ActorPF2e>[] {
-    let effects = actor.itemTypes.effect.filter(
-        (effect) => !effect.isExpired && slugs.includes(effect.slug ?? "")
-    );
+    let effects = actor.itemTypes.effect.filter((effect) => !effect.isExpired && slugs.includes(effect.slug ?? ""));
 
     if (data?.origin) {
-        effects = effects.filter(
-            (effect) => effect.system.context?.origin.actor === data.origin!.uuid
-        );
+        effects = effects.filter((effect) => effect.system.context?.origin.actor === data.origin!.uuid);
     }
 
     if (data?.target) {
-        effects = effects.filter(
-            (effect) => effect.system.context?.target?.actor === data.target!.uuid
-        );
+        effects = effects.filter((effect) => effect.system.context?.target?.actor === data.target!.uuid);
     }
 
     if (data?.degreeOfSuccess) {
-        effects = effects.filter(
-            (effect) => effect.system.context?.roll?.degreeOfSuccess === data.degreeOfSuccess
-        );
+        effects = effects.filter((effect) => effect.system.context?.roll?.degreeOfSuccess === data.degreeOfSuccess);
     }
 
     return effects;

@@ -4,7 +4,7 @@ export const path = ["Consumables", "Potion of Emergency Escape"];
 
 export const actions: Assistant.Action[] = [
     {
-        trigger: "consume",
+        trigger: "consumable",
         predicate: ["item:potion-of-emergency-escape"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;

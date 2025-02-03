@@ -4,7 +4,6 @@ export interface ActorToken {
     actor: ActorPF2e;
     token: TokenDocumentPF2e<ScenePF2e>;
 }
-
 export interface Data {
     trigger: string;
     rollOptions: string[];
@@ -15,4 +14,9 @@ export interface Data {
     speaker?: ActorToken;
     target?: ActorToken;
     origin?: ActorToken;
+}
+
+export function isValidToken(token: Maybe<TokenDocumentPF2e>): token is TokenDocumentPF2e<ScenePF2e> {
+    if (token === null || token === undefined) return false;
+    return token.parent !== null;
 }

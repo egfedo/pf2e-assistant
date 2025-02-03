@@ -4,7 +4,7 @@ export const path = ["Spells", "3rd Rank", "Angelic Wings"];
 
 export const actions: Assistant.Action[] = [
     {
-        trigger: "action",
+        trigger: "spell-cast",
         predicate: ["item:angelic-wings", { lt: ["item:rank", 5] }],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
@@ -13,12 +13,16 @@ export const actions: Assistant.Action[] = [
             await game.assistant.socket.addEffect(
                 data.speaker.actor,
                 PF2E_SPELL_EFFECTS["spell-effect-angelic-wings"],
-                { origin: data.speaker, item: data.item, target: data.speaker }
+                {
+                    origin: data.speaker,
+                    item: data.item,
+                    target: data.speaker
+                }
             );
         }
     },
     {
-        trigger: "action",
+        trigger: "spell-cast",
         predicate: ["item:angelic-wings", { gte: ["item:rank", 5] }],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;

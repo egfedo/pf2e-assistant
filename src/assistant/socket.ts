@@ -33,6 +33,7 @@ export class Socket {
         this.#socket.register("increaseCondition", this.#increaseCondition);
         this.#socket.register("toggleCondition", this.#toggleCondition);
         this.#socket.register("addCondition", this.#addCondition);
+        this.#socket.register("removeCondition", this.#removeCondition);
 
         this.#socket.register("rollSave", this.#rollSave);
 
@@ -381,6 +382,26 @@ export class Socket {
         if (!actor) return [];
 
         return await game.assistant.socket.addCondition(actor, conditionSlug, { value, persistent });
+    }
+
+    async removeCondition(actor: ActorPF2e, conditionSlug: ConditionSlug): Promise<UpdateCondition[]> {
+        if (!actor.canUserModify(game.user, "update")) {
+            return (await this.#executeAsActor(actor, "removeCondition", actor.uuid, conditionSlug)) ?? [];
+        }
+
+        const conditions = actor.itemTypes.condition.filter((c) => c.slug === conditionSlug && !c.isLocked);
+        const conditionSources = conditions.map((c) => ({ actor: actor.uuid, id: c.id, data: c.toObject() }));
+        conditions.forEach(async (condition) => {
+            await condition.delete();
+        });
+        return conditionSources;
+    }
+
+    async #removeCondition(actorUuid: ActorUUID, conditionSlug: ConditionSlug): Promise<UpdateCondition[]> {
+        let actor = await fromUuid<ActorPF2e>(actorUuid);
+        if (!actor) return [];
+
+        return await game.assistant.socket.removeCondition(actor, conditionSlug);
     }
 
     async rollSave(actor: ActorPF2e, save: SaveType, args: SocketTypes.Save.RollParameters) {

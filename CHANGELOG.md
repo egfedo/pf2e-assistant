@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [6.5.0] - 2025-02-03
+
+### Added
+
+- Support for PF2e Toolbelt's Target Helper
+- Support for PF2e Toolbelt's Actionable
+    - There is now a "Use Action" macro, in order to actually automate actions you will have to add this macro to the action using PF2e Toolbelt.
+- Drop Prone
+- Kip Up
+- Stand
+
 ## [6.4.6] - 2025-01-29
 
 ### Added
@@ -297,7 +308,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Auto Self-Applied Effects (This is disabled if PF2e Toolbelt is doing this as well)
 - Swashbuckler Panache
 
-[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.4.6...HEAD
+[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.5.0...HEAD
+[6.5.0]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.4.6...v6.5.0
 [6.4.6]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.4.5...v6.4.6
 [6.4.5]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.4.4...v6.4.5
 [6.4.4]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.4.3...v6.4.4

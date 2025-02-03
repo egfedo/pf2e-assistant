@@ -4,7 +4,7 @@ export const path = ["Spells", "1st Rank", "Forbidding Ward"];
 
 export const actions: Assistant.Action[] = [
     {
-        trigger: "action",
+        trigger: "spell-cast",
         predicate: ["item:forbidding-ward"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;

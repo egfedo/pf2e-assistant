@@ -1,9 +1,4 @@
-import {
-    ChatContextFlag,
-    ChatMessageFlagsPF2e,
-    ChatMessagePF2e,
-    CheckContextChatFlag
-} from "foundry-pf2e";
+import { ChatContextFlag, ChatMessageFlagsPF2e, ChatMessagePF2e, CheckContextChatFlag } from "foundry-pf2e";
 
 interface ChatMessageStrikePF2e {
     actor: ActorUUID;
