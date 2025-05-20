@@ -1,12 +1,22 @@
 {
-  "name": "Rogue",
-  "sorting": "a",
-  "folder": "tn25jGVRUSGyM9Nd",
-  "type": "Item",
-  "_id": "ospQ8uQmXb65Lhse",
-  "description": "",
-  "sort": 0,
-  "color": null,
-  "flags": {},
-  "_key": "!folders!ospQ8uQmXb65Lhse"
+	"name": "Rogue",
+	"sorting": "a",
+	"folder": "tn25jGVRUSGyM9Nd",
+	"type": "Item",
+	"_id": "ospQ8uQmXb65Lhse",
+	"description": "",
+	"sort": 0,
+	"color": null,
+	"flags": {},
+	"_stats": {
+		"coreVersion": "12.331",
+		"systemId": "pf2e",
+		"systemVersion": "6.12.1",
+		"createdTime": null,
+		"modifiedTime": null,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null
+	},
+	"_key": "!folders!ospQ8uQmXb65Lhse"
 }

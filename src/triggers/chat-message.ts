@@ -1,34 +1,37 @@
 import { Assistant } from "assistant.ts";
-import { ActorPF2e, ChatMessagePF2e, ScenePF2e, TokenDocumentPF2e } from "foundry-pf2e";
+import { ActorPF2e, ChatMessagePF2e, ConsumablePF2e, ScenePF2e, TokenDocumentPF2e } from "foundry-pf2e";
 import { Utils } from "utils.ts";
 
-function waitForMessage(id: string, ms = 250, attempts = 120): Promise<void> {
-    return new Promise<void>(function (resolve, reject) {
+function waitForMessage(chatMessage: ChatMessagePF2e, ms = 250, attempts = 40): Promise<ChatMessagePF2e> {
+    return new Promise<ChatMessagePF2e>(function (resolve) {
         (function wait(count = 0) {
-            if (count > attempts) return reject();
+            if (count > attempts) return resolve(chatMessage);
 
-            if (count != 0 && ui.chat.element.find(`.message[data-message-id="${id}"]:visible`).length !== 0)
-                return resolve();
+            if (count !== 0) {
+                if (ui.chat.element.find(`.message[data-message-id="${chatMessage.id}"]:visible`).length !== 0) {
+                    return resolve(chatMessage);
+                }
+            }
 
             setTimeout(wait, ms, count + 1);
         })();
     });
 }
 
-Hooks.on("createChatMessage", function (chatMessage: ChatMessagePF2e) {
+const createChatMessage = Hooks.on("createChatMessage", function (chatMessage: ChatMessagePF2e) {
     if (!chatMessage.isAuthor) return;
     if (chatMessage.flags["pf2e-assistant"]?.process === false) return;
 
-    const data = processChatMessage(chatMessage);
-    waitForMessage(chatMessage.id)
-        .then(() => game.assistant.storage.process(data))
-        .then((reroll) => processReroll(data, reroll));
+    waitForMessage(chatMessage)
+        .then((value) => processChatMessage(value))
+        .then((value) => game.assistant.storage.process(value))
+        .then((value) => processReroll(value.data, value.reroll));
 });
 
-function processChatMessage(chatMessage: ChatMessagePF2e): Assistant.Data {
+async function processChatMessage(chatMessage: ChatMessagePF2e): Promise<Assistant.Data> {
     let data: Assistant.Data = {
         trigger: chatMessage.flags.pf2e.context?.type ?? "",
-        rollOptions: chatMessage.flags.pf2e.context?.options ?? [],
+        rollOptions: [],
         chatMessage: chatMessage
     };
 
@@ -41,8 +44,10 @@ function processChatMessage(chatMessage: ChatMessagePF2e): Assistant.Data {
             data.trigger = "damage-roll";
         } else if (chatMessage.item?.isOfType("spell")) {
             data.trigger = "spell-cast";
-        } else if (chatMessage.item?.isOfType("consumable") && Utils.ChatMessage.isConsume(chatMessage)) {
+        } else if (Utils.ChatMessage.isConsume(chatMessage.flags.pf2e.origin)) {
+            const item = await fromUuid<ConsumablePF2e>(chatMessage.flags.pf2e.origin.sourceId);
             data.trigger = "consumable";
+            data.item = item ?? undefined;
         } else if (chatMessage.isDamageRoll && Utils.ChatMessage.isFastHealing(chatMessage)) {
             data.trigger = "damage-roll";
             data.rollOptions.push("self:condition:fast-healing");
@@ -111,19 +116,32 @@ function processChatMessage(chatMessage: ChatMessagePF2e): Assistant.Data {
         data.roll = chatMessage.rolls.at(0);
     }
 
-    if (data.item) data.rollOptions.push(...data.item.getRollOptions("item"));
     if (data.speaker) data.rollOptions.push(...Utils.Actor.getRollOptions(data.speaker.actor, "self"));
-    if (data.target) data.rollOptions.push(...Utils.Actor.getRollOptions(data.target.actor, "target"));
-    if (data.origin) data.rollOptions.push(...Utils.Actor.getRollOptions(data.origin.actor, "origin"));
 
-    data.rollOptions = Array.from(new Set(data.rollOptions)).sort();
+    if (data.target) {
+        data.rollOptions.push(...Utils.Actor.getRollOptions(data.target.actor, "target"));
+        if (data.speaker) {
+            const allyOrEnemy = data.target.actor.alliance === data.speaker.actor.alliance ? "ally" : "enemy";
+            data.rollOptions.push(`target:${allyOrEnemy}`);
+        }
+    }
+
+    if (data.origin) {
+        data.rollOptions.push(...Utils.Actor.getRollOptions(data.origin.actor, "origin"));
+        if (data.speaker) {
+            const allyOrEnemy = data.origin.actor.alliance === data.speaker.actor.alliance ? "ally" : "enemy";
+            data.rollOptions.push(`origin:${allyOrEnemy}`);
+        }
+    }
+
+    if (data.item) data.rollOptions.push(...data.item.getRollOptions("item"));
 
     return data;
 }
 
-function processReroll(data: Assistant.Data, reroll: Assistant.Reroll) {
+async function processReroll(data: Assistant.Data, reroll: Assistant.Reroll) {
     if (data.chatMessage && data.speaker && Object.values(reroll).some((value) => value.length !== 0)) {
-        data.chatMessage.update({
+        await data.chatMessage.update({
             flags: {
                 "pf2e-assistant": {
                     reroll: {
@@ -133,4 +151,11 @@ function processReroll(data: Assistant.Data, reroll: Assistant.Reroll) {
             }
         });
     }
+}
+
+if (import.meta.hot) {
+    import.meta.hot.accept();
+    import.meta.hot.dispose(() => {
+        Hooks.off("createChatMessage", createChatMessage);
+    });
 }

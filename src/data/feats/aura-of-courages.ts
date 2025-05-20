@@ -8,6 +8,7 @@ export const actions: Assistant.Action[] = [
         predicate: ["champions-aura", "feat:aura-of-courage"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
+            if (!data.speaker.token.scene) return;
 
             const championsAura = data.speaker.token.auras.get("champions-aura");
             if (championsAura) {

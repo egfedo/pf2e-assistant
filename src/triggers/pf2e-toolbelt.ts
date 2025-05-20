@@ -3,30 +3,31 @@ import { ChatMessagePF2e, CheckRoll, TokenDocumentPF2e } from "foundry-pf2e";
 import { Utils } from "utils.ts";
 
 Hooks.on("pf2e-toolbelt.rollSave", function (args: PF2e_Toolbelt.TargetHelper.RollSaveHook) {
-    const data = processToolbelt(args.message, args.roll, args.target, args.data);
-
-    game.assistant.storage.process(data).then((reroll) => processReroll(data, reroll));
+    processToolbelt(args.message, args.roll, args.target, args.data)
+        .then((value) => game.assistant.storage.process(value))
+        .then((value) => processReroll(value.data, value.reroll));
 });
 
 Hooks.on("pf2e-toolbelt.rerollSave", function (args: PF2e_Toolbelt.TargetHelper.RerollSaveHook) {
-    const data = processToolbelt(args.message, args.keptRoll, args.target, args.data);
-
     const reroll = args.message.flags["pf2e-assistant"]?.reroll;
     if (reroll !== undefined) {
         Assistant.processReroll(reroll[args.target.id])
-            .then(() => game.assistant.storage.process(data))
-            .then((reroll) => processReroll(data, reroll));
+            .then(() => processToolbelt(args.message, args.keptRoll, args.target, args.data))
+            .then((value) => game.assistant.storage.process(value))
+            .then((value) => processReroll(value.data, value.reroll));
     } else {
-        game.assistant.storage.process(data).then((reroll) => processReroll(data, reroll));
+        processToolbelt(args.message, args.keptRoll, args.target, args.data)
+            .then((value) => game.assistant.storage.process(value))
+            .then((value) => processReroll(value.data, value.reroll));
     }
 });
 
-function processToolbelt(
+async function processToolbelt(
     message: ChatMessagePF2e,
     roll: Rolled<CheckRoll>,
     target: TokenDocumentPF2e,
     targetSave: PF2e_Toolbelt.TargetHelper.MessageTargetSave
-): Assistant.Data {
+): Promise<Assistant.Data> {
     let data: Assistant.Data = {
         trigger: "saving-throw",
         rollOptions: [`check:outcome:${game.pf2e.system.sluggify(targetSave.success)}`],
@@ -52,18 +53,24 @@ function processToolbelt(
         };
     }
 
-    if (data.item) data.rollOptions.push(...data.item.getRollOptions("item"));
     if (data.speaker) data.rollOptions.push(...Utils.Actor.getRollOptions(data.speaker.actor, "self"));
-    if (data.origin) data.rollOptions.push(...Utils.Actor.getRollOptions(data.origin.actor, "origin"));
 
-    data.rollOptions = Array.from(new Set(data.rollOptions)).sort();
+    if (data.origin) {
+        data.rollOptions.push(...Utils.Actor.getRollOptions(data.origin.actor, "origin"));
+        if (data.speaker) {
+            const allyOrEnemy = data.origin.actor.alliance === data.speaker.actor.alliance ? "ally" : "enemy";
+            data.rollOptions.push(`origin:${allyOrEnemy}`);
+        }
+    }
+
+    if (data.item) data.rollOptions.push(...data.item.getRollOptions("item"));
 
     return data;
 }
 
-function processReroll(data: Assistant.Data, reroll: Assistant.Reroll) {
+async function processReroll(data: Assistant.Data, reroll: Assistant.Reroll) {
     if (data.chatMessage && data.speaker && Object.values(reroll).some((value) => value.length !== 0)) {
-        data.chatMessage.update({
+        await data.chatMessage.update({
             flags: {
                 "pf2e-assistant": {
                     reroll: {

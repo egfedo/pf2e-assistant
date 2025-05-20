@@ -17,7 +17,9 @@
         "verified": "12.331",
         "maximum": "12"
     },
-    "esmodules": ["dist/pf2e-assistant.js"],
+    "esmodules": [
+        "dist/pf2e-assistant.js"
+    ],
     "relationships": {
         "requires": [
             {
@@ -34,7 +36,7 @@
                 "id": "pf2e",
                 "type": "system",
                 "compatibility": {
-                    "minimum": "6.8.4"
+                    "minimum": "6.12.1"
                 }
             }
         ]

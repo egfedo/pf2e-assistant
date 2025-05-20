@@ -1,59 +1,78 @@
 {
-  "folder": "weifgz2IxYkpHxLP",
-  "name": "Effect: Disarm (Critical Failure)",
-  "type": "effect",
-  "effects": [],
-  "system": {
-    "description": {
-      "gm": "",
-      "value": "<p>You lose your balance and become @UUID[Compendium.pf2e.conditionitems.Item.AJh5ex99aV6VTggg]{Off-Guard} until the start of your next turn.</p>"
-    },
-    "rules": [
-      {
-        "key": "GrantItem",
-        "onDeleteActions": {
-          "grantee": "restrict"
-        },
-        "uuid": "Compendium.pf2e.conditionitems.Item.AJh5ex99aV6VTggg"
-      }
-    ],
-    "slug": "effect-disarm-critical-failure",
-    "traits": {
-      "otherTags": [],
-      "value": []
-    },
-    "publication": {
-      "title": "Pathfinder Player Core",
-      "authors": "",
-      "license": "ORC",
-      "remaster": true
-    },
-    "level": {
-      "value": 1
-    },
-    "duration": {
-      "value": 1,
-      "unit": "rounds",
-      "expiry": "turn-start",
-      "sustained": false
-    },
-    "start": {
-      "value": 0,
-      "initiative": null
-    },
-    "tokenIcon": {
-      "show": false
-    },
-    "badge": null,
-    "context": null,
-    "unidentified": false
-  },
-  "_id": "ec8ymUmUO58KmDLg",
-  "img": "icons/skills/melee/unarmed-punch-fist-white.webp",
-  "sort": 0,
-  "ownership": {
-    "default": 0
-  },
-  "flags": {},
-  "_key": "!items!ec8ymUmUO58KmDLg"
+	"folder": "weifgz2IxYkpHxLP",
+	"name": "Effect: Disarm (Critical Failure)",
+	"type": "effect",
+	"effects": [],
+	"system": {
+		"description": {
+			"gm": "",
+			"value": "<p>You lose your balance and become @UUID[Compendium.pf2e.conditionitems.Item.AJh5ex99aV6VTggg]{Off-Guard} until the start of your next turn.</p>"
+		},
+		"rules": [
+			{
+				"key": "GrantItem",
+				"onDeleteActions": {
+					"grantee": "restrict"
+				},
+				"uuid": "Compendium.pf2e.conditionitems.Item.AJh5ex99aV6VTggg"
+			}
+		],
+		"slug": "effect-disarm-critical-failure",
+		"_migration": {
+			"version": 0.935,
+			"lastMigration": null,
+			"previous": {
+				"schema": null,
+				"foundry": "12.331",
+				"system": "6.12.1"
+			}
+		},
+		"traits": {
+			"otherTags": [],
+			"value": []
+		},
+		"publication": {
+			"title": "Pathfinder Player Core",
+			"authors": "",
+			"license": "ORC",
+			"remaster": true
+		},
+		"level": {
+			"value": 1
+		},
+		"duration": {
+			"value": 1,
+			"unit": "rounds",
+			"expiry": "turn-start",
+			"sustained": false
+		},
+		"start": {
+			"value": 0,
+			"initiative": null
+		},
+		"tokenIcon": {
+			"show": false
+		},
+		"badge": null,
+		"context": null,
+		"unidentified": false
+	},
+	"_id": "ec8ymUmUO58KmDLg",
+	"img": "icons/skills/melee/unarmed-punch-fist-white.webp",
+	"sort": 0,
+	"ownership": {
+		"default": 0
+	},
+	"flags": {},
+	"_stats": {
+		"coreVersion": "12.331",
+		"systemId": null,
+		"systemVersion": null,
+		"createdTime": null,
+		"modifiedTime": null,
+		"lastModifiedBy": null,
+		"compendiumSource": "Compendium.pf2e-assistant.effects.Item.ec8ymUmUO58KmDLg",
+		"duplicateSource": null
+	},
+	"_key": "!items!ec8ymUmUO58KmDLg"
 }

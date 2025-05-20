@@ -1,59 +1,78 @@
 {
-  "folder": "8VVJmDWH4cwUWVwS",
-  "name": "Effect: Mistform Elixir (Greater)",
-  "type": "effect",
-  "effects": [],
-  "system": {
-    "description": {
-      "gm": "",
-      "value": "<p>Granted by @UUID[Compendium.pf2e.equipment-srd.Item.04giYigfDL5geu5f]{Mistform Elixir (Greater)}</p><p>A faint mist emanates from your skin, making you @UUID[Compendium.pf2e.conditionitems.Item.DmAIPqOBomZ7H95W]{Concealed} for 5 minutes.</p>"
-    },
-    "rules": [
-      {
-        "key": "GrantItem",
-        "onDeleteActions": {
-          "grantee": "restrict"
-        },
-        "uuid": "Compendium.pf2e.conditionitems.Item.DmAIPqOBomZ7H95W"
-      }
-    ],
-    "slug": "effect-mistform-elixir-greater",
-    "traits": {
-      "otherTags": [],
-      "value": []
-    },
-    "publication": {
-      "title": "Pathfinder GM Core",
-      "authors": "",
-      "license": "ORC",
-      "remaster": true
-    },
-    "level": {
-      "value": 10
-    },
-    "duration": {
-      "value": 5,
-      "unit": "minutes",
-      "expiry": "turn-start",
-      "sustained": false
-    },
-    "start": {
-      "value": 0,
-      "initiative": null
-    },
-    "tokenIcon": {
-      "show": true
-    },
-    "badge": null,
-    "context": null,
-    "unidentified": false
-  },
-  "_id": "2bApaOOOWXqQAgy2",
-  "img": "icons/consumables/potions/bottle-conical-corked-blue.webp",
-  "sort": 0,
-  "ownership": {
-    "default": 0
-  },
-  "flags": {},
-  "_key": "!items!2bApaOOOWXqQAgy2"
+	"folder": "8VVJmDWH4cwUWVwS",
+	"name": "Effect: Mistform Elixir (Greater)",
+	"type": "effect",
+	"effects": [],
+	"system": {
+		"description": {
+			"gm": "",
+			"value": "<p>Granted by @UUID[Compendium.pf2e.equipment-srd.Item.04giYigfDL5geu5f]{Mistform Elixir (Greater)}</p><p>A faint mist emanates from your skin, making you @UUID[Compendium.pf2e.conditionitems.Item.DmAIPqOBomZ7H95W]{Concealed} for 5 minutes.</p>"
+		},
+		"rules": [
+			{
+				"key": "GrantItem",
+				"onDeleteActions": {
+					"grantee": "restrict"
+				},
+				"uuid": "Compendium.pf2e.conditionitems.Item.DmAIPqOBomZ7H95W"
+			}
+		],
+		"slug": "effect-mistform-elixir-greater",
+		"_migration": {
+			"version": 0.935,
+			"lastMigration": null,
+			"previous": {
+				"schema": null,
+				"foundry": "12.331",
+				"system": "6.12.1"
+			}
+		},
+		"traits": {
+			"otherTags": [],
+			"value": []
+		},
+		"publication": {
+			"title": "Pathfinder GM Core",
+			"authors": "",
+			"license": "ORC",
+			"remaster": true
+		},
+		"level": {
+			"value": 10
+		},
+		"duration": {
+			"value": 5,
+			"unit": "minutes",
+			"expiry": "turn-start",
+			"sustained": false
+		},
+		"start": {
+			"value": 0,
+			"initiative": null
+		},
+		"tokenIcon": {
+			"show": true
+		},
+		"badge": null,
+		"context": null,
+		"unidentified": false
+	},
+	"_id": "2bApaOOOWXqQAgy2",
+	"img": "icons/consumables/potions/bottle-conical-corked-blue.webp",
+	"sort": 0,
+	"ownership": {
+		"default": 0
+	},
+	"flags": {},
+	"_stats": {
+		"coreVersion": "12.331",
+		"systemId": null,
+		"systemVersion": null,
+		"createdTime": null,
+		"modifiedTime": null,
+		"lastModifiedBy": null,
+		"compendiumSource": "Compendium.pf2e-assistant.effects.Item.2bApaOOOWXqQAgy2",
+		"duplicateSource": null
+	},
+	"_key": "!items!2bApaOOOWXqQAgy2"
 }

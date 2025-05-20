@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import "effects.d.ts";
 import "foundry-pf2e";
 
 declare module "foundry-pf2e" {

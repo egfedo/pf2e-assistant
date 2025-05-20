@@ -28,7 +28,7 @@ Hooks.on("renderChatLog", function (_application: ChatLog, html: JQuery, _data: 
 
             if (message.item) {
                 data.item = message.item;
-                data.rollOptions.push(...message.item.getRollOptions());
+                data.rollOptions.push(...message.item.getRollOptions("item"));
             }
 
             game.assistant.storage.process(data);

@@ -1,4 +1,5 @@
 import { Assistant } from "assistant.ts";
+import { PF2E_EQUIPMENT_EFFECTS } from "effects.ts";
 
 import { Utils } from "utils.ts";
 

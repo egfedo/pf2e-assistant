@@ -52,6 +52,10 @@
         "uuid": "Compendium.pf2e.feat-effects.Item.1Azz9TSWXrX4aNX4"
     },
     {
+        "slug": "effect-raging-stories",
+        "uuid": "Compendium.pf2e.feat-effects.Item.1DT1CRjh6JfjnXQG"
+    },
+    {
         "slug": "effect-abjure-harm",
         "uuid": "Compendium.pf2e.feat-effects.Item.1FIje7Y5zIbf9V0p"
     },
@@ -194,6 +198,10 @@
     {
         "slug": "effect-to-war",
         "uuid": "Compendium.pf2e.feat-effects.Item.3zNPch2pttYW2n1j"
+    },
+    {
+        "slug": "effect-lepidstadt-surgeon-dedication-stop-bleeding",
+        "uuid": "Compendium.pf2e.feat-effects.Item.45nzYsMBTP6PIxDN"
     },
     {
         "slug": "effect-methodical-debilitations-cover",
@@ -680,6 +688,10 @@
         "uuid": "Compendium.pf2e.feat-effects.Item.Eh0uLxzYfheAWDpG"
     },
     {
+        "slug": "stance-stunt-performer-stance",
+        "uuid": "Compendium.pf2e.feat-effects.Item.Ei6ACyEsNGLidvSv"
+    },
+    {
         "slug": "effect-nanite-surge",
         "uuid": "Compendium.pf2e.feat-effects.Item.ErLweSmVAN57QIpp"
     },
@@ -764,6 +776,10 @@
         "uuid": "Compendium.pf2e.feat-effects.Item.GvqB4M8LrHpzYEvl"
     },
     {
+        "slug": "effect-glimpse-vulnerability",
+        "uuid": "Compendium.pf2e.feat-effects.Item.H35En2lHCVzOOUMf"
+    },
+    {
         "slug": "effect-favored-terrain-increase-swim-speed",
         "uuid": "Compendium.pf2e.feat-effects.Item.HKPmrxkZwHRND5Um"
     },
@@ -844,6 +860,10 @@
         "uuid": "Compendium.pf2e.feat-effects.Item.JQUoBlZKT5N5zO5k"
     },
     {
+        "slug": "effect-coven-spell",
+        "uuid": "Compendium.pf2e.feat-effects.Item.JRaFM5Ic4xR8WGgs"
+    },
+    {
         "slug": "effect-tactical-debilitations-no-flanking",
         "uuid": "Compendium.pf2e.feat-effects.Item.JUgx48XHMz4QM4Ir"
     },
@@ -896,6 +916,10 @@
         "uuid": "Compendium.pf2e.feat-effects.Item.KBEJVRrie2JTHWIK"
     },
     {
+        "slug": "effect-vellumis-excision",
+        "uuid": "Compendium.pf2e.feat-effects.Item.KHxkVwXSFsN3eATu"
+    },
+    {
         "slug": "effect-survive-the-wilds",
         "uuid": "Compendium.pf2e.feat-effects.Item.KR391Ltqp0d3EWg1"
     },
@@ -910,6 +934,10 @@
     {
         "slug": "stance-dueling-dance",
         "uuid": "Compendium.pf2e.feat-effects.Item.KiuBRoMFxL2Npt51"
+    },
+    {
+        "slug": "stance-cenotaph-stance",
+        "uuid": "Compendium.pf2e.feat-effects.Item.KoHUnnrrcCHRkmJQ"
     },
     {
         "slug": "effect-precious-ammunition",
@@ -990,6 +1018,10 @@
     {
         "slug": "effect-helpful-tinkering",
         "uuid": "Compendium.pf2e.feat-effects.Item.MbtWd4PvUHmwPtFO"
+    },
+    {
+        "slug": "effect-hunt-prey",
+        "uuid": "Compendium.pf2e.feat-effects.Item.MeXyXqWY9qN42bSQ"
     },
     {
         "slug": "effect-aura-junction-air",
@@ -1316,6 +1348,10 @@
         "uuid": "Compendium.pf2e.feat-effects.Item.Tju9kpQlwcKkyKor"
     },
     {
+        "slug": "effect-a-little-bird-told-me",
+        "uuid": "Compendium.pf2e.feat-effects.Item.Tlb2xfEhGLHjwPHy"
+    },
+    {
         "slug": "effect-furnace-form",
         "uuid": "Compendium.pf2e.feat-effects.Item.Tw9MjeQHL3qFY1PO"
     },
@@ -1548,6 +1584,10 @@
         "uuid": "Compendium.pf2e.feat-effects.Item.ZnKnOPPq3cG54PlG"
     },
     {
+        "slug": "effect-in-lightning-life",
+        "uuid": "Compendium.pf2e.feat-effects.Item.ZouxY0u1dKQEHQ6E"
+    },
+    {
         "slug": "effect-prepare-elemental-medicine",
         "uuid": "Compendium.pf2e.feat-effects.Item.ZqEOsqnGFLI2ob9m"
     },
@@ -1578,6 +1618,10 @@
     {
         "slug": "effect-legendary-monster-warden",
         "uuid": "Compendium.pf2e.feat-effects.Item.aUpcWqaLBlmpnJgW"
+    },
+    {
+        "slug": "effect-terrain-attunement-gravelands",
+        "uuid": "Compendium.pf2e.feat-effects.Item.ag1Ix1cnhcV4k9iu"
     },
     {
         "slug": "stance-wolf-stance",
@@ -1680,6 +1724,10 @@
         "uuid": "Compendium.pf2e.feat-effects.Item.dn7P5RzMZugxiWri"
     },
     {
+        "slug": "effect-offer-story",
+        "uuid": "Compendium.pf2e.feat-effects.Item.dzYnksinvWvfgBVt"
+    },
+    {
         "slug": "effect-undying-conviction",
         "uuid": "Compendium.pf2e.feat-effects.Item.e6mv68aarIbQ3tXL"
     },
@@ -1738,6 +1786,10 @@
     {
         "slug": "effect-disrupting-strikes",
         "uuid": "Compendium.pf2e.feat-effects.Item.ewfHVi6NWBGM8B6f"
+    },
+    {
+        "slug": "effect-cozy-campfire",
+        "uuid": "Compendium.pf2e.feat-effects.Item.fH4SxaerUGXqIOIJ"
     },
     {
         "slug": "effect-acupuncturist",
@@ -1840,6 +1892,10 @@
         "uuid": "Compendium.pf2e.feat-effects.Item.hGj6fnFwQwczmubB"
     },
     {
+        "slug": "effect-snap-out-of-it-marshal",
+        "uuid": "Compendium.pf2e.feat-effects.Item.hfhdvgObjnGStW07"
+    },
+    {
         "slug": "effect-curse-of-engulfing-flames",
         "uuid": "Compendium.pf2e.feat-effects.Item.hqeR9faxHj0NDFFP"
     },
@@ -1886,6 +1942,10 @@
     {
         "slug": "effect-read-shibboleths",
         "uuid": "Compendium.pf2e.feat-effects.Item.ivGiUp0EC5nWT9Hb"
+    },
+    {
+        "slug": "effect-rod-of-rule",
+        "uuid": "Compendium.pf2e.feat-effects.Item.ixAmr0VkB6q6LpGq"
     },
     {
         "slug": "effect-liberating-step-vs-dragon",
@@ -1968,6 +2028,10 @@
         "uuid": "Compendium.pf2e.feat-effects.Item.klZVVIetJlR99cT6"
     },
     {
+        "slug": "stance-waterfowl-stance",
+        "uuid": "Compendium.pf2e.feat-effects.Item.ko8I8OCPddWA9U8v"
+    },
+    {
         "slug": "effect-walking-the-cardinal-paths",
         "uuid": "Compendium.pf2e.feat-effects.Item.kui8yKIVsxfJnrYe"
     },
@@ -2014,6 +2078,10 @@
     {
         "slug": "effect-terrain-attunement-underground",
         "uuid": "Compendium.pf2e.feat-effects.Item.lUTUBYnA0GKYR5m5"
+    },
+    {
+        "slug": "effect-ruthless-orator",
+        "uuid": "Compendium.pf2e.feat-effects.Item.lWi5NjGv16mGpncU"
     },
     {
         "slug": "effect-strained-metabolism",
@@ -2136,6 +2204,10 @@
         "uuid": "Compendium.pf2e.feat-effects.Item.oXG7eX26FmePmwUF"
     },
     {
+        "slug": "effect-ruthless-orator-enemy",
+        "uuid": "Compendium.pf2e.feat-effects.Item.og3gUpF2Ti64Py8t"
+    },
+    {
         "slug": "effect-crash-against-me",
         "uuid": "Compendium.pf2e.feat-effects.Item.ogzkGtUR9vMt47ts"
     },
@@ -2194,6 +2266,10 @@
     {
         "slug": "effect-reflexive-shield",
         "uuid": "Compendium.pf2e.feat-effects.Item.pwbFFD6NzDooobKo"
+    },
+    {
+        "slug": "effect-tripartite-omen",
+        "uuid": "Compendium.pf2e.feat-effects.Item.q2t1ZtSPP1p0lz3R"
     },
     {
         "slug": "stance-whirlwind-stance",
@@ -2348,6 +2424,10 @@
         "uuid": "Compendium.pf2e.feat-effects.Item.sgRIIdKNXbBAv4dk"
     },
     {
+        "slug": "effect-conductive-sphere",
+        "uuid": "Compendium.pf2e.feat-effects.Item.sl3umfGcLROU3U5U"
+    },
+    {
         "slug": "effect-spell-parry",
         "uuid": "Compendium.pf2e.feat-effects.Item.su2HbEdb4IYB7r5l"
     },
@@ -2492,7 +2572,11 @@
         "uuid": "Compendium.pf2e.feat-effects.Item.wQDHpOKY3GZqvS2v"
     },
     {
-        "slug": "effect-rallying-charge",
+        "slug": "effect-animalistic-brutality",
+        "uuid": "Compendium.pf2e.feat-effects.Item.wQy8QddWBtzXYjw3"
+    },
+    {
+        "slug": "effect-rallying-charge-marshal",
         "uuid": "Compendium.pf2e.feat-effects.Item.wjNNHgX6ceKLbn8Q"
     },
     {
@@ -2540,6 +2624,10 @@
         "uuid": "Compendium.pf2e.feat-effects.Item.xYd4G4yPLHSWWWvT"
     },
     {
+        "slug": "effect-tributary-circulation",
+        "uuid": "Compendium.pf2e.feat-effects.Item.xatDR4tSzpu3qddJ"
+    },
+    {
         "slug": "effect-glimpses-to-beyond",
         "uuid": "Compendium.pf2e.feat-effects.Item.xdcblhm5Ie3CG9wS"
     },
@@ -2554,6 +2642,10 @@
     {
         "slug": "effect-lock-on",
         "uuid": "Compendium.pf2e.feat-effects.Item.xtqOIXCe0Nsd0QCt"
+    },
+    {
+        "slug": "stance-flood-stance",
+        "uuid": "Compendium.pf2e.feat-effects.Item.yBJPNp0mKjMkKe1w"
     },
     {
         "slug": "effect-debilitating-strike",

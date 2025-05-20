@@ -1,4 +1,5 @@
 import { Assistant } from "assistant.ts";
+import { PF2E_ASSISTANT_EFFECTS } from "effects.ts";
 import { Utils } from "utils.ts";
 
 export const path = ["Actions", "Feint"];
@@ -41,7 +42,7 @@ export const actions: Assistant.Action[] = [
             reroll.removeItem.push(
                 ...(await game.assistant.socket.addEffect(
                     data.speaker.actor,
-                    PF2E_ASSISTANT_EFFECTS["effect-feint-success"],
+                    PF2E_ASSISTANT_EFFECTS["effect-feint-critical-success"],
                     {
                         origin: data.speaker,
                         target: data.target,
@@ -66,7 +67,7 @@ export const actions: Assistant.Action[] = [
             reroll.removeItem.push(
                 ...(await game.assistant.socket.addEffect(
                     data.target.actor,
-                    PF2E_ASSISTANT_EFFECTS["effect-feint-critical-failure"],
+                    PF2E_ASSISTANT_EFFECTS["effect-feint-critical-success"],
                     {
                         origin: data.speaker,
                         target: data.speaker,

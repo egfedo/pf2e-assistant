@@ -11,7 +11,6 @@ import {
     ItemSourcePF2e,
     PersistentSourceData,
     SaveType,
-    ScenePF2e,
     TokenDocumentPF2e
 } from "foundry-pf2e";
 import { Utils } from "utils.ts";
@@ -502,22 +501,22 @@ export class Socket {
 
         const speaker = {
             actor: await fromUuid<ActorPF2e>(param.speaker.actor),
-            token: await fromUuid<TokenDocumentPF2e<ScenePF2e>>(param.speaker.token)
+            token: await fromUuid<TokenDocumentPF2e>(param.speaker.token)
         };
         const item = param.item ? await fromUuid<ItemPF2e>(param.item) : undefined;
         const target = param.target
             ? {
                   actor: await fromUuid<ActorPF2e>(param.target.actor),
-                  token: await fromUuid<TokenDocumentPF2e<ScenePF2e>>(param.target.token)
+                  token: await fromUuid<TokenDocumentPF2e>(param.target.token)
               }
             : undefined;
         const data = param.data;
 
-        if (Utils.Actor.isActorToken(speaker)) {
+        if (SocketTypes.isActorToken(speaker)) {
             return await game.assistant.socket.promptChoice(actor, {
                 speaker,
                 item: item ? item : undefined,
-                target: target && Utils.Actor.isActorToken(target) ? target : undefined,
+                target: SocketTypes.isActorToken(target) ? target : undefined,
                 data
             });
         }
@@ -527,9 +526,16 @@ export class Socket {
 }
 
 namespace SocketTypes {
+    export function isActorToken(data?: {
+        actor: Maybe<ActorPF2e>;
+        token: Maybe<TokenDocumentPF2e>;
+    }): data is ActorToken {
+        return Utils.Remeda.isNonNullish(data?.actor) && Utils.Remeda.isNonNullish(data?.token);
+    }
+
     export interface ActorToken {
         actor: ActorPF2e;
-        token: TokenDocumentPF2e<ScenePF2e>;
+        token: TokenDocumentPF2e;
     }
 
     export interface SerializedActorToken {
@@ -544,7 +550,7 @@ namespace SocketTypes {
             target?: ActorToken;
             roll?: Roll;
             duration?: EffectSystemData["duration"];
-            tokenMark?: { slug: string; token: TokenDocumentPF2e<ScenePF2e> };
+            tokenMark?: { slug: string; token: TokenDocumentPF2e };
         }
     }
 
@@ -557,9 +563,9 @@ namespace SocketTypes {
         }
 
         export interface ChoiceParameters {
-            speaker: { actor: ActorPF2e; token: TokenDocumentPF2e<ScenePF2e> };
+            speaker: { actor: ActorPF2e; token: TokenDocumentPF2e };
             item?: ItemPF2e;
-            target?: { actor: ActorPF2e; token: TokenDocumentPF2e<ScenePF2e> };
+            target?: { actor: ActorPF2e; token: TokenDocumentPF2e };
             data: ChoiceData;
         }
 

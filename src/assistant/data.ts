@@ -2,7 +2,7 @@ import { ActorPF2e, ChatMessagePF2e, ItemPF2e, ScenePF2e, TokenDocumentPF2e } fr
 
 export interface ActorToken {
     actor: ActorPF2e;
-    token: TokenDocumentPF2e<ScenePF2e>;
+    token: TokenDocumentPF2e;
 }
 export interface Data {
     trigger: string;
@@ -10,7 +10,7 @@ export interface Data {
     domains?: string[];
     chatMessage?: ChatMessagePF2e;
     roll?: Roll;
-    item?: ItemPF2e<ActorPF2e>;
+    item?: ItemPF2e;
     speaker?: ActorToken;
     target?: ActorToken;
     origin?: ActorToken;

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [6.6.0] - 2025-05-20
+
+I don't remember all the changes that I made before I stopped working on this for a bit, most of it was reworking how the data is stored and using [FoundryVTT-Sync](https://github.com/MrVauxs/FoundryVTT-Sync). Also updated to support PF2e 6.12.1.
+
 ## [6.5.0] - 2025-02-03
 
 ### Added
@@ -308,7 +312,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Auto Self-Applied Effects (This is disabled if PF2e Toolbelt is doing this as well)
 - Swashbuckler Panache
 
-[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.5.0...HEAD
+[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.6.0...HEAD
+[6.6.0]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.5.0...v6.6.0
 [6.5.0]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.4.6...v6.5.0
 [6.4.6]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.4.5...v6.4.6
 [6.4.5]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.4.4...v6.4.5

@@ -13,60 +13,33 @@ interface EffectJSON {
     uuid: string;
 }
 
-function createDefines(name: string, effects: EffectJSON[]) {
-    return effects.map(
-        (effect) => `    '${name}["${effect.slug}"]': JSON.stringify("${effect.uuid}"),`
-    );
-}
-
-function createGlobal(name: string, effects: EffectJSON[]) {
+function createEffect(name: string, effects: EffectJSON[]) {
     let data = [];
 
-    data.push(`    export enum ${name} {`);
-    data.push(...effects.map((effect) => `        "${effect.slug}" = "${effect.uuid}",`));
-    data.push(`    }`);
+    data.push(`export enum ${name} {`);
+    data.push(...effects.map((effect) => `    "${effect.slug}" = "${effect.uuid}",`));
+    data.push(`};`);
 
     return data;
 }
 
-const defines = [];
-defines.push("const define = {");
-defines.push(...createDefines("PF2E_ASSISTANT_EFFECTS", PF2E_ASSISTANT_EFFECTS));
-defines.push(...createDefines("PF2E_BESTIARY_EFFECTS", PF2E_BESTIARY_EFFECTS));
-defines.push(...createDefines("PF2E_CONDITIONS", PF2E_CONDITIONS));
-defines.push(...createDefines("PF2E_CAMPAIGN_EFFECTS", PF2E_CAMPAIGN_EFFECTS));
-defines.push(...createDefines("PF2E_EQUIPMENT_EFFECTS", PF2E_EQUIPMENT_EFFECTS));
-defines.push(...createDefines("PF2E_OTHER_EFFECTS", PF2E_OTHER_EFFECTS));
-defines.push(...createDefines("PF2E_FEAT_EFFECTS", PF2E_FEAT_EFFECTS));
-defines.push(...createDefines("PF2E_SPELL_EFFECTS", PF2E_SPELL_EFFECTS));
-defines.push("} as const;");
-defines.push("");
-defines.push("export default define;");
-defines.push("");
+const effect = [];
 
-fs.writeFileSync("./vite.defines.ts", defines.join("\n"));
+effect.push(...createEffect("PF2E_ASSISTANT_EFFECTS", PF2E_ASSISTANT_EFFECTS));
+effect.push("");
+effect.push(...createEffect("PF2E_BESTIARY_EFFECTS", PF2E_BESTIARY_EFFECTS));
+effect.push("");
+effect.push(...createEffect("PF2E_CONDITIONS", PF2E_CONDITIONS));
+effect.push("");
+effect.push(...createEffect("PF2E_CAMPAIGN_EFFECTS", PF2E_CAMPAIGN_EFFECTS));
+effect.push("");
+effect.push(...createEffect("PF2E_EQUIPMENT_EFFECTS", PF2E_EQUIPMENT_EFFECTS));
+effect.push("");
+effect.push(...createEffect("PF2E_OTHER_EFFECTS", PF2E_OTHER_EFFECTS));
+effect.push("");
+effect.push(...createEffect("PF2E_FEAT_EFFECTS", PF2E_FEAT_EFFECTS));
+effect.push("");
+effect.push(...createEffect("PF2E_SPELL_EFFECTS", PF2E_SPELL_EFFECTS));
+effect.push("");
 
-const global = [];
-
-global.push("export {};");
-global.push("");
-global.push("declare global {");
-global.push(...createGlobal("PF2E_ASSISTANT_EFFECTS", PF2E_ASSISTANT_EFFECTS));
-global.push("");
-global.push(...createGlobal("PF2E_BESTIARY_EFFECTS", PF2E_BESTIARY_EFFECTS));
-global.push("");
-global.push(...createGlobal("PF2E_CONDITIONS", PF2E_CONDITIONS));
-global.push("");
-global.push(...createGlobal("PF2E_CAMPAIGN_EFFECTS", PF2E_CAMPAIGN_EFFECTS));
-global.push("");
-global.push(...createGlobal("PF2E_EQUIPMENT_EFFECTS", PF2E_EQUIPMENT_EFFECTS));
-global.push("");
-global.push(...createGlobal("PF2E_OTHER_EFFECTS", PF2E_OTHER_EFFECTS));
-global.push("");
-global.push(...createGlobal("PF2E_FEAT_EFFECTS", PF2E_FEAT_EFFECTS));
-global.push("");
-global.push(...createGlobal("PF2E_SPELL_EFFECTS", PF2E_SPELL_EFFECTS));
-global.push("}");
-global.push("");
-
-fs.writeFileSync("./src/effects.d.ts", global.join("\n"));
+fs.writeFileSync("./src/effects.ts", effect.join("\n"));

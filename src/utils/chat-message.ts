@@ -1,4 +1,11 @@
-import { ChatContextFlag, ChatMessageFlagsPF2e, ChatMessagePF2e, CheckContextChatFlag } from "foundry-pf2e";
+import {
+    ChatContextFlag,
+    ChatMessageFlagsPF2e,
+    ChatMessagePF2e,
+    CheckContextChatFlag,
+    ItemOriginFlag
+} from "foundry-pf2e";
+import * as R from "remeda";
 
 interface ChatMessageStrikePF2e {
     actor: ActorUUID;
@@ -34,16 +41,14 @@ export function isFastHealing(chatMessage: ChatMessagePF2e): boolean {
     return FAST_HEALING_REGEX.some((value) => value.test(chatMessage.flavor));
 }
 
-export function isConsume(chatMessage: ChatMessagePF2e): boolean {
-    if (!chatMessage.flags.pf2e.origin) return false;
-    if (!chatMessage.item) return false;
-
-    const origin = new Map(Object.entries(chatMessage.flags.pf2e.origin));
-    return (
-        origin.get("sourceId") === chatMessage.item.sourceId &&
-        origin.get("type") === "consumable" &&
-        origin.get("uuid") === chatMessage.item.uuid
-    );
+interface ConsumeOriginFlag {
+    sourceId: ItemUUID;
+    uuid: ItemUUID;
+    type: "consumable";
+}
+export function isConsume(origin: Maybe<ItemOriginFlag>): origin is ConsumeOriginFlag {
+    if (origin === null || origin === undefined) return false;
+    return R.isDeepEqual(R.keys(origin), ["sourceId", "uuid", "type"]);
 }
 
 let SHIELD_BLOCK_REGEX: RegExp[];

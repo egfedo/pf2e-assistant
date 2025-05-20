@@ -152,6 +152,10 @@
         "uuid": "Compendium.pf2e.spell-effects.Item.34yP4e2e6jpY1Bsi"
     },
     {
+        "slug": "spell-effect-beseech-the-sphinx",
+        "uuid": "Compendium.pf2e.spell-effects.Item.3CzDP9Bamc1aVLyh"
+    },
+    {
         "slug": "spell-effect-safeguard-secret",
         "uuid": "Compendium.pf2e.spell-effects.Item.3HEiYVhqypfc4IsP"
     },
@@ -220,6 +224,10 @@
         "uuid": "Compendium.pf2e.spell-effects.Item.4ktNx3cVz5GkcGJa"
     },
     {
+        "slug": "spell-effect-purify-tanglebriar",
+        "uuid": "Compendium.pf2e.spell-effects.Item.4ne9K5IQm2whokHP"
+    },
+    {
         "slug": "spell-effect-flashy-disappearance",
         "uuid": "Compendium.pf2e.spell-effects.Item.4vlorajqpFcS5Ozi"
     },
@@ -246,6 +254,14 @@
     {
         "slug": "spell-effect-wind-jump",
         "uuid": "Compendium.pf2e.spell-effects.Item.5MI2c9IgxfSeGZQo"
+    },
+    {
+        "slug": "spell-effect-tangling-creepers",
+        "uuid": "Compendium.pf2e.spell-effects.Item.5RiskDnSXaRI6F4n"
+    },
+    {
+        "slug": "effect-bone-flense-reaction",
+        "uuid": "Compendium.pf2e.spell-effects.Item.5Zof6sC46ms4JLIl"
     },
     {
         "slug": "spell-effect-safe-passage",
@@ -380,6 +396,10 @@
         "uuid": "Compendium.pf2e.spell-effects.Item.8adLKKzJy49USYJt"
     },
     {
+        "slug": "spell-effect-mental-map",
+        "uuid": "Compendium.pf2e.spell-effects.Item.8brCESGTl4pUIjhY"
+    },
+    {
         "slug": "spell-effect-thicket-of-knives",
         "uuid": "Compendium.pf2e.spell-effects.Item.8ecGfjmxnBY3WWao"
     },
@@ -474,6 +494,10 @@
     {
         "slug": "spell-effect-countless-eyes",
         "uuid": "Compendium.pf2e.spell-effects.Item.BfaFe1cI9IkpvmmY"
+    },
+    {
+        "slug": "spell-effect-the-four-hunters",
+        "uuid": "Compendium.pf2e.spell-effects.Item.Bfcl6jQBEv505DM2"
     },
     {
         "slug": "spell-effect-hymn-of-healing",
@@ -656,8 +680,16 @@
         "uuid": "Compendium.pf2e.spell-effects.Item.HtaDbgTIzdiTiKLX"
     },
     {
+        "slug": "spell-effect-true-target",
+        "uuid": "Compendium.pf2e.spell-effects.Item.HuvucQ5nfpuVWNrw"
+    },
+    {
         "slug": "spell-effect-ray-of-frost",
         "uuid": "Compendium.pf2e.spell-effects.Item.I4PsUAaYSUJ8pwKC"
+    },
+    {
+        "slug": "spell-effect-domoras-defense",
+        "uuid": "Compendium.pf2e.spell-effects.Item.IMKuG3m72BYeGSXS"
     },
     {
         "slug": "spell-effect-uplifting-overture",
@@ -704,6 +736,10 @@
         "uuid": "Compendium.pf2e.spell-effects.Item.J60rN48XzBGHmR6m"
     },
     {
+        "slug": "spell-effect-read-aura",
+        "uuid": "Compendium.pf2e.spell-effects.Item.J6OhRNSN23KzOPRL"
+    },
+    {
         "slug": "spell-effect-mountain-resilience",
         "uuid": "Compendium.pf2e.spell-effects.Item.JHpYudY14g0H4VWU"
     },
@@ -730,6 +766,10 @@
     {
         "slug": "spell-effect-plant-form-flytrap",
         "uuid": "Compendium.pf2e.spell-effects.Item.JrNHFNxJayevlv2G"
+    },
+    {
+        "slug": "spell-effect-coiling-dance",
+        "uuid": "Compendium.pf2e.spell-effects.Item.K1AHF9KV47PsPka1"
     },
     {
         "slug": "spell-effect-mantle-of-the-frozen-heart",
@@ -782,6 +822,10 @@
     {
         "slug": "spell-effect-elemental-absorption",
         "uuid": "Compendium.pf2e.spell-effects.Item.LldX5hnNhKzGtOS0"
+    },
+    {
+        "slug": "spell-effect-call-the-ten",
+        "uuid": "Compendium.pf2e.spell-effects.Item.Lno61HwUJaE4eLo8"
     },
     {
         "slug": "spell-effect-demon-form-brimorak",
@@ -840,8 +884,16 @@
         "uuid": "Compendium.pf2e.spell-effects.Item.OlkrQOPjLclyyxCw"
     },
     {
+        "slug": "spell-effect-halcyon-mists",
+        "uuid": "Compendium.pf2e.spell-effects.Item.Ore1RvtyWdioF5QW"
+    },
+    {
         "slug": "spell-effect-animate-rope",
         "uuid": "Compendium.pf2e.spell-effects.Item.OwvrQKuMLEktNWzA"
+    },
+    {
+        "slug": "effect-bone-flense-damage",
+        "uuid": "Compendium.pf2e.spell-effects.Item.P6f6UnvYSF5zATyu"
     },
     {
         "slug": "spell-effect-false-vitality",
@@ -926,6 +978,10 @@
     {
         "slug": "spell-effect-aberrant-form-otyugh",
         "uuid": "Compendium.pf2e.spell-effects.Item.SjfDoeymtnYKoGUD"
+    },
+    {
+        "slug": "spell-effect-wrathful-storm",
+        "uuid": "Compendium.pf2e.spell-effects.Item.SjxqjPDILhQWUcWf"
     },
     {
         "slug": "spell-effect-tomorrows-dawn",
@@ -1032,6 +1088,10 @@
         "uuid": "Compendium.pf2e.spell-effects.Item.VVSOzHV6Rz2YNHRl"
     },
     {
+        "slug": "spell-effect-ibexs-harvests",
+        "uuid": "Compendium.pf2e.spell-effects.Item.VYr6IyfCWUMcYLJH"
+    },
+    {
         "slug": "spell-effect-runic-impression",
         "uuid": "Compendium.pf2e.spell-effects.Item.Vc97f8ChfcZzprlZ"
     },
@@ -1076,6 +1136,10 @@
         "uuid": "Compendium.pf2e.spell-effects.Item.WtuhkNCNAW1JaGSe"
     },
     {
+        "slug": "spell-effect-kgalaserkes-axes",
+        "uuid": "Compendium.pf2e.spell-effects.Item.Wwg9pqrgRHhWlxw9"
+    },
+    {
         "slug": "spell-effect-demon-form-babau",
         "uuid": "Compendium.pf2e.spell-effects.Item.X1kkbRrh4zJuDGjl"
     },
@@ -1108,6 +1172,10 @@
         "uuid": "Compendium.pf2e.spell-effects.Item.XXtz5BDNNBmP9ub2"
     },
     {
+        "slug": "spell-effect-scintillating-safeguard",
+        "uuid": "Compendium.pf2e.spell-effects.Item.XstFvzPDKCfmoIED"
+    },
+    {
         "slug": "spell-effect-thermal-stasis",
         "uuid": "Compendium.pf2e.spell-effects.Item.Y6aNYnGVXdAMvL7Y"
     },
@@ -1134,6 +1202,10 @@
     {
         "slug": "spell-effect-flicker",
         "uuid": "Compendium.pf2e.spell-effects.Item.ZlsuhS9J0S3PuvCO"
+    },
+    {
+        "slug": "spell-effect-personal-runewell",
+        "uuid": "Compendium.pf2e.spell-effects.Item.ZwTwuNuvHuQhIjcu"
     },
     {
         "slug": "spell-effect-read-the-air",
@@ -1214,6 +1286,10 @@
     {
         "slug": "spell-effect-litany-of-self-interest",
         "uuid": "Compendium.pf2e.spell-effects.Item.ceEA7nBGNmoR8Sjj"
+    },
+    {
+        "slug": "spell-effect-threefold-limb-ice",
+        "uuid": "Compendium.pf2e.spell-effects.Item.cfREcFI2ZhrOlm3C"
     },
     {
         "slug": "spell-effect-resist-energy",
@@ -1552,6 +1628,10 @@
         "uuid": "Compendium.pf2e.spell-effects.Item.nLige83aiMBh0ylb"
     },
     {
+        "slug": "spell-effect-unravel-knowledge",
+        "uuid": "Compendium.pf2e.spell-effects.Item.nTISJz13lhHlc9pk"
+    },
+    {
         "slug": "spell-effect-infectious-enthusiasm",
         "uuid": "Compendium.pf2e.spell-effects.Item.nU4SxAk6XreHUi5h"
     },
@@ -1594,6 +1674,10 @@
     {
         "slug": "spell-effect-rejuvenating-touch",
         "uuid": "Compendium.pf2e.spell-effects.Item.oaRt210JV4GZIHmJ"
+    },
+    {
+        "slug": "spell-effect-precious-gleam",
+        "uuid": "Compendium.pf2e.spell-effects.Item.ojC0jckNHOEIFFtB"
     },
     {
         "slug": "spell-effect-untwisting-iron-pillar",
@@ -1782,6 +1866,10 @@
     {
         "slug": "spell-effect-animal-form-ape",
         "uuid": "Compendium.pf2e.spell-effects.Item.tk3go5Cl6Qt130Dk"
+    },
+    {
+        "slug": "spell-effect-cutting-eye",
+        "uuid": "Compendium.pf2e.spell-effects.Item.tlbv3TAD2xPDFnAf"
     },
     {
         "slug": "spell-effect-plant-form-arboreal",

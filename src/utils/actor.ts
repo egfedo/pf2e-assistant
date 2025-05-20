@@ -1,4 +1,4 @@
-import { ActorPF2e, CheckDC, EffectPF2e, ScenePF2e, TokenDocumentPF2e, UserPF2e, ZeroToThree } from "foundry-pf2e";
+import { ActorPF2e, CheckDC, EffectPF2e, UserPF2e, ZeroToThree } from "foundry-pf2e";
 
 export function getClassDC(actor: ActorPF2e): CheckDC | number | undefined {
     if (actor.isOfType("character")) {
@@ -26,18 +26,6 @@ export function getPrimaryUser(actor: ActorPF2e): UserPF2e | null {
     if (activeUpdaters.length === 1) return activeUpdaters[0];
 
     return game.users.activeGM;
-}
-
-export interface ActorToken {
-    actor: ActorPF2e;
-    token: TokenDocumentPF2e<ScenePF2e>;
-}
-
-export function isActorToken(data: { actor: Maybe<ActorPF2e>; token: Maybe<TokenDocumentPF2e> }): data is ActorToken {
-    if (data.actor && data.token && data.token.parent) {
-        return true;
-    }
-    return false;
 }
 
 export function hasEffect(

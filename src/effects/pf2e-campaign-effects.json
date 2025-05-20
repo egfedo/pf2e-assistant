@@ -20,6 +20,10 @@
         "uuid": "Compendium.pf2e.campaign-effects.Item.53nP5ljwRhD9BlUk"
     },
     {
+        "slug": "effect-call-upon-the-ancients",
+        "uuid": "Compendium.pf2e.campaign-effects.Item.6ReMiLTAc70nbzAC"
+    },
+    {
         "slug": "resonant-reflection-reflection-of-water",
         "uuid": "Compendium.pf2e.campaign-effects.Item.7Rpu9g6GBxg3jmoG"
     },
@@ -34,6 +38,18 @@
     {
         "slug": "effect-seasonal-boon-outskirt-dweller",
         "uuid": "Compendium.pf2e.campaign-effects.Item.8KtjzHHR7n7ALvQc"
+    },
+    {
+        "slug": "effect-recruit-the-recent-dead",
+        "uuid": "Compendium.pf2e.campaign-effects.Item.A0w4C7GsqgFmkR8u"
+    },
+    {
+        "slug": "effect-blessed-coins",
+        "uuid": "Compendium.pf2e.campaign-effects.Item.A1VCJqeusccB7OOH"
+    },
+    {
+        "slug": "effect-pompous-rage",
+        "uuid": "Compendium.pf2e.campaign-effects.Item.ALYd08DB00ZeoHAp"
     },
     {
         "slug": "effect-burned-mouth-and-throat-no-singing-or-yelling",
@@ -176,6 +192,10 @@
         "uuid": "Compendium.pf2e.campaign-effects.Item.fOz4CDZmc6CSKAUm"
     },
     {
+        "slug": "effect-utter-treerazers-name",
+        "uuid": "Compendium.pf2e.campaign-effects.Item.fhcpgC3RX1CEGTC9"
+    },
+    {
         "slug": "effect-heroic-hustle",
         "uuid": "Compendium.pf2e.campaign-effects.Item.i5PHb9yR33Cr6XMK"
     },
@@ -186,6 +206,18 @@
     {
         "slug": "mixed-drink-prestidigitation",
         "uuid": "Compendium.pf2e.campaign-effects.Item.j8hA7CsmSY90tBqw"
+    },
+    {
+        "slug": "effect-memories-of-failure",
+        "uuid": "Compendium.pf2e.campaign-effects.Item.jS1J008XoEo50adu"
+    },
+    {
+        "slug": "effect-attitude",
+        "uuid": "Compendium.pf2e.campaign-effects.Item.kTnRp6zfI32iqjHc"
+    },
+    {
+        "slug": "effect-call-upon-the-sovyrian-stone",
+        "uuid": "Compendium.pf2e.campaign-effects.Item.l2fxGJVR9ffNI8uC"
     },
     {
         "slug": "effect-burned-tongue-linguistic",
@@ -208,6 +240,10 @@
         "uuid": "Compendium.pf2e.campaign-effects.Item.n6PAwAqignNXd75G"
     },
     {
+        "slug": "effect-spore-feedback",
+        "uuid": "Compendium.pf2e.campaign-effects.Item.nTTqHZGSub9kmpOr"
+    },
+    {
         "slug": "effect-burned-mouth-and-throat-linguistic",
         "uuid": "Compendium.pf2e.campaign-effects.Item.nwFhhgZRggDoDgdk"
     },
@@ -226,6 +262,10 @@
     {
         "slug": "effect-keen-insight",
         "uuid": "Compendium.pf2e.campaign-effects.Item.yJWWTfZkAF4raa4R"
+    },
+    {
+        "slug": "effect-invoke-the-witchboles-spirit",
+        "uuid": "Compendium.pf2e.campaign-effects.Item.yZGqaYXpuZ3NfbNB"
     },
     {
         "slug": "effect-righteous-call",

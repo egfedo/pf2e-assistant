@@ -1,70 +1,26 @@
 import { Assistant } from "assistant.ts";
+import { PF2E_EQUIPMENT_EFFECTS } from "effects.ts";
 
 export const path = ["Consumables", "Soothing Tonic"];
 
 export const actions: Assistant.Action[] = [
     {
         trigger: "consumable",
-        predicate: ["item:soothing-tonic-lesser"],
+        predicate: [
+            {
+                or: [
+                    "item:soothing-tonic-lesser",
+                    "item:soothing-tonic-moderate",
+                    "item:soothing-tonic-greater",
+                    "item:soothing-tonic-major"
+                ]
+            }
+        ],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target ?? data.speaker;
 
-            await game.assistant.socket.addEffect(
-                target.actor,
-                PF2E_EQUIPMENT_EFFECTS["effect-soothing-tonic-lesser"],
-                {
-                    origin: data.speaker,
-                    item: data.item,
-                    target: target
-                }
-            );
-        }
-    },
-    {
-        trigger: "consumable",
-        predicate: ["item:soothing-tonic-moderate"],
-        process: async (data: Assistant.Data) => {
-            if (!data.speaker) return;
-            const target = data.target ?? data.speaker;
-
-            await game.assistant.socket.addEffect(
-                target.actor,
-                PF2E_EQUIPMENT_EFFECTS["effect-soothing-tonic-moderate"],
-                {
-                    origin: data.speaker,
-                    item: data.item,
-                    target: target
-                }
-            );
-        }
-    },
-    {
-        trigger: "consumable",
-        predicate: ["item:soothing-tonic-greater"],
-        process: async (data: Assistant.Data) => {
-            if (!data.speaker) return;
-            const target = data.target ?? data.speaker;
-
-            await game.assistant.socket.addEffect(
-                target.actor,
-                PF2E_EQUIPMENT_EFFECTS["effect-soothing-tonic-greater"],
-                {
-                    origin: data.speaker,
-                    item: data.item,
-                    target: target
-                }
-            );
-        }
-    },
-    {
-        trigger: "consumable",
-        predicate: ["item:soothing-tonic-major"],
-        process: async (data: Assistant.Data) => {
-            if (!data.speaker) return;
-            const target = data.target ?? data.speaker;
-
-            await game.assistant.socket.addEffect(target.actor, PF2E_EQUIPMENT_EFFECTS["effect-soothing-tonic-major"], {
+            await game.assistant.socket.addEffect(target.actor, PF2E_EQUIPMENT_EFFECTS["effect-soothing-tonic"], {
                 origin: data.speaker,
                 item: data.item,
                 target: target

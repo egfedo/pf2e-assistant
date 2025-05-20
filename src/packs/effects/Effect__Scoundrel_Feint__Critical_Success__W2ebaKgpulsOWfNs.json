@@ -1,59 +1,78 @@
 {
-  "folder": "ospQ8uQmXb65Lhse",
-  "name": "Effect: Scoundrel Feint (Critical Success)",
-  "type": "effect",
-  "effects": [],
-  "system": {
-    "description": {
-      "gm": "",
-      "value": "<p>You are off-guard against all melee attacks until the end of your foe's next turn.</p>"
-    },
-    "rules": [
-      {
-        "key": "EphemeralEffect",
-        "selectors": [
-          "melee-attack-roll"
-        ],
-        "uuid": "Compendium.pf2e.conditionitems.Item.AJh5ex99aV6VTggg"
-      }
-    ],
-    "slug": "effect-scoundrel-feint-critical-success",
-    "traits": {
-      "otherTags": [],
-      "value": []
-    },
-    "publication": {
-      "title": "Pathfinder Player Core",
-      "authors": "",
-      "license": "ORC",
-      "remaster": true
-    },
-    "level": {
-      "value": 1
-    },
-    "duration": {
-      "value": 1,
-      "unit": "rounds",
-      "expiry": "turn-end",
-      "sustained": false
-    },
-    "start": {
-      "value": 0,
-      "initiative": null
-    },
-    "tokenIcon": {
-      "show": false
-    },
-    "badge": null,
-    "context": null,
-    "unidentified": false
-  },
-  "_id": "W2ebaKgpulsOWfNs",
-  "img": "icons/skills/social/theft-pickpocket-bribery-brown.webp",
-  "sort": 0,
-  "ownership": {
-    "default": 0
-  },
-  "flags": {},
-  "_key": "!items!W2ebaKgpulsOWfNs"
+	"folder": "ospQ8uQmXb65Lhse",
+	"name": "Effect: Scoundrel Feint (Critical Success)",
+	"type": "effect",
+	"effects": [],
+	"system": {
+		"description": {
+			"gm": "",
+			"value": "<p>You are off-guard against all melee attacks until the end of your foe's next turn.</p>"
+		},
+		"rules": [
+			{
+				"key": "EphemeralEffect",
+				"selectors": [
+					"melee-attack-roll"
+				],
+				"uuid": "Compendium.pf2e.conditionitems.Item.AJh5ex99aV6VTggg"
+			}
+		],
+		"slug": "effect-scoundrel-feint-critical-success",
+		"_migration": {
+			"version": 0.935,
+			"lastMigration": null,
+			"previous": {
+				"schema": null,
+				"foundry": "12.331",
+				"system": "6.12.1"
+			}
+		},
+		"traits": {
+			"otherTags": [],
+			"value": []
+		},
+		"publication": {
+			"title": "Pathfinder Player Core",
+			"authors": "",
+			"license": "ORC",
+			"remaster": true
+		},
+		"level": {
+			"value": 1
+		},
+		"duration": {
+			"value": 1,
+			"unit": "rounds",
+			"expiry": "turn-end",
+			"sustained": false
+		},
+		"start": {
+			"value": 0,
+			"initiative": null
+		},
+		"tokenIcon": {
+			"show": false
+		},
+		"badge": null,
+		"context": null,
+		"unidentified": false
+	},
+	"_id": "W2ebaKgpulsOWfNs",
+	"img": "icons/skills/social/theft-pickpocket-bribery-brown.webp",
+	"sort": 0,
+	"ownership": {
+		"default": 0
+	},
+	"flags": {},
+	"_stats": {
+		"coreVersion": "12.331",
+		"systemId": null,
+		"systemVersion": null,
+		"createdTime": null,
+		"modifiedTime": null,
+		"lastModifiedBy": null,
+		"compendiumSource": "Compendium.pf2e-assistant.effects.Item.W2ebaKgpulsOWfNs",
+		"duplicateSource": null
+	},
+	"_key": "!items!W2ebaKgpulsOWfNs"
 }

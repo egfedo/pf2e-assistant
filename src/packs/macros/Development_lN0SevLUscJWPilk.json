@@ -1,12 +1,22 @@
 {
-  "name": "Development",
-  "sorting": "a",
-  "folder": null,
-  "type": "Macro",
-  "_id": "lN0SevLUscJWPilk",
-  "description": "",
-  "sort": 100000,
-  "color": null,
-  "flags": {},
-  "_key": "!folders!lN0SevLUscJWPilk"
+	"name": "Development",
+	"sorting": "a",
+	"folder": null,
+	"type": "Macro",
+	"_id": "lN0SevLUscJWPilk",
+	"description": "",
+	"sort": 100000,
+	"color": null,
+	"flags": {},
+	"_stats": {
+		"coreVersion": "12.331",
+		"systemId": "pf2e",
+		"systemVersion": "6.8.5",
+		"createdTime": null,
+		"modifiedTime": 1738532094803,
+		"lastModifiedBy": "whrqB15k99Kr3O6p",
+		"compendiumSource": null,
+		"duplicateSource": null
+	},
+	"_key": "!folders!lN0SevLUscJWPilk"
 }

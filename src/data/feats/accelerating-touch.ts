@@ -1,4 +1,5 @@
 import { Assistant } from "assistant.ts";
+import { PF2E_SPELL_EFFECTS } from "effects.ts";
 
 export const path = ["Feats", "Accelerating Touch"];
 

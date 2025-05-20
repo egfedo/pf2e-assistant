@@ -1,12 +1,22 @@
 {
-  "name": "Action",
-  "sorting": "a",
-  "folder": null,
-  "type": "Item",
-  "_id": "weifgz2IxYkpHxLP",
-  "description": "",
-  "sort": -100000,
-  "color": null,
-  "flags": {},
-  "_key": "!folders!weifgz2IxYkpHxLP"
+	"name": "Action",
+	"sorting": "a",
+	"folder": null,
+	"type": "Item",
+	"_id": "weifgz2IxYkpHxLP",
+	"description": "",
+	"sort": -100000,
+	"color": null,
+	"flags": {},
+	"_stats": {
+		"coreVersion": "12.331",
+		"systemId": "pf2e",
+		"systemVersion": "6.12.1",
+		"createdTime": null,
+		"modifiedTime": null,
+		"lastModifiedBy": null,
+		"compendiumSource": null,
+		"duplicateSource": null
+	},
+	"_key": "!folders!weifgz2IxYkpHxLP"
 }

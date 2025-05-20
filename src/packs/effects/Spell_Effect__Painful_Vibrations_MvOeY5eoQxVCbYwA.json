@@ -1,59 +1,74 @@
 {
-  "folder": "2l8PF7Or6lzfonMy",
-  "name": "Spell Effect: Painful Vibrations",
-  "type": "effect",
-  "effects": [],
-  "system": {
-    "description": {
-      "gm": "",
-      "value": "<p>You are @UUID[Compendium.pf2e.conditionitems.Item.9PR9y0bi4JPKnHPR]{Deafened}.</p>"
-    },
-    "rules": [
-      {
-        "key": "GrantItem",
-        "onDeleteActions": {
-          "grantee": "restrict"
-        },
-        "uuid": "Compendium.pf2e.conditionitems.Item.9PR9y0bi4JPKnHPR"
-      }
-    ],
-    "slug": "spell-effect-painful-vibrations",
-    "traits": {
-      "otherTags": [],
-      "value": []
-    },
-    "publication": {
-      "title": "Pathfinder Secrets of Magic",
-      "authors": "",
-      "license": "OGL",
-      "remaster": false
-    },
-    "level": {
-      "value": 1
-    },
-    "duration": {
-      "value": 1,
-      "unit": "rounds",
-      "expiry": "turn-start",
-      "sustained": false
-    },
-    "start": {
-      "value": 0,
-      "initiative": null
-    },
-    "tokenIcon": {
-      "show": true
-    },
-    "badge": null,
-    "context": null,
-    "unidentified": false
-  },
-  "_id": "MvOeY5eoQxVCbYwA",
-  "img": "systems/pf2e/icons/spells/painful-vibrations.webp",
-  "sort": 0,
-  "ownership": {
-    "default": 0
-  },
-  "flags": {},
-  "_key": "!items!MvOeY5eoQxVCbYwA"
+	"folder": "2l8PF7Or6lzfonMy",
+	"name": "Spell Effect: Painful Vibrations",
+	"type": "effect",
+	"effects": [],
+	"system": {
+		"description": {
+			"gm": "",
+			"value": "<p>You are @UUID[Compendium.pf2e.conditionitems.Item.9PR9y0bi4JPKnHPR]{Deafened}.</p>"
+		},
+		"rules": [
+			{
+				"key": "GrantItem",
+				"onDeleteActions": {
+					"grantee": "restrict"
+				},
+				"uuid": "Compendium.pf2e.conditionitems.Item.9PR9y0bi4JPKnHPR"
+			}
+		],
+		"slug": "spell-effect-painful-vibrations",
+		"_migration": {
+			"version": 0.935,
+			"lastMigration": null
+		},
+		"traits": {
+			"otherTags": [],
+			"value": []
+		},
+		"publication": {
+			"title": "Pathfinder Secrets of Magic",
+			"authors": "",
+			"license": "OGL",
+			"remaster": false
+		},
+		"level": {
+			"value": 1
+		},
+		"duration": {
+			"value": 1,
+			"unit": "rounds",
+			"expiry": "turn-start",
+			"sustained": false
+		},
+		"start": {
+			"value": 0,
+			"initiative": null
+		},
+		"tokenIcon": {
+			"show": true
+		},
+		"badge": null,
+		"context": null,
+		"unidentified": false
+	},
+	"_id": "MvOeY5eoQxVCbYwA",
+	"img": "systems/pf2e/icons/spells/painful-vibrations.webp",
+	"sort": 0,
+	"ownership": {
+		"default": 0,
+		"whrqB15k99Kr3O6p": 3
+	},
+	"flags": {},
+	"_stats": {
+		"compendiumSource": "Compendium.pf2e-assistant.effects.Item.MvOeY5eoQxVCbYwA",
+		"duplicateSource": null,
+		"coreVersion": "12.331",
+		"systemId": "pf2e",
+		"systemVersion": "6.8.4",
+		"createdTime": 1738016145346,
+		"modifiedTime": 1738016289938,
+		"lastModifiedBy": "whrqB15k99Kr3O6p"
+	},
+	"_key": "!items!MvOeY5eoQxVCbYwA"
 }

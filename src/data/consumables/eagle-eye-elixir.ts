@@ -1,78 +1,30 @@
 import { Assistant } from "assistant.ts";
+import { PF2E_EQUIPMENT_EFFECTS } from "effects.ts";
 
 export const path = ["Consumables", "Eagle Eye Elixir"];
 
 export const actions: Assistant.Action[] = [
     {
         trigger: "consumable",
-        predicate: ["item:eagle-eye-elixir-lesser"],
+        predicate: [
+            {
+                or: [
+                    "item:eagle-eye-elixir-lesser",
+                    "item:eagle-eye-elixir-moderate",
+                    "item:eagle-eye-elixir-greater",
+                    "item:eagle-eye-elixir-major"
+                ]
+            }
+        ],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target ?? data.speaker;
 
-            await game.assistant.socket.addEffect(
-                target.actor,
-                PF2E_EQUIPMENT_EFFECTS["effect-eagle-eye-elixir-lesser"],
-                {
-                    origin: data.speaker,
-                    item: data.item,
-                    target: target
-                }
-            );
-        }
-    },
-    {
-        trigger: "consumable",
-        predicate: ["item:eagle-eye-elixir-moderate"],
-        process: async (data: Assistant.Data) => {
-            if (!data.speaker) return;
-            const target = data.target ?? data.speaker;
-
-            await game.assistant.socket.addEffect(
-                target.actor,
-                PF2E_EQUIPMENT_EFFECTS["effect-eagle-eye-elixir-moderate"],
-                {
-                    origin: data.speaker,
-                    item: data.item,
-                    target: target
-                }
-            );
-        }
-    },
-    {
-        trigger: "consumable",
-        predicate: ["item:eagle-eye-elixir-greater"],
-        process: async (data: Assistant.Data) => {
-            if (!data.speaker) return;
-            const target = data.target ?? data.speaker;
-
-            await game.assistant.socket.addEffect(
-                target.actor,
-                PF2E_EQUIPMENT_EFFECTS["effect-eagle-eye-elixir-greater"],
-                {
-                    origin: data.speaker,
-                    item: data.item,
-                    target: target
-                }
-            );
-        }
-    },
-    {
-        trigger: "consumable",
-        predicate: ["item:eagle-eye-elixir-major"],
-        process: async (data: Assistant.Data) => {
-            if (!data.speaker) return;
-            const target = data.target ?? data.speaker;
-
-            await game.assistant.socket.addEffect(
-                target.actor,
-                PF2E_EQUIPMENT_EFFECTS["effect-eagle-eye-elixir-major"],
-                {
-                    origin: data.speaker,
-                    item: data.item,
-                    target: target
-                }
-            );
+            await game.assistant.socket.addEffect(target.actor, PF2E_EQUIPMENT_EFFECTS["effect-eagle-eye-elixir"], {
+                origin: data.speaker,
+                item: data.item,
+                target: target
+            });
         }
     }
 ];

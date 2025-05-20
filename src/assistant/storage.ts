@@ -1,26 +1,19 @@
 import { Assistant } from "assistant.ts";
 import { Utils } from "utils.ts";
-import { Action } from "./action.ts";
-import { Data } from "./data.ts";
-import { File } from "./file.ts";
-import { Folder } from "./folder.ts";
-import { Module } from "./module.ts";
-import { createReroll } from "./reroll.ts";
-
-const modules = import.meta.glob<Module>("../data/**/*.ts");
 
 export class Storage {
-    #actions: Action[] = [];
-    #rootFolder: Folder = { label: "Root", children: [], entries: [] };
+    #actions: Assistant.Action[] = [];
+    #rootFolder: Assistant.Folder = { label: "Root", children: [], entries: [] };
 
     constructor() {
         const disabledFiles = game.settings.get("pf2e-assistant", "disabledFiles");
+        const modules = import.meta.glob<Assistant.Module>("../data/**/*.ts");
 
         for (const path in modules) {
-            modules[path]().then((mod) => {
-                Storage.addFile(this.#rootFolder, mod.path, path, disabledFiles);
+            modules[path]().then((module) => {
+                Storage.addFile(this.#rootFolder, module.path, path, !disabledFiles.includes(path));
                 if (!disabledFiles.includes(path)) {
-                    this.#actions.push(...mod.actions);
+                    this.#actions.push(...module.actions);
                 }
             });
         }
@@ -28,11 +21,24 @@ export class Storage {
         Storage.sortFolder(this.#rootFolder);
     }
 
-    addAction(action: Action) {
-        this.#actions.push(action);
+    reset() {
+        this.#actions = [];
+        this.#rootFolder = { label: "Root", children: [], entries: [] };
     }
 
-    private static addFile(folder: Folder, path: string[], value: string, disabledFiles: string[]) {
+    addFile(path: string[], value: string, enabled: boolean) {
+        Storage.addFile(this.#rootFolder, path, value, enabled);
+    }
+
+    addActions(actions: Assistant.Action[]) {
+        this.#actions.push(...actions);
+    }
+
+    sortFolder() {
+        Storage.sortFolder(this.#rootFolder);
+    }
+
+    private static addFile(folder: Assistant.Folder, path: string[], value: string, enabled: boolean) {
         if (path.length > 1) {
             let subFolder = folder.children.find((child) => child.label === path[0]);
 
@@ -41,21 +47,21 @@ export class Storage {
                 folder.children.push(subFolder);
             }
 
-            Storage.addFile(subFolder, path.slice(1), value, disabledFiles);
+            Storage.addFile(subFolder, path.slice(1), value, enabled);
         } else if (path.length == 1) {
-            folder.entries.push({ enabled: !disabledFiles.includes(value), label: path[0], value });
+            folder.entries.push({ enabled, label: path[0], value });
         }
     }
 
-    private static sortEntries(a: File, b: File) {
+    private static sortEntries(a: Assistant.File, b: Assistant.File) {
         return a.label.localeCompare(b.label);
     }
 
-    private static sortChildren(a: Folder, b: Folder) {
+    private static sortChildren(a: Assistant.Folder, b: Assistant.Folder) {
         return a.label.localeCompare(b.label);
     }
 
-    private static sortFolder(folder: Folder) {
+    private static sortFolder(folder: Assistant.Folder) {
         folder.children.sort(Storage.sortChildren);
         folder.entries.sort(Storage.sortEntries);
 
@@ -68,7 +74,7 @@ export class Storage {
         return Utils.Remeda.clone(this.#rootFolder);
     }
 
-    private static filterActions(action: Action, data: Data) {
+    private static filterActions(action: Assistant.Action, data: Assistant.Data) {
         if (action.trigger !== data.trigger) return false;
 
         if (!game.pf2e.Predicate.test(action.predicate, data.rollOptions)) return false;
@@ -83,8 +89,8 @@ export class Storage {
         return true;
     }
 
-    async process(data: Data): Promise<Assistant.Reroll> {
-        const reroll = createReroll();
+    async process(data: Assistant.Data): Promise<{ data: Assistant.Data; reroll: Assistant.Reroll }> {
+        const reroll = Assistant.createReroll();
         if (data.trigger == "") throw Error;
 
         let actions = this.#actions.filter((action) => Storage.filterActions(action, data));
@@ -100,6 +106,38 @@ export class Storage {
             }
         }
 
-        return reroll;
+        return { data, reroll };
     }
+}
+
+if (import.meta.hot) {
+    // @ts-expect-error
+    Storage.prototype.hotReload = function (modules: Record<string, () => Promise<string>>) {
+        this.reset();
+        const disabledFiles = game.settings.get("pf2e-assistant", "disabledFiles");
+
+        for (const path in modules) {
+            modules[path]().then((moduleName) => {
+                import(/* @vite-ignore */ moduleName).then((module: Assistant.Module) => {
+                    this.addFile(module.path, path, !disabledFiles.includes(path));
+                    if (!disabledFiles.includes(path)) {
+                        this.addActions(module.actions);
+                    }
+                });
+            });
+        }
+
+        this.sortFolder();
+    };
+
+    import.meta.hot.accept((newModule) => {
+        if (newModule) {
+            const modules = import.meta.glob<string>("../data/**/*.ts", {
+                query: "?url",
+                import: "default"
+            });
+            // @ts-expect-error
+            game.assistant.storage.hotReload(modules);
+        }
+    });
 }

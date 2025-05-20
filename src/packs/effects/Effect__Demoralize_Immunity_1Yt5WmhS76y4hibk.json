@@ -1,51 +1,70 @@
 {
-  "folder": "weifgz2IxYkpHxLP",
-  "name": "Effect: Demoralize Immunity",
-  "type": "effect",
-  "effects": [],
-  "system": {
-    "description": {
-      "gm": "",
-      "value": "<p>Granted when someone uses @UUID[Compendium.pf2e.actionspf2e.Item.2u915NdUyQan6uKF]{Demoralize} on you, rendering you temporarily immune to further attempts to Demoralize from them for the duration.</p>"
-    },
-    "rules": [],
-    "slug": "effect-demoralize-immunity",
-    "traits": {
-      "otherTags": [],
-      "value": []
-    },
-    "publication": {
-      "title": "Pathfinder Player Core",
-      "authors": "",
-      "license": "ORC",
-      "remaster": true
-    },
-    "level": {
-      "value": 1
-    },
-    "duration": {
-      "value": 10,
-      "unit": "minutes",
-      "expiry": "turn-start",
-      "sustained": false
-    },
-    "start": {
-      "value": 0,
-      "initiative": null
-    },
-    "tokenIcon": {
-      "show": true
-    },
-    "badge": null,
-    "context": null,
-    "unidentified": false
-  },
-  "_id": "1Yt5WmhS76y4hibk",
-  "img": "icons/skills/social/intimidation-impressing.webp",
-  "sort": 0,
-  "ownership": {
-    "default": 0
-  },
-  "flags": {},
-  "_key": "!items!1Yt5WmhS76y4hibk"
+	"folder": "weifgz2IxYkpHxLP",
+	"name": "Effect: Demoralize Immunity",
+	"type": "effect",
+	"effects": [],
+	"system": {
+		"description": {
+			"gm": "",
+			"value": "<p>Granted when someone uses @UUID[Compendium.pf2e.actionspf2e.Item.2u915NdUyQan6uKF]{Demoralize} on you, rendering you temporarily immune to further attempts to Demoralize from them for the duration.</p>"
+		},
+		"rules": [],
+		"slug": "effect-demoralize-immunity",
+		"_migration": {
+			"version": 0.935,
+			"lastMigration": null,
+			"previous": {
+				"schema": null,
+				"foundry": "12.331",
+				"system": "6.12.1"
+			}
+		},
+		"traits": {
+			"otherTags": [],
+			"value": []
+		},
+		"publication": {
+			"title": "Pathfinder Player Core",
+			"authors": "",
+			"license": "ORC",
+			"remaster": true
+		},
+		"level": {
+			"value": 1
+		},
+		"duration": {
+			"value": 10,
+			"unit": "minutes",
+			"expiry": "turn-start",
+			"sustained": false
+		},
+		"start": {
+			"value": 0,
+			"initiative": null
+		},
+		"tokenIcon": {
+			"show": true
+		},
+		"badge": null,
+		"context": null,
+		"unidentified": false
+	},
+	"_id": "1Yt5WmhS76y4hibk",
+	"img": "icons/skills/social/intimidation-impressing.webp",
+	"sort": 0,
+	"ownership": {
+		"default": 0
+	},
+	"flags": {},
+	"_stats": {
+		"coreVersion": "12.331",
+		"systemId": null,
+		"systemVersion": null,
+		"createdTime": null,
+		"modifiedTime": null,
+		"lastModifiedBy": null,
+		"compendiumSource": "Compendium.pf2e-assistant.effects.Item.1Yt5WmhS76y4hibk",
+		"duplicateSource": null
+	},
+	"_key": "!items!1Yt5WmhS76y4hibk"
 }

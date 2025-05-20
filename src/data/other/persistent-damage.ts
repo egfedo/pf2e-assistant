@@ -1,5 +1,5 @@
 import { Assistant } from "assistant.ts";
-import { DamageRoll } from "foundry-pf2e";
+import { ActorPF2e, ConditionPF2e, DamageRoll } from "foundry-pf2e";
 import { Utils } from "utils.ts";
 
 export const path = ["Other", "Persistent Damage"];
@@ -12,6 +12,7 @@ export const actions: Assistant.Action[] = [
             if (!data.speaker) return;
             if (!data.speaker) return;
             if (!data.item?.isOfType("condition")) return;
+            if (!data.item.parent) return;
             if (!Utils.Roll.isDamageRoll(data.roll)) return;
 
             if (
@@ -23,7 +24,7 @@ export const actions: Assistant.Action[] = [
                 await data.speaker.actor.applyDamage({
                     damage: data.roll as Rolled<DamageRoll>,
                     token: data.speaker.token,
-                    item: data.item,
+                    item: data.item as ConditionPF2e<ActorPF2e>,
                     rollOptions: new Set([
                         ...data.item.getRollOptions("item"),
                         ...data.speaker.actor.getSelfRollOptions()

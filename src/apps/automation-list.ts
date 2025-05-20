@@ -44,7 +44,7 @@ export class AutomationList extends HandlebarsApplicationMixin(ApplicationV2) {
         };
     }
 
-    static async #onSubmit(_event: SubmitEvent, form: HTMLFormElement, _formData: FormDataExtended) {
+    static async #onSubmit(_event: Event | SubmitEvent, form: HTMLFormElement, _formData: FormDataExtended) {
         var disabledFiles: string[] = [];
 
         var inputs = form.getElementsByTagName("input");
@@ -61,7 +61,7 @@ export class AutomationList extends HandlebarsApplicationMixin(ApplicationV2) {
         }
     }
 
-    static #onToggle(_event: PointerEvent, target: HTMLElement) {
+    static async #onToggle(_event: PointerEvent, target: HTMLElement) {
         const caret = target.querySelector("i");
         if (caret) {
             caret.classList.toggle("fa-caret-right");
