@@ -23,7 +23,6 @@ jobs:
         run: |
           npm clean-install
           npm run build
-          npm run compile
 
       - name: Extract Version From Tag
         id: get_version
