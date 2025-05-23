@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { PF2E_ASSISTANT_EFFECTS } from "effects.ts";
 import { Utils } from "utils.ts";
 
 export const path = ["Critical Specializations", "Brawling"];
@@ -36,11 +35,7 @@ export const actions: Assistant.Action[] = [
                 ...(await game.assistant.socket.addEffect(
                     data.speaker.actor,
                     PF2E_ASSISTANT_EFFECTS["effect-critical-specialization-brawling"],
-                    {
-                        origin: data.origin,
-                        target: data.speaker,
-                        roll: data.roll
-                    }
+                    { origin: data.origin, target: data.speaker, roll: data.roll }
                 ))
             );
 

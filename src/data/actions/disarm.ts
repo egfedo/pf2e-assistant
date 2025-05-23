@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { PF2E_ASSISTANT_EFFECTS, PF2E_OTHER_EFFECTS } from "effects.ts";
 import { Utils } from "utils.ts";
 
 export const path = ["Actions", "Disarm"];
@@ -18,11 +17,7 @@ export const actions: Assistant.Action[] = [
                 ...(await game.assistant.socket.addEffect(
                     data.target.actor,
                     PF2E_OTHER_EFFECTS["effect-disarm-success"],
-                    {
-                        origin: data.speaker,
-                        target: data.target,
-                        roll: data.roll
-                    }
+                    { origin: data.speaker, target: data.target, roll: data.roll }
                 ))
             );
 
@@ -42,10 +37,7 @@ export const actions: Assistant.Action[] = [
                 ...(await game.assistant.socket.addEffect(
                     data.speaker.actor,
                     PF2E_ASSISTANT_EFFECTS["effect-disarm-critical-failure"],
-                    {
-                        origin: data.speaker,
-                        roll: data.roll
-                    }
+                    { origin: data.speaker, roll: data.roll }
                 ))
             );
 

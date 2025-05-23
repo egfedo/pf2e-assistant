@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { PF2E_EQUIPMENT_EFFECTS } from "effects.ts";
 
 import { Utils } from "utils.ts";
 
@@ -10,9 +9,7 @@ export const actions: Assistant.Action[] = [
         trigger: "attack-roll",
         predicate: [
             "item:ammo:slug:shining-ammunition",
-            {
-                or: ["check:outcome:critical-success", "check:outcome:success"]
-            }
+            { or: ["check:outcome:critical-success", "check:outcome:success"] }
         ],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
@@ -22,12 +19,7 @@ export const actions: Assistant.Action[] = [
             await game.assistant.socket.addEffect(
                 data.target.actor,
                 PF2E_EQUIPMENT_EFFECTS["effect-shining-ammunition"],
-                {
-                    origin: data.speaker,
-                    item: data.item,
-                    target: data.target,
-                    roll: data.roll
-                }
+                { origin: data.speaker, item: data.item, target: data.target, roll: data.roll }
             );
         }
     }

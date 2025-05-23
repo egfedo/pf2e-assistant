@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { PF2E_SPELL_EFFECTS } from "effects.ts";
 
 export const path = ["Spells", "4th Rank", "Darkened Sight"];
 
@@ -15,11 +14,7 @@ export const actions: Assistant.Action[] = [
             await game.assistant.socket.addEffect(
                 data.target.actor,
                 PF2E_SPELL_EFFECTS["spell-effect-darkened-sight"],
-                {
-                    origin: data.speaker,
-                    item: data.item,
-                    target: data.target
-                }
+                { origin: data.speaker, item: data.item, target: data.target }
             );
         }
     }

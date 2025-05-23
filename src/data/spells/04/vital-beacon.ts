@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { PF2E_SPELL_EFFECTS } from "effects.ts";
 import { Utils } from "utils.ts";
 
 export const path = ["Spells", "4th Rank", "Vital Beacon"];

@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { PF2E_EQUIPMENT_EFFECTS } from "effects.ts";
 
 export const path = ["Consumables", "Insight Coffee"];
 
@@ -7,9 +6,7 @@ export const actions: Assistant.Action[] = [
     {
         trigger: "consumable",
         predicate: [
-            {
-                or: ["item:insight-coffee-lesser", "item:insight-coffee-moderate", "item:insight-coffee-greater"]
-            }
+            { or: ["item:insight-coffee-lesser", "item:insight-coffee-moderate", "item:insight-coffee-greater"] }
         ],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;

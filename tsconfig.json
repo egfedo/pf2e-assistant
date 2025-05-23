@@ -14,7 +14,8 @@
             "foundry-pf2e/pf2e-toolbelt",
             "foundry-pf2e/socketlib",
             "jquery",
-            "vite/client"
+            "vite/client",
+            "./src/effects.d.ts"
         ],
         "baseUrl": "./src",
         "noEmit": true,

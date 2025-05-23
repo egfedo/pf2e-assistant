@@ -37,10 +37,7 @@ export const actions: Assistant.Action[] = [
                                 spellcasting: null,
                                 rollOptions: data.item.getOriginData().rollOptions
                             },
-                            target: {
-                                actor: data.speaker.actor.uuid,
-                                token: data.speaker.token.uuid
-                            },
+                            target: { actor: data.speaker.actor.uuid, token: data.speaker.token.uuid },
                             roll: null
                         },
                         traits: { value: traits }
@@ -57,9 +54,7 @@ export const actions: Assistant.Action[] = [
 
                 const buttons = Utils.DOM.htmlQuery(parsedMessageContent, ".message-buttons");
                 if (buttons) {
-                    const span = Utils.DOM.createHTMLElement("span", {
-                        classes: ["effect-applied"]
-                    });
+                    const span = Utils.DOM.createHTMLElement("span", { classes: ["effect-applied"] });
                     const anchor = effect.toAnchor({ attrs: { draggable: "true" } });
                     const locKey = "PF2E.Item.Ability.SelfAppliedEffect.Applied";
                     const statement = game.i18n.format(locKey, { effect: anchor.outerHTML });

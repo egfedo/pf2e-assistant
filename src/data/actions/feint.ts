@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { PF2E_ASSISTANT_EFFECTS } from "effects.ts";
 import { Utils } from "utils.ts";
 
 export const path = ["Actions", "Feint"];

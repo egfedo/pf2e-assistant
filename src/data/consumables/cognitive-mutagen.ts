@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { PF2E_EQUIPMENT_EFFECTS } from "effects.ts";
 
 export const path = ["Consumables", "Cognitive Mutagen"];
 
@@ -14,11 +13,7 @@ export const actions: Assistant.Action[] = [
             await game.assistant.socket.addEffect(
                 target.actor,
                 PF2E_EQUIPMENT_EFFECTS["effect-cognitive-mutagen-lesser"],
-                {
-                    origin: data.speaker,
-                    item: data.item,
-                    target: target
-                }
+                { origin: data.speaker, item: data.item, target: target }
             );
         }
     },
@@ -32,11 +27,7 @@ export const actions: Assistant.Action[] = [
             await game.assistant.socket.addEffect(
                 target.actor,
                 PF2E_EQUIPMENT_EFFECTS["effect-cognitive-mutagen-moderate"],
-                {
-                    origin: data.speaker,
-                    item: data.item,
-                    target: target
-                }
+                { origin: data.speaker, item: data.item, target: target }
             );
         }
     },
@@ -50,11 +41,7 @@ export const actions: Assistant.Action[] = [
             await game.assistant.socket.addEffect(
                 target.actor,
                 PF2E_EQUIPMENT_EFFECTS["effect-cognitive-mutagen-greater"],
-                {
-                    origin: data.speaker,
-                    item: data.item,
-                    target: target
-                }
+                { origin: data.speaker, item: data.item, target: target }
             );
         }
     },
@@ -68,11 +55,7 @@ export const actions: Assistant.Action[] = [
             await game.assistant.socket.addEffect(
                 target.actor,
                 PF2E_EQUIPMENT_EFFECTS["effect-cognitive-mutagen-major"],
-                {
-                    origin: data.speaker,
-                    item: data.item,
-                    target: target
-                }
+                { origin: data.speaker, item: data.item, target: target }
             );
         }
     }

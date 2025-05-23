@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [6.6.1] - 2025-05-23
+
+This is a release for 6.12.2 of the PF2e System
+
+### Changed
+
+- Reworked out the data for effects are stored to reduce the final size
+
+### Fixed
+
+- Dropping prone with Kip Up will not longer have you stand up automatically
+- The Sword Critical Specialization will now expire at the start of the turn instead of the end
+- The automatic saving throw for Stunning Blows now has the incapacitation trait
+
 ## [6.6.0] - 2025-05-20
 
 I don't remember all the changes that I made before I stopped working on this for a bit, most of it was reworking how the data is stored and using [FoundryVTT-Sync](https://github.com/MrVauxs/FoundryVTT-Sync). Also updated to support PF2e 6.12.1.
@@ -312,7 +326,8 @@ I don't remember all the changes that I made before I stopped working on this fo
 - Auto Self-Applied Effects (This is disabled if PF2e Toolbelt is doing this as well)
 - Swashbuckler Panache
 
-[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.6.0...HEAD
+[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.6.1...HEAD
+[6.6.1]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.6.0...v6.6.1
 [6.6.0]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.5.0...v6.6.0
 [6.5.0]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.4.6...v6.5.0
 [6.4.6]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.4.5...v6.4.6

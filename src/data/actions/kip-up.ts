@@ -5,7 +5,7 @@ export const path = ["Actions", "Kip Up"];
 export const actions: Assistant.Action[] = [
     {
         trigger: "action",
-        predicate: ["feat:kip-up"],
+        predicate: ["action:kip-up"],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
 

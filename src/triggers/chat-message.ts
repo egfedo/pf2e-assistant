@@ -31,7 +31,7 @@ const createChatMessage = Hooks.on("createChatMessage", function (chatMessage: C
 async function processChatMessage(chatMessage: ChatMessagePF2e): Promise<Assistant.Data> {
     let data: Assistant.Data = {
         trigger: chatMessage.flags.pf2e.context?.type ?? "",
-        rollOptions: [],
+        rollOptions: chatMessage.flags.pf2e.context?.options ?? [],
         chatMessage: chatMessage
     };
 
@@ -66,25 +66,16 @@ async function processChatMessage(chatMessage: ChatMessagePF2e): Promise<Assista
     if (outcome) data.rollOptions.push(`check:outcome:${game.pf2e.system.sluggify(outcome)}`);
 
     if (chatMessage.actor && chatMessage.token) {
-        data.speaker = {
-            actor: chatMessage.actor,
-            token: chatMessage.token
-        };
+        data.speaker = { actor: chatMessage.actor, token: chatMessage.token };
     }
 
     if (chatMessage.target) {
-        data.target = {
-            actor: chatMessage.target.actor,
-            token: chatMessage.target.token
-        };
+        data.target = { actor: chatMessage.target.actor, token: chatMessage.target.token };
     } else {
         const target = Utils.User.getTargets()[0];
 
         if (target && target.actor) {
-            data.target = {
-                actor: target.actor,
-                token: target.document
-            };
+            data.target = { actor: target.actor, token: target.document };
         }
     }
 
@@ -96,10 +87,7 @@ async function processChatMessage(chatMessage: ChatMessagePF2e): Promise<Assista
             let token = fromUuidSync<TokenDocumentPF2e<ScenePF2e>>(checkContext.origin.token ?? "");
 
             if (actor && token) {
-                data.origin = {
-                    actor,
-                    token
-                };
+                data.origin = { actor, token };
             }
         }
     }
@@ -141,15 +129,7 @@ async function processChatMessage(chatMessage: ChatMessagePF2e): Promise<Assista
 
 async function processReroll(data: Assistant.Data, reroll: Assistant.Reroll) {
     if (data.chatMessage && data.speaker && Object.values(reroll).some((value) => value.length !== 0)) {
-        await data.chatMessage.update({
-            flags: {
-                "pf2e-assistant": {
-                    reroll: {
-                        [data.speaker.token.id]: reroll
-                    }
-                }
-            }
-        });
+        await data.chatMessage.update({ flags: { "pf2e-assistant": { reroll: { [data.speaker.token.id]: reroll } } } });
     }
 }
 

@@ -2,6 +2,7 @@ import vttSync from "foundryvtt-sync";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import moduleJSON from "./module.json" with { type: "json" };
+import define from "./vite.defines.ts";
 
 export default defineConfig({
     root: "./src",
@@ -22,11 +23,7 @@ export default defineConfig({
         outDir: "../dist",
         emptyOutDir: true,
         sourcemap: true,
-        lib: {
-            entry: "index.ts",
-            formats: ["es"],
-            fileName: moduleJSON.id
-        },
+        lib: { entry: "index.ts", formats: ["es"], fileName: moduleJSON.id },
         rollupOptions: {
             output: {
                 manualChunks: () => {
@@ -35,5 +32,26 @@ export default defineConfig({
             }
         }
     },
-    plugins: [tsconfigPaths(), vttSync(moduleJSON, { dataDirectory: "src/packs" })]
+    define,
+    plugins: [
+        tsconfigPaths(),
+        vttSync(moduleJSON, {
+            dataDirectory: "src/packs",
+            transformer(doc: any) {
+                if (doc["system"]) {
+                    if (doc["system"]["_migration"]) {
+                        delete doc["system"]["_migration"];
+                    }
+                }
+
+                if (doc["ownership"]) {
+                    doc["ownership"] = { default: 0 };
+                }
+
+                if (doc["_stats"]) {
+                    delete doc["_stats"];
+                }
+            }
+        })
+    ]
 });

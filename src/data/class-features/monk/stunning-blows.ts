@@ -14,7 +14,7 @@ export const actions: Assistant.Action[] = [
             game.assistant.socket.rollSave(data.target.actor, "fortitude", {
                 origin: data.speaker.actor,
                 dc: Utils.Actor.getClassDC(data.speaker.actor),
-                extraRollOptions: ["stunning-blows"]
+                extraRollOptions: ["incapacitation", "item:trait:incapacitation", "stunning-blows"]
             });
         }
     },

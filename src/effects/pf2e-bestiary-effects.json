@@ -136,6 +136,10 @@
         "uuid": "Compendium.pf2e.bestiary-effects.Item.4M2K16mH4gndHAKa"
     },
     {
+        "slug": "effect-cataclysm-brand",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.4NC6sIgh6LUEbBiU"
+    },
+    {
         "slug": "effect-apprentices-ambition",
         "uuid": "Compendium.pf2e.bestiary-effects.Item.4QPXRx8RuZLNSFvw"
     },
@@ -400,8 +404,16 @@
         "uuid": "Compendium.pf2e.bestiary-effects.Item.CM14G9kLI97aIC5h"
     },
     {
+        "slug": "effect-one-for-all",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.CR2D12ZAhwmnbz15"
+    },
+    {
         "slug": "effect-curse-of-boiling-blood",
         "uuid": "Compendium.pf2e.bestiary-effects.Item.CUgmb7g65vYNT2hn"
+    },
+    {
+        "slug": "effect-warshard-healing",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.CZVBffAIoVorKpmA"
     },
     {
         "slug": "effect-dire-warning",
@@ -1136,12 +1148,20 @@
         "uuid": "Compendium.pf2e.bestiary-effects.Item.Xu7QxeF9S8ysJpuI"
     },
     {
+        "slug": "effect-greased-palms",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.XwFoyhCUU5TCtG50"
+    },
+    {
         "slug": "effect-rockfall-critical-failure",
         "uuid": "Compendium.pf2e.bestiary-effects.Item.XyhPcnlkg3mGqEwT"
     },
     {
         "slug": "effect-inspire-envoy",
         "uuid": "Compendium.pf2e.bestiary-effects.Item.YDJnC3Bdc2GI6hX5"
+    },
+    {
+        "slug": "effect-body-shield",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.YH57XXyIQCRe6pcR"
     },
     {
         "slug": "effect-snake-form",
@@ -1354,6 +1374,10 @@
     {
         "slug": "effect-putrid-blast",
         "uuid": "Compendium.pf2e.bestiary-effects.Item.hQsqr2sRPp9rNm4U"
+    },
+    {
+        "slug": "effect-tip-the-scales",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.haDTCFX3EhkdF9sz"
     },
     {
         "slug": "effect-splintered-ground-critical-failure",
@@ -1726,6 +1750,10 @@
     {
         "slug": "effect-harmonizing-aura-enemies",
         "uuid": "Compendium.pf2e.bestiary-effects.Item.tSF9z5VTeevxoww3"
+    },
+    {
+        "slug": "effect-dero-medicine-deg",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.tVw3srxbsQ8PjBfy"
     },
     {
         "slug": "effect-inspiring-presence-empyreal-dragon",

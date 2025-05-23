@@ -1,16 +1,11 @@
 import { Assistant } from "assistant.ts";
-import { PF2E_EQUIPMENT_EFFECTS } from "effects.ts";
 
 export const path = ["Consumables", "Bomber's Eye Elixir"];
 
 export const actions: Assistant.Action[] = [
     {
         trigger: "consumable",
-        predicate: [
-            {
-                or: ["item:bombers-eye-elixir-lesser", "item:bombers-eye-elixir-greater"]
-            }
-        ],
+        predicate: [{ or: ["item:bombers-eye-elixir-lesser", "item:bombers-eye-elixir-greater"] }],
         process: async (data: Assistant.Data) => {
             if (!data.speaker) return;
             const target = data.target ?? data.speaker;

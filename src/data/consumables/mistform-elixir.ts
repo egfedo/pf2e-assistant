@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { PF2E_ASSISTANT_EFFECTS } from "effects.ts";
 
 export const path = ["Consumables", "Mistform Elixir"];
 
@@ -14,11 +13,7 @@ export const actions: Assistant.Action[] = [
             await game.assistant.socket.addEffect(
                 target.actor,
                 PF2E_ASSISTANT_EFFECTS["effect-mistform-elixir-lesser"],
-                {
-                    origin: data.speaker,
-                    item: data.item,
-                    target: target
-                }
+                { origin: data.speaker, item: data.item, target: target }
             );
         }
     },
@@ -32,11 +27,7 @@ export const actions: Assistant.Action[] = [
             await game.assistant.socket.addEffect(
                 target.actor,
                 PF2E_ASSISTANT_EFFECTS["effect-mistform-elixir-moderate"],
-                {
-                    origin: data.speaker,
-                    item: data.item,
-                    target: target
-                }
+                { origin: data.speaker, item: data.item, target: target }
             );
         }
     },
@@ -50,11 +41,7 @@ export const actions: Assistant.Action[] = [
             await game.assistant.socket.addEffect(
                 target.actor,
                 PF2E_ASSISTANT_EFFECTS["effect-mistform-elixir-greater"],
-                {
-                    origin: data.speaker,
-                    item: data.item,
-                    target: target
-                }
+                { origin: data.speaker, item: data.item, target: target }
             );
         }
     }

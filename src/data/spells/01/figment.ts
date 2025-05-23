@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { PF2E_SPELL_EFFECTS } from "effects.ts";
 
 export const path = ["Spells", "1st Rank", "Figment"];
 

@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { PF2E_EQUIPMENT_EFFECTS } from "effects.ts";
 
 export const path = ["Consumables", "Chromatic Jellyfish Oil"];
 
@@ -22,11 +21,7 @@ export const actions: Assistant.Action[] = [
             await game.assistant.socket.addEffect(
                 target.actor,
                 PF2E_EQUIPMENT_EFFECTS["effect-chromatic-jellyfish-oil"],
-                {
-                    origin: data.speaker,
-                    item: data.item,
-                    target: target
-                }
+                { origin: data.speaker, item: data.item, target: target }
             );
         }
     }

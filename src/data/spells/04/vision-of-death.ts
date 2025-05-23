@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { PF2E_ASSISTANT_EFFECTS } from "effects.ts";
 import { Utils } from "utils.ts";
 
 export const path = ["Spells", "4th Rank", "Vision of Death"];
@@ -54,12 +53,7 @@ export const actions: Assistant.Action[] = [
                 ...(await game.assistant.socket.addEffect(
                     data.speaker.actor,
                     PF2E_ASSISTANT_EFFECTS["spell-effect-vision-of-death"],
-                    {
-                        origin: data.origin,
-                        item: data.item,
-                        target: data.target,
-                        roll: data.roll
-                    }
+                    { origin: data.origin, item: data.item, target: data.target, roll: data.roll }
                 ))
             );
 

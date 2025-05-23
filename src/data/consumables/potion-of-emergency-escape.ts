@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { PF2E_EQUIPMENT_EFFECTS } from "effects.ts";
 
 export const path = ["Consumables", "Potion of Emergency Escape"];
 
@@ -14,11 +13,7 @@ export const actions: Assistant.Action[] = [
             await game.assistant.socket.addEffect(
                 target.actor,
                 PF2E_EQUIPMENT_EFFECTS["effect-potion-of-emergency-escape"],
-                {
-                    origin: data.speaker,
-                    item: data.item,
-                    target: target
-                }
+                { origin: data.speaker, item: data.item, target: target }
             );
         }
     }

@@ -18,15 +18,6 @@
 			}
 		],
 		"slug": "effect-critical-specialization-spear",
-		"_migration": {
-			"version": 0.935,
-			"lastMigration": null,
-			"previous": {
-				"schema": null,
-				"foundry": "12.331",
-				"system": "6.12.1"
-			}
-		},
 		"traits": {
 			"otherTags": [],
 			"value": []
@@ -64,15 +55,5 @@
 		"default": 0
 	},
 	"flags": {},
-	"_stats": {
-		"coreVersion": "12.331",
-		"systemId": null,
-		"systemVersion": null,
-		"createdTime": null,
-		"modifiedTime": null,
-		"lastModifiedBy": null,
-		"compendiumSource": "Compendium.pf2e-assistant.effects.Item.s8oIiJnrJuWvDIeM",
-		"duplicateSource": null
-	},
 	"_key": "!items!s8oIiJnrJuWvDIeM"
 }

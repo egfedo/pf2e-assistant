@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { PF2E_ASSISTANT_EFFECTS } from "effects.ts";
 import { Utils } from "utils.ts";
 
 export const path = ["Actions", "Demoralize"];
@@ -15,9 +14,7 @@ export const actions: Assistant.Action[] = [
             const reroll = Assistant.createReroll();
 
             if (
-                Utils.Actor.hasEffect(data.target.actor, "effect-demoralize-immunity", {
-                    origin: data.speaker.actor
-                })
+                Utils.Actor.hasEffect(data.target.actor, "effect-demoralize-immunity", { origin: data.speaker.actor })
             ) {
                 ui.notifications.warn(
                     `The target is temporarily immune to further attempts to Demoralize from ${data.speaker.actor.name}.`
@@ -31,9 +28,7 @@ export const actions: Assistant.Action[] = [
                 !data.target.actor.attributes.immunities.some((i) => i.type === "mental")
             ) {
                 reroll.updateCondition.push(
-                    ...((await game.assistant.socket.addCondition(data.target.actor, "frightened", {
-                        value: 2
-                    })) ?? [])
+                    ...((await game.assistant.socket.addCondition(data.target.actor, "frightened", { value: 2 })) ?? [])
                 );
             }
 
@@ -41,11 +36,7 @@ export const actions: Assistant.Action[] = [
                 ...(await await game.assistant.socket.addEffect(
                     data.target.actor,
                     PF2E_ASSISTANT_EFFECTS["effect-demoralize-immunity"],
-                    {
-                        origin: data.speaker,
-                        target: data.target,
-                        roll: data.roll
-                    }
+                    { origin: data.speaker, target: data.target, roll: data.roll }
                 ))
             );
 
@@ -62,9 +53,7 @@ export const actions: Assistant.Action[] = [
             const reroll = Assistant.createReroll();
 
             if (
-                Utils.Actor.hasEffect(data.target.actor, "effect-demoralize-immunity", {
-                    origin: data.speaker.actor
-                })
+                Utils.Actor.hasEffect(data.target.actor, "effect-demoralize-immunity", { origin: data.speaker.actor })
             ) {
                 ui.notifications.warn(
                     `The target is temporarily immune to further attempts to Demoralize from ${data.speaker.actor.name}.`
@@ -78,9 +67,7 @@ export const actions: Assistant.Action[] = [
                 !data.target.actor.attributes.immunities.some((i) => i.type === "mental")
             ) {
                 reroll.updateCondition.push(
-                    ...((await game.assistant.socket.addCondition(data.target.actor, "frightened", {
-                        value: 1
-                    })) ?? [])
+                    ...((await game.assistant.socket.addCondition(data.target.actor, "frightened", { value: 1 })) ?? [])
                 );
             }
 
@@ -88,11 +75,7 @@ export const actions: Assistant.Action[] = [
                 ...(await game.assistant.socket.addEffect(
                     data.target.actor,
                     PF2E_ASSISTANT_EFFECTS["effect-demoralize-immunity"],
-                    {
-                        origin: data.speaker,
-                        target: data.target,
-                        roll: data.roll
-                    }
+                    { origin: data.speaker, target: data.target, roll: data.roll }
                 ))
             );
 
@@ -112,11 +95,7 @@ export const actions: Assistant.Action[] = [
                 ...(await game.assistant.socket.addEffect(
                     data.target.actor,
                     PF2E_ASSISTANT_EFFECTS["effect-demoralize-immunity"],
-                    {
-                        origin: data.speaker,
-                        target: data.target,
-                        roll: data.roll
-                    }
+                    { origin: data.speaker, target: data.target, roll: data.roll }
                 ))
             );
 

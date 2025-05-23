@@ -11,9 +11,7 @@ export const actions: Assistant.Action[] = [
             if (!data.target) return;
             if (!data.item?.isOfType("spell")) return;
 
-            await game.assistant.socket.decreaseCondition(data.target.actor, "dying", {
-                forceRemove: true
-            });
+            await game.assistant.socket.decreaseCondition(data.target.actor, "dying", { forceRemove: true });
 
             if (
                 !(
@@ -22,9 +20,7 @@ export const actions: Assistant.Action[] = [
                 ) &&
                 data.target.actor.hitPoints?.value === 0
             ) {
-                await game.assistant.socket.toggleCondition(data.target.actor, "unconscious", {
-                    active: true
-                });
+                await game.assistant.socket.toggleCondition(data.target.actor, "unconscious", { active: true });
             }
 
             if (

@@ -1,12 +1,11 @@
 {
     "name": "pf2e-assistant",
     "scripts": {
+        "dev": "vite",
         "build": "tsc --noEmit && vite build",
         "changelog": "changelog --format markdownlint --create --release",
-        "compile": "tsx ./build/compile.ts",
         "effects": "tsx ./build/effects.ts",
-        "extract": "tsx ./build/extract.ts",
-        "fvtt": "fvtt",
+        "fvtt": "fvtt launch",
         "link": "tsx ./build/link.ts",
         "unlock": "tsx ./build/unlock.ts"
     },
@@ -14,21 +13,20 @@
     "license": "MIT",
     "type": "module",
     "devDependencies": {
-        "@foundryvtt/foundryvtt-cli": "1.0.4",
+        "@foundryvtt/foundryvtt-cli": "1.1.0",
         "@types/prompts": "^2.4.9",
         "foundryvtt-sync": "github:MrVauxs/FoundryVTT-Sync",
-        "keep-a-changelog": "^2.5.3",
-        "prettier": "^3.4.2",
+        "keep-a-changelog": "2.6.2",
+        "prettier": "3.5.3",
         "prettier-plugin-organize-imports": "^4.1.0",
         "prompts": "^2.4.2",
-        "tsx": "^4.19.2",
-        "typescript": "5.7.3",
-        "unplugin-inline-enum": "^0.2.0",
-        "vite": "6.0.11",
+        "tsx": "4.19.4",
+        "typescript": "5.8.3",
+        "vite": "6.3.5",
         "vite-tsconfig-paths": "^5.1.4"
     },
     "dependencies": {
         "foundry-pf2e": "github:7H3LaughingMan/foundry-pf2e",
-        "remeda": "2.20.0"
+        "remeda": "2.21.8"
     }
 }

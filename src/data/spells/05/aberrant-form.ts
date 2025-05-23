@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { PF2E_SPELL_EFFECTS } from "effects.ts";
 
 export const path = ["Spells", "5th Rank", "Aberrant Form"];
 
@@ -17,22 +16,10 @@ export const actions: Assistant.Action[] = [
                 data: {
                     description: "Please choose which form that I should transform into.",
                     choices: [
-                        {
-                            label: "Chuul",
-                            value: "aberrant-form-chuul"
-                        },
-                        {
-                            label: "Gogiteth",
-                            value: "aberrant-form-gogiteth"
-                        },
-                        {
-                            label: "Gug",
-                            value: "aberrant-form-gug"
-                        },
-                        {
-                            label: "Otyugh",
-                            value: "aberrant-form-otyugh"
-                        }
+                        { label: "Chuul", value: "aberrant-form-chuul" },
+                        { label: "Gogiteth", value: "aberrant-form-gogiteth" },
+                        { label: "Gug", value: "aberrant-form-gug" },
+                        { label: "Otyugh", value: "aberrant-form-otyugh" }
                     ]
                 }
             });
@@ -76,11 +63,7 @@ export const actions: Assistant.Action[] = [
             await game.assistant.socket.addEffect(
                 data.speaker.actor,
                 PF2E_SPELL_EFFECTS["spell-effect-aberrant-form-gug"],
-                {
-                    origin: data.speaker,
-                    item: data.item,
-                    target: data.speaker
-                }
+                { origin: data.speaker, item: data.item, target: data.speaker }
             );
         }
     },

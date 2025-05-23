@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { PF2E_SPELL_EFFECTS } from "effects.ts";
 import { EffectSource } from "foundry-pf2e";
 import { Utils } from "utils.ts";
 
@@ -76,10 +75,7 @@ export const actions: Assistant.Action[] = [
                 const origin = shieldEffect.origin;
                 if (origin) {
                     await game.assistant.socket.addEmbeddedItem(origin, PF2E_SPELL_EFFECTS["effect-shield-immunity"], {
-                        system: {
-                            context: shieldEffect.system.context ?? null,
-                            level: shieldEffect.system.level
-                        }
+                        system: { context: shieldEffect.system.context ?? null, level: shieldEffect.system.level }
                     } as EffectSource);
                 }
 

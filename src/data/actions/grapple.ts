@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { PF2E_ASSISTANT_EFFECTS } from "effects.ts";
 import { Utils } from "utils.ts";
 
 export const path = ["Actions", "Grapple"];
@@ -18,11 +17,7 @@ export const actions: Assistant.Action[] = [
                 ...(await game.assistant.socket.addEffect(
                     data.target.actor,
                     PF2E_ASSISTANT_EFFECTS["effect-grapple-critical-success"],
-                    {
-                        origin: data.speaker,
-                        target: data.target,
-                        roll: data.roll
-                    }
+                    { origin: data.speaker, target: data.target, roll: data.roll }
                 ))
             );
 
@@ -42,11 +37,7 @@ export const actions: Assistant.Action[] = [
                 ...(await game.assistant.socket.addEffect(
                     data.target.actor,
                     PF2E_ASSISTANT_EFFECTS["effect-grapple-success"],
-                    {
-                        origin: data.speaker,
-                        target: data.target,
-                        roll: data.roll
-                    }
+                    { origin: data.speaker, target: data.target, roll: data.roll }
                 ))
             );
 
@@ -67,10 +58,7 @@ export const actions: Assistant.Action[] = [
                     Utils.Actor.getEffects(
                         data.target.actor,
                         ["effect-grapple-critical-success", "effect-grapple-success"],
-                        {
-                            origin: data.speaker.actor,
-                            target: data.target.actor
-                        }
+                        { origin: data.speaker.actor, target: data.target.actor }
                     )
                 ))
             );
@@ -92,10 +80,7 @@ export const actions: Assistant.Action[] = [
                     Utils.Actor.getEffects(
                         data.target.actor,
                         ["effect-grapple-critical-success", "effect-grapple-success"],
-                        {
-                            origin: data.speaker.actor,
-                            target: data.target.actor
-                        }
+                        { origin: data.speaker.actor, target: data.target.actor }
                     )
                 ))
             );
@@ -107,14 +92,8 @@ export const actions: Assistant.Action[] = [
                     data: {
                         description: "My foe has critically failed to grapple me, what should I do?",
                         choices: [
-                            {
-                                label: "Grab Foe",
-                                value: "grapple-foe"
-                            },
-                            {
-                                label: "Force Foe Prone",
-                                value: "prone-foe"
-                            }
+                            { label: "Grab Foe", value: "grapple-foe" },
+                            { label: "Force Foe Prone", value: "prone-foe" }
                         ]
                     }
                 }))
@@ -143,9 +122,7 @@ export const actions: Assistant.Action[] = [
             if (!data.speaker) return;
             if (!data.target) return;
 
-            await game.assistant.socket.toggleCondition(data.target.actor, "prone", {
-                active: true
-            });
+            await game.assistant.socket.toggleCondition(data.target.actor, "prone", { active: true });
         }
     }
 ];

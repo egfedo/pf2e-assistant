@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { PF2E_FEAT_EFFECTS } from "effects.ts";
 import { Utils } from "utils.ts";
 
 export const path = ["Class Features", "Swashbuckler", "Panache"];

@@ -20,10 +20,7 @@ export const actions: Assistant.Action[] = [
             const roll = await Utils.Roll.newDamageRoll("{1d6[bludgeoning]}", {}, { showBreakdown }).evaluate();
             const createdMessage = await roll.toMessage({
                 flags: { "pf2e-assistant": { process: false } },
-                speaker: ChatMessage.getSpeaker({
-                    actor: data.speaker.actor,
-                    token: data.speaker.token
-                })
+                speaker: ChatMessage.getSpeaker({ actor: data.speaker.actor, token: data.speaker.token })
             });
             reroll.deleteChatMessage.push(createdMessage.uuid);
 

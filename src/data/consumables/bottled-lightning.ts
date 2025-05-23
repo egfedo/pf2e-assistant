@@ -1,5 +1,4 @@
 import { Assistant } from "assistant.ts";
-import { PF2E_ASSISTANT_EFFECTS } from "effects.ts";
 import { Utils } from "utils.ts";
 
 export const path = ["Consumables", "Bottled Lightning"];
@@ -28,12 +27,7 @@ export const actions: Assistant.Action[] = [
                 ...(await game.assistant.socket.addEffect(
                     data.target.actor,
                     PF2E_ASSISTANT_EFFECTS["effect-bottled-lightning"],
-                    {
-                        origin: data.speaker,
-                        item: data.item,
-                        target: data.target,
-                        roll: data.roll
-                    }
+                    { origin: data.speaker, item: data.item, target: data.target, roll: data.roll }
                 ))
             );
 

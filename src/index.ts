@@ -1,14 +1,10 @@
 import { Assistant } from "assistant.ts";
+import "effects.ts";
 import "./settings.ts";
 import "./triggers/index.ts";
 
 Hooks.once("ready", async function () {
-    Object.assign(game, {
-        assistant: {
-            socket: new Assistant.Socket(),
-            storage: new Assistant.Storage()
-        }
-    });
+    Object.assign(game, { assistant: { socket: new Assistant.Socket(), storage: new Assistant.Storage() } });
 
     if (!game.settings.get("pf2e-assistant", "initialized") && game.user.isGM) {
         let compendiumConfiguration = game.settings.get("core", "compendiumConfiguration");
@@ -34,10 +30,7 @@ Hooks.once("ready", async function () {
                     currentValue.folder === macrosFolder.id ? accumulator + 1 : accumulator,
                 0
             );
-            compendiumConfiguration["pf2e-assistant.macros"] = {
-                folder: macrosFolder.id,
-                sort: 100000 * (count + 1)
-            };
+            compendiumConfiguration["pf2e-assistant.macros"] = { folder: macrosFolder.id, sort: 100000 * (count + 1) };
         }
 
         await game.settings.set("core", "compendiumConfiguration", compendiumConfiguration);
