@@ -2030,6 +2030,7 @@ const define = {
     'PF2E_SPELL_EFFECTS["spell-effect-acid-grip"]': JSON.stringify("Compendium.pf2e.spell-effects.Item.6TGcfVyzzVHEo7ke"),
     'PF2E_SPELL_EFFECTS["spell-effect-resilient-touch"]': JSON.stringify("Compendium.pf2e.spell-effects.Item.6embuvXCpS3YOD5u"),
     'PF2E_SPELL_EFFECTS["spell-effect-fungal-infestation"]': JSON.stringify("Compendium.pf2e.spell-effects.Item.6gRRjn0h0DAUh7nQ"),
+    'PF2E_SPELL_EFFECTS["spell-effect-honeyed-words"]': JSON.stringify("Compendium.pf2e.spell-effects.Item.6vodhSeI3ClMfOGd"),
     'PF2E_SPELL_EFFECTS["spell-effect-vision-of-weakness"]': JSON.stringify("Compendium.pf2e.spell-effects.Item.70qdCBokXBvKIUIQ"),
     'PF2E_SPELL_EFFECTS["spell-effect-hidebound"]': JSON.stringify("Compendium.pf2e.spell-effects.Item.70tKwsgD8aOj9SxG"),
     'PF2E_SPELL_EFFECTS["spell-effect-insect-form-spider"]': JSON.stringify("Compendium.pf2e.spell-effects.Item.782NyomkDHyfsUn6"),

@@ -2046,6 +2046,7 @@ if (import.meta.env.DEV) {
             "spell-effect-acid-grip": "Compendium.pf2e.spell-effects.Item.6TGcfVyzzVHEo7ke",
             "spell-effect-resilient-touch": "Compendium.pf2e.spell-effects.Item.6embuvXCpS3YOD5u",
             "spell-effect-fungal-infestation": "Compendium.pf2e.spell-effects.Item.6gRRjn0h0DAUh7nQ",
+            "spell-effect-honeyed-words": "Compendium.pf2e.spell-effects.Item.6vodhSeI3ClMfOGd",
             "spell-effect-vision-of-weakness": "Compendium.pf2e.spell-effects.Item.70qdCBokXBvKIUIQ",
             "spell-effect-hidebound": "Compendium.pf2e.spell-effects.Item.70tKwsgD8aOj9SxG",
             "spell-effect-insect-form-spider": "Compendium.pf2e.spell-effects.Item.782NyomkDHyfsUn6",
