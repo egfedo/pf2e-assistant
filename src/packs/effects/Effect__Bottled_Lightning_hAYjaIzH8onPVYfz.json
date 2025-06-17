@@ -46,7 +46,8 @@
 		},
 		"badge": null,
 		"context": null,
-		"unidentified": false
+		"unidentified": false,
+		"fromSpell": false
 	},
 	"_id": "hAYjaIzH8onPVYfz",
 	"img": "systems/pf2e/icons/equipment/alchemical-items/alchemical-bombs/bottled-lightning.webp",

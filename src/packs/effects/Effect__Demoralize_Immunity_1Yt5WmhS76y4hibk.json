@@ -38,7 +38,8 @@
 		},
 		"badge": null,
 		"context": null,
-		"unidentified": false
+		"unidentified": false,
+		"fromSpell": false
 	},
 	"_id": "1Yt5WmhS76y4hibk",
 	"img": "icons/skills/social/intimidation-impressing.webp",

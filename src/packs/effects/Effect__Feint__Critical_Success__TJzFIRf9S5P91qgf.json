@@ -54,7 +54,8 @@
 		},
 		"badge": null,
 		"context": null,
-		"unidentified": false
+		"unidentified": false,
+		"fromSpell": false
 	},
 	"_id": "TJzFIRf9S5P91qgf",
 	"img": "icons/skills/social/theft-pickpocket-bribery-brown.webp",

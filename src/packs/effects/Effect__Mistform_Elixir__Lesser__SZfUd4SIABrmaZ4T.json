@@ -46,7 +46,8 @@
 		},
 		"badge": null,
 		"context": null,
-		"unidentified": false
+		"unidentified": false,
+		"fromSpell": false
 	},
 	"_id": "SZfUd4SIABrmaZ4T",
 	"img": "icons/consumables/potions/bottle-conical-corked-blue.webp",

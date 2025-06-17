@@ -1,19 +1,11 @@
-import Config from "@foundryvtt/foundryvtt-cli/config.mjs";
 import fs from "fs";
-import module from "../module.json" with { type: "json" };
 import path from "path";
 import prompts from "prompts";
+import module from "../module.json" with { type: "json" };
 
-const dataPath = Config.instance.get("dataPath") as string;
-if (!dataPath) {
-    console.error(
-        "The data path is not set. Use `npm run fvtt configure set dataPath <path>` to set it. " +
-        "Data paths look like `C:/Users/Example/AppData/Local/FoundryVTT/Data`",
-    );
-    process.exit(1);
-}
+const dataPath = "C:\\FoundryVTT\\FoundryVTT-WindowsPortable-13.345\\Data";
 
-const symlinkPath = path.resolve(dataPath, "data", "modules", module.id);
+const symlinkPath = path.resolve(dataPath, "modules", module.id);
 const symlinkStats = fs.lstatSync(symlinkPath, { throwIfNoEntry: false });
 if (symlinkStats) {
     const atPath = symlinkStats.isDirectory() ? "folder" : symlinkStats.isSymbolicLink() ? "symlink" : "file";
@@ -22,7 +14,7 @@ if (symlinkStats) {
             type: "confirm",
             name: "value",
             initial: false,
-            message: `A "${module.id}" ${atPath} already exists in the "modules" subfolder. Replace with new symlink?`,
+            message: `A "${module.id}" ${atPath} already exists in the "modules" subfolder. Replace with new symlink?`
         })
     ).value;
     if (!proceed) {
@@ -44,3 +36,5 @@ try {
         process.exit(1);
     }
 }
+
+console.log(`Symlink succesfully created at "${symlinkPath}"!`);

@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [7.0.0] - 2025-06-17
+
+Foundry Virtual Tabletop - Version 13 Support!
+This is a release for PF2e v7.2.0
+
+### Added
+
+- Added a check to see what version of PF2e you are running and display a warning if you are using a different version.
+
+### Changed
+
+- Better support for Dice So Nice!
+- Assassin Vine Wine -> Arbor Wine
+- Choker-Arm Mutagen -> Bendy-Arm Mutagen
+
 ## [6.6.2] - 2025-06-03
 
 This is a release for 6.12.4 of the PF2e System.
@@ -330,7 +345,8 @@ I don't remember all the changes that I made before I stopped working on this fo
 - Auto Self-Applied Effects (This is disabled if PF2e Toolbelt is doing this as well)
 - Swashbuckler Panache
 
-[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.6.2...HEAD
+[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v7.0.0...HEAD
+[7.0.0]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.6.2...v7.0.0
 [6.6.2]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.6.1...v6.6.2
 [6.6.1]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.6.0...v6.6.1
 [6.6.0]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.5.0...v6.6.0

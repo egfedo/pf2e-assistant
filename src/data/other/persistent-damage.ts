@@ -1,5 +1,6 @@
 import { Assistant } from "assistant.ts";
 import { ActorPF2e, ConditionPF2e, DamageRoll } from "foundry-pf2e";
+import { Rolled } from "foundry-pf2e/foundry/client/dice/_module.mjs";
 import { Utils } from "utils.ts";
 
 export const path = ["Other", "Persistent Damage"];

@@ -1,4 +1,5 @@
 import { Assistant } from "assistant.ts";
+import { Utils } from "utils.ts";
 
 export const path = ["Spells", "4th Rank", "Painful Vibrations"];
 
@@ -10,6 +11,8 @@ export const actions: Assistant.Action[] = [
             if (!data.speaker) return;
             if (!data.origin) return;
             if (!data.item?.isOfType("spell")) return;
+            if (!Utils.Roll.isCheckRoll(data.roll)) return;
+
             const reroll = Assistant.createReroll();
 
             reroll.updateCondition.push(
@@ -34,6 +37,8 @@ export const actions: Assistant.Action[] = [
             if (!data.speaker) return;
             if (!data.origin) return;
             if (!data.item?.isOfType("spell")) return;
+            if (!Utils.Roll.isCheckRoll(data.roll)) return;
+
             const reroll = Assistant.createReroll();
 
             reroll.updateCondition.push(

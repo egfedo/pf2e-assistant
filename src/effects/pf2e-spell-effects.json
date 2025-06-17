@@ -20,8 +20,16 @@
         "uuid": "Compendium.pf2e.spell-effects.Item.0JPnBD7yzrmrbZ0m"
     },
     {
+        "slug": "spell-effect-veil-of-spirits",
+        "uuid": "Compendium.pf2e.spell-effects.Item.0L9LAkGW2FtmZOgb"
+    },
+    {
         "slug": "spell-effect-summoners-visage",
         "uuid": "Compendium.pf2e.spell-effects.Item.0OC945wcZ4H4akLz"
+    },
+    {
+        "slug": "spell-effect-spirit-ward",
+        "uuid": "Compendium.pf2e.spell-effects.Item.0P4JYUQO20mX4rCS"
     },
     {
         "slug": "spell-effect-mirror-image",
@@ -62,6 +70,10 @@
     {
         "slug": "spell-effect-glass-form",
         "uuid": "Compendium.pf2e.spell-effects.Item.0lYbjDI2N3xVl24E"
+    },
+    {
+        "slug": "spell-effect-valiant-anthem",
+        "uuid": "Compendium.pf2e.spell-effects.Item.0px2AJh9TBgU4iao"
     },
     {
         "slug": "spell-effect-roar-of-the-dragon",
@@ -676,6 +688,10 @@
         "uuid": "Compendium.pf2e.spell-effects.Item.Hc8e3aU9yLKPSw8o"
     },
     {
+        "slug": "spell-effect-equal-footing-success",
+        "uuid": "Compendium.pf2e.spell-effects.Item.HjYFYIlwraTRSHOX"
+    },
+    {
         "slug": "spell-effect-unblinking-flame-aura",
         "uuid": "Compendium.pf2e.spell-effects.Item.HoCUCi2jL1OLfXWR"
     },
@@ -844,6 +860,10 @@
         "uuid": "Compendium.pf2e.spell-effects.Item.LzsCQ1mRnPYDzNpo"
     },
     {
+        "slug": "spell-effect-equal-footing-failure-or-critical-failure",
+        "uuid": "Compendium.pf2e.spell-effects.Item.MFvCd82lxTQGZERm"
+    },
+    {
         "slug": "spell-effect-guided-introspection",
         "uuid": "Compendium.pf2e.spell-effects.Item.Me470HI6inX3Bovh"
     },
@@ -890,6 +910,10 @@
     {
         "slug": "spell-effect-dragon-form-diabolic",
         "uuid": "Compendium.pf2e.spell-effects.Item.OeCn76SB92GPOZwr"
+    },
+    {
+        "slug": "spell-effect-capital-dividend",
+        "uuid": "Compendium.pf2e.spell-effects.Item.Of5VbKBH0fLZHm8Z"
     },
     {
         "slug": "spell-effect-mantle-of-the-unwavering-heart",
@@ -1288,6 +1312,10 @@
         "uuid": "Compendium.pf2e.spell-effects.Item.c4cIfS2974nUJDPt"
     },
     {
+        "slug": "spell-effect-vicious-howl",
+        "uuid": "Compendium.pf2e.spell-effects.Item.cSlCn3KoAhsKxm4y"
+    },
+    {
         "slug": "spell-effect-return-the-favor",
         "uuid": "Compendium.pf2e.spell-effects.Item.cSoL5aMy3PCzM4Yv"
     },
@@ -1362,6 +1390,10 @@
     {
         "slug": "spell-effect-extract-poison",
         "uuid": "Compendium.pf2e.spell-effects.Item.fEhCbATDNlt6c1Ug"
+    },
+    {
+        "slug": "spell-effect-elemental-sheath",
+        "uuid": "Compendium.pf2e.spell-effects.Item.fEtZHzAhRYuNX2u1"
     },
     {
         "slug": "spell-effect-rapid-adaptation",
@@ -1624,6 +1656,10 @@
         "uuid": "Compendium.pf2e.spell-effects.Item.mzDgsuuo5wCgqyxR"
     },
     {
+        "slug": "spell-effect-rapid-retreat",
+        "uuid": "Compendium.pf2e.spell-effects.Item.n4aQ7fwJ5ogn1ekG"
+    },
+    {
         "slug": "spell-effect-entwined-roots",
         "uuid": "Compendium.pf2e.spell-effects.Item.nFOJ53IkO5khO4Rr"
     },
@@ -1816,6 +1852,10 @@
         "uuid": "Compendium.pf2e.spell-effects.Item.rnkQKEwUxrGruE1e"
     },
     {
+        "slug": "spell-effect-spiritual-renewal",
+        "uuid": "Compendium.pf2e.spell-effects.Item.rtkSifnBQaf0TEPo"
+    },
+    {
         "slug": "spell-effect-death-ward",
         "uuid": "Compendium.pf2e.spell-effects.Item.s6CwkSsMDGfUmotn"
     },
@@ -1894,6 +1934,10 @@
     {
         "slug": "spell-effect-object-memory-weapon",
         "uuid": "Compendium.pf2e.spell-effects.Item.uDOxq24S7IT2EcXv"
+    },
+    {
+        "slug": "spell-effect-warping-pull",
+        "uuid": "Compendium.pf2e.spell-effects.Item.uHNehgyXeNsdd3or"
     },
     {
         "slug": "spell-effect-spirit-sense",

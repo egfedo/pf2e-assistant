@@ -172,6 +172,10 @@
         "uuid": "Compendium.pf2e.bestiary-effects.Item.5Gol6tr9MtL9eR1u"
     },
     {
+        "slug": "effect-vitriolic-miasma",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.5KatA3QnT1zYLxGv"
+    },
+    {
         "slug": "effect-caustic-drool",
         "uuid": "Compendium.pf2e.bestiary-effects.Item.5M3RGpOuxizPM5Iy"
     },
@@ -576,6 +580,10 @@
         "uuid": "Compendium.pf2e.bestiary-effects.Item.HVGl2hSrfqHE4OZ2"
     },
     {
+        "slug": "effect-eye-pluck",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.HVNXglbd6fI36e6u"
+    },
+    {
         "slug": "effect-barbed-net",
         "uuid": "Compendium.pf2e.bestiary-effects.Item.HafP5vrdGdoqoFMo"
     },
@@ -822,6 +830,10 @@
     {
         "slug": "effect-perfect-formation",
         "uuid": "Compendium.pf2e.bestiary-effects.Item.PXVtir1Z88UpxBHR"
+    },
+    {
+        "slug": "effect-smeltable",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.PeQ2isu6YFcHhQyp"
     },
     {
         "slug": "effect-bark-orders-hold-sergeant",
@@ -1290,6 +1302,10 @@
     {
         "slug": "effect-zinba-restoration",
         "uuid": "Compendium.pf2e.bestiary-effects.Item.dslTaCkliOH5lZ6k"
+    },
+    {
+        "slug": "effect-red-tape",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.e1XDZsMrytC0K3k8"
     },
     {
         "slug": "effect-divine-aegis",

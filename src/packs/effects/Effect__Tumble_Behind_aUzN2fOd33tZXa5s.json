@@ -54,7 +54,8 @@
 		},
 		"badge": null,
 		"context": null,
-		"unidentified": false
+		"unidentified": false,
+		"fromSpell": false
 	},
 	"_id": "aUzN2fOd33tZXa5s",
 	"img": "icons/skills/movement/figure-running-gray.webp",

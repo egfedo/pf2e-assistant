@@ -5,9 +5,8 @@
         "build": "tsc --noEmit && vite build",
         "changelog": "changelog --format markdownlint --create --release",
         "effects": "tsx ./build/effects.ts",
-        "fvtt": "fvtt launch",
         "link": "tsx ./build/link.ts",
-        "unlock": "tsx ./build/unlock.ts"
+        "launch": "tsx ./build/launch.ts"
     },
     "author": "7H3LaughingMan",
     "license": "MIT",
@@ -20,13 +19,13 @@
         "prettier": "3.5.3",
         "prettier-plugin-organize-imports": "^4.1.0",
         "prompts": "^2.4.2",
-        "tsx": "4.19.4",
+        "tsx": "4.20.3",
         "typescript": "5.8.3",
         "vite": "6.3.5",
         "vite-tsconfig-paths": "^5.1.4"
     },
     "dependencies": {
         "foundry-pf2e": "github:7H3LaughingMan/foundry-pf2e",
-        "remeda": "2.21.8"
+        "remeda": "2.23.0"
     }
 }

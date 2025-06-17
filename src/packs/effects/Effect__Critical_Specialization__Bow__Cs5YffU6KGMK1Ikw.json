@@ -46,7 +46,8 @@
 		},
 		"badge": null,
 		"context": null,
-		"unidentified": false
+		"unidentified": false,
+		"fromSpell": false
 	},
 	"_id": "Cs5YffU6KGMK1Ikw",
 	"img": "icons/magic/control/buff-luck-fortune-gold.webp",

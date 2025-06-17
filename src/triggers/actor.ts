@@ -1,5 +1,6 @@
 import { Assistant } from "assistant.ts";
 import { ActorPF2e, ActorSourcePF2e, CharacterPF2e } from "foundry-pf2e";
+import { DatabaseUpdateOperation } from "foundry-pf2e/foundry/common/abstract/_module.mjs";
 import { Utils } from "utils.ts";
 
 Hooks.on(

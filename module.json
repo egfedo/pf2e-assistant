@@ -2,7 +2,7 @@
     "id": "pf2e-assistant",
     "title": "PF2e Assistant",
     "description": "Your personal assistant for your Pathfinder 2nd Edition games, helps automate various things that aren't automated by the game system.",
-    "version": "",
+    "version": "7.0.0",
     "authors": [
         {
             "name": "7H3LaughingMan",
@@ -13,9 +13,9 @@
     ],
     "socket": true,
     "compatibility": {
-        "minimum": "12.331",
-        "verified": "12.331",
-        "maximum": "12"
+        "minimum": "13",
+        "verified": "13",
+        "maximum": "13"
     },
     "esmodules": [
         "dist/pf2e-assistant.js"
@@ -34,10 +34,7 @@
         "systems": [
             {
                 "id": "pf2e",
-                "type": "system",
-                "compatibility": {
-                    "minimum": "6.12.2"
-                }
+                "type": "system"
             }
         ]
     },
@@ -65,6 +62,24 @@
                 "PLAYER": "OBSERVER",
                 "ASSISTANT": "OWNER"
             }
+        }
+    ],
+    "packFolders": [
+        {
+            "name": "Effects",
+            "sorting": "m",
+            "color": "#2f3339",
+            "packs": [
+                "effects"
+            ]
+        },
+        {
+            "name": "Macros",
+            "sorting": "m",
+            "color": "#181818",
+            "packs": [
+                "macros"
+            ]
         }
     ],
     "url": "https://github.com/7H3LaughingMan/pf2e-assistant",

@@ -2,30 +2,28 @@ import { Assistant } from "assistant.ts";
 import { ActorPF2e, ChatMessagePF2e, ConsumablePF2e, ScenePF2e, TokenDocumentPF2e } from "foundry-pf2e";
 import { Utils } from "utils.ts";
 
-function waitForMessage(chatMessage: ChatMessagePF2e, ms = 250, attempts = 40): Promise<ChatMessagePF2e> {
-    return new Promise<ChatMessagePF2e>(function (resolve) {
-        (function wait(count = 0) {
-            if (count > attempts) return resolve(chatMessage);
+const diceSoNiceMessageProcessed = Hooks.on(
+    "diceSoNiceMessageProcessed",
+    async function (messageId: string, { willTrigger3DRoll }: { willTrigger3DRoll: boolean }) {
+        if (willTrigger3DRoll) {
+            await game.dice3d?.waitFor3DAnimationByMessageID(messageId);
+        }
 
-            if (count !== 0) {
-                if (ui.chat.element.find(`.message[data-message-id="${chatMessage.id}"]:visible`).length !== 0) {
-                    return resolve(chatMessage);
-                }
-            }
-
-            setTimeout(wait, ms, count + 1);
-        })();
-    });
-}
+        processChatMessage(game.messages.get(messageId)!)
+            .then((data) => game.assistant.storage.process(data))
+            .then(({ data, reroll }) => processReroll(data, reroll));
+    }
+);
 
 const createChatMessage = Hooks.on("createChatMessage", function (chatMessage: ChatMessagePF2e) {
     if (!chatMessage.isAuthor) return;
     if (chatMessage.flags["pf2e-assistant"]?.process === false) return;
 
-    waitForMessage(chatMessage)
-        .then((value) => processChatMessage(value))
-        .then((value) => game.assistant.storage.process(value))
-        .then((value) => processReroll(value.data, value.reroll));
+    if (!game.modules.get("dice-so-nice")?.active) {
+        processChatMessage(chatMessage)
+            .then((data) => game.assistant.storage.process(data))
+            .then(({ data, reroll }) => processReroll(data, reroll));
+    }
 });
 
 async function processChatMessage(chatMessage: ChatMessagePF2e): Promise<Assistant.Data> {
@@ -136,6 +134,7 @@ async function processReroll(data: Assistant.Data, reroll: Assistant.Reroll) {
 if (import.meta.hot) {
     import.meta.hot.accept();
     import.meta.hot.dispose(() => {
+        Hooks.off("diceSoNiceMessageProcessed", diceSoNiceMessageProcessed);
         Hooks.off("createChatMessage", createChatMessage);
     });
 }

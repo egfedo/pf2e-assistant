@@ -1,4 +1,5 @@
 import { ActorPF2e, ChatMessagePF2e, ConditionSource, ItemPF2e, ItemSourcePF2e } from "foundry-pf2e";
+import { ActorUUID, ChatMessageUUID, ItemUUID } from "foundry-pf2e/foundry/common/documents/_module.mjs";
 
 export interface Reroll {
     updateCondition: UpdateCondition[];

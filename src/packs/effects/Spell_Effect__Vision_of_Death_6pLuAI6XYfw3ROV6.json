@@ -46,7 +46,8 @@
 		},
 		"badge": null,
 		"context": null,
-		"unidentified": false
+		"unidentified": false,
+		"fromSpell": false
 	},
 	"_id": "6pLuAI6XYfw3ROV6",
 	"img": "systems/pf2e/icons/spells/phantasmal-killer.webp",

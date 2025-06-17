@@ -1,14 +1,60 @@
 import { Assistant } from "assistant.ts";
-import { ChatMessagePF2e, CheckRoll, TokenDocumentPF2e } from "foundry-pf2e";
+import {
+    ChatMessagePF2e,
+    CheckRoll,
+    DegreeAdjustmentAmount,
+    DegreeOfSuccessString,
+    RollNoteSource,
+    SaveType,
+    TokenDocumentPF2e
+} from "foundry-pf2e";
+import { Rolled } from "foundry-pf2e/foundry/client/dice/_module.mjs";
 import { Utils } from "utils.ts";
 
-Hooks.on("pf2e-toolbelt.rollSave", function (args: PF2e_Toolbelt.TargetHelper.RollSaveHook) {
+type SaveRollData = {
+    die: number;
+    dosAdjustments?: Record<string, { label: string; amount: DegreeAdjustmentAmount }>;
+    modifiers: { label: string; modifier: number }[];
+    notes: RollNoteSource[];
+    private: boolean;
+    rerolled?: "hero" | "new" | "lower" | "higher";
+    roll: string;
+    significantModifiers?: {
+        appliedTo: "roll" | "dc";
+        name: string;
+        significance: "ESSENTIAL" | "HELPFUL" | "NONE" | "HARMFUL" | "DETRIMENTAL";
+        value: number;
+    }[];
+    statistic: SaveType;
+    success: DegreeOfSuccessString;
+    unadjustedOutcome?: DegreeOfSuccessString | null;
+    value: number;
+};
+
+type RollSaveHook = {
+    roll: Rolled<CheckRoll>;
+    message: ChatMessagePF2e;
+    rollMessage: ChatMessagePF2e;
+    target: TokenDocumentPF2e;
+    data: SaveRollData;
+};
+
+type RerollSaveHook = {
+    oldRoll: Rolled<CheckRoll>;
+    newRoll: Rolled<CheckRoll>;
+    keptRoll: Rolled<CheckRoll>;
+    message: ChatMessagePF2e;
+    target: TokenDocumentPF2e;
+    data: SaveRollData;
+};
+
+Hooks.on("pf2e-toolbelt.rollSave", function (args: RollSaveHook) {
     processToolbelt(args.message, args.roll, args.target, args.data)
         .then((value) => game.assistant.storage.process(value))
         .then((value) => processReroll(value.data, value.reroll));
 });
 
-Hooks.on("pf2e-toolbelt.rerollSave", function (args: PF2e_Toolbelt.TargetHelper.RerollSaveHook) {
+Hooks.on("pf2e-toolbelt.rerollSave", function (args: RerollSaveHook) {
     const reroll = args.message.flags["pf2e-assistant"]?.reroll;
     if (reroll !== undefined) {
         Assistant.processReroll(reroll[args.target.id])
@@ -26,7 +72,7 @@ async function processToolbelt(
     message: ChatMessagePF2e,
     roll: Rolled<CheckRoll>,
     target: TokenDocumentPF2e,
-    targetSave: PF2e_Toolbelt.TargetHelper.MessageTargetSave
+    targetSave: SaveRollData
 ): Promise<Assistant.Data> {
     let data: Assistant.Data = {
         trigger: "saving-throw",

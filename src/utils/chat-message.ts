@@ -5,6 +5,7 @@ import {
     CheckContextChatFlag,
     ItemOriginFlag
 } from "foundry-pf2e";
+import { ActorUUID, ItemUUID } from "foundry-pf2e/foundry/common/documents/_module.mjs";
 import * as R from "remeda";
 
 interface ChatMessageStrikePF2e {

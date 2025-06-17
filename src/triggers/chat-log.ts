@@ -1,38 +1,42 @@
 import { Assistant } from "assistant.ts";
-import { Utils } from "utils.ts";
+import { ChatMessagePF2e } from "foundry-pf2e";
+import { htmlQueryAll } from "utils/dom.ts";
 
-Hooks.on("renderChatLog", function (_application: ChatLog, html: JQuery, _data: ChatLogOptions) {
-    html[0].addEventListener("click", async function (event: MouseEvent) {
-        const { message } = Utils.ChatLog.getMessage(event);
-        if (!message) return;
-
-        const button = Utils.DOM.htmlClosest<HTMLButtonElement>(event.target, "button[data-action]");
-        if (!button) return;
-
-        if (button.dataset.action === "choice") {
-            let data: Assistant.Data = {
-                trigger: "choice",
-                rollOptions: [`choice:${button.value}`]
-            };
-
-            if (message.actor && message.token) {
-                data.speaker = {
-                    actor: message.actor,
-                    token: message.token
-                };
-            }
-
-            if (message.target?.actor && message.target?.token) {
-                data.target = message.target;
-            }
-
-            if (message.item) {
-                data.item = message.item;
-                data.rollOptions.push(...message.item.getRollOptions("item"));
-            }
-
-            game.assistant.storage.process(data);
-            game.assistant.socket.deleteChatMessage(message);
-        }
-    });
+Hooks.on("renderChatMessageHTML", function (message: ChatMessagePF2e, html: HTMLElement) {
+    for (const button of htmlQueryAll<HTMLButtonElement>(html, "button[data-action]")) {
+        button.addEventListener("click", async (event) => onClickButton(message, event, html, button));
+    }
 });
+
+async function onClickButton(
+    message: ChatMessagePF2e,
+    _event: MouseEvent,
+    _html: HTMLElement,
+    button: HTMLButtonElement
+) {
+    if (button.dataset.action === "choice") {
+        let data: Assistant.Data = {
+            trigger: "choice",
+            rollOptions: [`choice:${button.value}`]
+        };
+
+        if (message.actor && message.token) {
+            data.speaker = {
+                actor: message.actor,
+                token: message.token
+            };
+        }
+
+        if (message.target?.actor && message.target?.token) {
+            data.target = message.target;
+        }
+
+        if (message.item) {
+            data.item = message.item;
+            data.rollOptions.push(...message.item.getRollOptions("item"));
+        }
+
+        game.assistant.storage.process(data);
+        game.assistant.socket.deleteChatMessage(message);
+    }
+}

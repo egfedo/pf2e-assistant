@@ -17,7 +17,7 @@ export async function roll(data: DamageTemplate, context: DamageDamageContext): 
             ? game.i18n.localize(`PF2E.Check.Result.Degree.Attack.${outcome}`)
             : game.i18n.localize(`PF2E.Check.Result.Degree.Check.${outcome}`)
         : null;
-    let flavor = await renderTemplate("systems/pf2e/templates/chat/action/header.hbs", {
+    let flavor = await foundry.applications.handlebars.renderTemplate("systems/pf2e/templates/chat/action/header.hbs", {
         title: data.name,
         outcome,
         subtitle
@@ -114,9 +114,7 @@ export async function roll(data: DamageTemplate, context: DamageDamageContext): 
         unadjustedOutcome: context.unadjustedOutcome ?? null
     };
 
-    const messageData: Omit<foundry.documents.ChatMessageSource, "rolls"> & {
-        rolls: (string | RollJSON)[];
-    } = await roll.toMessage(
+    const messageData: foundry.documents.ChatMessageSource = await roll.toMessage(
         {
             speaker: ChatMessagePF2e.getSpeaker({ actor: self?.actor, token: self?.token }),
             flavor,
@@ -135,16 +133,16 @@ export async function roll(data: DamageTemplate, context: DamageDamageContext): 
     );
 
     // If there is splash damage, include it as an additional roll for separate application
-    const splashRolls = await (async (): Promise<RollJSON[]> => {
+    const splashRolls = await (async (): Promise<string[]> => {
         const splashInstances = roll.instances
             .map((i) => ({ damageType: i.type, total: i.componentTotal("splash") }))
             .filter((s) => s.total > 0);
-        const rolls: RollJSON[] = [];
+        const rolls: string[] = [];
         for (const splash of splashInstances) {
             const formula = `(${splash.total}[splash])[${splash.damageType}]`;
             const roll = await newDamageRoll(formula).evaluate();
             roll.options.splashOnly = true;
-            rolls.push(roll.toJSON());
+            rolls.push(roll.toJSON() as unknown as string);
         }
 
         return rolls;

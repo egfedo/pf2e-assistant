@@ -11,6 +11,7 @@ export const actions: Assistant.Action[] = [
             if (!data.speaker) return;
             if (!data.origin) return;
             if (!data.item?.isOfType("spell")) return;
+
             const reroll = Assistant.createReroll();
 
             reroll.updateCondition.push(
@@ -27,6 +28,7 @@ export const actions: Assistant.Action[] = [
             if (!data.speaker) return;
             if (!data.origin) return;
             if (!data.item?.isOfType("spell")) return;
+
             const reroll = Assistant.createReroll();
 
             reroll.updateCondition.push(
@@ -43,6 +45,8 @@ export const actions: Assistant.Action[] = [
             if (!data.speaker) return;
             if (!data.origin) return;
             if (!data.item?.isOfType("spell")) return;
+            if (!Utils.Roll.isCheckRoll(data.roll)) return;
+
             const reroll = Assistant.createReroll();
 
             reroll.updateCondition.push(

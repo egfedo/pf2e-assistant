@@ -1,7 +1,7 @@
 import { RuleElementSource } from "foundry-pf2e";
 
 export interface MarkTokenSource extends RuleElementSource {
-    slug?: JSONValue;
+    slug?: string | null;
     uuid?: JSONValue;
 }
 

@@ -6,13 +6,19 @@ import {
     CheckDCReference,
     ConditionPF2e,
     ConditionSlug,
+    ConditionSource,
     EffectSystemData,
     ItemPF2e,
     ItemSourcePF2e,
-    PersistentSourceData,
     SaveType,
     TokenDocumentPF2e
 } from "foundry-pf2e";
+import {
+    ActorUUID,
+    ChatMessageUUID,
+    ItemUUID,
+    TokenDocumentUUID
+} from "foundry-pf2e/foundry/common/documents/_module.mjs";
 import { Utils } from "utils.ts";
 import module from "../../module.json" with { type: "json" };
 import { AddItem, RemoveItem, UpdateCondition } from "./reroll.ts";
@@ -82,12 +88,10 @@ export class Socket {
             rollOptions
         };
         const target = data.target ? { actor: data.target.actor.uuid, token: data.target.token.uuid } : null;
-        const roll = data.roll
-            ? {
-                  total: data.roll.total,
-                  degreeOfSuccess: Utils.Roll.isCheckRoll(data.roll) ? data.roll.degreeOfSuccess : null
-              }
-            : null;
+        const roll =
+            data.roll?.total && data.roll?.degreeOfSuccess
+                ? { total: data.roll.total, degreeOfSuccess: data.roll.degreeOfSuccess }
+                : null;
 
         let effectSource = effect.toObject();
         effectSource.system.context = {
@@ -348,7 +352,7 @@ export class Socket {
     async addCondition(
         actor: ActorPF2e,
         conditionSlug: ConditionSlug,
-        { value, persistent }: { value?: number; persistent?: PersistentSourceData } = {}
+        { value, persistent }: { value?: number; persistent?: ConditionSource["system"]["persistent"] } = {}
     ): Promise<UpdateCondition[]> {
         if (!actor.canUserModify(game.user, "update")) {
             return (await this.#executeAsActor(actor, "addCondition", actor.uuid, conditionSlug, { value })) ?? [];
@@ -375,7 +379,7 @@ export class Socket {
     async #addCondition(
         actorUuid: ActorUUID,
         conditionSlug: ConditionSlug,
-        { value, persistent }: { value?: number; persistent?: PersistentSourceData } = {}
+        { value, persistent }: { value?: number; persistent?: ConditionSource["system"]["persistent"] } = {}
     ): Promise<UpdateCondition[]> {
         let actor = await fromUuid<ActorPF2e>(actorUuid);
         if (!actor) return [];
@@ -483,7 +487,11 @@ export class Socket {
         };
 
         let chatMessage = await ChatMessage.create({
-            content: await renderTemplate("modules/pf2e-assistant/templates/chat/prompt-choice.hbs", param.data),
+            //@ts-expect-error
+            content: await foundry.applications.handlebars.renderTemplate(
+                "modules/pf2e-assistant/templates/chat/prompt-choice.hbs",
+                param.data
+            ),
             flags,
             speaker: ChatMessage.getSpeaker(param.speaker),
             whisper: game.users.filter((user) => param.speaker.actor.canUserModify(user, "update"))
@@ -548,7 +556,7 @@ namespace SocketTypes {
             origin: ActorToken;
             item?: ItemPF2e;
             target?: ActorToken;
-            roll?: Roll;
+            roll?: NonNullable<EffectSystemData["context"]>["roll"];
             duration?: EffectSystemData["duration"];
             tokenMark?: { slug: string; token: TokenDocumentPF2e };
         }

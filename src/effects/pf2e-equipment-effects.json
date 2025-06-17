@@ -416,6 +416,10 @@
         "uuid": "Compendium.pf2e.equipment-effects.Item.C3VRrOCZndaBIE1q"
     },
     {
+        "slug": "effect-wyrm-spindle-armor",
+        "uuid": "Compendium.pf2e.equipment-effects.Item.C8LxBHncfvvofXfj"
+    },
+    {
         "slug": "effect-energy-mutagen-lesser",
         "uuid": "Compendium.pf2e.equipment-effects.Item.C9Tnl6Q7Z5Sbw5EY"
     },
@@ -504,7 +508,7 @@
         "uuid": "Compendium.pf2e.equipment-effects.Item.F6YMKMbhzWBd9A07"
     },
     {
-        "slug": "effect-choker-arm-mutagen-lesser",
+        "slug": "effect-bendy-arm-mutagen-lesser",
         "uuid": "Compendium.pf2e.equipment-effects.Item.FDSl6DFblUjITOgP"
     },
     {
@@ -616,7 +620,7 @@
         "uuid": "Compendium.pf2e.equipment-effects.Item.Hgs0mzN8lRHjcfAJ"
     },
     {
-        "slug": "effect-choker-arm-mutagen-greater",
+        "slug": "effect-bendy-arm-mutagen-greater",
         "uuid": "Compendium.pf2e.equipment-effects.Item.HlUL7FmGLyS35Jpp"
     },
     {
@@ -632,7 +636,7 @@
         "uuid": "Compendium.pf2e.equipment-effects.Item.Hx4MOTujp5z6SlQu"
     },
     {
-        "slug": "effect-choker-arm-mutagen-moderate",
+        "slug": "effect-bendy-arm-mutagen-moderate",
         "uuid": "Compendium.pf2e.equipment-effects.Item.IBu1RWKW5JX70nse"
     },
     {
@@ -944,7 +948,7 @@
         "uuid": "Compendium.pf2e.equipment-effects.Item.QBujqOaTXzqM13Cy"
     },
     {
-        "slug": "effect-assassin-vine-wine",
+        "slug": "effect-arbor-wine",
         "uuid": "Compendium.pf2e.equipment-effects.Item.QCqYiSIR9DVPAHgR"
     },
     {
@@ -994,6 +998,10 @@
     {
         "slug": "effect-juubuns-one-thousand-poems",
         "uuid": "Compendium.pf2e.equipment-effects.Item.Rn2Nl2iXlRMijTNb"
+    },
+    {
+        "slug": "effect-bracers-of-devotion",
+        "uuid": "Compendium.pf2e.equipment-effects.Item.RwDdIlkzt8TpEjHD"
     },
     {
         "slug": "effect-mana-rattler-liniment",
@@ -1384,6 +1392,10 @@
         "uuid": "Compendium.pf2e.equipment-effects.Item.bri7UVNCfHhCIvXN"
     },
     {
+        "slug": "effect-taldogis-badge",
+        "uuid": "Compendium.pf2e.equipment-effects.Item.bsumFksktyHssfrf"
+    },
+    {
         "slug": "effect-gecko-potion",
         "uuid": "Compendium.pf2e.equipment-effects.Item.buJnkFBzL4e22ASp"
     },
@@ -1668,6 +1680,10 @@
         "uuid": "Compendium.pf2e.equipment-effects.Item.ioGzmVSmMGXWWBYb"
     },
     {
+        "slug": "effect-dragon-breath-scale",
+        "uuid": "Compendium.pf2e.equipment-effects.Item.iqbWgT2TTJLGSkTL"
+    },
+    {
         "slug": "effect-taper-of-sanctification",
         "uuid": "Compendium.pf2e.equipment-effects.Item.j8dPwfhUuIeDgHYT"
     },
@@ -1794,6 +1810,10 @@
     {
         "slug": "effect-ooze-ammunition",
         "uuid": "Compendium.pf2e.equipment-effects.Item.m77YnEX1T7bdk7Qa"
+    },
+    {
+        "slug": "effect-crimson-godsblood-serum",
+        "uuid": "Compendium.pf2e.equipment-effects.Item.m942gdWRO19p0QS8"
     },
     {
         "slug": "effect-skeptics-elixir-moderate",
@@ -1960,7 +1980,7 @@
         "uuid": "Compendium.pf2e.equipment-effects.Item.pDErD7SHcOxYAbqf"
     },
     {
-        "slug": "effect-choker-arm-mutagen-major",
+        "slug": "effect-bendy-arm-mutagen-major",
         "uuid": "Compendium.pf2e.equipment-effects.Item.pZjJv8r28uASg6zp"
     },
     {
@@ -2278,6 +2298,10 @@
     {
         "slug": "effect-crimson-fulcrum-lens",
         "uuid": "Compendium.pf2e.equipment-effects.Item.ytqvHyF0oMKbo65P"
+    },
+    {
+        "slug": "effect-boozy-bottle",
+        "uuid": "Compendium.pf2e.equipment-effects.Item.yvYzIb8Ca4rzC4yt"
     },
     {
         "slug": "effect-viper-rapier",

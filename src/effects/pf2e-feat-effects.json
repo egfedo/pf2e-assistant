@@ -40,6 +40,10 @@
         "uuid": "Compendium.pf2e.feat-effects.Item.0nkzRcjN9iOSFUf9"
     },
     {
+        "slug": "effect-vengeful-remnant",
+        "uuid": "Compendium.pf2e.feat-effects.Item.0o21uiVJUpYCO7Zj"
+    },
+    {
         "slug": "effect-victorious-vigor",
         "uuid": "Compendium.pf2e.feat-effects.Item.0pq3MPLH0C9z4tj3"
     },
@@ -232,12 +236,20 @@
         "uuid": "Compendium.pf2e.feat-effects.Item.4j5J4IM9sWNe1UcT"
     },
     {
+        "slug": "effect-close-contract",
+        "uuid": "Compendium.pf2e.feat-effects.Item.4uh4EP1sxKRYx7kg"
+    },
+    {
         "slug": "effect-familiar-of-keen-senses",
         "uuid": "Compendium.pf2e.feat-effects.Item.4wJM0OA9y2gsBAh7"
     },
     {
         "slug": "effect-hungry-goblin",
         "uuid": "Compendium.pf2e.feat-effects.Item.4xtHFRGI05SNe9rA"
+    },
+    {
+        "slug": "effect-inspiring-recitation",
+        "uuid": "Compendium.pf2e.feat-effects.Item.5FRnceccGyLcnVlv"
     },
     {
         "slug": "effect-eye-of-the-arclords",
@@ -352,6 +364,14 @@
         "uuid": "Compendium.pf2e.feat-effects.Item.7Eh8gHNcRNs9iIR8"
     },
     {
+        "slug": "effect-strangle",
+        "uuid": "Compendium.pf2e.feat-effects.Item.7HXxtWO5MAJWkwnt"
+    },
+    {
+        "slug": "effect-aura-of-confidence",
+        "uuid": "Compendium.pf2e.feat-effects.Item.7L6Gltxxkjq9eyXN"
+    },
+    {
         "slug": "effect-purifying-breeze",
         "uuid": "Compendium.pf2e.feat-effects.Item.7MQLLkQACZt8cspt"
     },
@@ -446,6 +466,10 @@
     {
         "slug": "effect-come-and-get-me-circumstance-bonus",
         "uuid": "Compendium.pf2e.feat-effects.Item.9O4q3bYlWkuC24vh"
+    },
+    {
+        "slug": "effect-soul-well",
+        "uuid": "Compendium.pf2e.feat-effects.Item.9YO84RSGcq3XcA0E"
     },
     {
         "slug": "effect-cantorian-rejuvenation",
@@ -778,6 +802,10 @@
     {
         "slug": "effect-favored-terrain-increase-swim-speed",
         "uuid": "Compendium.pf2e.feat-effects.Item.HKPmrxkZwHRND5Um"
+    },
+    {
+        "slug": "effect-soul-well-additional-damage",
+        "uuid": "Compendium.pf2e.feat-effects.Item.HKk3oUYJNN82heeH"
     },
     {
         "slug": "effect-inertial-barrier",
@@ -1160,6 +1188,10 @@
         "uuid": "Compendium.pf2e.feat-effects.Item.PYyJjl5EEXs0IswY"
     },
     {
+        "slug": "effect-great-bear",
+        "uuid": "Compendium.pf2e.feat-effects.Item.PZuICqcgpErGQcqG"
+    },
+    {
         "slug": "stance-magnetic-field",
         "uuid": "Compendium.pf2e.feat-effects.Item.PdFisHX9ZJmKEKCv"
     },
@@ -1338,6 +1370,14 @@
     {
         "slug": "effect-kishin-rage",
         "uuid": "Compendium.pf2e.feat-effects.Item.TKuUezmnwVftoCcL"
+    },
+    {
+        "slug": "effect-lead-by-example",
+        "uuid": "Compendium.pf2e.feat-effects.Item.TVWgsv3ypaqh5Y8T"
+    },
+    {
+        "slug": "effect-soul-oubliette",
+        "uuid": "Compendium.pf2e.feat-effects.Item.TbQiJxLfEF6P1HnO"
     },
     {
         "slug": "effect-curse-of-torrential-knowledge",
@@ -1528,6 +1568,10 @@
         "uuid": "Compendium.pf2e.feat-effects.Item.XaZdQHF9GvaJINqH"
     },
     {
+        "slug": "effect-instrument-of-death",
+        "uuid": "Compendium.pf2e.feat-effects.Item.Y2xjlHMGvr8Mkg3r"
+    },
+    {
         "slug": "effect-starlight-armor",
         "uuid": "Compendium.pf2e.feat-effects.Item.Y96a1OedsU8PVf7z"
     },
@@ -1542,6 +1586,10 @@
     {
         "slug": "effect-premonition-of-clarity",
         "uuid": "Compendium.pf2e.feat-effects.Item.YIpFCMT8AKKhgbAF"
+    },
+    {
+        "slug": "effect-nothing-personal",
+        "uuid": "Compendium.pf2e.feat-effects.Item.YJPiAE71tq3bp74B"
     },
     {
         "slug": "effect-life-giving-magic",
@@ -1562,6 +1610,10 @@
     {
         "slug": "stance-rough-terrain-stance",
         "uuid": "Compendium.pf2e.feat-effects.Item.YkiTA74FrUUu5IvI"
+    },
+    {
+        "slug": "effect-guillotine-blade",
+        "uuid": "Compendium.pf2e.feat-effects.Item.YsuyQ9QFbRvIZJoE"
     },
     {
         "slug": "effect-emboldened-with-glorious-purpose",
@@ -1630,6 +1682,10 @@
     {
         "slug": "effect-kindle-inner-flames",
         "uuid": "Compendium.pf2e.feat-effects.Item.bWvOkRT3alzllsiG"
+    },
+    {
+        "slug": "effect-hungry-blade",
+        "uuid": "Compendium.pf2e.feat-effects.Item.blwrnLLvtR6PVJlp"
     },
     {
         "slug": "effect-boleras-interrogation",
@@ -2480,6 +2536,10 @@
         "uuid": "Compendium.pf2e.feat-effects.Item.tx0S0fnfZ6Q2o80H"
     },
     {
+        "slug": "effect-designate-ally",
+        "uuid": "Compendium.pf2e.feat-effects.Item.uAWWAiuo5mSJSVY4"
+    },
+    {
         "slug": "effect-panache",
         "uuid": "Compendium.pf2e.feat-effects.Item.uBJsxCzNhje8m8jj"
     },
@@ -2564,6 +2624,10 @@
         "uuid": "Compendium.pf2e.feat-effects.Item.wAvcGfatk9H3TblG"
     },
     {
+        "slug": "effect-defenders-grit",
+        "uuid": "Compendium.pf2e.feat-effects.Item.wIaXcsccLYf1Wi6Y"
+    },
+    {
         "slug": "effect-seedpod",
         "uuid": "Compendium.pf2e.feat-effects.Item.wQDHpOKY3GZqvS2v"
     },
@@ -2638,6 +2702,10 @@
     {
         "slug": "effect-lock-on",
         "uuid": "Compendium.pf2e.feat-effects.Item.xtqOIXCe0Nsd0QCt"
+    },
+    {
+        "slug": "effect-even-the-odds",
+        "uuid": "Compendium.pf2e.feat-effects.Item.xxkCSwizAu2wC7Fo"
     },
     {
         "slug": "stance-flood-stance",

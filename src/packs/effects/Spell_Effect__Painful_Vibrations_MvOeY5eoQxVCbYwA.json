@@ -46,7 +46,8 @@
 		},
 		"badge": null,
 		"context": null,
-		"unidentified": false
+		"unidentified": false,
+		"fromSpell": false
 	},
 	"_id": "MvOeY5eoQxVCbYwA",
 	"img": "systems/pf2e/icons/spells/painful-vibrations.webp",
