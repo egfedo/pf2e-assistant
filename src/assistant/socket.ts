@@ -104,6 +104,16 @@ export class Socket {
             effectSource.system.duration = data.duration;
         }
 
+        if (data.choiceSet) {
+            const choiceSet = effectSource.system.rules
+                .filter(Utils.Rules.isChoiceSet)
+                .find((rule) => (data.choiceSet?.flag === undefined ? true : rule.flag === data.choiceSet.flag));
+
+            if (choiceSet) {
+                choiceSet.selection = data.choiceSet.selection;
+            }
+        }
+
         if (data.tokenMark) {
             const tokenMark = effectSource.system.rules
                 .filter(Utils.Rules.isMarkToken)
@@ -558,6 +568,7 @@ namespace SocketTypes {
             target?: ActorToken;
             roll?: NonNullable<EffectSystemData["context"]>["roll"];
             duration?: EffectSystemData["duration"];
+            choiceSet?: { flag?: string; selection: string | number | boolean };
             tokenMark?: { slug: string; token: TokenDocumentPF2e };
         }
     }

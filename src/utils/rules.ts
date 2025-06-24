@@ -1,4 +1,4 @@
-import { RuleElementSource } from "foundry-pf2e";
+import { ChoiceSetSource, RuleElementSource } from "foundry-pf2e";
 
 export interface MarkTokenSource extends RuleElementSource {
     slug?: string | null;
@@ -18,6 +18,8 @@ export interface RollOptionSource extends RuleElementSource {
     removeAfterRoll?: JSONValue;
 }
 
+export const isChoiceSet = (ruleElement: RuleElementSource): ruleElement is ChoiceSetSource =>
+    ruleElement.key === "ChoiceSet";
 export const isMarkToken = (ruleElement: RuleElementSource): ruleElement is MarkTokenSource =>
     ruleElement.key === "MarkToken";
 export const isRollOption = (ruleElement: RuleElementSource): ruleElement is RollOptionSource =>

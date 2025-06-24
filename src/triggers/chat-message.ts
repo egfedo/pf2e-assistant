@@ -5,11 +5,15 @@ import { Utils } from "utils.ts";
 const diceSoNiceMessageProcessed = Hooks.on(
     "diceSoNiceMessageProcessed",
     async function (messageId: string, { willTrigger3DRoll }: { willTrigger3DRoll: boolean }) {
+        let chatMessage = game.messages.get(messageId)!;
+        if (!chatMessage.isAuthor) return;
+        if (chatMessage.flags["pf2e-assistant"]?.process === false) return;
+
         if (willTrigger3DRoll) {
             await game.dice3d?.waitFor3DAnimationByMessageID(messageId);
         }
 
-        processChatMessage(game.messages.get(messageId)!)
+        processChatMessage(chatMessage)
             .then((data) => game.assistant.storage.process(data))
             .then(({ data, reroll }) => processReroll(data, reroll));
     }
@@ -127,7 +131,9 @@ async function processChatMessage(chatMessage: ChatMessagePF2e): Promise<Assista
 
 async function processReroll(data: Assistant.Data, reroll: Assistant.Reroll) {
     if (data.chatMessage && data.speaker && Object.values(reroll).some((value) => value.length !== 0)) {
-        await data.chatMessage.update({ flags: { "pf2e-assistant": { reroll: { [data.speaker.token.id]: reroll } } } });
+        await data.chatMessage.update({
+            flags: { "pf2e-assistant": { process: false, reroll: { [data.speaker.token.id]: reroll } } }
+        });
     }
 }
 

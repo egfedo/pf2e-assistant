@@ -9,10 +9,7 @@ export const actions: Assistant.Action[] = [
         trigger: "self-effect",
         predicate: [],
         process: async (data: Assistant.Data) => {
-            if (
-                game.modules.get("pf2e-toolbelt")?.active &&
-                game.settings.get("pf2e-toolbelt", "useButton.selfApplied")
-            )
+            if (game.modules.get("pf2e-toolbelt")?.active && game.settings.get("pf2e-toolbelt", "actionable.apply"))
                 return;
             if (!data.speaker) return;
             if (!data.item) return;
