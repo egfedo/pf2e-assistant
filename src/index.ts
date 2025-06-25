@@ -3,7 +3,7 @@ import "effects.ts";
 import "./settings.ts";
 import "./triggers/index.ts";
 
-const PF2E_VERSION = "7.2.0";
+const PF2E_VERSION = "7.2.1";
 
 Hooks.once("ready", async function () {
     Object.assign(game, { assistant: { socket: new Assistant.Socket(), storage: new Assistant.Storage() } });

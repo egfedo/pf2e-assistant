@@ -520,6 +520,10 @@
         "uuid": "Compendium.pf2e.spell-effects.Item.C1GAlZ6Gmmw0QIJN"
     },
     {
+        "slug": "spell-effect-crown-of-prophets",
+        "uuid": "Compendium.pf2e.spell-effects.Item.C2jiokGoehvLu0fi"
+    },
+    {
         "slug": "spell-effect-serrate",
         "uuid": "Compendium.pf2e.spell-effects.Item.CDNKDV3UsAp95D1m"
     },
@@ -808,6 +812,10 @@
         "uuid": "Compendium.pf2e.spell-effects.Item.KcBqo33ekJHxZLHo"
     },
     {
+        "slug": "spell-effect-rite-of-cleansing-flame-failure",
+        "uuid": "Compendium.pf2e.spell-effects.Item.KhBRuP0Wl2P5okGo"
+    },
+    {
         "slug": "spell-effect-dinosaur-form-brontosaurus",
         "uuid": "Compendium.pf2e.spell-effects.Item.KkDRRDuycXwKPa6n"
     },
@@ -894,6 +902,10 @@
     {
         "slug": "spell-effect-life-boost",
         "uuid": "Compendium.pf2e.spell-effects.Item.NQZ88IoKeMBsfjp7"
+    },
+    {
+        "slug": "spell-effect-funeral-flames",
+        "uuid": "Compendium.pf2e.spell-effects.Item.NRGAkp9i7j0sWeM7"
     },
     {
         "slug": "spell-effect-apex-companion",
@@ -1062,10 +1074,6 @@
     {
         "slug": "spell-effect-tangle-vine",
         "uuid": "Compendium.pf2e.spell-effects.Item.TwtUIEyenrtAbeiX"
-    },
-    {
-        "slug": "spell-effect-fiery-body-9th-level",
-        "uuid": "Compendium.pf2e.spell-effects.Item.U2eD42cGwdvQMdN0"
     },
     {
         "slug": "spell-effect-deep-sight",
@@ -1510,6 +1518,10 @@
     {
         "slug": "spell-effect-animal-form-frog",
         "uuid": "Compendium.pf2e.spell-effects.Item.j2LhQ7kEQhq3J3zZ"
+    },
+    {
+        "slug": "spell-effect-rite-of-cleansing-flame-critical-success",
+        "uuid": "Compendium.pf2e.spell-effects.Item.j7A1QXHJNxt1d1ED"
     },
     {
         "slug": "spell-effect-life-connection",

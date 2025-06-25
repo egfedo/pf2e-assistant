@@ -1764,6 +1764,10 @@
         "uuid": "Compendium.pf2e.equipment-effects.Item.lO95TwgihBdTilAB"
     },
     {
+        "slug": "effect-electromuscular-stimulator",
+        "uuid": "Compendium.pf2e.equipment-effects.Item.lO9uGNY8qBNDJI8M"
+    },
+    {
         "slug": "effect-elixir-of-life",
         "uuid": "Compendium.pf2e.equipment-effects.Item.lPRuIRbu0rHBkoKY"
     },
@@ -2078,6 +2082,10 @@
     {
         "slug": "effect-healers-gel",
         "uuid": "Compendium.pf2e.equipment-effects.Item.sOwAqyQ6MaoSqaY1"
+    },
+    {
+        "slug": "effect-electromuscular-stimulator-failure",
+        "uuid": "Compendium.pf2e.equipment-effects.Item.sUcGXoEOuTC1fqpu"
     },
     {
         "slug": "effect-sanguine-mutagen-moderate",

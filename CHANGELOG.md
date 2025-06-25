@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [7.2.0] - 2025-06-25
+
+PF2e System v7.2.1 Update
+
+### Added
+
+- Anticipate Peril
+- Aqueous Blast
+- Befuddle
+- Benediction
+- Chilling Spray
+- Tailwind
+
+### Fixed
+
+- Infectious Enthusiasm
+- Inside Ropes
+
 ## [7.0.1] - 2025-06-24
 
 ### Added
@@ -365,7 +383,8 @@ I don't remember all the changes that I made before I stopped working on this fo
 - Auto Self-Applied Effects (This is disabled if PF2e Toolbelt is doing this as well)
 - Swashbuckler Panache
 
-[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v7.0.1...HEAD
+[Unreleased]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v7.2.0...HEAD
+[7.2.0]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v7.0.1...v7.2.0
 [7.0.1]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v7.0.0...v7.0.1
 [7.0.0]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.6.2...v7.0.0
 [6.6.2]: https://github.com/7H3LaughingMan/pf2e-assistant/compare/v6.6.1...v6.6.2

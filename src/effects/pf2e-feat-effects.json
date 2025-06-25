@@ -212,6 +212,10 @@
         "uuid": "Compendium.pf2e.feat-effects.Item.4QWayYR3JSL9bk2T"
     },
     {
+        "slug": "effect-play-to-the-crowd-temporary-hit-points",
+        "uuid": "Compendium.pf2e.feat-effects.Item.4TMf6LVNMakqj7Bt"
+    },
+    {
         "slug": "effect-masterful-hunters-edge-flurry",
         "uuid": "Compendium.pf2e.feat-effects.Item.4UNQfMrwfWirdwoV"
     },
@@ -488,12 +492,20 @@
         "uuid": "Compendium.pf2e.feat-effects.Item.9kNbiZPOM2wy60ao"
     },
     {
+        "slug": "effect-play-to-the-crowd-attack-roll-bonus",
+        "uuid": "Compendium.pf2e.feat-effects.Item.9oQkkOXX1tmVgPBA"
+    },
+    {
         "slug": "effect-terrifying-mien",
         "uuid": "Compendium.pf2e.feat-effects.Item.9p4Ieqw6qAkhc4m3"
     },
     {
         "slug": "effect-left-hand-blood",
         "uuid": "Compendium.pf2e.feat-effects.Item.9rUzqHni8LE19Gu5"
+    },
+    {
+        "slug": "effect-called-shot",
+        "uuid": "Compendium.pf2e.feat-effects.Item.9yDGgsjW3vTZt0ez"
     },
     {
         "slug": "effect-indomitable-spirit",
@@ -634,6 +646,10 @@
     {
         "slug": "effect-psychic-rapport",
         "uuid": "Compendium.pf2e.feat-effects.Item.Dbr5hInQXH904Ca7"
+    },
+    {
+        "slug": "effect-gladiator-dedication",
+        "uuid": "Compendium.pf2e.feat-effects.Item.DdDjfNeoYxcKIxnq"
     },
     {
         "slug": "effect-repair-module",
@@ -1752,6 +1768,10 @@
         "uuid": "Compendium.pf2e.feat-effects.Item.cvIwUEempg0cfhFB"
     },
     {
+        "slug": "effect-play-to-the-crowd-ac-bonus",
+        "uuid": "Compendium.pf2e.feat-effects.Item.cz33s6SyIavmL9wA"
+    },
+    {
         "slug": "effect-steal-death",
         "uuid": "Compendium.pf2e.feat-effects.Item.d0TYadetRJvNb2Au"
     },
@@ -1944,6 +1964,10 @@
         "uuid": "Compendium.pf2e.feat-effects.Item.hGj6fnFwQwczmubB"
     },
     {
+        "slug": "effect-targeting-finisher-critical",
+        "uuid": "Compendium.pf2e.feat-effects.Item.hbWnrLZpqemQVdvb"
+    },
+    {
         "slug": "effect-snap-out-of-it-marshal",
         "uuid": "Compendium.pf2e.feat-effects.Item.hfhdvgObjnGStW07"
     },
@@ -2074,6 +2098,10 @@
     {
         "slug": "effect-kneecap",
         "uuid": "Compendium.pf2e.feat-effects.Item.kZdVPBO58uq38KIR"
+    },
+    {
+        "slug": "effect-called-shot-critical",
+        "uuid": "Compendium.pf2e.feat-effects.Item.kcxz1zHReNt8zm8Y"
     },
     {
         "slug": "effect-portentous-spell",
@@ -2462,6 +2490,10 @@
     {
         "slug": "stance-ghosts-in-the-storm",
         "uuid": "Compendium.pf2e.feat-effects.Item.sPIaly8bgNxgcNvT"
+    },
+    {
+        "slug": "effect-targeting-finisher",
+        "uuid": "Compendium.pf2e.feat-effects.Item.se36qcZiG3T0ps5U"
     },
     {
         "slug": "effect-ongoing-selfishness",

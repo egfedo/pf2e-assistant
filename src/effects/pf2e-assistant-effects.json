@@ -8,6 +8,10 @@
         "uuid": "Compendium.pf2e-assistant.effects.Item.2bApaOOOWXqQAgy2"
     },
     {
+        "slug": "spell-effect-befuddle-failure",
+        "uuid": "Compendium.pf2e-assistant.effects.Item.3RHmweQP1SgPvxG3"
+    },
+    {
         "slug": "spell-effect-vision-of-death",
         "uuid": "Compendium.pf2e-assistant.effects.Item.6pLuAI6XYfw3ROV6"
     },
@@ -26,6 +30,10 @@
     {
         "slug": "spell-effect-painful-vibrations",
         "uuid": "Compendium.pf2e-assistant.effects.Item.MvOeY5eoQxVCbYwA"
+    },
+    {
+        "slug": "spell-effect-chilling-spray-failure",
+        "uuid": "Compendium.pf2e-assistant.effects.Item.RGcO4kdecdN4g8ne"
     },
     {
         "slug": "effect-mistform-elixir-lesser",
@@ -60,8 +68,20 @@
         "uuid": "Compendium.pf2e-assistant.effects.Item.hAYjaIzH8onPVYfz"
     },
     {
+        "slug": "spell-effect-befuddle-success",
+        "uuid": "Compendium.pf2e-assistant.effects.Item.hZlnH178W7y7cdWC"
+    },
+    {
         "slug": "effect-critical-specialization-brawling",
         "uuid": "Compendium.pf2e-assistant.effects.Item.iSaDovIXZCJNPOOj"
+    },
+    {
+        "slug": "spell-effect-chilling-spray-critical-failure",
+        "uuid": "Compendium.pf2e-assistant.effects.Item.js2Le4ZT3ndQMFfj"
+    },
+    {
+        "slug": "spell-effect-befuddle-critical-failure",
+        "uuid": "Compendium.pf2e-assistant.effects.Item.mRrXxKnZOLn14QU4"
     },
     {
         "slug": "effect-critical-specialization-sword",

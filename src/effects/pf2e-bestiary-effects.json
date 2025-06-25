@@ -352,6 +352,10 @@
         "uuid": "Compendium.pf2e.bestiary-effects.Item.AL7E03DYahfDhbcR"
     },
     {
+        "slug": "effect-inhale-light",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.ANZPiu3eb3byDRUk"
+    },
+    {
         "slug": "effect-susceptible-to-mockery-critical-failure",
         "uuid": "Compendium.pf2e.bestiary-effects.Item.APJJCYdq4gNe0PF4"
     },
@@ -522,6 +526,10 @@
     {
         "slug": "effect-steward-of-the-faithful",
         "uuid": "Compendium.pf2e.bestiary-effects.Item.Fjyhw3lhuHCz01xS"
+    },
+    {
+        "slug": "effect-cooperative-hunting",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.FngohajUtnPe9vmJ"
     },
     {
         "slug": "effect-spill-secrets",
@@ -1268,6 +1276,10 @@
         "uuid": "Compendium.pf2e.bestiary-effects.Item.cm31PGuq09sAzf3Y"
     },
     {
+        "slug": "effect-depth-charge",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.cs9UyOf4D3hh7cDG"
+    },
+    {
         "slug": "effect-warded-casting",
         "uuid": "Compendium.pf2e.bestiary-effects.Item.dLqBmcqrLnw0lPHK"
     },
@@ -1326,6 +1338,10 @@
     {
         "slug": "effect-tenacious-flames",
         "uuid": "Compendium.pf2e.bestiary-effects.Item.ekpt4mFw1kJkZ2pK"
+    },
+    {
+        "slug": "effect-frill-defense",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.enrTKgEzu2quCj0z"
     },
     {
         "slug": "effect-harrow-burst",
@@ -1536,7 +1552,7 @@
         "uuid": "Compendium.pf2e.bestiary-effects.Item.l9sm9MVVzWlx010m"
     },
     {
-        "slug": "effect-wild-shape-oaksteward",
+        "slug": "effect-untamed-shift-oaksteward",
         "uuid": "Compendium.pf2e.bestiary-effects.Item.lBpprC8VD4GRzTtg"
     },
     {
@@ -1646,6 +1662,10 @@
     {
         "slug": "effect-utter-despair",
         "uuid": "Compendium.pf2e.bestiary-effects.Item.ob00D61F0c4PIvj1"
+    },
+    {
+        "slug": "effect-dragonhide",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.okDw1dRcrQafunTV"
     },
     {
         "slug": "effect-hamstring",
@@ -1798,6 +1818,10 @@
     {
         "slug": "effect-poison-frenzy",
         "uuid": "Compendium.pf2e.bestiary-effects.Item.u2z1BgpZsxl7Zc2z"
+    },
+    {
+        "slug": "effect-tempest-rage",
+        "uuid": "Compendium.pf2e.bestiary-effects.Item.u9b233QynLAPKPty"
     },
     {
         "slug": "effect-xulgath-stench",
