@@ -41,7 +41,7 @@ export const actions: Assistant.Action[] = [
             reroll.removeItem.push(
                 ...(await game.assistant.socket.addEffect(
                     data.speaker.actor,
-                    PF2E_ASSISTANT_EFFECTS["effect-feint-critical-success"],
+                    PF2E_ASSISTANT_EFFECTS["effect-feint-success"],
                     {
                         origin: data.speaker,
                         target: data.target,
@@ -66,7 +66,7 @@ export const actions: Assistant.Action[] = [
             reroll.removeItem.push(
                 ...(await game.assistant.socket.addEffect(
                     data.target.actor,
-                    PF2E_ASSISTANT_EFFECTS["effect-feint-critical-success"],
+                    PF2E_ASSISTANT_EFFECTS["effect-feint-critical-failure"],
                     {
                         origin: data.speaker,
                         target: data.speaker,
